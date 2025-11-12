@@ -2161,7 +2161,9 @@ body {
   overflow: hidden;
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 500ms ease;
+              border-color 500ms ease,
+              backdrop-filter 500ms ease,
+              -webkit-backdrop-filter 500ms ease;
   opacity: 0;
   transform: translateY(40px);
   animation: slideInCard 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -2683,34 +2685,92 @@ body {
    Dark cinematic showcase of precision tools
    ══════════════════════════════════════════════════════════ */
 
+/* Transition divider between the process and technology blocks */
+.tech-transition {
+  position: relative;
+  height: 120px;
+  background: #050505;
+  overflow: hidden;
+}
+
+.tech-transition-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(185, 5, 4, 0.25), transparent 65%);
+  opacity: 0.6;
+  animation: transitionParallax 6s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.tech-transition-divider {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.3);
+  transform: translateY(-50%);
+  animation: techDividerPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes transitionParallax {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes techDividerPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 .tech-section {
   position: relative;
   background: linear-gradient(
-    135deg,
-    #0c0c0c 0%,
-    #0f0f0f 25%,
-    #121212 50%,
-    #0f0f0f 75%,
-    #0c0c0c 100%
-  );
+      180deg,
+      rgba(185, 5, 4, 0.18) 0%,
+      rgba(12, 12, 12, 0.95) 40%,
+      rgba(8, 8, 8, 1) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #0c0c0c 0%,
+      #0f0f0f 25%,
+      #121212 50%,
+      #0f0f0f 75%,
+      #0c0c0c 100%
+    );
   padding: 0;
   overflow: hidden;
 }
 
-/* Stage Light Gradient from Top Left */
+/* Cinematic red glow descending from the top of the section */
 .tech-section::before {
   content: '';
   position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 60%;
-  height: 80%;
-  background: radial-gradient(
-    ellipse 60% 70% at 30% 30%,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(185, 5, 4, 0.05) 30%,
-    transparent 70%
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(
+    180deg,
+    rgba(185, 5, 4, 0.35) 0%,
+    rgba(185, 5, 4, 0.18) 20%,
+    transparent 100%
   );
+  filter: blur(18px);
   pointer-events: none;
   z-index: 1;
 }
@@ -2734,6 +2794,43 @@ body {
   pointer-events: none;
   opacity: 0.6;
   z-index: 1;
+}
+
+/* Horizontal diagnostic laser scan */
+.tech-laser-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+  z-index: 2;
+}
+
+.tech-laser-overlay::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -20%;
+  width: 140%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.8), rgba(255, 255, 255, 0.85), rgba(255, 0, 0, 0.8), transparent);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+  animation: techLaserSweep 9s linear infinite;
+}
+
+@keyframes techLaserSweep {
+  0% {
+    transform: translateX(-10%) translateY(-40px);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(10%) translateY(200px);
+    opacity: 0;
+  }
 }
 
 @keyframes floatingBokeh {
@@ -2827,13 +2924,13 @@ body {
   font-size: clamp(32px, 5vw, 54px);
   font-weight: 900;
   line-height: 1.2;
-  color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 28px;
   text-shadow:
     0 4px 20px rgba(0, 0, 0, 0.9),
     0 2px 8px rgba(0, 0, 0, 0.8),
     0 0 30px rgba(185, 5, 4, 0.15);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .tech-underline {
@@ -2897,6 +2994,62 @@ body {
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  isolation: isolate;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 25% 0%, rgba(255, 0, 0, 0.25), transparent 60%);
+  opacity: 0.35;
+  transition: opacity 0.6s ease, filter 0.6s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tech-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), rgba(255, 0, 0, 0.8), rgba(255, 255, 255, 0.05));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tech-card:hover,
+.tech-card:focus-within {
+  transform: translateY(-5px);
+  border-color: rgba(255, 0, 0, 0.45);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(255, 0, 0, 0.18);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.tech-card:hover::before,
+.tech-card:focus-within::before {
+  opacity: 0.7;
+  filter: blur(6px);
+}
+
+.tech-card:hover::after,
+.tech-card:focus-within::after {
+  opacity: 1;
+  transform: scale(1);
+  animation: borderSweep 2.4s linear infinite;
 }
 
 .tech-card[data-tech="1"] {
@@ -2918,6 +3071,18 @@ body {
   }
 }
 
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Image Wrapper */
 .tech-image-wrapper {
   position: relative;
@@ -2931,6 +3096,15 @@ body {
   );
 }
 
+.tech-image-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .tech-image {
   width: 100%;
   height: 100%;
@@ -2938,8 +3112,15 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1), filter 800ms ease;
+  background-size: 110%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.85) saturate(1.05);
+  z-index: 2;
 }
+
+/* Optional motion version: replace the background-image with short looping video tags */
 
 /* Placeholder Icons for Images */
 .tech-placeholder-icon {
@@ -2949,15 +3130,30 @@ body {
   transition: all 600ms ease;
 }
 
-.tech-card:hover .tech-placeholder-icon {
+.tech-card:hover .tech-placeholder-icon,
+.tech-card:focus-within .tech-placeholder-icon {
   stroke: rgba(185, 5, 4, 0.6);
   transform: scale(1.1);
   filter: drop-shadow(0 0 20px rgba(185, 5, 4, 0.5));
 }
 
 /* Ambient Movement on Image */
-.tech-card:hover .tech-image {
-  transform: scale(1.05);
+.tech-card:hover .tech-image,
+.tech-card:focus-within .tech-image {
+  transform: scale(1.01);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.diagnostic-image {
+  background-image: url('https://images.pexels.com/photos/3806248/pexels-photo-3806248.jpeg?auto=compress&cs=tinysrgb&w=1600');
+}
+
+.cabin-image {
+  background-image: url('https://images.pexels.com/photos/3621225/pexels-photo-3621225.jpeg?auto=compress&cs=tinysrgb&w=1600');
+}
+
+.calibration-image {
+  background-image: url('https://images.pexels.com/photos/4480456/pexels-photo-4480456.jpeg?auto=compress&cs=tinysrgb&w=1600');
 }
 
 /* Red Beam Sweep Effect */
@@ -2978,6 +3174,7 @@ body {
   opacity: 0;
   transition: opacity 400ms ease;
   pointer-events: none;
+  z-index: 3;
 }
 
 .tech-card:hover .tech-beam-sweep {
@@ -2998,6 +3195,7 @@ body {
 .tech-content {
   padding: 36px 28px 40px;
   position: relative;
+  z-index: 2;
 }
 
 /* Icon Badge */
@@ -3022,15 +3220,17 @@ body {
   transition: all 600ms ease;
 }
 
-.tech-card:hover .tech-icon-badge {
-  transform: scale(1.1) rotate(360deg);
-  background: rgba(185, 5, 4, 0.15);
-  box-shadow: 0 6px 20px rgba(185, 5, 4, 0.4);
+.tech-card:hover .tech-icon-badge,
+.tech-card:focus-within .tech-icon-badge {
+  background: rgba(185, 5, 4, 0.18);
+  border-color: rgba(255, 0, 0, 0.6);
+  box-shadow: 0 8px 24px rgba(185, 5, 4, 0.35);
+  transform: translateY(-4px);
 }
 
-.tech-card:hover .tech-icon-badge svg {
-  stroke: #ff0000;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+.tech-card:hover .tech-icon-badge svg,
+.tech-card:focus-within .tech-icon-badge svg {
+  stroke: rgba(255, 255, 255, 0.95);
 }
 
 /* Card Title */
@@ -3206,6 +3406,18 @@ body {
   .tech-content {
     padding: 28px 24px 32px;
   }
+
+  .tech-card::before {
+    opacity: 0.65;
+  }
+
+  .tech-card:nth-child(odd)::before {
+    background: radial-gradient(circle at 50% -20%, rgba(255, 0, 0, 0.45), transparent 70%);
+  }
+
+  .tech-card:nth-child(even)::before {
+    background: linear-gradient(120deg, rgba(255, 0, 0, 0.35), transparent 55%);
+  }
 }
 
 @media (max-width: 480px) {
@@ -3237,6 +3449,33 @@ body {
   }
 }
 
+@media (hover: none) {
+  .tech-card:active {
+    transform: translateY(-5px);
+    border-color: rgba(255, 0, 0, 0.45);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.65),
+      0 0 30px rgba(255, 0, 0, 0.18);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+
+  .tech-card:active::before {
+    opacity: 0.7;
+    filter: blur(6px);
+  }
+
+  .tech-card:active::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .tech-card:active .tech-image {
+    transform: scale(1.01);
+    filter: brightness(1.05) saturate(1.1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* Disable all animations */
   *,
@@ -3264,7 +3503,10 @@ body {
   .approche-title::before,
   .tech-section::before,
   .tech-section::after,
-  .tech-beam-sweep {
+  .tech-beam-sweep,
+  .tech-laser-overlay,
+  .tech-transition-overlay,
+  .tech-transition-divider {
     display: none;
   }
 
