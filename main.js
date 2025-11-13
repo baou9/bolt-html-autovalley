@@ -13,19 +13,43 @@ const themeToggles = document.querySelectorAll('.theme-toggle, .theme-toggle-mob
 const htmlEl = document.documentElement;
 const header = document.querySelector('.av-header');
 
+const applyTheme = (theme) => {
+  htmlEl.setAttribute('data-theme', theme);
+
+  if (header) {
+    header.setAttribute('data-theme', theme);
+  }
+
+  localStorage.setItem('av-theme', theme);
+
+  const showMoon = theme === 'light';
+
+  themeToggles.forEach(toggle => {
+    const moonIcon = toggle.querySelector('.moon-icon');
+    const sunIcon = toggle.querySelector('.sun-icon');
+
+    if (moonIcon) {
+      moonIcon.hidden = !showMoon;
+      moonIcon.setAttribute('aria-hidden', (!showMoon).toString());
+    }
+
+    if (sunIcon) {
+      sunIcon.hidden = showMoon;
+      sunIcon.setAttribute('aria-hidden', showMoon.toString());
+    }
+  });
+};
+
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('av-theme') || 'light';
-htmlEl.setAttribute('data-theme', savedTheme);
-header.setAttribute('data-theme', savedTheme);
+applyTheme(savedTheme);
 
 themeToggles.forEach(toggle => {
   toggle.addEventListener('click', () => {
-    const current = header.getAttribute('data-theme');
+    const current = (header && header.getAttribute('data-theme')) || htmlEl.getAttribute('data-theme') || 'light';
     const next = current === 'light' ? 'dark' : 'light';
 
-    htmlEl.setAttribute('data-theme', next);
-    header.setAttribute('data-theme', next);
-    localStorage.setItem('av-theme', next);
+    applyTheme(next);
   });
 });
 
@@ -178,7 +202,181 @@ if (serviceCards.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 7. Notre Approche - Advanced GSAP Animations
+// 7. Témoignages Section – Reveal & Carousel
+// ─────────────────────────────────────────────────────────
+const testimonialsSection = document.querySelector('.test-sec');
+
+if (testimonialsSection) {
+  const testimonialsObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  testimonialsObserver.observe(testimonialsSection);
+}
+
+const carouselWrap = document.querySelector('.test-carousel-wrap');
+const testimonialCarousel = carouselWrap ? carouselWrap.querySelector('.test-carousel') : null;
+const testimonialCards = testimonialCarousel ? Array.from(testimonialCarousel.querySelectorAll('.test-card')) : [];
+const prevControl = carouselWrap ? carouselWrap.querySelector('.prev') : null;
+const nextControl = carouselWrap ? carouselWrap.querySelector('.next') : null;
+
+if (testimonialCarousel && testimonialCards.length > 0) {
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let autoSlideTimer = null;
+  let activeTestimonial = 0;
+  let scrollSyncTimeout;
+
+  function updateActiveTestimonial() {
+    testimonialCards.forEach((card, index) => {
+      const isActive = index === activeTestimonial;
+      card.setAttribute('data-active', isActive.toString());
+      card.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+  }
+
+  function getScrollBehavior() {
+    return motionQuery.matches ? 'auto' : 'smooth';
+  }
+
+  function scrollToTestimonial(index, { manual = false } = {}) {
+    const target = testimonialCards[index];
+    if (!target) return;
+
+    activeTestimonial = index;
+    const left = target.offsetLeft - ((testimonialCarousel.clientWidth - target.clientWidth) / 2);
+    const behavior = getScrollBehavior();
+
+    if (typeof testimonialCarousel.scrollTo === 'function') {
+      testimonialCarousel.scrollTo({ left, behavior });
+    } else {
+      testimonialCarousel.scrollLeft = left;
+    }
+
+    updateActiveTestimonial();
+
+    if (manual) {
+      restartAutoSlide();
+    }
+  }
+
+  function moveTestimonial(step) {
+    const nextIndex = (activeTestimonial + step + testimonialCards.length) % testimonialCards.length;
+    scrollToTestimonial(nextIndex, { manual: true });
+  }
+
+  function clearAutoSlide() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
+
+  function startAutoSlide() {
+    if (motionQuery.matches || testimonialCards.length < 2) {
+      clearAutoSlide();
+      return;
+    }
+
+    clearAutoSlide();
+    autoSlideTimer = setInterval(() => moveTestimonial(1), 6000);
+  }
+
+  function restartAutoSlide() {
+    clearAutoSlide();
+    startAutoSlide();
+  }
+
+  function handleMotionPreference() {
+    if (motionQuery.matches) {
+      clearAutoSlide();
+    } else {
+      startAutoSlide();
+    }
+  }
+
+  updateActiveTestimonial();
+  handleMotionPreference();
+
+  if (typeof motionQuery.addEventListener === 'function') {
+    motionQuery.addEventListener('change', handleMotionPreference);
+  } else if (typeof motionQuery.addListener === 'function') {
+    motionQuery.addListener(handleMotionPreference);
+  }
+
+  if (prevControl) {
+    prevControl.addEventListener('click', () => moveTestimonial(-1));
+  }
+
+  if (nextControl) {
+    nextControl.addEventListener('click', () => moveTestimonial(1));
+  }
+
+  testimonialCarousel.addEventListener('pointerdown', clearAutoSlide, { passive: true });
+  testimonialCarousel.addEventListener('pointerup', startAutoSlide, { passive: true });
+
+  testimonialCarousel.addEventListener('scroll', () => {
+    clearTimeout(scrollSyncTimeout);
+
+    scrollSyncTimeout = window.setTimeout(() => {
+      const carouselCenter = testimonialCarousel.scrollLeft + (testimonialCarousel.offsetWidth / 2);
+      let closestIndex = activeTestimonial;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      testimonialCards.forEach((card, index) => {
+        const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+        const distance = Math.abs(carouselCenter - cardCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      if (closestIndex !== activeTestimonial) {
+        activeTestimonial = closestIndex;
+        updateActiveTestimonial();
+      }
+    }, 120);
+  }, { passive: true });
+
+  if (carouselWrap) {
+    carouselWrap.addEventListener('mouseenter', clearAutoSlide);
+    carouselWrap.addEventListener('mouseleave', startAutoSlide);
+
+    carouselWrap.addEventListener('focusin', clearAutoSlide);
+    carouselWrap.addEventListener('focusout', (event) => {
+      if (!carouselWrap.contains(event.relatedTarget)) {
+        startAutoSlide();
+      }
+    });
+  }
+
+  testimonialCards.forEach((card, index) => {
+    card.addEventListener('focus', () => {
+      scrollToTestimonial(index);
+    });
+  });
+
+  if (testimonialsSection) {
+    testimonialsSection.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        moveTestimonial(1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        moveTestimonial(-1);
+      }
+    });
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// 8. Notre Approche - Advanced GSAP Animations
 // ─────────────────────────────────────────────────────────
 import { initApproche } from './approche-animations.js';
 

@@ -37,8 +37,19 @@
         <div class="av-actions">
           <button class="lang-flag" aria-label="Français">🇫🇷</button>
           <button class="theme-toggle" aria-label="Basculer le thème">
-            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="false">
               <path d="M10 2a8 8 0 0 0 0 16c1.5 0 2.9-.4 4.1-1.1A6 6 0 0 1 9 10a6 6 0 0 1 5.1-5.9A8 8 0 0 0 10 2z"/>
+            </svg>
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" hidden aria-hidden="true">
+              <circle cx="10" cy="10" r="4" />
+              <path d="M10 1v2" />
+              <path d="M10 17v2" />
+              <path d="M3.22 3.22l1.42 1.42" />
+              <path d="M15.36 15.36l1.42 1.42" />
+              <path d="M1 10h2" />
+              <path d="M17 10h2" />
+              <path d="M3.22 16.78l1.42-1.42" />
+              <path d="M15.36 4.64l1.42-1.42" />
             </svg>
           </button>
           <a class="btn-cta" href="#rdv">Prendre RDV</a>
@@ -53,8 +64,19 @@
 
         <div class="mobile-actions">
           <button class="theme-toggle-mobile" aria-label="Basculer le thème">
-            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="false">
               <path d="M10 2a8 8 0 0 0 0 16c1.5 0 2.9-.4 4.1-1.1A6 6 0 0 1 9 10a6 6 0 0 1 5.1-5.9A8 8 0 0 0 10 2z"/>
+            </svg>
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" hidden aria-hidden="true">
+              <circle cx="10" cy="10" r="4" />
+              <path d="M10 1v2" />
+              <path d="M10 17v2" />
+              <path d="M3.22 3.22l1.42 1.42" />
+              <path d="M15.36 15.36l1.42 1.42" />
+              <path d="M1 10h2" />
+              <path d="M17 10h2" />
+              <path d="M3.22 16.78l1.42-1.42" />
+              <path d="M15.36 4.64l1.42-1.42" />
             </svg>
           </button>
           <a class="btn-cta-mobile" href="#rdv">Get Started</a>
@@ -323,6 +345,100 @@
             <a href="#contact" class="btn-approche">Prenez rendez-vous maintenant</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Témoignages Section -->
+    <section class="test-sec" aria-labelledby="temoignages-title">
+      <div class="test-bg" aria-hidden="true"></div>
+      <div class="test-head">
+        <h2 id="temoignages-title">TÉMOIGNAGES / NOS CLIENTS</h2>
+        <p class="google-badge" role="text" aria-label="Note Google 5.0 sur plus de 100 avis, vérifier sur Google">
+          <span aria-hidden="true">★ 5.0 / 100+ avis —</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener" aria-label="Vérifier la note AutoValley sur Google">Vérifier sur Google</a>
+        </p>
+      </div>
+
+      <div class="test-carousel-wrap">
+        <button class="prev" type="button" aria-label="Avis précédent" aria-controls="temoignages-carousel">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <div class="test-carousel" id="temoignages-carousel" role="list" aria-live="polite">
+          <article class="test-card" role="listitem" tabindex="0" aria-label="Avis de Yassine, propriétaire Porsche Macan">
+            <div class="quote">« Service irréprochable, diagnostic transparent et prêt de véhicule premium. »</div>
+            <div class="stars" aria-hidden="true">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="profile">
+              <img src="https://i.pravatar.cc/120?img=12" width="56" height="56" loading="lazy" alt="Portrait de Yassine" />
+              <div>
+                <p class="name">Yassine A.</p>
+                <p class="context">Propriétaire Porsche Macan – Révision complète</p>
+              </div>
+            </div>
+            <a class="google-link" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir l'avis sur Google</a>
+          </article>
+
+          <article class="test-card" role="listitem" tabindex="0" aria-label="Avis de Salma, responsable flotte BMW">
+            <div class="quote">« AutoValley gère notre flotte BMW avec un niveau d'exigence digne d'un concessionnaire. »</div>
+            <div class="stars" aria-hidden="true">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="profile">
+              <img src="https://i.pravatar.cc/120?img=47" width="56" height="56" loading="lazy" alt="Portrait de Salma" />
+              <div>
+                <p class="name">Salma R.</p>
+                <p class="context">Responsable flotte – BMW Série 5</p>
+              </div>
+            </div>
+            <a class="google-link" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir l'avis sur Google</a>
+          </article>
+
+          <article class="test-card" role="listitem" tabindex="0" aria-label="Avis de Mehdi, propriétaire Range Rover">
+            <div class="quote">« Un accueil chaleureux, des délais respectés et une carrosserie sortie d'usine. »</div>
+            <div class="stars" aria-hidden="true">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="profile">
+              <img src="https://i.pravatar.cc/120?img=32" width="56" height="56" loading="lazy" alt="Portrait de Mehdi" />
+              <div>
+                <p class="name">Mehdi L.</p>
+                <p class="context">Range Rover Sport – Carrosserie & Peinture</p>
+              </div>
+            </div>
+            <a class="google-link" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir l'avis sur Google</a>
+          </article>
+
+          <article class="test-card" role="listitem" tabindex="0" aria-label="Avis de Lina, propriétaire Audi e-tron">
+            <div class="quote">« Diagnostics haute tension précis et explications pédagogiques pour mon Audi e-tron. »</div>
+            <div class="stars" aria-hidden="true">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div class="profile">
+              <img src="https://i.pravatar.cc/120?img=5" width="56" height="56" loading="lazy" alt="Portrait de Lina" />
+              <div>
+                <p class="name">Lina M.</p>
+                <p class="context">Audi e-tron – Diagnostic électrique certifié</p>
+              </div>
+            </div>
+            <a class="google-link" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir l'avis sur Google</a>
+          </article>
+        </div>
+        <button class="next" type="button" aria-label="Avis suivant" aria-controls="temoignages-carousel">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="partners" aria-label="Assureurs partenaires">
+        <img src="https://dummyimage.com/140x60/141414/ffffff&text=AXA" loading="lazy" width="140" height="60" alt="AXA" />
+        <img src="https://dummyimage.com/140x60/141414/ffffff&text=Wafa" loading="lazy" width="140" height="60" alt="Wafa" />
+        <img src="https://dummyimage.com/140x60/141414/ffffff&text=Allianz" loading="lazy" width="140" height="60" alt="Allianz" />
+        <img src="https://dummyimage.com/140x60/141414/ffffff&text=RMA" loading="lazy" width="140" height="60" alt="RMA" />
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir tous les avis sur Google</a>
+        <a class="btn" href="#rdv">Prendre Rendez-vous</a>
       </div>
     </section>
 
