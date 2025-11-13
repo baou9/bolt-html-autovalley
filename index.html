@@ -22,7 +22,7 @@
     <header class="av-header" data-theme="light">
       <div class="av-container">
         <a class="av-logo" href="#" aria-label="AutoValley Accueil">
-          <img src="/Converted-PNG.png" alt="AutoValley - Full Car Service" class="logo-img" />
+          <img src="/public/Converted-PNG.png" alt="AutoValley - Full Car Service" class="logo-img" />
         </a>
 
         <nav class="av-nav" aria-label="Navigation principale">
@@ -48,7 +48,7 @@
       <!-- Mobile Version -->
       <div class="av-mobile-split">
         <a class="av-logo-mobile" href="#" aria-label="AutoValley Accueil">
-          <img src="/Converted-PNG.png" alt="AutoValley" class="logo-img-mobile" />
+          <img src="/public/Converted-PNG.png" alt="AutoValley" class="logo-img-mobile" />
         </a>
 
         <div class="mobile-actions">
@@ -326,101 +326,90 @@
       </div>
     </section>
 
+    <!-- Parallax-inspired divider between approach and tech sections -->
+    <div class="tech-transition" aria-hidden="true">
+      <div class="tech-transition-overlay"></div>
+      <div class="tech-transition-divider"></div>
+    </div>
+
     <!-- ═══════════════════════════════════════════════════════════
          TECHNOLOGIE ET ÉQUIPEMENTS SECTION
-         Dark cinematic showcase of precision tools
+         Precision equipment showcase with micro-interactions
          ═══════════════════════════════════════════════════════════ -->
-    <section id="technologie" class="tech-section">
-      <div class="tech-container">
-        <!-- Section Header -->
-        <header class="tech-header">
-          <p class="tech-eyebrow">TECHNOLOGIE ET ÉQUIPEMENTS</p>
-          <h2 class="tech-title">La précision n'est pas un luxe,<br>c'est notre standard.</h2>
-          <div class="tech-underline"></div>
-        </header>
+    <section id="tech-equipements" class="tech-sec" aria-labelledby="tech-title">
+      <!-- Animated diagnostic beam background -->
+      <div class="tech-bg" aria-hidden="true"></div>
 
-        <!-- Three Technology Columns -->
-        <div class="tech-grid">
-          <!-- Column 1: Diagnostics -->
-          <article class="tech-card" data-tech="1">
-            <div class="tech-image-wrapper">
-              <div class="tech-image diagnostic-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                  <path d="M7 8h.01M12 8h5"></path>
-                  <path d="M7 12h.01M12 12h5"></path>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
-            </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Diagnostic de Précision</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Lecture numérique complète via outils Bosch, Launch & OEM pour un diagnostic sans erreur.</p>
-            </div>
-          </article>
+      <!-- Section header -->
+      <header class="tech-head">
+        <p class="tech-kicker">TECHNOLOGIE ET ÉQUIPEMENTS</p>
+        <h2 id="tech-title" class="tech-title">
+          La précision n’est pas un luxe, c’est notre standard.
+        </h2>
+        <span class="tech-underline" aria-hidden="true"></span>
+      </header>
 
-          <!-- Column 2: 3M Paint Cabin -->
-          <article class="tech-card" data-tech="2">
-            <div class="tech-image-wrapper">
-              <div class="tech-image cabin-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                  <circle cx="12" cy="8" r="1.5" fill="currentColor"></circle>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
-            </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Cabine 3M Premium</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Environnement contrôlé pour finitions certifiées constructeur avec filtration HEPA.</p>
-            </div>
-          </article>
+      <!-- Technology cards -->
+      <div class="tech-grid" role="list">
+        <!-- Card 1: Precision diagnostics -->
+        <article class="tech-card" role="listitem" tabindex="0">
+          <div class="tech-media">
+            <img
+              src="https://images.pexels.com/photos/6870323/pexels-photo-6870323.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Technicien AutoValley utilisant une tablette Bosch pour le diagnostic"
+              loading="lazy"
+            />
+            <span class="light-sweep" aria-hidden="true"></span>
+          </div>
+          <div class="tech-body">
+            <div class="tech-dot" aria-hidden="true"></div>
+            <h3 class="tech-h3">Diagnostic de Précision</h3>
+            <p class="tech-p">
+              Lecture numérique complète via outils Bosch, Launch &amp; OEM.
+            </p>
+          </div>
+        </article>
 
-          <!-- Column 3: Calibration & Tools -->
-          <article class="tech-card" data-tech="3">
-            <div class="tech-image-wrapper">
-              <div class="tech-image calibration-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"></path>
-                  <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
-            </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Calibration Laser & Outillage OEM</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Réglages millimétriques pour ADAS et géométrie complète avec équipement constructeur.</p>
-            </div>
-          </article>
-        </div>
+        <!-- Card 2: Premium paint booth -->
+        <article class="tech-card" role="listitem" tabindex="0">
+          <div class="tech-media">
+            <img
+              src="https://images.pexels.com/photos/3806248/pexels-photo-3806248.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Cabine de peinture 3M premium en environnement contrôlé"
+              loading="lazy"
+            />
+            <span class="light-sweep" aria-hidden="true"></span>
+          </div>
+          <div class="tech-body">
+            <div class="tech-dot" aria-hidden="true"></div>
+            <h3 class="tech-h3">Cabine 3M Premium</h3>
+            <p class="tech-p">
+              Environnement contrôlé pour finitions certifiées constructeur.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 3: Laser calibration -->
+        <article class="tech-card" role="listitem" tabindex="0">
+          <div class="tech-media">
+            <img
+              src="https://images.pexels.com/photos/5844409/pexels-photo-5844409.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Calibration laser OEM pour l’alignement ADAS"
+              loading="lazy"
+            />
+            <span class="light-sweep" aria-hidden="true"></span>
+          </div>
+          <div class="tech-body">
+            <div class="tech-dot" aria-hidden="true"></div>
+            <h3 class="tech-h3">Calibration Laser &amp; Outillage OEM</h3>
+            <p class="tech-p">
+              Réglages millimétriques pour ADAS &amp; géométrie complète.
+            </p>
+          </div>
+        </article>
       </div>
 
-      <!-- Bottom Laser Separator -->
-      <div class="tech-separator">
-        <div class="tech-laser-line"></div>
-      </div>
+      <div class="tech-sep" aria-hidden="true"></div>
     </section>
 
     <script type="module" src="/main.js"></script>

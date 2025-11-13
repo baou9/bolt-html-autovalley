@@ -178,6 +178,38 @@ if (serviceCards.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────
+// 8. Technologie et Équipements Scroll Reveal
+// ─────────────────────────────────────────────────────────
+(() => {
+  const section = document.querySelector('#tech-equipements');
+  if (!section) return;
+
+  const cards = Array.from(section.querySelectorAll('.tech-card'));
+  cards.forEach((card, index) => {
+    card.classList.add(`reveal-stagger-${index}`);
+  });
+
+  const activateReveal = () => {
+    section.classList.add('reveal-ready');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activateReveal();
+          observerInstance.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  } else {
+    activateReveal();
+  }
+})();
+
+// ─────────────────────────────────────────────────────────
 // 7. Notre Approche - Advanced GSAP Animations
 // ─────────────────────────────────────────────────────────
 import { initApproche } from './approche-animations.js';
