@@ -13,19 +13,43 @@ const themeToggles = document.querySelectorAll('.theme-toggle, .theme-toggle-mob
 const htmlEl = document.documentElement;
 const header = document.querySelector('.av-header');
 
+const applyTheme = (theme) => {
+  htmlEl.setAttribute('data-theme', theme);
+
+  if (header) {
+    header.setAttribute('data-theme', theme);
+  }
+
+  localStorage.setItem('av-theme', theme);
+
+  const showMoon = theme === 'light';
+
+  themeToggles.forEach(toggle => {
+    const moonIcon = toggle.querySelector('.moon-icon');
+    const sunIcon = toggle.querySelector('.sun-icon');
+
+    if (moonIcon) {
+      moonIcon.hidden = !showMoon;
+      moonIcon.setAttribute('aria-hidden', (!showMoon).toString());
+    }
+
+    if (sunIcon) {
+      sunIcon.hidden = showMoon;
+      sunIcon.setAttribute('aria-hidden', showMoon.toString());
+    }
+  });
+};
+
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('av-theme') || 'light';
-htmlEl.setAttribute('data-theme', savedTheme);
-header.setAttribute('data-theme', savedTheme);
+applyTheme(savedTheme);
 
 themeToggles.forEach(toggle => {
   toggle.addEventListener('click', () => {
-    const current = header.getAttribute('data-theme');
+    const current = (header && header.getAttribute('data-theme')) || htmlEl.getAttribute('data-theme') || 'light';
     const next = current === 'light' ? 'dark' : 'light';
 
-    htmlEl.setAttribute('data-theme', next);
-    header.setAttribute('data-theme', next);
-    localStorage.setItem('av-theme', next);
+    applyTheme(next);
   });
 });
 
