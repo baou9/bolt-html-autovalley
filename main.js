@@ -13,18 +13,30 @@ const themeToggles = document.querySelectorAll('.theme-toggle, .theme-toggle-mob
 const htmlEl = document.documentElement;
 const header = document.querySelector('.av-header');
 
+const applyTheme = (mode) => {
+  htmlEl.setAttribute('data-theme', mode);
+  header.setAttribute('data-theme', mode);
+
+  themeToggles.forEach(toggle => {
+    toggle.setAttribute('data-theme', mode);
+    toggle.setAttribute('data-mode', mode);
+    toggle.setAttribute(
+      'aria-label',
+      mode === 'light' ? 'Activer le mode sombre' : 'Activer le mode clair'
+    );
+  });
+};
+
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('av-theme') || 'light';
-htmlEl.setAttribute('data-theme', savedTheme);
-header.setAttribute('data-theme', savedTheme);
+applyTheme(savedTheme);
 
 themeToggles.forEach(toggle => {
   toggle.addEventListener('click', () => {
     const current = header.getAttribute('data-theme');
     const next = current === 'light' ? 'dark' : 'light';
 
-    htmlEl.setAttribute('data-theme', next);
-    header.setAttribute('data-theme', next);
+    applyTheme(next);
     localStorage.setItem('av-theme', next);
   });
 });
