@@ -1,145 +1,115 @@
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-// Initialize Notre Approche animations
+// Initialize Notre Approche animations without third-party dependencies
 export function initApproche() {
-  // Viewport detection for card animations
-  const cards = document.querySelectorAll('.timeline-card');
-
-  cards.forEach((card, index) => {
-    // Icon glow intensity on viewport entry
-    const icon = card.querySelector('.card-icon-wrapper');
-
-    gsap.fromTo(icon,
-      {
-        boxShadow: '0 4px 16px rgba(185, 5, 4, 0.1)'
-      },
-      {
-        boxShadow: '0 8px 32px rgba(185, 5, 4, 0.4), 0 0 40px rgba(185, 5, 4, 0.25)',
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-
-    // Parallax effect - cards move at different speeds
-    gsap.to(card, {
-      y: () => -20 * (index % 2 === 0 ? 1 : 0.5),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.approche-section',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1
-      }
-    });
-
-    // Shadow projection that moves with scroll
-    const shadowIntensity = gsap.timeline({
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 70%',
-        end: 'bottom 30%',
-        scrub: 0.5
-      }
-    });
-
-    shadowIntensity.to(card, {
-      '--shadow-opacity': 0.15,
-      '--shadow-blur': '30px',
-      '--shadow-spread': '20px',
-      duration: 1
-    });
-  });
-
-  // Red beam extension animation (sequential)
-  const connector = document.querySelector('.timeline-connector');
-  if (connector) {
-    gsap.fromTo(connector,
-      { scaleX: 0, transformOrigin: 'left center' },
-      {
-        scaleX: 1,
-        duration: 2,
-        ease: 'power2.inOut',
-        scrollTrigger: {
-          trigger: '.timeline-grid',
-          start: 'top 70%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
+  if (typeof document === 'undefined' || typeof window === 'undefined') {
+    return;
   }
 
-  // CTA card scroll-tied gradient shift
-  const ctaCard = document.querySelector('.approche-cta-card');
-  if (ctaCard) {
-    ScrollTrigger.create({
-      trigger: ctaCard,
-      start: 'top 80%',
-      end: 'bottom 20%',
-      onEnter: () => ctaCard.classList.add('scrolled'),
-      onLeave: () => ctaCard.classList.remove('scrolled'),
-      onEnterBack: () => ctaCard.classList.add('scrolled'),
-      onLeaveBack: () => ctaCard.classList.remove('scrolled')
-    });
-  }
-
-  // Cinematic scroll delay for header
-  const header = document.querySelector('.approche-header');
-  if (header) {
-    gsap.fromTo(header,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.approche-section',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-  }
-
-  // Ambient scanning light sync with scroll
   const section = document.querySelector('.approche-section');
-  if (section) {
-    gsap.to(section, {
-      '--ambient-position': '100%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 2
-      }
-    });
+  if (!section) {
+    return;
   }
 
-  // Haptic feedback simulation (visual pulse on mobile)
-  if ('ontouchstart' in window) {
-    cards.forEach(card => {
-      card.addEventListener('touchstart', () => {
-        gsap.to(card, {
-          scale: 0.98,
-          duration: 0.1,
-          yoyo: true,
-          repeat: 1
-        });
+  const cards = Array.from(section.querySelectorAll('.timeline-card'));
+  const connector = section.querySelector('.timeline-connector');
+  const header = section.querySelector('.approche-header');
+  const ctaWrapper = section.querySelector('.approche-cta-wrapper');
+  const ctaCard = section.querySelector('.approche-cta-card');
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
-        // Try to trigger haptic if available
+  const intersectionTargets = [header, connector, ctaWrapper, ...cards];
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else if (!prefersReducedMotion) {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    intersectionTargets.filter(Boolean).forEach((target) => {
+      observer.observe(target);
+    });
+  } else {
+    intersectionTargets.filter(Boolean).forEach((target) => target.classList.add('is-visible'));
+  }
+
+  if (ctaCard) {
+    if ('IntersectionObserver' in window) {
+      const ctaObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            ctaCard.classList.add('scrolled');
+          } else if (!prefersReducedMotion) {
+            ctaCard.classList.remove('scrolled');
+          }
+        });
+      }, { threshold: 0.2 });
+
+      ctaObserver.observe(ctaCard);
+    } else {
+      ctaCard.classList.add('scrolled');
+    }
+  }
+
+  const updateScrollEffects = () => {
+    const viewportHeight = window.innerHeight || 1;
+
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const midpoint = rect.top + rect.height / 2;
+      const ratio = 1 - Math.min(Math.max(midpoint / viewportHeight, 0), 1);
+      const baseOffset = index % 2 === 0 ? -20 : -10;
+      const offset = prefersReducedMotion ? 0 : baseOffset * ratio;
+      const shadowOpacity = 0.25 + ratio * 0.25;
+      const shadowBlur = 24 + ratio * 18;
+
+      card.style.setProperty('--approche-parallax', `${offset.toFixed(2)}px`);
+      card.style.setProperty('--approche-shadow-opacity', shadowOpacity.toFixed(2));
+      card.style.setProperty('--approche-shadow-blur', `${Math.round(shadowBlur)}px`);
+    });
+
+    const sectionRect = section.getBoundingClientRect();
+    const totalSpan = sectionRect.height + viewportHeight;
+    const visible = Math.min(Math.max((viewportHeight - sectionRect.top) / totalSpan, 0), 1);
+    section.style.setProperty('--ambient-position', `${(visible * 100).toFixed(2)}%`);
+  };
+
+  let frameId = null;
+  const requestUpdate = () => {
+    if (frameId !== null) {
+      return;
+    }
+    frameId = window.requestAnimationFrame(() => {
+      updateScrollEffects();
+      frameId = null;
+    });
+  };
+
+  updateScrollEffects();
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+
+  if ('ontouchstart' in window) {
+    cards.forEach((card) => {
+      card.addEventListener('touchstart', () => {
+        if (typeof card.animate === 'function') {
+          card.animate([
+            { transform: 'translateY(var(--approche-parallax, 0px)) scale(1)' },
+            { transform: 'translateY(calc(var(--approche-parallax, 0px) + 2px)) scale(0.98)' },
+            { transform: 'translateY(var(--approche-parallax, 0px)) scale(1)' }
+          ], {
+            duration: 160,
+            easing: 'ease-out'
+          });
+        }
+
         if (navigator.vibrate) {
           navigator.vibrate(10);
         }
-      });
+      }, { passive: true });
     });
   }
 

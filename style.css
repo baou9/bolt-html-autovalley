@@ -130,6 +130,24 @@
                          0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
+/* Graceful fallbacks when JavaScript is disabled */
+.test-sec {
+  opacity: 1;
+  transform: none;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.js-enabled .test-sec {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+html.js-enabled .test-sec.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 [data-theme="dark"] {
   --glass: var(--glassDark);
   --border: var(--borderDark);
@@ -1787,6 +1805,7 @@ body {
   background: #0a0a0a;
   padding: 0;
   overflow: hidden;
+  --ambient-position: 0%;
 }
 
 /* Atmospheric Red Glow - Top */
@@ -1798,7 +1817,7 @@ body {
   right: 0;
   height: 400px;
   background: radial-gradient(
-    ellipse 80% 100% at 50% 0%,
+    ellipse 80% 100% at 50% var(--ambient-position, 0%),
     rgba(185, 5, 4, 0.15) 0%,
     rgba(185, 5, 4, 0.05) 40%,
     transparent 70%
@@ -1817,7 +1836,7 @@ body {
   right: 0;
   height: 500px;
   background: radial-gradient(
-    ellipse 90% 100% at 50% 100%,
+    ellipse 90% 100% at 50% calc(100% - var(--ambient-position, 0%)),
     rgba(185, 5, 4, 0.08) 0%,
     rgba(185, 5, 4, 0.02) 50%,
     transparent 80%
@@ -1963,9 +1982,10 @@ body {
   text-align: center;
   margin-bottom: 120px;
   padding: 80px 0;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Top Horizontal Laser Beam */
@@ -1975,7 +1995,7 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
+  width: min(1000px, 90vw);
   height: 2px;
   background: linear-gradient(
     90deg,
@@ -1989,7 +2009,7 @@ body {
     0 0 20px rgba(255, 0, 0, 0.8),
     0 0 40px rgba(255, 0, 0, 0.5),
     0 0 60px rgba(255, 0, 0, 0.3);
-  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  transition: width 1400ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: -1;
 }
 
@@ -2000,7 +2020,7 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
+  width: min(1000px, 90vw);
   height: 2px;
   background: linear-gradient(
     90deg,
@@ -2014,29 +2034,28 @@ body {
     0 0 20px rgba(255, 0, 0, 0.8),
     0 0 40px rgba(255, 0, 0, 0.5),
     0 0 60px rgba(255, 0, 0, 0.3);
-  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+  transition: width 1400ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: -1;
 }
 
-@keyframes laserExpand {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    width: min(1000px, 90vw);
-    opacity: 1;
-  }
+html.js-enabled .approche-header {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-@keyframes approcheFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+html.js-enabled .approche-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js-enabled .approche-header::before,
+html.js-enabled .approche-header::after {
+  width: 0;
+}
+
+html.js-enabled .approche-header.is-visible::before,
+html.js-enabled .approche-header.is-visible::after {
+  width: min(1000px, 90vw);
 }
 
 .approche-eyebrow {
@@ -2208,6 +2227,9 @@ body {
     transparent 100%
   );
   z-index: 0;
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform 1400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Animated Light Beam Moving Along Connector */
@@ -2227,6 +2249,14 @@ body {
   );
   filter: blur(3px);
   animation: moveBeam 12s linear infinite;
+}
+
+html.js-enabled .timeline-connector {
+  transform: scaleX(0);
+}
+
+html.js-enabled .timeline-connector.is-visible {
+  transform: scaleX(1);
 }
 
 @keyframes moveBeam {
@@ -2265,17 +2295,32 @@ body {
   text-align: center;
   cursor: pointer;
   overflow: hidden;
+  --approche-parallax: 0px;
+  --approche-shadow-opacity: 0.35;
+  --approche-shadow-blur: 32px;
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1),
               border-color 500ms ease,
               backdrop-filter 500ms ease,
-              -webkit-backdrop-filter 500ms ease;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: slideInCard 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              -webkit-backdrop-filter 500ms ease,
+              opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: translateY(var(--approche-parallax, 0px));
+  box-shadow: 0 8px var(--approche-shadow-blur, 32px) rgba(0, 0, 0, var(--approche-shadow-opacity, 0.35)),
               0 0 0 1px rgba(185, 5, 4, 0.2) inset;
   will-change: transform;
+}
+
+html.js-enabled .timeline-card {
+  opacity: 0;
+  transform: translateY(calc(var(--approche-parallax, 0px) + 32px));
+}
+
+html.js-enabled .timeline-card.is-visible {
+  opacity: 1;
+  transform: translateY(var(--approche-parallax, 0px));
+  --approche-shadow-opacity: 0.45;
+  --approche-shadow-blur: 40px;
 }
 
 /* Red Bottom Glow (Mockup Style) */
@@ -2312,34 +2357,11 @@ body {
   }
 }
 
-.timeline-card[data-step="1"] {
-  animation-delay: 0.4s;
-}
-
-.timeline-card[data-step="2"] {
-  animation-delay: 0.6s;
-}
-
-.timeline-card[data-step="3"] {
-  animation-delay: 0.8s;
-}
-
-.timeline-card[data-step="4"] {
-  animation-delay: 1s;
-}
-
-@keyframes slideInCard {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Remove old reflection - using bottom glow instead */
 
 /* Hover Effect — Lift, Scale & Intense Red Glow */
 .timeline-card:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(calc(var(--approche-parallax, 0px) - 8px)) scale(1.03);
   background: rgba(15, 15, 15, 0.9);
   border-color: rgba(255, 0, 0, 0.7);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
@@ -2386,6 +2408,15 @@ body {
               background 600ms ease;
   box-shadow: 0 4px 16px rgba(185, 5, 4, 0.2);
   animation: iconGlowPulse 6s ease-in-out infinite;
+}
+
+html.js-enabled .timeline-card .card-icon-wrapper {
+  box-shadow: 0 4px 16px rgba(185, 5, 4, 0.1);
+}
+
+html.js-enabled .timeline-card.is-visible .card-icon-wrapper {
+  box-shadow: 0 8px 32px rgba(185, 5, 4, 0.4),
+              0 0 40px rgba(185, 5, 4, 0.25);
 }
 
 @keyframes iconGlowPulse {
@@ -2462,8 +2493,7 @@ body {
 
 /* Subtle Pulse Animation for Step 3 */
 .timeline-card[data-step="3"] {
-  animation: slideInCard 800ms cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards,
-             subtlePulse 4s ease-in-out 2s infinite;
+  animation: subtlePulse 4s ease-in-out 2s infinite;
 }
 
 @keyframes subtlePulse {
@@ -2479,9 +2509,10 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 80px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1.4s forwards;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .approche-cta-card {
@@ -2517,6 +2548,16 @@ body {
   transition: opacity 800ms ease;
   pointer-events: none;
   z-index: 0;
+}
+
+html.js-enabled .approche-cta-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+html.js-enabled .approche-cta-wrapper.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .approche-cta-card.scrolled::before {

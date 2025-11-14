@@ -12,6 +12,8 @@
 const themeToggles = document.querySelectorAll('.theme-toggle, .theme-toggle-mobile');
 const htmlEl = document.documentElement;
 const header = document.querySelector('.av-header');
+htmlEl.classList.add('js-enabled');
+const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
 // Load saved theme or default to light
 const savedTheme = localStorage.getItem('av-theme') || 'light';
@@ -48,7 +50,7 @@ window.addEventListener('scroll', () => {
       }
 
       // Cinematic parallax - slower movement creates depth
-      if (heroBg && scrolled < window.innerHeight) {
+      if (!prefersReducedMotion && heroBg && scrolled < window.innerHeight) {
         const parallaxSpeed = 0.5;
         heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
       }
@@ -152,7 +154,7 @@ if (servicesSection) {
 
 // Add subtle parallax to service cards on scroll
 const serviceCards = document.querySelectorAll('.service-card');
-if (serviceCards.length > 0) {
+if (serviceCards.length > 0 && !prefersReducedMotion) {
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
@@ -178,13 +180,54 @@ if (serviceCards.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 7. Notre Approche - Advanced GSAP Animations
+// 7. Témoignages Section Reveal
 // ─────────────────────────────────────────────────────────
-import { initApproche } from './approche-animations.js';
 
-// Wait for DOM and then initialize
+const testimonialSection = document.querySelector('.test-sec');
+const testimonialCards = testimonialSection ? Array.from(testimonialSection.querySelectorAll('.testimonial-card')) : [];
+
+if (testimonialSection) {
+  if ('IntersectionObserver' in window) {
+    const testimonialObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else if (!prefersReducedMotion) {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+
+    [testimonialSection, ...testimonialCards].forEach((target) => {
+      testimonialObserver.observe(target);
+    });
+  } else {
+    testimonialSection.classList.add('is-visible');
+    testimonialCards.forEach((card) => card.classList.add('is-visible'));
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// 8. Notre Approche - Timeline Animations
+// ─────────────────────────────────────────────────────────
+const loadApprocheAnimations = () => {
+  if (!document.querySelector('.approche-section')) {
+    return;
+  }
+
+  import('./approche-animations.js')
+    .then((module) => {
+      if (typeof module.initApproche === 'function') {
+        module.initApproche();
+      }
+    })
+    .catch((error) => {
+      console.warn('Approche animations unavailable', error);
+    });
+};
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApproche);
+  document.addEventListener('DOMContentLoaded', loadApprocheAnimations, { once: true });
 } else {
-  initApproche();
+  loadApprocheAnimations();
 }
