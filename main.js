@@ -246,9 +246,11 @@ const nextControl = carouselWrap ? carouselWrap.querySelector('.next') : null;
 
 if (testimonialCarousel && testimonialCards.length > 0) {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let autoSlideTimer = null;
+  const AUTO_SLIDE_DELAY = 6000;
+  let autoSlideTimeout = null;
   let activeTestimonial = 0;
   let scrollSyncTimeout;
+  let pointerHovering = false;
 
   function updateActiveTestimonial() {
     testimonialCards.forEach((card, index) => {
@@ -262,7 +264,26 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     return motionQuery.matches ? 'auto' : 'smooth';
   }
 
-  function scrollToTestimonial(index, { manual = false } = {}) {
+  function pauseAutoSlide() {
+    if (autoSlideTimeout) {
+      clearTimeout(autoSlideTimeout);
+      autoSlideTimeout = null;
+    }
+  }
+
+  function scheduleAutoSlide() {
+    pauseAutoSlide();
+
+    if (motionQuery.matches || testimonialCards.length < 2) {
+      return;
+    }
+
+    autoSlideTimeout = window.setTimeout(() => {
+      moveTestimonial(1, { triggeredByAuto: true });
+    }, AUTO_SLIDE_DELAY);
+  }
+
+  function scrollToTestimonial(index, { triggeredByAuto = false } = {}) {
     const target = testimonialCards[index];
     if (!target) return;
 
@@ -282,50 +303,39 @@ if (testimonialCarousel && testimonialCards.length > 0) {
 
     updateActiveTestimonial();
 
-    if (manual) {
-      restartAutoSlide();
+    if (triggeredByAuto) {
+      scheduleAutoSlide();
     }
   }
 
-  function moveTestimonial(step) {
+  function moveTestimonial(step, { triggeredByAuto = false } = {}) {
     const nextIndex = (activeTestimonial + step + testimonialCards.length) % testimonialCards.length;
-    scrollToTestimonial(nextIndex, { manual: true });
-  }
+    scrollToTestimonial(nextIndex, { triggeredByAuto });
 
-  function clearAutoSlide() {
-    if (autoSlideTimer) {
-      clearInterval(autoSlideTimer);
-      autoSlideTimer = null;
+    if (!triggeredByAuto) {
+      if (pointerHovering) {
+        pauseAutoSlide();
+      } else {
+        scheduleAutoSlide();
+      }
     }
-  }
-
-  function startAutoSlide() {
-    if (motionQuery.matches || testimonialCards.length < 2) {
-      clearAutoSlide();
-      return;
-    }
-
-    clearAutoSlide();
-    autoSlideTimer = setInterval(() => moveTestimonial(1), 6000);
-  }
-
-  function restartAutoSlide() {
-    clearAutoSlide();
-    startAutoSlide();
   }
 
   function handleMotionPreference() {
     if (motionQuery.matches) {
-      clearAutoSlide();
+      pauseAutoSlide();
     } else {
-      startAutoSlide();
+      scheduleAutoSlide();
     }
   }
 
   updateActiveTestimonial();
   handleMotionPreference();
 
-  window.requestAnimationFrame(() => scrollToTestimonial(activeTestimonial));
+  window.requestAnimationFrame(() => {
+    scrollToTestimonial(activeTestimonial);
+    scheduleAutoSlide();
+  });
 
   if (typeof motionQuery.addEventListener === 'function') {
     motionQuery.addEventListener('change', handleMotionPreference);
@@ -341,25 +351,43 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     nextControl.addEventListener('click', () => moveTestimonial(1));
   }
 
-  const handleInteractionStart = () => clearAutoSlide();
-  const handleInteractionEnd = () => startAutoSlide();
+  const handleInteractionStart = () => pauseAutoSlide();
+  const handleInteractionEnd = () => {
+    if (!pointerHovering) {
+      scheduleAutoSlide();
+    }
+  };
+  const handlePointerCancel = () => {
+    pointerHovering = false;
+    scheduleAutoSlide();
+  };
 
   if ('PointerEvent' in window) {
     testimonialCarousel.addEventListener('pointerdown', handleInteractionStart, { passive: true });
     testimonialCarousel.addEventListener('pointerup', handleInteractionEnd, { passive: true });
+    testimonialCarousel.addEventListener('pointercancel', handlePointerCancel, { passive: true });
   } else {
     testimonialCarousel.addEventListener('mousedown', handleInteractionStart);
     testimonialCarousel.addEventListener('mouseup', handleInteractionEnd);
     testimonialCarousel.addEventListener('touchstart', handleInteractionStart, { passive: true });
     testimonialCarousel.addEventListener('touchend', handleInteractionEnd, { passive: true });
+    testimonialCarousel.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
   }
 
   testimonialCarousel.addEventListener('touchstart', handleInteractionStart, { passive: true });
   testimonialCarousel.addEventListener('touchend', handleInteractionEnd, { passive: true });
-  testimonialCarousel.addEventListener('mouseenter', handleInteractionStart);
-  testimonialCarousel.addEventListener('mouseleave', handleInteractionEnd);
+  testimonialCarousel.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
+  testimonialCarousel.addEventListener('mouseenter', () => {
+    pointerHovering = true;
+    handleInteractionStart();
+  });
+  testimonialCarousel.addEventListener('mouseleave', () => {
+    pointerHovering = false;
+    handleInteractionEnd();
+  });
 
   testimonialCarousel.addEventListener('scroll', () => {
+    pauseAutoSlide();
     clearTimeout(scrollSyncTimeout);
 
     scrollSyncTimeout = window.setTimeout(() => {
@@ -381,17 +409,27 @@ if (testimonialCarousel && testimonialCards.length > 0) {
         activeTestimonial = closestIndex;
         updateActiveTestimonial();
       }
-    }, 120);
+
+      if (!pointerHovering) {
+        scheduleAutoSlide();
+      }
+    }, 140);
   }, { passive: true });
 
   if (carouselWrap) {
-    carouselWrap.addEventListener('mouseenter', clearAutoSlide);
-    carouselWrap.addEventListener('mouseleave', startAutoSlide);
+    carouselWrap.addEventListener('mouseenter', () => {
+      pointerHovering = true;
+      pauseAutoSlide();
+    });
+    carouselWrap.addEventListener('mouseleave', () => {
+      pointerHovering = false;
+      scheduleAutoSlide();
+    });
 
-    carouselWrap.addEventListener('focusin', clearAutoSlide);
+    carouselWrap.addEventListener('focusin', pauseAutoSlide);
     carouselWrap.addEventListener('focusout', (event) => {
       if (!carouselWrap.contains(event.relatedTarget)) {
-        startAutoSlide();
+        scheduleAutoSlide();
       }
     });
   }
@@ -404,7 +442,7 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     card.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        scrollToTestimonial(index, { manual: true });
+        scrollToTestimonial(index);
       }
     });
   });
@@ -418,10 +456,22 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     resizeRaf = window.requestAnimationFrame(() => {
       resizeRaf = null;
       scrollToTestimonial(activeTestimonial);
+
+      if (!pointerHovering) {
+        scheduleAutoSlide();
+      }
     });
   };
 
   window.addEventListener('resize', handleResize);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseAutoSlide();
+    } else if (!pointerHovering) {
+      scheduleAutoSlide();
+    }
+  });
 
   if (testimonialsSection) {
     testimonialsSection.addEventListener('keydown', (event) => {
