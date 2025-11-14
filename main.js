@@ -211,16 +211,31 @@ if (serviceCards.length > 0) {
 const testimonialsSection = document.querySelector('.test-sec');
 
 if (testimonialsSection) {
-  const testimonialsObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
+  const revealTestimonials = () => {
+    testimonialsSection.classList.add('is-visible');
+  };
 
-  testimonialsObserver.observe(testimonialsSection);
+  const canObserve = typeof window !== 'undefined' && 'IntersectionObserver' in window;
+
+  if (!canObserve) {
+    revealTestimonials();
+  } else {
+    try {
+      const testimonialsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      testimonialsObserver.observe(testimonialsSection);
+    } catch (error) {
+      console.warn('Testimonials reveal disabled – falling back to static view', error);
+      revealTestimonials();
+    }
+  }
 }
 
 const carouselWrap = document.querySelector('.test-carousel-wrap');
@@ -256,7 +271,11 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     const behavior = getScrollBehavior();
 
     if (typeof testimonialCarousel.scrollTo === 'function') {
-      testimonialCarousel.scrollTo({ left, behavior });
+      try {
+        testimonialCarousel.scrollTo({ left, behavior });
+      } catch (error) {
+        testimonialCarousel.scrollLeft = left;
+      }
     } else {
       testimonialCarousel.scrollLeft = left;
     }
@@ -306,6 +325,8 @@ if (testimonialCarousel && testimonialCards.length > 0) {
   updateActiveTestimonial();
   handleMotionPreference();
 
+  window.requestAnimationFrame(() => scrollToTestimonial(activeTestimonial));
+
   if (typeof motionQuery.addEventListener === 'function') {
     motionQuery.addEventListener('change', handleMotionPreference);
   } else if (typeof motionQuery.addListener === 'function') {
@@ -320,8 +341,23 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     nextControl.addEventListener('click', () => moveTestimonial(1));
   }
 
-  testimonialCarousel.addEventListener('pointerdown', clearAutoSlide, { passive: true });
-  testimonialCarousel.addEventListener('pointerup', startAutoSlide, { passive: true });
+  const handleInteractionStart = () => clearAutoSlide();
+  const handleInteractionEnd = () => startAutoSlide();
+
+  if ('PointerEvent' in window) {
+    testimonialCarousel.addEventListener('pointerdown', handleInteractionStart, { passive: true });
+    testimonialCarousel.addEventListener('pointerup', handleInteractionEnd, { passive: true });
+  } else {
+    testimonialCarousel.addEventListener('mousedown', handleInteractionStart);
+    testimonialCarousel.addEventListener('mouseup', handleInteractionEnd);
+    testimonialCarousel.addEventListener('touchstart', handleInteractionStart, { passive: true });
+    testimonialCarousel.addEventListener('touchend', handleInteractionEnd, { passive: true });
+  }
+
+  testimonialCarousel.addEventListener('touchstart', handleInteractionStart, { passive: true });
+  testimonialCarousel.addEventListener('touchend', handleInteractionEnd, { passive: true });
+  testimonialCarousel.addEventListener('mouseenter', handleInteractionStart);
+  testimonialCarousel.addEventListener('mouseleave', handleInteractionEnd);
 
   testimonialCarousel.addEventListener('scroll', () => {
     clearTimeout(scrollSyncTimeout);
@@ -364,7 +400,28 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     card.addEventListener('focus', () => {
       scrollToTestimonial(index);
     });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        scrollToTestimonial(index, { manual: true });
+      }
+    });
   });
+
+  let resizeRaf = null;
+  const handleResize = () => {
+    if (resizeRaf !== null) {
+      cancelAnimationFrame(resizeRaf);
+    }
+
+    resizeRaf = window.requestAnimationFrame(() => {
+      resizeRaf = null;
+      scrollToTestimonial(activeTestimonial);
+    });
+  };
+
+  window.addEventListener('resize', handleResize);
 
   if (testimonialsSection) {
     testimonialsSection.addEventListener('keydown', (event) => {
