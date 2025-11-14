@@ -1965,7 +1965,21 @@ body {
   padding: 80px 0;
   opacity: 0;
   transform: translateY(30px);
+}
+
+.approche-header.is-visible {
   animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+.no-js .approche-header {
+  opacity: 1;
+  transform: none;
+}
+
+.no-js .approche-header::before,
+.no-js .approche-header::after {
+  width: min(1000px, 90vw);
+  opacity: 1;
 }
 
 /* Top Horizontal Laser Beam */
@@ -1989,8 +2003,11 @@ body {
     0 0 20px rgba(255, 0, 0, 0.8),
     0 0 40px rgba(255, 0, 0, 0.5),
     0 0 60px rgba(255, 0, 0, 0.3);
-  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
   z-index: -1;
+}
+
+.approche-header.is-visible::before {
+  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
 }
 
 /* Bottom Horizontal Laser Beam */
@@ -2014,8 +2031,11 @@ body {
     0 0 20px rgba(255, 0, 0, 0.8),
     0 0 40px rgba(255, 0, 0, 0.5),
     0 0 60px rgba(255, 0, 0, 0.3);
-  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
   z-index: -1;
+}
+
+.approche-header.is-visible::after {
+  animation: laserExpand 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
 }
 
 @keyframes laserExpand {
@@ -2208,6 +2228,17 @@ body {
     transparent 100%
   );
   z-index: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-connector.is-visible {
+  transform: scaleX(1);
+}
+
+.no-js .timeline-connector {
+  transform: scaleX(1);
 }
 
 /* Animated Light Beam Moving Along Connector */
@@ -2251,6 +2282,8 @@ body {
    ────────────────────────────────────────────────────────── */
 
 .timeline-card {
+  --card-delay: 0s;
+  --card-parallax: 0px;
   position: relative;
   background: rgba(10, 10, 10, 0.7);
   backdrop-filter: blur(16px);
@@ -2265,17 +2298,32 @@ body {
   text-align: center;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 500ms ease,
-              backdrop-filter 500ms ease,
-              -webkit-backdrop-filter 500ms ease;
   opacity: 0;
-  transform: translateY(40px);
-  animation: slideInCard 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: translateY(calc(40px + var(--card-parallax)));
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
               0 0 0 1px rgba(185, 5, 4, 0.2) inset;
-  will-change: transform;
+  will-change: transform, opacity;
+  transition:
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1) var(--card-delay),
+    box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 500ms ease,
+    backdrop-filter 500ms ease,
+    -webkit-backdrop-filter 500ms ease,
+    opacity 500ms cubic-bezier(0.4, 0, 0.2, 1) var(--card-delay);
+}
+
+.timeline-card.in-view {
+  opacity: 1;
+  transform: translateY(var(--card-parallax));
+}
+
+.timeline-card.touch-active {
+  transform: translateY(calc(var(--card-parallax) - 4px)) scale(0.99);
+}
+
+.no-js .timeline-card {
+  opacity: 1;
+  transform: none;
 }
 
 /* Red Bottom Glow (Mockup Style) */
@@ -2313,29 +2361,24 @@ body {
 }
 
 .timeline-card[data-step="1"] {
-  animation-delay: 0.4s;
+  --card-delay: 0.3s;
 }
 
 .timeline-card[data-step="2"] {
-  animation-delay: 0.6s;
+  --card-delay: 0.45s;
 }
 
 .timeline-card[data-step="3"] {
-  animation-delay: 0.8s;
+  --card-delay: 0.6s;
 }
 
 .timeline-card[data-step="4"] {
-  animation-delay: 1s;
+  --card-delay: 0.75s;
 }
 
-@keyframes slideInCard {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.timeline-card[data-step="3"].in-view {
+  animation: subtlePulse 4s ease-in-out 2s infinite;
 }
-
-/* Remove old reflection - using bottom glow instead */
 
 /* Hover Effect — Lift, Scale & Intense Red Glow */
 .timeline-card:hover {
@@ -2386,6 +2429,11 @@ body {
               background 600ms ease;
   box-shadow: 0 4px 16px rgba(185, 5, 4, 0.2);
   animation: iconGlowPulse 6s ease-in-out infinite;
+}
+
+.card-icon-wrapper.in-view {
+  box-shadow: 0 8px 32px rgba(185, 5, 4, 0.4),
+              0 0 40px rgba(185, 5, 4, 0.25);
 }
 
 @keyframes iconGlowPulse {
@@ -2461,9 +2509,8 @@ body {
 }
 
 /* Subtle Pulse Animation for Step 3 */
-.timeline-card[data-step="3"] {
-  animation: slideInCard 800ms cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards,
-             subtlePulse 4s ease-in-out 2s infinite;
+.timeline-card[data-step="3"].in-view {
+  animation: subtlePulse 4s ease-in-out 2s infinite;
 }
 
 @keyframes subtlePulse {
@@ -2481,7 +2528,15 @@ body {
   margin-top: 80px;
   opacity: 0;
   transform: translateY(30px);
+}
+
+.approche-cta-wrapper.is-visible {
   animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1.4s forwards;
+}
+
+.no-js .approche-cta-wrapper {
+  opacity: 1;
+  transform: none;
 }
 
 .approche-cta-card {
@@ -3600,6 +3655,11 @@ body {
   opacity: 0;
   transform: translateY(80px);
   transition: opacity 800ms ease, transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.no-js .test-sec {
+  opacity: 1;
+  transform: none;
 }
 
 .test-sec.is-visible {

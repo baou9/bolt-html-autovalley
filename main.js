@@ -6,6 +6,8 @@
    - Subtle parallax effect
    ============================================================ */
 
+document.documentElement.classList.remove('no-js');
+
 // ─────────────────────────────────────────────────────────
 // 1. Theme Toggle
 // ─────────────────────────────────────────────────────────
@@ -65,10 +67,12 @@ window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
 
       // Header shrink effect
-      if (scrolled > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+      if (header) {
+        if (scrolled > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
       }
 
       // Cinematic parallax - slower movement creates depth
@@ -376,13 +380,22 @@ if (testimonialCarousel && testimonialCards.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 8. Notre Approche - Advanced GSAP Animations
+// 8. Notre Approche - Progressive Animations
 // ─────────────────────────────────────────────────────────
-import { initApproche } from './approche-animations.js';
+const bootApprocheAnimations = () => {
+  import('./approche-animations.js')
+    .then((module) => {
+      if (module && typeof module.initApproche === 'function') {
+        module.initApproche();
+      }
+    })
+    .catch((error) => {
+      console.warn('Approche animations unavailable', error);
+    });
+};
 
-// Wait for DOM and then initialize
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApproche);
+  document.addEventListener('DOMContentLoaded', bootApprocheAnimations, { once: true });
 } else {
-  initApproche();
+  bootApprocheAnimations();
 }
