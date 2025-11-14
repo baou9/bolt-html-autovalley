@@ -3317,6 +3317,247 @@ body {
   background-image: url('https://images.pexels.com/photos/4480456/pexels-photo-4480456.jpeg?auto=compress&cs=tinysrgb&w=1600');
 }
 
+/* ──────────────────────────────────────────────────────────
+   All Brands Showcase
+   ────────────────────────────────────────────────────────── */
+
+.all-brands-section {
+  position: relative;
+  padding: clamp(56px, 8vw, 80px) 0 clamp(48px, 6vw, 72px);
+  background:
+    radial-gradient(circle at top center, rgba(185, 5, 4, 0.35) 0%, transparent 44%),
+    linear-gradient(180deg, #050509 0%, #050509 45%, #050509 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.all-brands-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 120% at 50% -10%, rgba(255, 255, 255, 0.06), transparent 70%);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.all-brands-section::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.04), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(10px);
+}
+
+.all-brands-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto clamp(32px, 4vw, 40px);
+  position: relative;
+  z-index: 1;
+}
+
+.all-brands-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 10px;
+}
+
+.all-brands-title {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.18;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.all-brands-subtitle {
+  font-family: 'Lora', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 4px;
+}
+
+.all-brands-laser {
+  width: 96px;
+  height: 2px;
+  margin: 22px auto 0;
+  border-radius: 999px;
+  background: radial-gradient(circle, #ff2d2d 0%, #b90504 40%, transparent 70%);
+  box-shadow:
+    0 0 18px rgba(255, 0, 0, 0.6),
+    0 0 40px rgba(255, 0, 0, 0.35);
+}
+
+.all-brands-grid {
+  margin-top: clamp(32px, 4vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(16px, 3vw, 26px);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-item {
+  position: relative;
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 70%),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  transition:
+    transform 220ms ease-out,
+    box-shadow 220ms ease-out,
+    border-color 220ms ease-out,
+    background 220ms ease-out;
+}
+
+.brand-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(185, 5, 4, 0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity 220ms ease-out;
+  pointer-events: none;
+}
+
+.brand-item img {
+  max-width: 90px;
+  max-height: 34px;
+  filter: grayscale(1) brightness(1.4);
+  opacity: 0.78;
+  transition: filter 220ms ease-out, opacity 220ms ease-out, transform 220ms ease-out;
+}
+
+.brand-item:hover,
+.brand-item:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(185, 5, 4, 0.8);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.65),
+    0 0 26px rgba(185, 5, 4, 0.5);
+  background:
+    radial-gradient(circle at top, rgba(185, 5, 4, 0.25), transparent 70%),
+    rgba(255, 255, 255, 0.05);
+}
+
+.brand-item:hover::before,
+.brand-item:focus-within::before {
+  opacity: 0.45;
+}
+
+.brand-item:hover img,
+.brand-item:focus-within img {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.all-brands-note {
+  margin-top: clamp(20px, 3vw, 28px);
+  font-size: 0.8rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme='light'] .all-brands-section {
+  background: linear-gradient(180deg, #f7f7f9 0%, #f7f7f9 50%, #f1f1f4 100%);
+}
+
+[data-theme='light'] .all-brands-section::before {
+  background: radial-gradient(120% 120% at 50% -10%, rgba(24, 24, 27, 0.05), transparent 70%);
+}
+
+[data-theme='light'] .all-brands-kicker {
+  color: rgba(15, 23, 42, 0.6);
+}
+
+[data-theme='light'] .all-brands-title {
+  color: #18181b;
+  text-shadow: none;
+}
+
+[data-theme='light'] .all-brands-subtitle {
+  color: rgba(15, 23, 42, 0.8);
+}
+
+[data-theme='light'] .brand-item {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme='light'] .brand-item::before {
+  background: linear-gradient(135deg, rgba(185, 5, 4, 0.18), transparent 60%);
+}
+
+[data-theme='light'] .brand-item img {
+  filter: grayscale(1) brightness(0.1);
+  opacity: 0.72;
+}
+
+[data-theme='light'] .brand-item:hover,
+[data-theme='light'] .brand-item:focus-within {
+  border-color: rgba(185, 5, 4, 0.85);
+  box-shadow:
+    0 12px 26px rgba(15, 23, 42, 0.18),
+    0 0 26px rgba(185, 5, 4, 0.35);
+}
+
+[data-theme='light'] .brand-item:hover img,
+[data-theme='light'] .brand-item:focus-within img {
+  filter: grayscale(0) brightness(1.05);
+  opacity: 0.98;
+}
+
+[data-theme='light'] .all-brands-note {
+  color: rgba(15, 23, 42, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .all-brands-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .all-brands-title {
+    font-size: 1.6rem;
+  }
+
+  .brand-item {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .brand-item img {
+    max-width: 76px;
+    max-height: 26px;
+  }
+}
+
 /* Red Beam Sweep Effect */
 .tech-beam-sweep {
   position: absolute;
