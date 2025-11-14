@@ -3331,6 +3331,15 @@ body {
   isolation: isolate;
 }
 
+.all-brands-inner {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 36px);
+  position: relative;
+  z-index: 1;
+}
+
 .all-brands-section::before {
   content: '';
   position: absolute;
