@@ -54,6 +54,14 @@
   --nav-hover-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   --icon-color: #ffffff;
 
+  /* Typography scale */
+  --font-size-hero: 2.6rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h4: 1.05rem;
+  --font-size-body: 0.97rem;
+  --font-size-small: 0.85rem;
+
   --cta-text: #ffffff;
   --cta-border: rgba(255, 0, 0, 0.8);
   --cta-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
@@ -138,6 +146,15 @@
                          0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 2.1rem;
+    --font-size-h2: 1.7rem;
+    --font-size-h3: 1.15rem;
+    --font-size-body: 0.95rem;
+  }
+}
+
 /* ──────────────────────────────────────────────────────────
    2. Reset & Base Styles
    ────────────────────────────────────────────────────────── */
@@ -161,6 +178,54 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+h1,
+.hero-title {
+  font-size: var(--font-size-hero);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+h2,
+.section-title {
+  font-size: var(--font-size-h2);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+h3,
+.card-title,
+.why-title,
+.client-card-title,
+.tech-card-title,
+.blog-card-title,
+.noustrouver-info-title {
+  font-size: var(--font-size-h3);
+  line-height: 1.25;
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+  line-height: 1.3;
+}
+
+body,
+.body-text,
+.section-subtitle,
+.card-text,
+.card-subtitle,
+.why-text,
+.tech-description,
+.client-card-tagline,
+.blog-card-excerpt,
+.noustrouver-info-text {
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+}
+
+.muted-text {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -225,15 +290,17 @@ body {
 
 .section-kicker {
   margin-bottom: 8px;
-}
-
-.section-title {
-  margin-bottom: 10px;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .section-subtitle {
   margin-top: 0;
   margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .section-body {
@@ -997,7 +1064,7 @@ body {
 
 .hero-glass-card h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(var(--font-size-hero), 5vw, 4rem);
   font-weight: 900;
   line-height: 1.15;
   color: var(--hero-heading);
@@ -1303,10 +1370,6 @@ body {
 }
 
 .blog-kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.24em;
-  font-weight: 600;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.62);
   margin-bottom: 0;
 }
@@ -1314,8 +1377,6 @@ body {
 .blog-title {
   font-family: var(--font-heading, 'Montserrat', system-ui, sans-serif);
   font-weight: 800;
-  font-size: clamp(1.9rem, 3.2vw, 2.46rem);
-  line-height: 1.15;
   letter-spacing: -0.01em;
   margin-bottom: 0;
   text-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
@@ -1323,9 +1384,7 @@ body {
 
 .blog-subtitle {
   font-family: var(--font-body, 'Montserrat', system-ui, sans-serif);
-  font-size: 0.98rem;
-  line-height: 1.72;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0 auto;
 }
 
@@ -1479,16 +1538,12 @@ body {
 
 .blog-card-title {
   font-family: var(--font-serif, 'Lora', 'Montserrat', system-ui, sans-serif);
-  font-size: clamp(1.1rem, 2.2vw, 1.32rem);
   font-weight: 600;
-  line-height: 1.35;
   color: #ffffff;
   margin-bottom: 12px;
 }
 
 .blog-card-excerpt {
-  font-size: 0.92rem;
-  line-height: 1.68;
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -1730,16 +1785,12 @@ body {
 }
 
 .section-noustrouver .section-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.64);
   margin-bottom: 0;
 }
 
 .section-noustrouver .section-title {
   font-family: var(--font-heading, 'Montserrat', system-ui, sans-serif);
-  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0;
@@ -1747,9 +1798,7 @@ body {
 
 .section-noustrouver .section-subtitle {
   font-family: 'Lora', serif;
-  font-size: clamp(0.95rem, 2.3vw, 1.05rem);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(255, 255, 255, 0.78);
   max-width: 640px;
   margin: 0 auto;
 }
@@ -1817,7 +1866,6 @@ body {
 }
 
 .noustrouver-info-title {
-  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
   font-weight: 600;
   color: #ffffff;
   margin: clamp(12px, 1.8vw, 16px) 0 clamp(12px, 1.8vw, 18px);
@@ -1825,9 +1873,7 @@ body {
 }
 
 .noustrouver-info-text {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.76);
+  color: rgba(255, 255, 255, 0.78);
   margin-bottom: clamp(18px, 3vw, 24px);
 }
 
@@ -1979,9 +2025,6 @@ body {
 }
 
 .footer-cta-kicker {
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 0;
 }
@@ -1989,15 +2032,13 @@ body {
 .footer-cta-title {
   font-family: var(--font-heading, 'Montserrat', system-ui, sans-serif);
   font-weight: 800;
-  font-size: clamp(1.8rem, 3.3vw, 2.4rem);
   color: #ffffff;
   margin-bottom: 0;
 }
 
 .footer-cta-subtitle {
   font-family: var(--font-body, 'Montserrat', system-ui, sans-serif);
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.78);
   max-width: 650px;
   margin: 0 auto 22px;
 }
@@ -2600,18 +2641,13 @@ body {
 .services-eyebrow {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .services-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(36px, 5vw, 64px);
   font-weight: 800;
-  line-height: 1.1;
   color: white;
   margin-bottom: 0;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
@@ -2647,10 +2683,8 @@ body {
 .services-subtitle {
   font-family: 'Lora', serif;
   font-style: normal;
-  font-size: clamp(16px, 2vw, 19px);
   font-weight: 400;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.78);
   max-width: 800px;
   margin: 0 auto;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
@@ -2799,9 +2833,7 @@ body {
 
 .card-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 24px;
   font-weight: 600;
-  line-height: 1.3;
   color: white;
   margin: 0;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8),
@@ -2828,7 +2860,6 @@ body {
 .card-subtitle {
   font-family: 'Lora', serif;
   font-style: italic;
-  font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
@@ -2980,10 +3011,6 @@ body {
   .card-content {
     padding: 28px;
   }
-
-  .card-title {
-    font-size: 22px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -3005,10 +3032,6 @@ body {
     min-height: 300px;
   }
 
-  .card-title {
-    font-size: 24px;
-  }
-
   .btn-services {
     padding: 16px 40px;
     font-size: 13px;
@@ -3018,14 +3041,6 @@ body {
 @media (max-width: 480px) {
   .services-section {
     padding: 0 20px;
-  }
-
-  .services-title {
-    font-size: 32px;
-  }
-
-  .services-subtitle {
-    font-size: 16px;
   }
 
   .title-underline {
@@ -3040,14 +3055,6 @@ body {
     padding: 24px;
   }
 
-  .card-title {
-    font-size: 22px;
-  }
-
-  .card-subtitle {
-    font-size: 14px;
-    line-height: 1.5;
-  }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3364,9 +3371,7 @@ body {
 
 .approche-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(36px, 5.5vw, 64px);
   font-weight: 900;
-  line-height: 1.15;
   color: #ffffff;
   margin-bottom: 0;
   text-shadow:
@@ -3408,10 +3413,8 @@ body {
 .approche-subtitle {
   font-family: 'Lora', serif;
   font-style: normal;
-  font-size: clamp(16px, 2.2vw, 22px);
   font-weight: 400;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.78);
   max-width: 700px;
   margin: 0 auto;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
@@ -4342,10 +4345,6 @@ body {
 
 .tech-eyebrow {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(11px, 1.5vw, 13px);
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
   color: rgba(185, 5, 4, 0.9);
   margin-bottom: 0;
   text-shadow:
@@ -4355,9 +4354,7 @@ body {
 
 .tech-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(32px, 5vw, 54px);
   font-weight: 900;
-  line-height: 1.2;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
   text-shadow:
@@ -4638,9 +4635,6 @@ body {
 }
 
 .all-brands-kicker {
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 0;
 }
@@ -4648,8 +4642,6 @@ body {
 .all-brands-title {
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  line-height: 1.18;
   color: #ffffff;
   margin-bottom: 0;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
@@ -4657,8 +4649,6 @@ body {
 
 .all-brands-subtitle {
   font-family: 'Lora', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
   color: rgba(255, 255, 255, 0.78);
   margin-bottom: 4px;
 }
@@ -4917,10 +4907,6 @@ body {
 }
 
 .clients-kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  font-weight: 600;
   color: rgba(255, 255, 255, 0.64);
   margin-bottom: 0;
 }
@@ -4928,8 +4914,6 @@ body {
 .clients-title {
   font-family: var(--font-heading, 'Montserrat', system-ui, sans-serif);
   font-weight: 800;
-  font-size: clamp(1.85rem, 3vw, 2.45rem);
-  line-height: 1.18;
   color: var(--av-text-main, #ffffff);
   text-shadow: 0 18px 42px rgba(0, 0, 0, 0.6);
   margin-bottom: 0;
@@ -4937,8 +4921,6 @@ body {
 
 .clients-subtitle {
   font-family: var(--font-body, 'Montserrat', system-ui, sans-serif);
-  font-size: 0.98rem;
-  line-height: 1.72;
   color: rgba(255, 255, 255, 0.78);
 }
 
@@ -5094,16 +5076,13 @@ body {
 
 .client-card-title {
   margin-top: 16px;
-  font-size: 1.12rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #ffffff;
 }
 
 .client-card-tagline {
-  font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.76);
-  line-height: 1.55;
   margin-top: 6px;
 }
 
@@ -5113,8 +5092,6 @@ body {
   padding: 0;
   display: grid;
   gap: 10px;
-  font-size: 0.9rem;
-  line-height: 1.65;
   color: rgba(255, 255, 255, 0.82);
   flex-grow: 1;
 }
@@ -5137,7 +5114,6 @@ body {
 }
 
 .client-card-promise {
-  font-size: 0.9rem;
   font-style: italic;
   color: rgba(255, 255, 255, 0.86);
   margin-top: auto;
@@ -5209,7 +5185,6 @@ body {
 }
 
 .clients-refs-title {
-  font-size: 0.96rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -5218,11 +5193,9 @@ body {
 }
 
 .clients-refs-subtitle {
-  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.7);
   max-width: 620px;
   margin: 0 auto 20px;
-  line-height: 1.6;
 }
 
 .clients-refs-strip {
@@ -5351,10 +5324,6 @@ body {
 }
 
 @media (max-width: 520px) {
-  .clients-title {
-    font-size: clamp(1.6rem, 7vw, 1.9rem);
-  }
-
   .clients-ref-logo {
     min-width: 80px;
     padding: 8px 14px;
@@ -5373,10 +5342,6 @@ body {
 }
 
 @media (max-width: 767px) {
-  .all-brands-title {
-    font-size: 1.6rem;
-  }
-
   .brand-item {
     padding: 12px 14px;
     border-radius: 16px;
@@ -5468,9 +5433,7 @@ body {
 /* Card Title */
 .tech-card-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(19px, 2vw, 23px);
   font-weight: 700;
-  line-height: 1.3;
   color: #f2f2f2;
   margin-bottom: 12px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
@@ -5506,9 +5469,7 @@ body {
 /* Card Description */
 .tech-description {
   font-family: 'Lora', serif;
-  font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 400;
-  line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
@@ -6179,21 +6140,15 @@ body {
 }
 
 .section-why-autovalley .section-kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 8px;
 }
 
 .section-why-autovalley .section-title {
-  font-size: 2rem;
-  line-height: 1.2;
   margin-bottom: 12px;
 }
 
 .section-why-autovalley .section-subtitle {
-  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -6230,12 +6185,10 @@ body {
 }
 
 .why-title {
-  font-size: 1.1rem;
   margin-bottom: 8px;
 }
 
 .why-text {
-  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.78);
   margin-bottom: 12px;
 }
@@ -6244,7 +6197,6 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
