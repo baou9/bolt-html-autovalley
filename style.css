@@ -88,6 +88,10 @@
   --card-shadow-soft: 0 14px 32px rgba(0, 0, 0, 0.50);
   --card-shadow-strong: 0 22px 50px rgba(0, 0, 0, 0.7);
 
+  --bg-hero: radial-gradient(circle at top left, rgba(185, 5, 4, 0.9), rgba(5, 2, 8, 1));
+  --bg-section-strong: radial-gradient(circle at top, rgba(185, 5, 4, 0.55), rgba(5, 2, 8, 1));
+  --bg-section-soft: radial-gradient(circle at top, rgba(185, 5, 4, 0.25), rgba(5, 2, 8, 1));
+
   --heroOverlay: radial-gradient(
       ellipse at center,
       rgba(0, 0, 0, 0.3) 0%,
@@ -278,7 +282,7 @@ body,
 }
 
 .section-header {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .section-header-centered {
@@ -304,17 +308,19 @@ body,
 }
 
 .section-body {
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
   .section-body {
-    margin-top: 24px;
+    margin-top: 28px;
   }
 }
 
-.section-experience-clients .section-header {
-  margin-bottom: 48px;
+.section-why-autovalley .section-header,
+.section-experience-clients .section-header,
+.section-testimonials .section-header {
+  margin-bottom: 36px;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -328,11 +334,24 @@ body,
   box-shadow: var(--card-shadow-soft);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  padding: 22px 20px 24px;
+  box-sizing: border-box;
 }
 
 .card-base--strong {
   background: var(--card-bg-strong);
   box-shadow: var(--card-shadow-strong);
+}
+
+@media (min-width: 1024px) {
+  .card-base {
+    padding: 24px 22px 26px;
+  }
+}
+
+.card-tall {
+  padding-top: 26px;
+  padding-bottom: 28px;
 }
 
 .card-accent-red {
@@ -345,6 +364,12 @@ body,
   background:
     radial-gradient(circle at top right, rgba(185, 5, 4, 0.78), transparent 55%),
     var(--card-bg-strong);
+}
+
+.card-accent-red-soft {
+  background:
+    radial-gradient(circle at top right, rgba(185, 5, 4, 0.35), transparent 55%),
+    var(--card-bg-normal);
 }
 
 /* Skip link for accessibility */
@@ -817,6 +842,7 @@ body,
       rgba(17, 17, 17, 0.35) 55%,
       rgba(17, 17, 17, 0.6) 100%
     );
+  background: var(--bg-hero);
   --hero-surface: rgba(255, 255, 255, 0.82);
   --hero-gradient: linear-gradient(
     135deg,
@@ -1303,12 +1329,7 @@ body,
 
 .blog-section {
   position: relative;
-  padding: 0;
-  background:
-    radial-gradient(170% 140% at 50% -20%, rgba(185, 5, 4, 0.52), transparent 58%),
-    radial-gradient(140% 110% at 82% 0%, rgba(185, 5, 4, 0.24), transparent 65%),
-    linear-gradient(192deg, #07050d 0%, #05040b 55%, #020107 100%);
-  background-color: #050509;
+  background: var(--bg-section-strong);
   overflow: hidden;
   isolation: isolate;
 }
@@ -1452,7 +1473,6 @@ body,
   display: flex;
   flex-direction: column;
   border-radius: 24px;
-  padding: clamp(22px, 2.6vw, 30px);
   overflow: hidden;
   transition:
     transform 220ms ease,
@@ -1736,11 +1756,7 @@ body,
 
 .section-noustrouver {
   position: relative;
-  padding: 0;
-  background:
-    radial-gradient(circle at 20% -10%, rgba(255, 56, 56, 0.15), transparent 55%),
-    radial-gradient(circle at 80% -20%, rgba(185, 5, 4, 0.18), transparent 62%),
-    linear-gradient(200deg, #12080a 0%, #06040c 52%, #030208 100%);
+  background: var(--bg-section-soft);
   overflow: hidden;
   isolation: isolate;
 }
@@ -2020,7 +2036,6 @@ body,
 
 .footer-cta-content {
   text-align: center;
-  padding: clamp(26px, 4vw, 34px) clamp(20px, 4vw, 40px);
   border-radius: 24px;
 }
 
@@ -2110,9 +2125,14 @@ body,
 .site-footer {
   position: relative;
   padding: clamp(50px, 6vw, 70px) clamp(24px, 5vw, 42px) clamp(32px, 4vw, 44px);
-  background: linear-gradient(180deg, #050509 0%, #020205 100%);
-  color: #ffffff;
+  background: #050309;
+  color: rgba(255, 255, 255, 0.88);
   overflow: hidden;
+}
+
+.site-footer p,
+.site-footer li {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .site-footer::before,
@@ -2160,9 +2180,9 @@ body,
 }
 
 .footer-brand-text {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.88);
   max-width: 320px;
 }
 
@@ -2237,8 +2257,8 @@ body,
 }
 
 .footer-links a {
-  font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
@@ -2286,15 +2306,15 @@ body,
 
 .footer-contact-label {
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .footer-contact-link {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
 }
 
@@ -2306,9 +2326,10 @@ body,
 }
 
 .footer-hours-text {
-  font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.82);
   margin-top: 4px;
+  line-height: 1.5;
 }
 
 .footer-legal-title {
@@ -2710,6 +2731,7 @@ body,
   aspect-ratio: 16 / 10;
   min-height: 300px;
   border-radius: 24px;
+  padding: 0;
   overflow: hidden;
   cursor: pointer;
   transform-style: preserve-3d;
@@ -4175,21 +4197,7 @@ body,
 
 .tech-section {
   position: relative;
-  background: linear-gradient(
-      180deg,
-      rgba(185, 5, 4, 0.18) 0%,
-      rgba(12, 12, 12, 0.95) 40%,
-      rgba(8, 8, 8, 1) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #0c0c0c 0%,
-      #0f0f0f 25%,
-      #121212 50%,
-      #0f0f0f 75%,
-      #0c0c0c 100%
-    );
-  padding: 0;
+  background: var(--bg-section-strong);
   overflow: hidden;
 }
 
@@ -4409,6 +4417,7 @@ body,
 
 .tech-card {
   position: relative;
+  padding: 0;
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
@@ -4586,10 +4595,7 @@ body,
 
 .all-brands-section {
   position: relative;
-  padding: 0;
-  background:
-    radial-gradient(circle at top center, rgba(185, 5, 4, 0.35) 0%, transparent 44%),
-    linear-gradient(180deg, #050509 0%, #050509 45%, #050509 100%);
+  background: var(--bg-section-strong);
   overflow: hidden;
   isolation: isolate;
 }
@@ -4689,16 +4695,19 @@ body,
 
 .all-brands-grid {
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: clamp(16px, 3vw, 26px);
-  align-items: center;
   position: relative;
   z-index: 3;
 }
 
+.badge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .all-brands-gallery {
-  margin-top: clamp(32px, 4vw, 40px);
+  margin-top: 0;
   position: relative;
   border-radius: 28px;
   padding: clamp(22px, 3vw, 34px);
@@ -4748,20 +4757,34 @@ body,
   z-index: 3;
 }
 
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), rgba(15, 10, 20, 0.96));
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.badge-pill--active {
+  border-color: rgba(185, 5, 4, 0.85);
+  background: radial-gradient(circle at top, rgba(185, 5, 4, 0.8), rgba(15, 10, 20, 0.96));
+}
+
 .brand-item {
   position: relative;
-  border-radius: 18px;
-  padding: 16px 18px;
-  display: flex;
+  border-radius: 999px;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 70%),
-    rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
   transition:
     transform 220ms ease-out,
     box-shadow 220ms ease-out,
@@ -4842,7 +4865,6 @@ body,
 
 .clients-section {
   position: relative;
-  padding: 0;
   background:
     radial-gradient(circle at top center, rgba(185, 5, 4, 0.35) 0, transparent 50%),
     linear-gradient(180deg, var(--av-bg-dark, #050509) 0%, #050509 52%, var(--av-bg-darker, #020206) 100%);
@@ -4984,7 +5006,6 @@ body,
   flex-direction: column;
   gap: clamp(14px, 2.8vw, 18px);
   border-radius: 24px;
-  padding: clamp(24px, 3.6vw, 32px);
   overflow: hidden;
   transition:
     transform 260ms ease,
@@ -5177,11 +5198,6 @@ body,
 
 .client-card--assureurs {
   --client-icon-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 3 4 7v6c0 4.97 3.03 9.57 8 11 4.97-1.43 8-6.03 8-11V7l-8-4Zm0 6.5 6-3v5.32c0 3.45-1.95 6.77-5 8.3-3.05-1.53-5-4.85-5-8.3V6.5l4 2Z"/></svg>');
-}
-
-.clients-refs {
-  margin-top: clamp(46px, 6vw, 64px);
-  text-align: center;
 }
 
 .clients-refs-title {
@@ -5676,9 +5692,9 @@ body,
 .test-sec {
   position: relative;
   overflow: hidden;
-  padding: 0 clamp(24px, 8vw, 120px);
+  padding-inline: clamp(24px, 8vw, 120px);
   color: #f7f7f7;
-  background: radial-gradient(circle at top, rgba(185, 5, 4, 0.2), rgba(12, 12, 12, 0.95) 55%, #080808 100%);
+  background: var(--bg-section-soft);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.65);
@@ -5793,7 +5809,6 @@ body,
   position: relative;
   flex: 0 0 clamp(280px, 28vw, 360px);
   scroll-snap-align: center;
-  padding: 2.4rem 2rem;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
@@ -5928,35 +5943,6 @@ body,
   box-shadow: 0 12px 30px rgba(185, 5, 4, 0.45);
 }
 
-.partners {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(120px, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-  justify-items: center;
-  padding: clamp(24px, 5vw, 36px) clamp(12px, 3vw, 24px);
-  margin-bottom: clamp(40px, 7vw, 70px);
-  background: rgba(15, 15, 15, 0.45);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 0 0 1px rgba(185, 5, 4, 0.12);
-}
-
-.partners img {
-  width: 100%;
-  height: auto;
-  max-width: 160px;
-  opacity: 0.85;
-  transition: opacity 250ms ease;
-}
-
-.partners img:hover,
-.partners img:focus-visible {
-  opacity: 1;
-}
-
 .cta-row {
   position: relative;
   z-index: 2;
@@ -6011,15 +5997,11 @@ body,
   .next {
     align-self: center;
   }
-
-  .partners {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-  }
 }
 
 @media (max-width: 768px) {
   .test-sec {
-    padding: 0 24px;
+    padding-inline: 24px;
   }
 
   .test-carousel {
@@ -6047,11 +6029,6 @@ body,
 
   .test-card {
     flex: 0 0 90%;
-    padding: 2rem 1.6rem;
-  }
-
-  .partners {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -6127,16 +6104,13 @@ body,
 
 /* Pourquoi choisir AutoValley */
 .section-why-autovalley {
-  padding: 0;
-  /* subtle vertical gradient, darker at top, slight red halo */
-  background: radial-gradient(circle at top, rgba(185, 5, 4, 0.25) 0, transparent 55%),
-              radial-gradient(circle at bottom, rgba(0, 0, 0, 0.85) 0, #050308 70%);
+  background: var(--bg-section-strong);
 }
 
 .section-why-autovalley .section-header-centered {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 48px;
+  margin: 0 auto 36px;
 }
 
 .section-why-autovalley .section-kicker {
@@ -6164,7 +6138,6 @@ body,
 
 .why-card {
   position: relative;
-  padding: 24px 22px 26px;
   border-radius: inherit;
 }
 
@@ -6238,3 +6211,41 @@ body,
     padding: 20px 18px 22px;
   }
 }
+.section-partners {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: var(--bg-section-soft);
+}
+
+.section-partners-divider {
+  height: 1px;
+  margin: 14px auto 18px;
+  max-width: 420px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.partners-logos img,
+.partners-logos .partner-logo {
+  opacity: 0.9;
+  filter: grayscale(100%);
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.partners-logos img:hover,
+.partners-logos .partner-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-1px);
+}
+
