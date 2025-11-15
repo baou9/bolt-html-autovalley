@@ -60,48 +60,38 @@ if (scrollIndicator) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 3. Mobile Menu Toggle
+// 3. Primary Nav Toggle (mobile)
 // ─────────────────────────────────────────────────────────
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-const body = document.body;
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-if (hamburgerMenu && mobileMenuOverlay) {
-  hamburgerMenu.addEventListener('click', () => {
-    const isActive = hamburgerMenu.classList.contains('active');
+if (navToggle && navLinks) {
+  const closeNav = () => {
+    navLinks.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  };
 
-    if (isActive) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
-    } else {
-      hamburgerMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      body.classList.add('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'true');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navLinks.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      closeNav();
     }
   });
 
-  // Close menu when clicking on overlay
-  mobileMenuOverlay.addEventListener('click', (e) => {
-    if (e.target === mobileMenuOverlay) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  document.addEventListener('click', (event) => {
+    if (!navLinks.contains(event.target) && !navToggle.contains(event.target)) {
+      closeNav();
     }
   });
 
-  // Close menu when clicking on a link
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeNav();
+    }
   });
 }
 
@@ -195,8 +185,8 @@ if (testimonialsSection) {
 const carouselWrap = document.querySelector('.test-carousel-wrap');
 const testimonialCarousel = carouselWrap ? carouselWrap.querySelector('.test-carousel') : null;
 const testimonialCards = testimonialCarousel ? Array.from(testimonialCarousel.querySelectorAll('.test-card')) : [];
-const prevControl = carouselWrap ? carouselWrap.querySelector('.prev') : null;
-const nextControl = carouselWrap ? carouselWrap.querySelector('.next') : null;
+const prevControl = carouselWrap ? carouselWrap.querySelector('.slider-btn--prev') : null;
+const nextControl = carouselWrap ? carouselWrap.querySelector('.slider-btn--next') : null;
 
 if (testimonialCarousel && testimonialCards.length > 0) {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
