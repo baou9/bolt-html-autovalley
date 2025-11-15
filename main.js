@@ -1,62 +1,16 @@
 /* ============================================================
    AutoValley – Minimal Interactions (< 60 lines)
    - Header shrink on scroll
-   - Theme toggle with localStorage
    - Scroll cue fade
    - Subtle parallax effect
    ============================================================ */
 
 document.documentElement.classList.remove('no-js');
 
-// ─────────────────────────────────────────────────────────
-// 1. Theme Toggle
-// ─────────────────────────────────────────────────────────
-const themeToggles = document.querySelectorAll('.theme-toggle, .theme-toggle-mobile');
-const htmlEl = document.documentElement;
 const header = document.querySelector('.av-header');
 
-const applyTheme = (theme) => {
-  htmlEl.setAttribute('data-theme', theme);
-
-  if (header) {
-    header.setAttribute('data-theme', theme);
-  }
-
-  localStorage.setItem('av-theme', theme);
-
-  const showMoon = theme === 'light';
-
-  themeToggles.forEach(toggle => {
-    const moonIcon = toggle.querySelector('.moon-icon');
-    const sunIcon = toggle.querySelector('.sun-icon');
-
-    if (moonIcon) {
-      moonIcon.hidden = !showMoon;
-      moonIcon.setAttribute('aria-hidden', (!showMoon).toString());
-    }
-
-    if (sunIcon) {
-      sunIcon.hidden = showMoon;
-      sunIcon.setAttribute('aria-hidden', showMoon.toString());
-    }
-  });
-};
-
-// Load saved theme or default to light
-const savedTheme = localStorage.getItem('av-theme') || 'light';
-applyTheme(savedTheme);
-
-themeToggles.forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    const current = (header && header.getAttribute('data-theme')) || htmlEl.getAttribute('data-theme') || 'light';
-    const next = current === 'light' ? 'dark' : 'light';
-
-    applyTheme(next);
-  });
-});
-
 // ─────────────────────────────────────────────────────────
-// 2. Cinematic Parallax Scroll Effect
+// 1. Cinematic Parallax Scroll Effect
 // ─────────────────────────────────────────────────────────
 const heroBg = document.querySelector('.hero-bg');
 let ticking = false;
@@ -88,7 +42,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ─────────────────────────────────────────────────────────
-// 3. Scroll Cue – Hide on Scroll
+// 2. Scroll Cue – Hide on Scroll
 // ─────────────────────────────────────────────────────────
 const scrollIndicator = document.querySelector('.scroll-indicator');
 
@@ -106,7 +60,7 @@ if (scrollIndicator) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 4. Mobile Menu Toggle
+// 3. Mobile Menu Toggle
 // ─────────────────────────────────────────────────────────
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');

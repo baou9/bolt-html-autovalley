@@ -92,7 +92,7 @@
   overflow: hidden;
 }
 
-.av-header[data-theme="dark"] .av-mobile-split {
+.av-header .av-mobile-split {
   background: rgba(10, 5, 5, 0.9);
   background-image: linear-gradient(
     115deg,
@@ -163,7 +163,7 @@
   }
 }
 
-.av-header[data-theme="dark"] .av-mobile-split::before {
+.av-header .av-mobile-split::before {
   background: linear-gradient(
     to bottom,
     transparent 0%,
@@ -192,7 +192,7 @@
   transition: all 0.3s ease;
 }
 
-.av-header[data-theme="dark"] .logo-img-mobile {
+.av-header .logo-img-mobile {
   filter: drop-shadow(0 2px 6px rgba(255, 100, 100, 0.4)) brightness(1.15);
 }
 
@@ -202,44 +202,6 @@
   align-items: center;
   gap: 12px;
   z-index: 2;
-}
-
-.theme-toggle-mobile {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  transition: all 0.3s ease;
-  min-width: 40px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: white;
-}
-
-.theme-toggle-mobile .moon-icon {
-  filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.3));
-}
-
-.theme-toggle-mobile .sun-icon {
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
-}
-
-.theme-toggle-mobile:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.05);
-}
-
-.theme-toggle-mobile:active {
-  transform: scale(0.95);
-}
-
-/* Premium hover effect for theme toggle */
-.av-header[data-theme="dark"] .theme-toggle-mobile:hover {
-  background: rgba(185, 5, 4, 0.15);
-  box-shadow: 0 0 12px rgba(185, 5, 4, 0.3);
 }
 
 .btn-cta-mobile {
@@ -268,7 +230,7 @@
   min-height: 40px;
 }
 
-.av-header[data-theme="dark"] .btn-cta-mobile {
+.av-header .btn-cta-mobile {
   background: #fff;
   color: #000;
 }
@@ -325,7 +287,7 @@
   box-shadow: 0 0 10px rgba(185, 5, 4, 0.2);
 }
 
-.av-header[data-theme="dark"] .hamburger-menu:hover {
+.av-header .hamburger-menu:hover {
   background: rgba(185, 5, 4, 0.18);
   box-shadow: 0 0 15px rgba(185, 5, 4, 0.3);
 }
@@ -372,7 +334,7 @@
   pointer-events: all;
 }
 
-.av-header[data-theme="dark"] .mobile-menu-overlay {
+.av-header .mobile-menu-overlay {
   background: rgba(0, 0, 0, 0.98);
 }
 
@@ -479,11 +441,6 @@ body.menu-open {
 
   .mobile-actions {
     gap: 8px;
-  }
-
-  .theme-toggle-mobile {
-    min-width: 36px;
-    min-height: 36px;
   }
 
   .btn-cta-mobile {
@@ -620,7 +577,7 @@ body.menu-open {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .av-header[data-theme="dark"] .av-container {
+  .av-header .av-container {
     background: rgba(0, 0, 0, 0.45);
     background-image: linear-gradient(
       115deg,
@@ -692,7 +649,7 @@ body.menu-open {
     }
   }
 
-  .av-header[data-theme="dark"] .av-container::before {
+  .av-header .av-container::before {
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -727,7 +684,7 @@ body.menu-open {
     transition: filter 0.3s ease;
   }
 
-  .av-header[data-theme="dark"] .logo-img {
+  .av-header .logo-img {
     filter: drop-shadow(0 2px 6px rgba(255, 0, 0, 0.2)) brightness(1.05);
   }
 
@@ -779,7 +736,7 @@ body.menu-open {
     width: 80%;
   }
 
-  .av-header[data-theme="dark"] .nav-link {
+  .av-header .nav-link {
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   }
@@ -822,38 +779,6 @@ body.menu-open {
     transform: scale(1.12);
     background: rgba(185, 5, 4, 0.15);
     filter: brightness(1.2);
-  }
-
-  .theme-toggle {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    opacity: 0.85;
-    border-radius: 50%;
-    min-width: 40px;
-    min-height: 40px;
-  }
-
-  /* Smooth tint fill hover */
-  .theme-toggle:hover {
-    opacity: 1;
-    transform: rotate(20deg) scale(1.1);
-    background: rgba(185, 5, 4, 0.12);
-    box-shadow: 0 0 15px rgba(185, 5, 4, 0.3);
-  }
-
-  .theme-toggle .moon-icon {
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-  }
-
-  .av-header[data-theme="dark"] .theme-toggle .moon-icon {
-    filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.2));
   }
 
   /* Desktop CTA */
@@ -944,7 +869,7 @@ body.menu-open {
     opacity: 1;
   }
 
-  .av-header[data-theme="dark"] .btn-cta {
+  .av-header .btn-cta {
     border: 2px solid rgba(255, 0, 0, 0.9);
     box-shadow: 0 0 18px rgba(255, 0, 0, 0.6);
   }
