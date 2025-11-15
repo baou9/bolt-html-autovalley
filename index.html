@@ -12,7 +12,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./header-responsive.css">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "additionalType": "https://schema.org/AutoRepair",
+        "@id": "https://autovalley.ma/#autovalley",
+        "name": "AutoValley",
+        "url": "https://autovalley.ma/",
+        "telephone": "+212661123456",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lot 14, Zone industrielle Sapino",
+          "addressLocality": "Nouaceur",
+          "addressRegion": "Casablanca-Settat",
+          "postalCode": "27182",
+          "addressCountry": "MA"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:30",
+            "closes": "18:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": "09:00",
+            "closes": "13:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/autovalley",
+          "https://www.instagram.com/autovalley"
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Skip to content for accessibility -->
@@ -21,59 +65,45 @@
     <!-- Floating Glass Header -->
     <header class="av-header">
       <div class="av-container">
-        <a class="av-logo" href="#" aria-label="AutoValley Accueil">
+        <a class="av-logo" href="#main" aria-label="AutoValley Accueil">
           <img src="/public/Converted-PNG.png" alt="AutoValley - Full Car Service" class="logo-img" />
         </a>
 
-        <nav class="av-nav" aria-label="Navigation principale">
-          <a href="#" class="nav-link">Accueil</a>
-          <a href="#" class="nav-link">Services</a>
-          <a href="#" class="nav-link">À propos</a>
-          <a href="#" class="nav-link">Blog</a>
-          <a href="#" class="nav-link">Carrières</a>
-          <a href="#" class="nav-link">FAQ</a>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <div class="nav-links" id="primary-navigation">
+            <a href="#main" class="nav-link">Accueil</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#approche" class="nav-link">À propos</a>
+            <a href="#blog" class="nav-link">Blog</a>
+            <a href="#carrieres" class="nav-link">Carrières</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+          </div>
+          <a class="btn-cta nav-cta" href="#rdv">Prendre RDV</a>
         </nav>
 
         <div class="av-actions">
           <button class="lang-flag" aria-label="Français">🇫🇷</button>
-          <a class="btn-cta" href="#rdv">Prendre RDV</a>
-        </div>
-      </div>
-
-      <!-- Mobile Version -->
-      <div class="av-mobile-split">
-        <a class="av-logo-mobile" href="#" aria-label="AutoValley Accueil">
-          <img src="/public/Converted-PNG.png" alt="AutoValley" class="logo-img-mobile" />
-        </a>
-
-        <div class="mobile-actions">
-          <a class="btn-cta-mobile" href="#rdv">Get Started</a>
-          <button class="hamburger-menu" aria-label="Ouvrir le menu" aria-expanded="false">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+          >
+            <span class="nav-toggle__line"></span>
+            <span class="nav-toggle__line"></span>
+            <span class="nav-toggle__line"></span>
           </button>
         </div>
       </div>
-
-      <!-- Mobile Menu Overlay -->
-      <nav class="mobile-menu-overlay" aria-label="Navigation mobile">
-        <div class="mobile-menu-content">
-          <a href="#" class="mobile-menu-link">Accueil</a>
-          <a href="#" class="mobile-menu-link">Services</a>
-          <a href="#" class="mobile-menu-link">À propos</a>
-          <div class="mobile-menu-divider"></div>
-          <button class="lang-flag-mobile-menu" aria-label="Français">🇫🇷 Français</button>
-        </div>
-      </nav>
     </header>
 
     <!-- Cinematic Hero -->
-    <main id="main" class="hero">
+    <main id="main" class="hero" aria-label="Présentation AutoValley, atelier automobile premium à Casablanca">
       <div class="hero-bg" role="img" aria-label="Atelier premium avec véhicule de luxe"></div>
 
       <div class="hero-content">
-        <section class="hero-glass-card">
+        <section class="hero-glass-card hero-card">
           <h1>La meilleure alternative aux concessionnaires à Casablanca</h1>
           <p class="sub">Service automobile premium, transparent et certifié.</p>
           <div class="cta">
@@ -108,7 +138,14 @@
           <div class="services-grid">
           <!-- Card 1: Diagnostic & Mécanique -->
           <article class="card-base service-card" data-service="diagnostic">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Diagnostic &amp; mécanique de précision"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -125,7 +162,14 @@
 
           <!-- Card 2: Carrosserie & Peinture -->
           <article class="card-base service-card" data-service="carrosserie">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Cabine de peinture carrosserie"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -142,7 +186,14 @@
 
           <!-- Card 3: Entretien & Révision -->
           <article class="card-base service-card" data-service="entretien">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/4489741/pexels-photo-4489741.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/4489741/pexels-photo-4489741.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Entretien périodique AutoValley"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -160,7 +211,14 @@
 
           <!-- Card 4: Climatisation & Électricité -->
           <article class="card-base service-card" data-service="climatisation">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/3964704/pexels-photo-3964704.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/3964704/pexels-photo-3964704.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Intervention climatisation et électricité"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -177,7 +235,14 @@
 
           <!-- Card 5: Polissage & Esthétique -->
           <article class="card-base service-card" data-service="polissage">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/5216825/pexels-photo-5216825.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/5216825/pexels-photo-5216825.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Polissage et esthétique AutoValley"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -194,7 +259,14 @@
 
           <!-- Card 6: Réglages & Calibration -->
           <article class="card-base service-card" data-service="reglages">
-            <div class="card-bg" style="background-image: url('https://images.pexels.com/photos/3806248/pexels-photo-3806248.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="service-card__image">
+              <img
+                src="https://images.pexels.com/photos/3806248/pexels-photo-3806248.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Réglages laser et calibration"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div class="card-glass">
               <div class="card-content">
                 <div class="card-header">
@@ -319,7 +391,7 @@
     </section>
 
     <!-- Pourquoi choisir AutoValley ? -->
-    <section class="section section-why-autovalley">
+    <section class="section section-why-autovalley section-explainer">
       <div class="container">
         <div class="section-header section-header-centered">
           <p class="section-kicker">NOS ENGAGEMENTS</p>
@@ -339,11 +411,11 @@
             <div class="why-icon-badge">
               <span class="why-icon">🔍</span>
             </div>
-            <h3 class="why-title">Transparence Totale</h3>
+            <h3 class="why-title card-title">Transparence Totale</h3>
             <p class="why-text">
               Aucun travail caché, aucun montant surprise. Vous savez toujours ce qui est fait sur votre véhicule.
             </p>
-            <ul class="why-list">
+            <ul class="why-list card-list">
               <li>Devis détaillés et validés avant intervention</li>
               <li>Explication claire des travaux recommandés</li>
               <li>Photos / vidéos possibles sur demande</li>
@@ -355,11 +427,11 @@
             <div class="why-icon-badge">
               <span class="why-icon">🛡️</span>
             </div>
-            <h3 class="why-title">Garantie Constructeur Préservée</h3>
+            <h3 class="why-title card-title">Garantie Constructeur Préservée</h3>
             <p class="why-text">
               Les interventions respectent les préconisations constructeur pour ne pas impacter votre garantie.
             </p>
-            <ul class="why-list">
+            <ul class="why-list card-list">
               <li>Procédures alignées sur les standards constructeurs</li>
               <li>Pièces de qualité équivalente à l’origine</li>
               <li>Traçabilité des opérations effectuées</li>
@@ -371,11 +443,11 @@
             <div class="why-icon-badge">
               <span class="why-icon">⚙️</span>
             </div>
-            <h3 class="why-title">Équipements & Équipe de Niveau Pro</h3>
+            <h3 class="why-title card-title">Équipements & Équipe de Niveau Pro</h3>
             <p class="why-text">
               Une équipe experte, équipée de matériel de diagnostic moderne pour toutes les marques.
             </p>
-            <ul class="why-list">
+            <ul class="why-list card-list">
               <li>Postes de travail parfaitement organisés</li>
               <li>Outils de diagnostic multi-marques récents</li>
               <li>Formation continue de nos techniciens</li>
@@ -411,7 +483,7 @@
         <div class="section-body">
           <div class="tech-grid">
           <!-- Column 1: Diagnostics -->
-          <article class="card-base card-accent-red tech-card" data-tech="1">
+          <article class="card-base card-accent-red tech-card fade-in-up" data-tech="1">
             <div class="tech-image-wrapper">
               <div class="tech-image diagnostic-image">
                 <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -437,7 +509,7 @@
           </article>
 
           <!-- Column 2: 3M Paint Cabin -->
-          <article class="card-base card-accent-red tech-card" data-tech="2">
+          <article class="card-base card-accent-red tech-card fade-in-up" data-tech="2">
             <div class="tech-image-wrapper">
               <div class="tech-image cabin-image">
                 <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -461,7 +533,7 @@
           </article>
 
           <!-- Column 3: Calibration & Tools -->
-          <article class="card-base card-accent-red tech-card" data-tech="3">
+          <article class="card-base card-accent-red tech-card fade-in-up" data-tech="3">
             <div class="tech-image-wrapper">
               <div class="tech-image calibration-image">
                 <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -514,68 +586,68 @@
         <div class="section-body">
           <div class="all-brands-gallery">
             <div class="all-brands-ambient-glow" aria-hidden="true"></div>
-            <div class="all-brands-grid badge-grid" aria-label="Marques de véhicules prises en charge par AutoValley">
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/hyundai.svg" alt="Hyundai" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/citroen.svg" alt="Citroën" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/skoda.svg" alt="Škoda" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/toyota.svg" alt="Toyota" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/opel.svg" alt="Opel" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/seat.svg" alt="SEAT" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/fiat.svg" alt="Fiat" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/mg.svg" alt="MG" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/nissan.svg" alt="Nissan" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/cupra.svg" alt="Cupra" loading="lazy" />
-            </figure>
-            <figure class="brand-item badge-pill">
-              <img src="./public/img/brands/changan.svg" alt="Changan" loading="lazy" />
-            </figure>
-            </div>
+            <ul class="brand-logos all-brands-grid badge-grid" aria-label="Marques de véhicules prises en charge par AutoValley">
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/hyundai.svg" alt="Hyundai" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/citroen.svg" alt="Citroën" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/skoda.svg" alt="Škoda" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/toyota.svg" alt="Toyota" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/opel.svg" alt="Opel" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/seat.svg" alt="SEAT" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/fiat.svg" alt="Fiat" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/mg.svg" alt="MG" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/nissan.svg" alt="Nissan" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/cupra.svg" alt="Cupra" loading="lazy" />
+              </li>
+              <li class="brand-item badge-pill">
+                <img src="./public/img/brands/changan.svg" alt="Changan" loading="lazy" />
+              </li>
+            </ul>
           </div>
 
           <p class="all-brands-note">
@@ -601,13 +673,13 @@
 
         <div class="section-body">
           <div class="clients-grid">
-          <article class="card-base card-base--strong card-tall client-card client-card--particuliers">
+          <article class="card-base card-base--strong card-tall client-card client-card--particuliers fade-in-up">
             <div class="client-card-header">
               <div class="client-icon client-icon--particuliers" aria-hidden="true"></div>
-              <h3 class="client-card-title">Particuliers</h3>
+              <h3 class="client-card-title card-title">Particuliers</h3>
               <p class="client-card-tagline">Pour les conducteurs qui veulent être rassurés à chaque visite.</p>
             </div>
-            <ul class="client-card-list">
+            <ul class="client-card-list card-list">
               <li>Diagnostic complet et explicité, avant chaque réparation.</li>
               <li>Pièces d’origine ou équivalentes qualité OEM.</li>
               <li>Devis validé ensemble, sans surprise sur la facture.</li>
@@ -620,13 +692,13 @@
             <button class="client-card-cta" type="button">Prendre rendez-vous</button>
           </article>
 
-          <article class="card-base card-base--strong card-tall client-card client-card--entreprises">
+          <article class="card-base card-base--strong card-tall client-card client-card--entreprises fade-in-up">
             <div class="client-card-header">
               <div class="client-icon client-icon--entreprises" aria-hidden="true"></div>
-              <h3 class="client-card-title">Entreprises</h3>
+              <h3 class="client-card-title card-title">Entreprises</h3>
               <p class="client-card-tagline">Pour les flottes professionnelles qui ne peuvent pas s’arrêter.</p>
             </div>
-            <ul class="client-card-list">
+            <ul class="client-card-list card-list">
               <li>Gestion de flotte avec rappels d’entretien et historiques centralisés.</li>
               <li>Délai de prise en charge prioritaire pour les véhicules pros.</li>
               <li>Conditions tarifaires corporate et facturation groupée.</li>
@@ -639,13 +711,13 @@
             <button class="client-card-cta" type="button">Devenir partenaire fleet</button>
           </article>
 
-          <article class="card-base card-base--strong card-tall client-card client-card--loueurs">
+          <article class="card-base card-base--strong card-tall client-card client-card--loueurs fade-in-up">
             <div class="client-card-header">
               <div class="client-icon client-icon--loueurs" aria-hidden="true"></div>
-              <h3 class="client-card-title">Loueurs &amp; Leasing</h3>
+              <h3 class="client-card-title card-title">Loueurs &amp; Leasing</h3>
               <p class="client-card-tagline">Pour les loueurs courte et longue durée à forte rotation.</p>
             </div>
-            <ul class="client-card-list">
+            <ul class="client-card-list card-list">
               <li>Traitement prioritaire pour limiter l’immobilisation des véhicules.</li>
               <li>Carrosserie &amp; peinture adaptées aux gros volumes.</li>
               <li>Contrôle qualité renforcé pour éviter les retours clients.</li>
@@ -658,15 +730,15 @@
             <button class="client-card-cta" type="button">Optimiser votre parc</button>
           </article>
 
-          <article class="card-base card-base--strong card-tall client-card client-card--assureurs">
+          <article class="card-base card-base--strong card-tall client-card client-card--assureurs fade-in-up">
             <div class="client-card-header">
               <div class="client-icon client-icon--assureurs" aria-hidden="true"></div>
-              <h3 class="client-card-title">Assureurs &amp; Institutions</h3>
+              <h3 class="client-card-title card-title">Assureurs &amp; Institutions</h3>
               <p class="client-card-tagline">
                 Pour les compagnies d’assurance et les véhicules publics (Agréé SNTL).
               </p>
             </div>
-            <ul class="client-card-list">
+            <ul class="client-card-list card-list">
               <li>Processus de réparation documenté et traçable.</li>
               <li>Conformité aux standards des compagnies d’assurance.</li>
               <li>Centralisation des sinistres et communication simplifiée.</li>
@@ -721,7 +793,7 @@
     </section>
 
     <!-- Témoignages Section -->
-    <section id="temoignages" class="section test-sec section-testimonials" aria-labelledby="temoignages-title">
+    <section id="temoignages" class="section test-sec section-testimonials" aria-label="Témoignages de nos clients">
       <div class="test-bg" aria-hidden="true"></div>
       <div class="section-header section-header-centered test-head">
         <h2 class="section-title" id="temoignages-title">TÉMOIGNAGES / NOS CLIENTS</h2>
@@ -733,7 +805,7 @@
 
       <div class="section-body">
         <div class="test-carousel-wrap">
-        <button class="prev" type="button" aria-label="Avis précédent" aria-controls="temoignages-carousel">
+        <button class="slider-btn slider-btn--prev" type="button" aria-label="Témoignage précédent" aria-controls="temoignages-carousel">
           <span aria-hidden="true">‹</span>
         </button>
         <div class="test-carousel" id="temoignages-carousel" role="list" aria-live="polite">
@@ -797,7 +869,7 @@
             <a class="google-link" href="https://www.google.com/maps/search/?api=1&query=AutoValley" target="_blank" rel="noopener">Voir l'avis sur Google</a>
           </article>
         </div>
-        <button class="next" type="button" aria-label="Avis suivant" aria-controls="temoignages-carousel">
+        <button class="slider-btn slider-btn--next" type="button" aria-label="Témoignage suivant" aria-controls="temoignages-carousel">
           <span aria-hidden="true">›</span>
         </button>
       </div>
@@ -827,7 +899,7 @@
 
         <div class="section-body">
           <div class="blog-grid" role="list">
-          <article class="card-base blog-card" role="listitem" aria-labelledby="blog-card-entretien-title" aria-describedby="blog-card-entretien-excerpt">
+          <article class="card-base blog-card fade-in-up" role="listitem" aria-labelledby="blog-card-entretien-title" aria-describedby="blog-card-entretien-excerpt">
             <div class="blog-card-top">
               <p class="blog-card-category">Conseils Entretien</p>
               <h3 class="blog-card-title" id="blog-card-entretien-title">
@@ -845,7 +917,7 @@
             </div>
           </article>
 
-          <article class="card-base blog-card" role="listitem" aria-labelledby="blog-card-carrosserie-title" aria-describedby="blog-card-carrosserie-excerpt">
+          <article class="card-base blog-card fade-in-up" role="listitem" aria-labelledby="blog-card-carrosserie-title" aria-describedby="blog-card-carrosserie-excerpt">
             <div class="blog-card-top">
               <p class="blog-card-category">Carrosserie &amp; Sinistres</p>
               <h3 class="blog-card-title" id="blog-card-carrosserie-title">
@@ -863,7 +935,7 @@
             </div>
           </article>
 
-          <article class="card-base blog-card" role="listitem" aria-labelledby="blog-card-technologie-title" aria-describedby="blog-card-technologie-excerpt">
+          <article class="card-base blog-card fade-in-up" role="listitem" aria-labelledby="blog-card-technologie-title" aria-describedby="blog-card-technologie-excerpt">
             <div class="blog-card-top">
               <p class="blog-card-category">Technologie &amp; Innovation</p>
               <h3 class="blog-card-title" id="blog-card-technologie-title">
@@ -918,6 +990,11 @@
                 title="AutoValley - Atelier automobile à Sapino, Casablanca"
               ></iframe>
             </div>
+            <p class="map-fallback">
+              <a href="https://maps.google.com/?q=AutoValley+Sapino" target="_blank" rel="noopener">
+                Ouvrir dans Google Maps
+              </a>
+            </p>
           </div>
 
           <div class="noustrouver-info-wrapper">
@@ -990,8 +1067,15 @@
       </div>
     </section>
 
+    <div id="rdv" class="anchor-target" aria-hidden="true"></div>
+
     <!-- Pre-Footer CTA Band -->
-    <section id="footer-cta" class="section section--tight footer-cta-section" aria-labelledby="footer-cta-title">
+    <section
+      id="footer-cta"
+      class="section section--tight footer-cta-section"
+      aria-labelledby="footer-cta-title"
+      aria-label="Appel à l'action principal AutoValley"
+    >
       <div class="footer-cta-inner">
         <div class="card-base card-base--strong card-accent-red-strong card-tall footer-cta-content">
           <div class="section-header section-header-centered footer-cta-head">
@@ -1159,6 +1243,12 @@
         </div>
       </div>
     </footer>
+
+    <div class="mobile-sticky-cta" role="group" aria-label="Actions rapides mobile">
+      <button class="cta-link" type="button" data-action="call">📞 Appeler</button>
+      <button class="cta-link" type="button" data-action="booking">🧾 Prendre RDV</button>
+      <button class="cta-link" type="button" data-action="map">📍 Itinéraire</button>
+    </div>
 
     <script type="module" src="./main.js"></script>
   </body>

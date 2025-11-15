@@ -60,48 +60,53 @@ if (scrollIndicator) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 3. Mobile Menu Toggle
+// 3. Primary Nav Toggle (mobile)
 // ─────────────────────────────────────────────────────────
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-const body = document.body;
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-if (hamburgerMenu && mobileMenuOverlay) {
-  hamburgerMenu.addEventListener('click', () => {
-    const isActive = hamburgerMenu.classList.contains('active');
+if (navToggle && navLinks) {
+  const headerContainer = navToggle.closest('.av-container');
 
-    if (isActive) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
-    } else {
-      hamburgerMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      body.classList.add('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'true');
+  const setNavState = (isOpen) => {
+    navLinks.classList.toggle('is-open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', isOpen);
+
+    if (headerContainer) {
+      headerContainer.classList.toggle('is-menu-open', isOpen);
+    }
+  };
+
+  const closeNav = () => setNavState(false);
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.contains('is-open');
+    setNavState(!isOpen);
+  });
+
+  navLinks.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      closeNav();
     }
   });
 
-  // Close menu when clicking on overlay
-  mobileMenuOverlay.addEventListener('click', (e) => {
-    if (e.target === mobileMenuOverlay) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  document.addEventListener('click', (event) => {
+    if (!navLinks.contains(event.target) && !navToggle.contains(event.target)) {
+      closeNav();
     }
   });
 
-  // Close menu when clicking on a link
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeNav();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      closeNav();
+    }
   });
 }
 
@@ -148,7 +153,9 @@ if (serviceCards.length > 0) {
           if (cardTop < windowHeight && cardTop > -card.offsetHeight) {
             const parallaxSpeed = 0.05 + (index * 0.01); // Stagger effect
             const offset = (windowHeight - cardTop) * parallaxSpeed;
-            card.style.transform = `translateY(${-offset}px)`;
+            card.style.setProperty('--card-parallax', `${-offset}px`);
+          } else {
+            card.style.setProperty('--card-parallax', '0px');
           }
         });
 
@@ -157,6 +164,30 @@ if (serviceCards.length > 0) {
       ticking = true;
     }
   });
+}
+
+// ─────────────────────────────────────────────────────────
+// 6b. Fade-in utility for featured cards
+// ─────────────────────────────────────────────────────────
+const fadeTargets = document.querySelectorAll('.fade-in-up');
+
+if (fadeTargets.length > 0) {
+  const reveal = (entry) => entry.classList.add('is-visible');
+
+  if (!('IntersectionObserver' in window)) {
+    fadeTargets.forEach(reveal);
+  } else {
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          reveal(entry.target);
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -10%' });
+
+    fadeTargets.forEach((target) => fadeObserver.observe(target));
+  }
 }
 
 // ─────────────────────────────────────────────────────────
@@ -195,8 +226,8 @@ if (testimonialsSection) {
 const carouselWrap = document.querySelector('.test-carousel-wrap');
 const testimonialCarousel = carouselWrap ? carouselWrap.querySelector('.test-carousel') : null;
 const testimonialCards = testimonialCarousel ? Array.from(testimonialCarousel.querySelectorAll('.test-card')) : [];
-const prevControl = carouselWrap ? carouselWrap.querySelector('.prev') : null;
-const nextControl = carouselWrap ? carouselWrap.querySelector('.next') : null;
+const prevControl = carouselWrap ? carouselWrap.querySelector('.slider-btn--prev') : null;
+const nextControl = carouselWrap ? carouselWrap.querySelector('.slider-btn--next') : null;
 
 if (testimonialCarousel && testimonialCards.length > 0) {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -468,4 +499,38 @@ const yearTarget = document.getElementById('current-year');
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear().toString();
+}
+
+// ─────────────────────────────────────────────────────────
+// 10. Mobile sticky CTA actions
+// ─────────────────────────────────────────────────────────
+const mobileCtaBar = document.querySelector('.mobile-sticky-cta');
+
+if (mobileCtaBar) {
+  const scrollToBooking = () => {
+    const bookingTarget = document.getElementById('rdv') || document.querySelector('[href="#rdv"]');
+
+    if (bookingTarget) {
+      if (bookingTarget.scrollIntoView) {
+        bookingTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.location.hash = '#rdv';
+      }
+    }
+  };
+
+  mobileCtaBar.addEventListener('click', (event) => {
+    const actionButton = event.target.closest('.cta-link');
+    if (!actionButton) return;
+
+    const action = actionButton.dataset.action;
+
+    if (action === 'call') {
+      window.location.href = 'tel:+212661123456';
+    } else if (action === 'booking') {
+      scrollToBooking();
+    } else if (action === 'map') {
+      window.open('https://maps.google.com/?q=AutoValley+Sapino', '_blank', 'noopener');
+    }
+  });
 }
