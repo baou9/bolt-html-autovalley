@@ -506,3 +506,12 @@ if (document.readyState === 'loading') {
 } else {
   bootApprocheAnimations();
 }
+
+// ─────────────────────────────────────────────────────────
+// 9. Footer – Dynamic Year Stamp
+// ─────────────────────────────────────────────────────────
+const yearTarget = document.getElementById('current-year');
+
+if (yearTarget) {
+  yearTarget.textContent = new Date().getFullYear().toString();
+}
