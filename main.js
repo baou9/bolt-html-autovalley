@@ -153,7 +153,9 @@ if (serviceCards.length > 0) {
           if (cardTop < windowHeight && cardTop > -card.offsetHeight) {
             const parallaxSpeed = 0.05 + (index * 0.01); // Stagger effect
             const offset = (windowHeight - cardTop) * parallaxSpeed;
-            card.style.transform = `translateY(${-offset}px)`;
+            card.style.setProperty('--card-parallax', `${-offset}px`);
+          } else {
+            card.style.setProperty('--card-parallax', '0px');
           }
         });
 
@@ -162,6 +164,30 @@ if (serviceCards.length > 0) {
       ticking = true;
     }
   });
+}
+
+// ─────────────────────────────────────────────────────────
+// 6b. Fade-in utility for featured cards
+// ─────────────────────────────────────────────────────────
+const fadeTargets = document.querySelectorAll('.fade-in-up');
+
+if (fadeTargets.length > 0) {
+  const reveal = (entry) => entry.classList.add('is-visible');
+
+  if (!('IntersectionObserver' in window)) {
+    fadeTargets.forEach(reveal);
+  } else {
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          reveal(entry.target);
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -10%' });
+
+    fadeTargets.forEach((target) => fadeObserver.observe(target));
+  }
 }
 
 // ─────────────────────────────────────────────────────────
@@ -473,4 +499,38 @@ const yearTarget = document.getElementById('current-year');
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear().toString();
+}
+
+// ─────────────────────────────────────────────────────────
+// 10. Mobile sticky CTA actions
+// ─────────────────────────────────────────────────────────
+const mobileCtaBar = document.querySelector('.mobile-sticky-cta');
+
+if (mobileCtaBar) {
+  const scrollToBooking = () => {
+    const bookingTarget = document.getElementById('rdv') || document.querySelector('[href="#rdv"]');
+
+    if (bookingTarget) {
+      if (bookingTarget.scrollIntoView) {
+        bookingTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.location.hash = '#rdv';
+      }
+    }
+  };
+
+  mobileCtaBar.addEventListener('click', (event) => {
+    const actionButton = event.target.closest('.cta-link');
+    if (!actionButton) return;
+
+    const action = actionButton.dataset.action;
+
+    if (action === 'call') {
+      window.location.href = 'tel:+212661123456';
+    } else if (action === 'booking') {
+      scrollToBooking();
+    } else if (action === 'map') {
+      window.open('https://maps.google.com/?q=AutoValley+Sapino', '_blank', 'noopener');
+    }
+  });
 }
