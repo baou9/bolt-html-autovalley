@@ -6089,3 +6089,131 @@ body {
     transform: none;
   }
 }
+
+/* Pourquoi choisir AutoValley */
+.section-why-autovalley {
+  padding: 80px 0;
+  /* subtle vertical gradient, darker at top, slight red halo */
+  background: radial-gradient(circle at top, rgba(185, 5, 4, 0.25) 0, transparent 55%),
+              radial-gradient(circle at bottom, rgba(0, 0, 0, 0.85) 0, #050308 70%);
+}
+
+.section-why-autovalley .section-header-centered {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+
+.section-why-autovalley .section-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.section-why-autovalley .section-title {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.section-why-autovalley .section-subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section-why-autovalley .text-highlight {
+  color: #ff5050; /* use same accent as CTAs if already defined */
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.why-card {
+  position: relative;
+  padding: 24px 22px 26px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%),
+              rgba(15, 10, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px);
+}
+
+.why-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: radial-gradient(circle at top, rgba(185, 5, 4, 0.9), rgba(185, 5, 4, 0.4));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+.why-icon {
+  font-size: 1.1rem;
+}
+
+.why-title {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.why-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 12px;
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.why-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+}
+
+.why-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ff5050; /* accent color */
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .section-why-autovalley {
+    padding: 64px 0;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .section-why-autovalley {
+    padding: 48px 0 56px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-card {
+    padding: 20px 18px 22px;
+  }
+}
