@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
 // ─────────────────────────────────────────────────────────
 // 2. Scroll Cue – Hide on Scroll
 // ─────────────────────────────────────────────────────────
-const scrollIndicator = document.querySelector('.scroll-indicator');
+const scrollIndicator = document.querySelector('.hero-scroll-cue');
 
 if (scrollIndicator) {
   window.addEventListener('scroll', () => {

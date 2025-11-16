@@ -548,10 +548,15 @@ body.menu-open {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 22px;
     height: 70px;
     padding: 0 28px;
     position: relative;
     overflow: hidden;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 
     background: rgba(255, 255, 255, 0.08);
     background-image: linear-gradient(
@@ -745,6 +750,34 @@ body.menu-open {
     outline: 2px solid #b90504;
     outline-offset: 4px;
     border-radius: 4px;
+  }
+
+  .av-logo {
+    flex: 0 0 auto;
+  }
+
+  .av-nav {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .av-nav .nav-link {
+    white-space: nowrap;
+  }
+
+  .av-actions {
+    flex: 0 0 auto;
+    gap: 12px;
+  }
+
+  .lang-flag {
+    margin-left: 0;
+  }
+
+  .btn-cta {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   /* Desktop Actions */
@@ -1006,6 +1039,25 @@ body.menu-open {
 
   .av-nav {
     gap: 40px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 768px) {
+  .av-header .av-container {
+    padding-inline: 16px;
+    gap: 16px;
+  }
+
+  .av-nav {
+    gap: 18px;
+  }
+
+  .nav-link {
+    font-size: 0.88rem;
+  }
+
+  .btn-cta {
+    padding-inline: 22px;
   }
 }
 
