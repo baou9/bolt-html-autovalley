@@ -4697,7 +4697,7 @@ body,
 }
 
 .all-brands-grid {
-  margin: 0;
+  margin: 0 auto;
   gap: clamp(10px, 1.5vw, 16px);
   justify-content: center;
   align-items: center;
@@ -4709,7 +4709,12 @@ body,
 
 .all-brands-section .badge-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 180px));
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: min(1120px, 100%);
+  margin: 0 auto;
   gap: clamp(12px, 2vw, 18px);
 }
 
@@ -4724,6 +4729,9 @@ body,
     0 20px 40px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .all-brands-gallery::before,
