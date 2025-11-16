@@ -4788,14 +4788,19 @@ body,
 }
 
 .all-brands-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(14px, 1.8vw, 18px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: stretch;
+  gap: clamp(14px, 1.8vw, 18px);
   width: min(1100px, 100%);
   margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+.all-brands-grid .brand-badge {
+  flex: 0 1 170px;
 }
 
 .brand-item {
@@ -4941,8 +4946,11 @@ body,
   }
 
   .all-brands-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
+  }
+
+  .all-brands-grid .brand-badge {
+    flex: 0 1 145px;
   }
 
   .brand-badge {
@@ -5485,12 +5493,6 @@ body,
   .clients-ref-logo img {
     max-width: 80px;
     max-height: 22px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .all-brands-grid {
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   }
 }
 
