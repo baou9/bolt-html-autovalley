@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
 // ─────────────────────────────────────────────────────────
 // 2. Scroll Cue – Hide on Scroll
 // ─────────────────────────────────────────────────────────
-const scrollIndicator = document.querySelector('.scroll-indicator');
+const scrollIndicator = document.querySelector('.hero-scroll-cue');
 
 if (scrollIndicator) {
   window.addEventListener('scroll', () => {
@@ -462,7 +462,171 @@ if (document.readyState === 'loading') {
 }
 
 // ─────────────────────────────────────────────────────────
-// 9. Footer – Dynamic Year Stamp
+// 9. Partners Logos – Liquid Glass Sphere Parallax
+// ─────────────────────────────────────────────────────────
+const initPartnersSphere = () => {
+  const sphere = document.querySelector('.partners-sphere');
+  const inner = document.querySelector('.partners-sphere-inner');
+
+  if (!sphere || !inner) return;
+
+  const prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    // No JS parallax: keep idle CSS animation only
+    return;
+  }
+
+  let pointerActive = false;
+  let idleTimeoutId = null;
+
+  const setTilt = (xDeg, yDeg) => {
+    inner.style.setProperty('--partners-tilt-x', `${xDeg}deg`);
+    inner.style.setProperty('--partners-tilt-y', `${yDeg}deg`);
+  };
+
+  const resetTilt = () => {
+    pointerActive = false;
+    setTilt(0, 0);
+  };
+
+  const handlePointerMove = (event) => {
+    const rect = sphere.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    const tiltX = relX * 16;   // horizontal tilt
+    const tiltY = -relY * 12;  // vertical tilt
+
+    pointerActive = true;
+    setTilt(tiltX, tiltY);
+
+    if (idleTimeoutId) {
+      window.clearTimeout(idleTimeoutId);
+    }
+
+    idleTimeoutId = window.setTimeout(() => {
+      pointerActive = false;
+    }, 1200);
+  };
+
+  let animationFrameId;
+  const startIdleLoop = () => {
+    let start = null;
+
+    const loop = (timestamp) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+
+      if (!pointerActive) {
+        const idleX = Math.sin(elapsed * 0.0004) * 4;
+        const idleY = Math.cos(elapsed * 0.0003) * 3;
+        setTilt(idleX, idleY);
+      }
+
+      animationFrameId = window.requestAnimationFrame(loop);
+    };
+
+    animationFrameId = window.requestAnimationFrame(loop);
+  };
+
+  sphere.addEventListener('pointermove', handlePointerMove);
+  sphere.addEventListener('pointerleave', resetTilt);
+
+  startIdleLoop();
+
+  window.addEventListener('beforeunload', () => {
+    if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+  });
+};
+
+// ─────────────────────────────────────────────────────────
+// 10. Technologie & Marques – Gallery parallax tilt
+// ─────────────────────────────────────────────────────────
+const initBrandSphere = () => {
+  const gallery = document.querySelector('.all-brands-gallery');
+
+  if (!gallery) return;
+
+  const prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    gallery.style.setProperty('--tilt-x', '0deg');
+    gallery.style.setProperty('--tilt-y', '0deg');
+    return;
+  }
+
+  let pointerActive = false;
+  let idleId = null;
+
+  const setTilt = (xDeg, yDeg) => {
+    gallery.style.setProperty('--tilt-x', `${xDeg}deg`);
+    gallery.style.setProperty('--tilt-y', `${yDeg}deg`);
+  };
+
+  const handleMove = (event) => {
+    const rect = gallery.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    const tiltX = relX * 4;
+    const tiltY = -relY * 3;
+
+    pointerActive = true;
+    setTilt(tiltX, tiltY);
+
+    if (idleId) window.clearTimeout(idleId);
+    idleId = window.setTimeout(() => { pointerActive = false; }, 1200);
+  };
+
+  const resetTilt = () => {
+    pointerActive = false;
+    setTilt(0, 0);
+  };
+
+  let frameId;
+  const startIdle = () => {
+    let start = null;
+
+    const loop = (ts) => {
+      if (!start) start = ts;
+      const t = ts - start;
+
+      if (!pointerActive) {
+        const idleX = Math.sin(t * 0.0004) * 2;
+        const idleY = Math.cos(t * 0.00035) * 1.5;
+        setTilt(idleX, idleY);
+      }
+
+      frameId = window.requestAnimationFrame(loop);
+    };
+
+    frameId = window.requestAnimationFrame(loop);
+  };
+
+  gallery.addEventListener('pointermove', handleMove);
+  gallery.addEventListener('pointerleave', resetTilt);
+  startIdle();
+
+  window.addEventListener('beforeunload', () => {
+    if (frameId) window.cancelAnimationFrame(frameId);
+  });
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initBrandSphere();
+    initPartnersSphere();
+  }, { once: true });
+} else {
+  initBrandSphere();
+  initPartnersSphere();
+}
+
+// ─────────────────────────────────────────────────────────
+// 11. Footer – Dynamic Year Stamp
 // ─────────────────────────────────────────────────────────
 const yearTarget = document.getElementById('current-year');
 
