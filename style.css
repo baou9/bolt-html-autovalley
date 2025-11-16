@@ -4806,6 +4806,165 @@ body,
   z-index: 0;
 }
 
+.brands-sphere {
+  position: relative;
+  width: min(540px, 94vw);
+  height: clamp(260px, 32vw, 320px);
+  border-radius: 999px;
+  margin: 0 auto clamp(28px, 3vw, 36px);
+  background:
+    radial-gradient(130% 220% at 50% 0%, rgba(111, 19, 23, 0.55), rgba(18, 6, 10, 0.98) 60%, #050305 100%),
+    linear-gradient(180deg, rgba(30, 10, 14, 0.9), rgba(5, 2, 4, 0.98));
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(185, 5, 4, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  isolation: isolate;
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  --brands-tilt-x: 0deg;
+  --brands-tilt-y: 0deg;
+}
+
+.brands-sphere-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform:
+    rotateX(var(--brands-tilt-y))
+    rotateY(var(--brands-tilt-x));
+}
+
+.brands-sphere::before,
+.brands-sphere::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.brands-sphere::before {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(60% 80% at 20% 0%, rgba(255, 255, 255, 0.26), transparent 62%),
+    radial-gradient(40% 60% at 80% 90%, rgba(185, 5, 4, 0.55), transparent 70%);
+  opacity: 0.75;
+}
+
+.brands-sphere::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 65%);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+.brands-sphere-glow {
+  position: absolute;
+  inset: -38% -24%;
+  background:
+    radial-gradient(45% 45% at 15% 40%, rgba(255, 255, 255, 0.16), transparent 60%),
+    radial-gradient(50% 50% at 85% 60%, rgba(185, 5, 4, 0.42), transparent 68%),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.12), transparent 50%);
+  filter: blur(18px);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.brands-logo-floating {
+  position: absolute;
+  width: 96px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(100%) brightness(1.6);
+  opacity: 0.92;
+  transform-style: preserve-3d;
+  --sphere-depth: 16px;
+  animation: brandsSwim 18s ease-in-out infinite;
+}
+
+.brands-logo-floating img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.brands-logo--dacia { top: 18%; left: 18%; }
+.brands-logo--renault { top: 22%; right: 18%; }
+.brands-logo--peugeot { top: 46%; left: 10%; }
+.brands-logo--vw { top: 38%; right: 12%; }
+.brands-logo--toyota { bottom: 20%; left: 20%; }
+.brands-logo--bmw { bottom: 22%; right: 22%; }
+.brands-logo--mercedes { top: 60%; left: 40%; }
+.brands-logo--audi { top: 32%; left: 50%; }
+.brands-logo--byd { bottom: 30%; right: 38%; }
+.brands-logo--kia { top: 50%; right: 30%; }
+
+.brands-sphere:hover .brands-logo-floating {
+  opacity: 0.75;
+}
+
+.brands-sphere:hover .brands-logo-floating:hover {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1.05);
+  transform: translateZ(14px) scale(1.06);
+}
+
+@keyframes brandsSwim {
+  0% {
+    transform:
+      translate3d(0, 0, var(--sphere-depth))
+      rotateX(calc(var(--brands-tilt-y) * 0.35 + 2deg))
+      rotateY(calc(var(--brands-tilt-x) * 0.35 - 1deg));
+  }
+  25% {
+    transform:
+      translate3d(6px, -10px, calc(var(--sphere-depth) + 8px))
+      rotateX(calc(var(--brands-tilt-y) * 0.35 - 1deg))
+      rotateY(calc(var(--brands-tilt-x) * 0.35 + 3deg));
+  }
+  50% {
+    transform:
+      translate3d(-4px, -4px, calc(var(--sphere-depth) + 4px))
+      rotateX(calc(var(--brands-tilt-y) * 0.35 + 1deg))
+      rotateY(calc(var(--brands-tilt-x) * 0.35 + 1deg));
+  }
+  75% {
+    transform:
+      translate3d(4px, 8px, calc(var(--sphere-depth) + 2px))
+      rotateX(calc(var(--brands-tilt-y) * 0.35 - 2deg))
+      rotateY(calc(var(--brands-tilt-x) * 0.35 - 3deg));
+  }
+  100% {
+    transform:
+      translate3d(0, 0, var(--sphere-depth))
+      rotateX(calc(var(--brands-tilt-y) * 0.35 + 2deg))
+      rotateY(calc(var(--brands-tilt-x) * 0.35 - 1deg));
+  }
+}
+
+.brands-logo-floating:nth-child(3n) {
+  animation-duration: 20s;
+  animation-delay: -4s;
+}
+
+.brands-logo-floating:nth-child(4n) {
+  animation-duration: 22s;
+  animation-delay: -7s;
+}
+
+.all-brands-grid .brand-badge {
+  animation: none;
+  transform: translateZ(0);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.55),
+    0 0 10px rgba(0, 0, 0, 0.6);
+}
+
 .all-brands-gallery .brand-item {
   z-index: 2;
 }
@@ -4948,6 +5107,19 @@ body,
   .brand-badge img {
     max-width: 96px;
     max-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brands-sphere {
+    width: min(360px, 96vw);
+    height: 240px;
+    margin-bottom: 24px;
+  }
+
+  .brands-logo-floating {
+    width: 80px;
+    height: 34px;
   }
 }
 

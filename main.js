@@ -542,41 +542,90 @@ const initPartnersSphere = () => {
 };
 
 // ─────────────────────────────────────────────────────────
-// 10. Technologie & Marques – Spherical hover/tilt
+// 10. Technologie & Marques – Liquid glass tilt
 // ─────────────────────────────────────────────────────────
 const initBrandSphere = () => {
-  const gallery = document.querySelector('.all-brands-gallery');
+  const sphere = document.querySelector('.brands-sphere');
+  const inner = document.querySelector('.brands-sphere-inner');
 
-  if (!gallery) {
+  if (!sphere || !inner) {
     return;
   }
 
-  const badges = Array.from(gallery.querySelectorAll('.brand-badge'));
+  const prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const updateTilt = (event) => {
-    const rect = gallery.getBoundingClientRect();
+  const logos = Array.from(inner.querySelectorAll('.brands-logo-floating'));
+
+  logos.forEach((logo, index) => {
+    const depth = 20 + (index % 4) * 4;
+    logo.style.setProperty('--sphere-depth', `${depth}px`);
+  });
+
+  if (prefersReducedMotion) {
+    return;
+  }
+
+  let pointerActive = false;
+  let idleTimeoutId = null;
+
+  const setTilt = (xDeg, yDeg) => {
+    inner.style.setProperty('--brands-tilt-x', `${xDeg}deg`);
+    inner.style.setProperty('--brands-tilt-y', `${yDeg}deg`);
+  };
+
+  const resetTilt = () => {
+    pointerActive = false;
+    setTilt(0, 0);
+  };
+
+  const handlePointerMove = (event) => {
+    const rect = sphere.getBoundingClientRect();
     const relX = (event.clientX - rect.left) / rect.width - 0.5;
     const relY = (event.clientY - rect.top) / rect.height - 0.5;
 
     const tiltX = relX * 18;
     const tiltY = -relY * 14;
 
-    gallery.style.setProperty('--tilt-x', `${tiltX}deg`);
-    gallery.style.setProperty('--tilt-y', `${tiltY}deg`);
+    pointerActive = true;
+    setTilt(tiltX, tiltY);
+
+    if (idleTimeoutId) {
+      window.clearTimeout(idleTimeoutId);
+    }
+
+    idleTimeoutId = window.setTimeout(() => {
+      pointerActive = false;
+    }, 1200);
   };
 
-  const resetTilt = () => {
-    gallery.style.setProperty('--tilt-x', '0deg');
-    gallery.style.setProperty('--tilt-y', '0deg');
+  let frameId;
+  const startIdleLoop = () => {
+    let start = null;
+
+    const loop = (timestamp) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+
+      if (!pointerActive) {
+        const idleX = Math.sin(elapsed * 0.0004) * 4;
+        const idleY = Math.cos(elapsed * 0.00035) * 3;
+        setTilt(idleX, idleY);
+      }
+
+      frameId = window.requestAnimationFrame(loop);
+    };
+
+    frameId = window.requestAnimationFrame(loop);
   };
 
-  gallery.addEventListener('pointermove', updateTilt);
-  gallery.addEventListener('pointerleave', resetTilt);
+  sphere.addEventListener('pointermove', handlePointerMove);
+  sphere.addEventListener('pointerleave', resetTilt);
 
-  badges.forEach((badge, index) => {
-    badge.style.setProperty('--sphere-depth', `${22 + (index % 3) * 4}px`);
-    badge.addEventListener('pointermove', updateTilt);
-    badge.addEventListener('pointerleave', resetTilt);
+  startIdleLoop();
+
+  window.addEventListener('beforeunload', () => {
+    if (frameId) window.cancelAnimationFrame(frameId);
   });
 };
 
