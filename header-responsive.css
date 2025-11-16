@@ -1264,3 +1264,62 @@ body.menu-open {
     border-width: 3px;
   }
 }
+
+/* ============================================================
+   Final desktop alignment guardrails (consistency across states)
+   ============================================================ */
+.av-header .av-container,
+.av-header.scrolled .av-container {
+  max-width: 1340px;
+  padding-inline: clamp(18px, 3vw, 28px);
+  gap: clamp(20px, 2.8vw, 32px);
+}
+
+.av-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+.av-nav .nav-link {
+  padding-inline: 10px;
+}
+
+.av-actions {
+  flex: 0 0 auto;
+  gap: clamp(12px, 2vw, 20px);
+  align-items: center;
+}
+
+/* Earlier mobile handoff to avoid overlap */
+@media (max-width: 1180px) {
+  .av-container {
+    padding-inline: 16px;
+    gap: 16px;
+  }
+
+  .av-nav {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1181px) {
+  .mobile-menu-overlay {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .hamburger-menu {
+    display: none !important;
+  }
+
+  .av-nav {
+    display: flex !important;
+  }
+}
