@@ -511,6 +511,13 @@ body,
   letter-spacing: -0.02em;
 }
 
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 /* Navigation Links */
 .main-nav {
   display: flex;
@@ -675,6 +682,10 @@ body,
   .nav-link {
     font-size: 15px;
   }
+
+  .logo-img {
+    height: 42px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -690,6 +701,10 @@ body,
 
   .logo-text {
     font-size: 20px;
+  }
+
+  .logo-img {
+    height: 38px;
   }
 
   .main-nav {
@@ -778,6 +793,10 @@ body,
     font-size: 18px;
   }
 
+  .logo-img {
+    height: 30px;
+  }
+
   .lang-flag {
     font-size: 18px;
   }
@@ -799,6 +818,16 @@ body,
 
   .logo-text {
     display: none;
+  }
+
+  .logo-img {
+    height: 28px;
+  }
+}
+
+@media (max-width: 374px) {
+  .logo-img {
+    height: 24px;
   }
 }
 
@@ -6094,26 +6123,28 @@ body,
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-.slider-btn {
-  flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(15, 15, 15, 0.65);
-  color: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease;
-.slider-btn:hover,
-.slider-btn:focus-visible {
-  transform: translateY(-4px);
-  background: rgba(185, 5, 4, 0.65);
-  box-shadow: 0 12px 30px rgba(185, 5, 4, 0.45);
-}
+  .slider-btn {
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 15, 15, 0.65);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease;
+  }
+
+  .slider-btn:hover,
+  .slider-btn:focus-visible {
+    transform: translateY(-4px);
+    background: rgba(185, 5, 4, 0.65);
+    box-shadow: 0 12px 30px rgba(185, 5, 4, 0.45);
+  }
 
 .cta-row {
   position: relative;
