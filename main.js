@@ -13,32 +13,33 @@ const header = document.querySelector('.av-header');
 // 1. Cinematic Parallax Scroll Effect
 // ─────────────────────────────────────────────────────────
 const heroBg = document.querySelector('.hero-bg');
-let ticking = false;
+let headerTicking = false;
 
 window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.scrollY;
+  if (headerTicking) return;
 
-      // Header shrink effect
-      if (header) {
-        if (scrolled > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+  headerTicking = true;
+
+  window.requestAnimationFrame(() => {
+    const scrolled = window.scrollY;
+
+    // Header shrink effect
+    if (header) {
+      if (scrolled > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
+    }
 
-      // Cinematic parallax - slower movement creates depth
-      if (heroBg && scrolled < window.innerHeight) {
-        const parallaxSpeed = 0.5;
-        heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
-      }
+    // Cinematic parallax - slower movement creates depth
+    if (heroBg && scrolled < window.innerHeight) {
+      const parallaxSpeed = 0.5;
+      heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
+    }
 
-      ticking = false;
-    });
-    ticking = true;
-  }
+    headerTicking = false;
+  });
 });
 
 // ─────────────────────────────────────────────────────────
@@ -124,28 +125,29 @@ if (servicesSection) {
 
 // Add subtle parallax to service cards on scroll
 const serviceCards = document.querySelectorAll('.service-card');
+let servicesTicking = false;
+
 if (serviceCards.length > 0) {
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrolled = window.scrollY;
+    if (servicesTicking) return;
 
-        serviceCards.forEach((card, index) => {
-          const cardTop = card.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
+    servicesTicking = true;
 
-          // Only apply parallax if card is in viewport
-          if (cardTop < windowHeight && cardTop > -card.offsetHeight) {
-            const parallaxSpeed = 0.05 + (index * 0.01); // Stagger effect
-            const offset = (windowHeight - cardTop) * parallaxSpeed;
-            card.style.transform = `translateY(${-offset}px)`;
-          }
-        });
+    window.requestAnimationFrame(() => {
+      serviceCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
 
-        ticking = false;
+        // Only apply parallax if card is in viewport
+        if (cardTop < windowHeight && cardTop > -card.offsetHeight) {
+          const parallaxSpeed = 0.05 + (index * 0.01); // Stagger effect
+          const offset = (windowHeight - cardTop) * parallaxSpeed;
+          card.style.transform = `translateY(${-offset}px)`;
+        }
       });
-      ticking = true;
-    }
+
+      servicesTicking = false;
+    });
   });
 }
 
