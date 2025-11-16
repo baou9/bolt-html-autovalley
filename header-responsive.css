@@ -58,6 +58,18 @@
   box-sizing: border-box;
 }
 
+/* Keep base layout identical in top and scrolled states */
+.av-header .av-container,
+.av-header.scrolled .av-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(14px, 2vw, 22px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* Legacy mobile split is unused with unified header */
 .av-mobile-split {
   display: none;
@@ -439,7 +451,7 @@
   display: none;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1100px) {
   .av-container {
     padding-inline: 16px;
     gap: 16px;
@@ -461,7 +473,7 @@
 }
 
 /* Keep desktop layout clean and mobile overlay hidden */
-@media (min-width: 1151px) {
+@media (min-width: 1101px) {
   .mobile-menu-overlay {
     display: none !important;
     opacity: 0 !important;
@@ -474,6 +486,61 @@
 
   .av-nav {
     display: flex !important;
+  }
+}
+
+/* Ensure header stays visible, sized, and aligned on small screens */
+@media (max-width: 900px) {
+  .av-header {
+    width: calc(100% - 18px);
+    top: 12px;
+  }
+
+  .av-container {
+    min-height: 60px;
+    padding: 0 16px;
+    gap: 14px;
+  }
+
+  .logo-img {
+    height: clamp(24px, 7vw, 30px);
+    max-width: clamp(130px, 40vw, 170px);
+  }
+
+  .av-nav {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: inline-flex;
+  }
+
+  .mobile-menu-overlay {
+    display: none;
+  }
+
+  .mobile-menu-overlay.active {
+    display: flex;
+  }
+
+  .av-actions {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  .av-container {
+    padding: 0 14px;
+    min-height: 58px;
+  }
+
+  .logo-img {
+    height: 22px;
+    max-width: 150px;
+  }
+
+  .btn-cta {
+    padding-inline: 16px;
   }
 }
 
@@ -747,14 +814,14 @@ body.menu-open {
     transform: scale(1.02);
   }
 
-  .logo-img {
-    height: 34px;
-    width: auto;
-    max-width: 170px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-    transition: filter 0.3s ease;
-  }
+.logo-img {
+  height: clamp(26px, 5vw, 34px);
+  width: auto;
+  max-width: clamp(150px, 36vw, 190px);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  transition: filter 0.3s ease;
+}
 
   .av-header .logo-img {
     filter: drop-shadow(0 2px 6px rgba(255, 0, 0, 0.2)) brightness(1.05);
