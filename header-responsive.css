@@ -332,7 +332,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 999;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -341,6 +341,7 @@
 }
 
 .mobile-menu-overlay.active {
+  display: flex;
   opacity: 1;
   pointer-events: all;
 }
@@ -456,6 +457,41 @@
 
   .btn-cta {
     padding-inline: 18px;
+  }
+}
+
+/* Keep desktop layout clean and mobile overlay hidden */
+@media (min-width: 1151px) {
+  .mobile-menu-overlay {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .hamburger-menu {
+    display: none !important;
+  }
+
+  .av-nav {
+    display: flex !important;
+  }
+}
+
+/* Ensure header stays visible and aligned on small screens */
+@media (max-width: 1150px) {
+  .av-container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .av-actions {
+    gap: 12px;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
