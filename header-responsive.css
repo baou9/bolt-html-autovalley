@@ -47,8 +47,19 @@
   height: 36px;
 }
 
-/* Hide desktop container on mobile */
+/* Shared container layout across states */
 .av-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  min-height: 72px;
+  box-sizing: border-box;
+}
+
+/* Legacy mobile split is unused with unified header */
+.av-mobile-split {
   display: none;
 }
 
@@ -411,6 +422,41 @@
 
 .btn-cta-mobile:active::before {
   opacity: 1;
+}
+
+/* ============================================================
+   Unified Header Layout Overrides
+   ============================================================ */
+
+.av-header .av-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+@media (max-width: 1150px) {
+  .av-container {
+    padding-inline: 16px;
+    gap: 16px;
+  }
+
+  .av-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: inline-flex;
+  }
+
+  .btn-cta {
+    padding-inline: 18px;
+  }
 }
 
 /* ============================================================
