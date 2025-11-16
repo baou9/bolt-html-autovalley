@@ -542,36 +542,43 @@ const initPartnersSphere = () => {
 };
 
 // ─────────────────────────────────────────────────────────
-// 10. Technologie & Marques – Liquid glass tilt
+// 10. Technologie & Marques – Gallery parallax tilt
 // ─────────────────────────────────────────────────────────
 const initBrandSphere = () => {
-  const sphere = document.querySelector('.brands-sphere');
-  const inner = document.querySelector('.brands-sphere-inner');
+  const gallery = document.querySelector('.all-brands-gallery');
 
-  if (!sphere || !inner) {
-    return;
-  }
+  if (!gallery) return;
 
   const prefersReducedMotion = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const logos = Array.from(inner.querySelectorAll('.brands-logo-floating'));
-
-  logos.forEach((logo, index) => {
-    const depth = 20 + (index % 4) * 4;
-    logo.style.setProperty('--sphere-depth', `${depth}px`);
-  });
-
   if (prefersReducedMotion) {
+    gallery.style.setProperty('--tilt-x', '0deg');
+    gallery.style.setProperty('--tilt-y', '0deg');
     return;
   }
 
   let pointerActive = false;
-  let idleTimeoutId = null;
+  let idleId = null;
 
   const setTilt = (xDeg, yDeg) => {
-    inner.style.setProperty('--brands-tilt-x', `${xDeg}deg`);
-    inner.style.setProperty('--brands-tilt-y', `${yDeg}deg`);
+    gallery.style.setProperty('--tilt-x', `${xDeg}deg`);
+    gallery.style.setProperty('--tilt-y', `${yDeg}deg`);
+  };
+
+  const handleMove = (event) => {
+    const rect = gallery.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    const tiltX = relX * 4;
+    const tiltY = -relY * 3;
+
+    pointerActive = true;
+    setTilt(tiltX, tiltY);
+
+    if (idleId) window.clearTimeout(idleId);
+    idleId = window.setTimeout(() => { pointerActive = false; }, 1200);
   };
 
   const resetTilt = () => {
@@ -579,37 +586,17 @@ const initBrandSphere = () => {
     setTilt(0, 0);
   };
 
-  const handlePointerMove = (event) => {
-    const rect = sphere.getBoundingClientRect();
-    const relX = (event.clientX - rect.left) / rect.width - 0.5;
-    const relY = (event.clientY - rect.top) / rect.height - 0.5;
-
-    const tiltX = relX * 18;
-    const tiltY = -relY * 14;
-
-    pointerActive = true;
-    setTilt(tiltX, tiltY);
-
-    if (idleTimeoutId) {
-      window.clearTimeout(idleTimeoutId);
-    }
-
-    idleTimeoutId = window.setTimeout(() => {
-      pointerActive = false;
-    }, 1200);
-  };
-
   let frameId;
-  const startIdleLoop = () => {
+  const startIdle = () => {
     let start = null;
 
-    const loop = (timestamp) => {
-      if (!start) start = timestamp;
-      const elapsed = timestamp - start;
+    const loop = (ts) => {
+      if (!start) start = ts;
+      const t = ts - start;
 
       if (!pointerActive) {
-        const idleX = Math.sin(elapsed * 0.0004) * 4;
-        const idleY = Math.cos(elapsed * 0.00035) * 3;
+        const idleX = Math.sin(t * 0.0004) * 2;
+        const idleY = Math.cos(t * 0.00035) * 1.5;
         setTilt(idleX, idleY);
       }
 
@@ -619,10 +606,9 @@ const initBrandSphere = () => {
     frameId = window.requestAnimationFrame(loop);
   };
 
-  sphere.addEventListener('pointermove', handlePointerMove);
-  sphere.addEventListener('pointerleave', resetTilt);
-
-  startIdleLoop();
+  gallery.addEventListener('pointermove', handleMove);
+  gallery.addEventListener('pointerleave', resetTilt);
+  startIdle();
 
   window.addEventListener('beforeunload', () => {
     if (frameId) window.cancelAnimationFrame(frameId);
