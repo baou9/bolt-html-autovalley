@@ -4808,8 +4808,8 @@ body,
 
 .brands-sphere {
   position: relative;
-  width: min(540px, 94vw);
-  height: clamp(260px, 32vw, 320px);
+  width: min(620px, 96vw);
+  height: clamp(300px, 36vw, 360px);
   border-radius: 999px;
   margin: 0 auto clamp(28px, 3vw, 36px);
   background:
@@ -4875,8 +4875,8 @@ body,
 
 .brands-logo-floating {
   position: absolute;
-  width: 96px;
-  height: 40px;
+  width: 102px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4893,16 +4893,26 @@ body,
   object-fit: contain;
 }
 
-.brands-logo--dacia { top: 18%; left: 18%; }
-.brands-logo--renault { top: 22%; right: 18%; }
-.brands-logo--peugeot { top: 46%; left: 10%; }
-.brands-logo--vw { top: 38%; right: 12%; }
-.brands-logo--toyota { bottom: 20%; left: 20%; }
-.brands-logo--bmw { bottom: 22%; right: 22%; }
-.brands-logo--mercedes { top: 60%; left: 40%; }
-.brands-logo--audi { top: 32%; left: 50%; }
-.brands-logo--byd { bottom: 30%; right: 38%; }
-.brands-logo--kia { top: 50%; right: 30%; }
+.brands-logo--dacia { top: 16%; left: 18%; }
+.brands-logo--renault { top: 18%; right: 18%; }
+.brands-logo--peugeot { top: 44%; left: 10%; }
+.brands-logo--vw { top: 32%; right: 10%; }
+.brands-logo--hyundai { bottom: 14%; left: 14%; }
+.brands-logo--citroen { top: 32%; left: 30%; }
+.brands-logo--kia { top: 56%; right: 12%; }
+.brands-logo--skoda { bottom: 32%; right: 30%; }
+.brands-logo--toyota { bottom: 22%; left: 34%; }
+.brands-logo--opel { bottom: 18%; right: 24%; }
+.brands-logo--byd { top: 52%; left: 48%; }
+.brands-logo--bmw { bottom: 26%; left: 12%; }
+.brands-logo--seat { top: 56%; right: 46%; }
+.brands-logo--audi { top: 28%; left: 50%; }
+.brands-logo--mercedes { top: 18%; right: 40%; }
+.brands-logo--fiat { top: 42%; left: 66%; }
+.brands-logo--mg { bottom: 38%; right: 62%; }
+.brands-logo--nissan { top: 24%; left: 68%; }
+.brands-logo--cupra { bottom: 44%; left: 56%; }
+.brands-logo--changan { top: 48%; right: 72%; }
 
 .brands-sphere:hover .brands-logo-floating {
   opacity: 0.75;
@@ -4955,6 +4965,18 @@ body,
 .brands-logo-floating:nth-child(4n) {
   animation-duration: 22s;
   animation-delay: -7s;
+}
+
+.all-brands-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .all-brands-grid .brand-badge {
@@ -5112,14 +5134,14 @@ body,
 
 @media (max-width: 768px) {
   .brands-sphere {
-    width: min(360px, 96vw);
-    height: 240px;
+    width: min(420px, 96vw);
+    height: 260px;
     margin-bottom: 24px;
   }
 
   .brands-logo-floating {
-    width: 80px;
-    height: 34px;
+    width: 86px;
+    height: 36px;
   }
 }
 
