@@ -64,9 +64,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(14px, 2vw, 22px);
+  gap: clamp(18px, 2.6vw, 28px);
   width: 100%;
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
@@ -722,12 +722,12 @@ body.menu-open {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 22px;
+    gap: clamp(18px, 2.6vw, 30px);
     height: 70px;
-    padding: 0 24px;
+    padding: 0 28px;
     position: relative;
     overflow: hidden;
-    max-width: 1200px;
+    max-width: 1320px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -872,7 +872,7 @@ body.menu-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(16px, 2.6vw, 28px);
+    gap: clamp(20px, 3vw, 34px);
     position: relative;
     z-index: 2;
     flex: 1 1 auto;
@@ -1142,11 +1142,11 @@ body.menu-open {
 
   .av-container {
     height: 72px;
-    padding: 0 28px;
+    padding: 0 32px;
   }
 
   .av-nav {
-    gap: clamp(18px, 2.4vw, 30px);
+    gap: clamp(22px, 2.6vw, 36px);
   }
 }
 
@@ -1170,12 +1170,12 @@ body.menu-open {
 
 @media (max-width: 1280px) and (min-width: 1150px) {
   .av-header .av-container {
-    padding-inline: 16px;
-    gap: 16px;
+    padding-inline: 18px;
+    gap: 18px;
   }
 
   .av-nav {
-    gap: 18px;
+    gap: clamp(18px, 2.2vw, 28px);
   }
 
   .nav-link {
