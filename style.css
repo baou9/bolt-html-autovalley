@@ -407,10 +407,15 @@ body,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   height: 80px;
   padding: 0 32px;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 
   /* Frosted glass with red gradient glow */
   background-color: var(--header-bg);
@@ -462,6 +467,8 @@ body,
   transition: transform 0.3s ease;
   position: relative;
   z-index: 2;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .av-logo:hover {
@@ -485,14 +492,17 @@ body,
 .av-nav {
   display: flex;
   align-items: center;
-  gap: 36px;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 32px);
   position: relative;
   z-index: 2;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .nav-link {
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-size: clamp(0.82rem, 0.9rem + 0.1vw, 0.95rem);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -500,6 +510,7 @@ body,
   text-decoration: none;
   transition: color 0.16s ease-out, opacity 0.16s ease-out;
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -517,9 +528,10 @@ body,
 .av-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: clamp(12px, 1.8vw, 18px);
   position: relative;
   z-index: 2;
+  flex: 0 0 auto;
 }
 
 .lang-flag {
@@ -538,6 +550,7 @@ body,
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   cursor: pointer;
+  margin-left: 8px;
   transition:
     background 150ms ease-out,
     border-color 150ms ease-out,
@@ -590,6 +603,8 @@ body,
     background 150ms ease-out;
   position: relative;
   overflow: hidden;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .btn-cta::before {
