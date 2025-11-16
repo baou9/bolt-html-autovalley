@@ -462,7 +462,52 @@ if (document.readyState === 'loading') {
 }
 
 // ─────────────────────────────────────────────────────────
-// 9. Footer – Dynamic Year Stamp
+// 9. Technologie & Marques – Spherical hover/tilt
+// ─────────────────────────────────────────────────────────
+const initBrandSphere = () => {
+  const gallery = document.querySelector('.all-brands-gallery');
+
+  if (!gallery) {
+    return;
+  }
+
+  const badges = Array.from(gallery.querySelectorAll('.brand-badge'));
+
+  const updateTilt = (event) => {
+    const rect = gallery.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    const tiltX = relX * 18;
+    const tiltY = -relY * 14;
+
+    gallery.style.setProperty('--tilt-x', `${tiltX}deg`);
+    gallery.style.setProperty('--tilt-y', `${tiltY}deg`);
+  };
+
+  const resetTilt = () => {
+    gallery.style.setProperty('--tilt-x', '0deg');
+    gallery.style.setProperty('--tilt-y', '0deg');
+  };
+
+  gallery.addEventListener('pointermove', updateTilt);
+  gallery.addEventListener('pointerleave', resetTilt);
+
+  badges.forEach((badge, index) => {
+    badge.style.setProperty('--sphere-depth', `${22 + (index % 3) * 4}px`);
+    badge.addEventListener('pointermove', updateTilt);
+    badge.addEventListener('pointerleave', resetTilt);
+  });
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBrandSphere, { once: true });
+} else {
+  initBrandSphere();
+}
+
+// ─────────────────────────────────────────────────────────
+// 10. Footer – Dynamic Year Stamp
 // ─────────────────────────────────────────────────────────
 const yearTarget = document.getElementById('current-year');
 
