@@ -824,7 +824,7 @@ body,
   box-shadow: 0 4px 20px rgba(185, 5, 4, 0.5),
               0 2px 10px rgba(0, 0, 0, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
-@@ -6072,70 +6074,72 @@ body,
+}
 
 .context {
   font-family: 'Montserrat', sans-serif;
@@ -864,6 +864,8 @@ body,
   font-size: 1.6rem;
   cursor: pointer;
   transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease;
+}
+
 .slider-btn:hover,
 .slider-btn:focus-visible {
   transform: translateY(-4px);
