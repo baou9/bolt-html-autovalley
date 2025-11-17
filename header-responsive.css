@@ -1279,11 +1279,12 @@ body.menu-open {
   flex: 1 1 auto;
   min-width: 0;
   justify-content: center;
-  gap: clamp(18px, 2.4vw, 28px);
+  gap: clamp(16px, 2.2vw, 28px);
 }
 
 .av-nav .nav-link {
   padding-inline: 10px;
+  font-size: clamp(0.8rem, 0.7rem + 0.28vw, 0.94rem);
 }
 
 .av-actions {
@@ -1305,6 +1306,26 @@ body.menu-open {
 
   .hamburger-menu {
     display: inline-flex;
+  }
+}
+
+/* Calmer spacing on mid desktops to prevent crowding near actions */
+@media (min-width: 1181px) and (max-width: 1340px) {
+  .av-container {
+    gap: clamp(18px, 2vw, 26px);
+    padding-inline: clamp(18px, 3vw, 24px);
+  }
+
+  .av-nav {
+    gap: clamp(14px, 1.8vw, 22px);
+  }
+
+  .av-nav .nav-link {
+    font-size: clamp(0.78rem, 0.7rem + 0.22vw, 0.9rem);
+  }
+
+  .av-actions {
+    gap: clamp(12px, 1.6vw, 18px);
   }
 }
 
