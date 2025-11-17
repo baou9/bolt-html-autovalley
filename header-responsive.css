@@ -648,6 +648,164 @@ body.menu-open {
 }
 
 /* ============================================================
+   FINAL HEADER LAYOUT GUARDRAILS (DESKTOP → MOBILE)
+   - Keep desktop and scrolled states aligned
+   - Prevent nav/FR/CTA overlap
+   - Smoothly scale spacing and typography
+   ============================================================ */
+
+/* Unified container + row layout across header states */
+.av-header .av-container,
+.av-header.scrolled .av-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 2.4vw, 30px);
+  padding-inline: clamp(18px, 3vw, 32px);
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Logo sizing stays controlled on all widths */
+.av-logo .logo-img {
+  height: clamp(26px, 4vw, 42px);
+  max-width: clamp(150px, 26vw, 230px);
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Desktop navigation keeps center alignment and scales gently */
+.av-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.8vw, 32px);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.av-nav .nav-link {
+  font-size: clamp(0.8rem, 0.86rem + 0.12vw, 0.98rem);
+  letter-spacing: 0.11em;
+  white-space: nowrap;
+}
+
+/* Actions row keeps spacing + pill styles aligned */
+.av-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 18px);
+  flex: 0 0 auto;
+}
+
+.lang-flag {
+  padding-inline: 14px;
+  height: 34px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-left: 0;
+}
+
+.btn-cta {
+  padding-inline: clamp(22px, 2.6vw, 30px);
+  height: 44px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Hide burger on desktop, force desktop nav visible */
+.hamburger-menu {
+  display: none;
+}
+
+.mobile-menu-overlay {
+  display: none;
+}
+
+/* Large-to-mid desktop tightening before mobile handoff */
+@media (max-width: 1320px) {
+  .av-header .av-container,
+  .av-header.scrolled .av-container {
+    padding-inline: clamp(16px, 2.4vw, 26px);
+    gap: clamp(16px, 2.4vw, 26px);
+  }
+
+  .av-nav {
+    gap: clamp(14px, 2.2vw, 24px);
+  }
+
+  .av-nav .nav-link {
+    font-size: clamp(0.78rem, 0.82rem + 0.14vw, 0.9rem);
+  }
+
+  .av-actions {
+    gap: clamp(10px, 1.8vw, 16px);
+  }
+
+  .btn-cta {
+    padding-inline: clamp(20px, 2.2vw, 26px);
+  }
+}
+
+/* Mobile handoff: show burger, overlay nav; hide inline nav */
+@media (max-width: 1150px) {
+  .av-header .av-container,
+  .av-header.scrolled .av-container {
+    padding-inline: clamp(14px, 3vw, 20px);
+    gap: clamp(12px, 3vw, 18px);
+  }
+
+  .av-nav {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-overlay {
+    display: none;
+  }
+
+  .av-actions {
+    gap: clamp(10px, 2.6vw, 14px);
+  }
+
+  .btn-cta {
+    padding-inline: clamp(18px, 3vw, 22px);
+  }
+}
+
+/* Small screens: keep header balanced with tighter typography */
+@media (max-width: 820px) {
+  .av-header .av-container,
+  .av-header.scrolled .av-container {
+    min-height: 58px;
+    gap: clamp(10px, 3vw, 14px);
+  }
+
+  .av-logo .logo-img {
+    height: clamp(22px, 8vw, 30px);
+    max-width: clamp(130px, 44vw, 190px);
+  }
+
+  .lang-flag {
+    padding-inline: 12px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .btn-cta {
+    padding-inline: clamp(16px, 3.4vw, 20px);
+    height: 42px;
+  }
+}
+
+/* ============================================================
    MEDIUM MOBILE (375px - 479px)
    ============================================================ */
 
