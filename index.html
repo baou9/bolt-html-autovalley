@@ -714,44 +714,62 @@
       <div class="section-partners-divider" aria-hidden="true"></div>
 
       <div class="section-body">
-        <div class="partners-sphere-wrapper">
-          <!-- Liquid glass capsule -->
-          <div class="partners-sphere" aria-hidden="true">
-            <div class="partners-sphere-inner">
-              <div class="partners-sphere-glow" aria-hidden="true"></div>
+        <div class="trust-liquid-wrapper">
+          <div class="trust-liquidGlass-wrapper">
+            <div class="trust-liquidGlass-effect"></div>
+            <div class="trust-liquidGlass-tint"></div>
+            <div class="trust-liquidGlass-shine"></div>
 
-              <!-- Floating logos inside the “sphere” -->
-              <div class="partners-logo-floating partners-logo-floating--axa">
-                <img src="./public/img/refs/axa.svg" alt="" loading="lazy" />
-              </div>
-              <div class="partners-logo-floating partners-logo-floating--wafa">
-                <img src="./public/img/refs/wafa.svg" alt="" loading="lazy" />
-              </div>
-              <div class="partners-logo-floating partners-logo-floating--allianz">
-                <img src="./public/img/refs/allianz.svg" alt="" loading="lazy" />
-              </div>
-              <div class="partners-logo-floating partners-logo-floating--rma">
-                <img src="./public/img/refs/rma.svg" alt="" loading="lazy" />
-              </div>
-              <div class="partners-logo-floating partners-logo-floating--sntl">
-                <img src="./public/img/refs/sntl.svg" alt="" loading="lazy" />
+            <div class="trust-liquidGlass-track">
+              <div class="trust-track" aria-label="Logos de partenaires AutoValley">
+                <img src="./public/img/refs/axa.svg" alt="AXA" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/allianz.svg" alt="Allianz" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/rma.svg" alt="RMA" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/sntl.svg" alt="SNTL" class="trust-logo" loading="lazy" />
+
+                <img src="./public/img/refs/axa.svg" alt="AXA" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/allianz.svg" alt="Allianz" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/rma.svg" alt="RMA" class="trust-logo" loading="lazy" />
+                <img src="./public/img/refs/sntl.svg" alt="SNTL" class="trust-logo" loading="lazy" />
               </div>
             </div>
           </div>
-
-          <!-- Accessible/static logo list (fallback + semantics) -->
-          <ul class="partners-logos-static" aria-label="Principaux partenaires AutoValley">
-            <li><img src="./public/img/refs/axa.svg" alt="AXA" loading="lazy" /></li>
-            <li><img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" loading="lazy" /></li>
-            <li><img src="./public/img/refs/allianz.svg" alt="Allianz" loading="lazy" /></li>
-            <li><img src="./public/img/refs/rma.svg" alt="RMA" loading="lazy" /></li>
-            <li><img src="./public/img/refs/sntl.svg" alt="SNTL" loading="lazy" /></li>
-          </ul>
         </div>
       </div>
 
       <div class="section-partners-divider" aria-hidden="true"></div>
     </section>
+
+    <svg
+      class="trust-glass-filter"
+      aria-hidden="true"
+      focusable="false"
+      style="position: absolute; width: 0; height: 0; pointer-events: none;"
+    >
+      <filter id="trust-glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
+        <feComponentTransfer in="turbulence" result="mapped">
+          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lighting-color="white"
+          result="specLight"
+        >
+          <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
 
     <!-- Témoignages Section -->
     <section id="temoignages" class="section test-sec section-testimonials" aria-labelledby="temoignages-title">
