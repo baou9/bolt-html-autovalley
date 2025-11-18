@@ -6509,117 +6509,130 @@ body,
   margin-top: 40px;
 }
 
-.trust-liquidGlass-wrapper {
+.trust-pill {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1100px;
+  width: 100%;
+  height: 150px;
+  border-radius: 999px;
+  padding: 0;
+  overflow: visible;
+  box-shadow:
+    0 0 50px rgba(185, 5, 4, 0.55),
+    0 25px 60px rgba(0, 0, 0, 0.75);
+}
+
+.trust-pill-glass {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: 999px;
-  padding: 0 40px;
-  max-width: 840px;
   width: 100%;
-  height: 150px;
-  max-height: 150px;
-  min-height: 120px;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(185, 5, 4, 0.8);
-  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-              radial-gradient(circle at 80% 100%, rgba(185, 5, 4, 0.6), rgba(0, 0, 0, 0.96));
+  height: 100%;
+  background: radial-gradient(circle at 15% 20%, #4d1515 0, #1b0606 55%, #050000 100%);
+  isolation: isolate;
 }
 
-.trust-liquidGlass-wrapper,
-.trust-liquidGlass-wrapper > div {
-  border-radius: 100px;
-}
-
-.trust-liquidGlass-effect {
+.trust-pill-glass::before,
+.trust-pill-glass::after {
+  content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
-  backdrop-filter: blur(10px);
-  filter: url(#trust-glass-distortion);
-}
-
-.trust-liquidGlass-lava {
-  position: absolute;
-  inset: -5%;
-  z-index: 1;
   border-radius: inherit;
-  opacity: 0.35;
-  mix-blend-mode: screen;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 55%),
-    radial-gradient(circle at 80% 80%, rgba(255, 80, 80, 0.6) 0%, transparent 60%),
-    radial-gradient(circle at 40% 110%, rgba(185, 5, 4, 0.75) 0%, transparent 70%);
-  background-size: 140% 140%;
-  background-position: 0% 0%;
-  animation: trust-lava-motion 32s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
-.trust-liquidGlass-tint {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.24), transparent 55%);
+.trust-pill-glass::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.25) 18%,
+    transparent 55%
+  );
   mix-blend-mode: screen;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
-.trust-liquidGlass-shine {
+.trust-pill-glass::after {
+  background: radial-gradient(circle at 50% 120%, rgba(0, 0, 0, 0.85) 0, transparent 60%);
+  opacity: 0.9;
+}
+
+.trust-pill-laser {
   position: absolute;
-  inset: 0;
-  z-index: 3;
+  inset: 8% 0 12%;
   border-radius: inherit;
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
-    inset -4px -8px 12px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  filter: blur(16px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(255, 120, 120, 0) 0, rgba(255, 120, 120, 0.75) 18%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(255, 40, 40, 0.9) 0, transparent 55%),
+    radial-gradient(circle at 100% 50%, rgba(255, 0, 0, 0.75) 10%, transparent 60%);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  animation: trust-laser-move 18s linear infinite;
+  z-index: 1;
 }
 
-.trust-liquidGlass-track {
+.trust-pill:hover .trust-pill-laser {
+  animation-play-state: paused;
+}
+
+.trust-pill-inner {
   position: relative;
-  z-index: 4;
+  z-index: 2;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.trust-logos-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .trust-track {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 60px;
   animation: trust-marquee 28s linear infinite;
   will-change: transform;
 }
 
-.trust-liquidGlass-wrapper:hover .trust-track {
+.trust-pill:hover .trust-track {
   animation-play-state: paused;
 }
 
 .trust-logo {
-  height: 48px;
-  max-height: 48px;
+  height: 50px;
   width: auto;
-  filter: brightness(1.3);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.7)) brightness(1.15);
   opacity: 0.96;
 }
 
 @media (max-width: 1023px) {
-  .trust-liquidGlass-wrapper {
-    max-width: 700px;
+  .trust-pill {
     height: 140px;
-    max-height: 140px;
-    min-height: 120px;
-    padding: 0 28px;
+  }
+
+  .trust-pill-inner {
+    padding: 0 36px;
   }
 
   .trust-logo {
     height: 44px;
-    max-height: 44px;
   }
 
   .trust-track {
@@ -6628,24 +6641,26 @@ body,
 }
 
 @media (max-width: 767px) {
-  .trust-liquidGlass-wrapper {
+  .trust-pill {
     max-width: 100%;
     height: 130px;
-    max-height: 130px;
-    min-height: 110px;
-    padding: 0 20px;
+  }
+
+  .trust-pill-inner {
+    padding: 0 24px;
   }
 
   .trust-logo {
     height: 36px;
-    max-height: 36px;
   }
 }
 
-@media (max-width: 767px) {
-  .trust-liquidGlass-lava {
-    opacity: 0.28;
-    animation-duration: 40s;
+@keyframes trust-laser-move {
+  from {
+    background-position: -40% 50%;
+  }
+  to {
+    background-position: 140% 50%;
   }
 }
 
@@ -6655,25 +6670,6 @@ body,
   }
   100% {
     transform: translateX(-50%);
-  }
-}
-
-@keyframes trust-lava-motion {
-  0% {
-    background-position: 0% 0%;
-    background-size: 140% 140%;
-  }
-  35% {
-    background-position: 30% 60%;
-    background-size: 150% 150%;
-  }
-  70% {
-    background-position: 80% 30%;
-    background-size: 135% 145%;
-  }
-  100% {
-    background-position: 40% 100%;
-    background-size: 145% 135%;
   }
 }
 
