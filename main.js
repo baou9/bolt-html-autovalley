@@ -8,56 +8,77 @@
 document.documentElement.classList.remove('no-js');
 
 const header = document.querySelector('.av-header');
-
-// ─────────────────────────────────────────────────────────
-// 1. Cinematic Parallax Scroll Effect
-// ─────────────────────────────────────────────────────────
+const hero = document.querySelector('.hero');
 const heroBg = document.querySelector('.hero-bg');
+const heroEmblem = document.querySelector('.hero-emblem');
 let ticking = false;
 
-window.addEventListener('scroll', () => {
-  if (!ticking) {
+const initHeroParallax = () => {
+  const scrollIndicator = document.querySelector('.hero-scroll-cue');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const handleScroll = () => {
+    if (ticking) return;
+
     window.requestAnimationFrame(() => {
       const scrolled = window.scrollY;
 
-      // Header shrink effect
       if (header) {
-        if (scrolled > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', scrolled > 20);
       }
 
-      // Cinematic parallax - slower movement creates depth
       if (heroBg && scrolled < window.innerHeight) {
-        const parallaxSpeed = 0.5;
+        const parallaxSpeed = motionQuery.matches ? 0 : 0.5;
         heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
       }
 
       ticking = false;
     });
+
     ticking = true;
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  if (scrollIndicator) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.pointerEvents = 'none';
+      }
+    }, { once: true });
+
+    scrollIndicator.addEventListener('click', () => {
+      window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+    });
   }
-});
 
-// ─────────────────────────────────────────────────────────
-// 2. Scroll Cue – Hide on Scroll
-// ─────────────────────────────────────────────────────────
-const scrollIndicator = document.querySelector('.hero-scroll-cue');
+  if (hero && heroEmblem && !motionQuery.matches) {
+    const heroRect = () => hero.getBoundingClientRect();
+    let rafId = null;
+    let targetX = 0;
+    let targetY = 0;
 
-if (scrollIndicator) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      scrollIndicator.style.opacity = '0';
-      scrollIndicator.style.pointerEvents = 'none';
-    }
-  }, { once: true });
+    const updateEmblem = () => {
+      const maxTilt = 8;
+      const xTilt = ((targetX / heroRect().width) - 0.5) * maxTilt;
+      const yTilt = ((targetY / heroRect().height) - 0.5) * -maxTilt;
+      heroEmblem.style.transform = `perspective(900px) rotateX(${yTilt}deg) rotateY(${xTilt}deg)`;
+      rafId = null;
+    };
 
-  scrollIndicator.addEventListener('click', () => {
-    window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
-  });
-}
+    const onMove = (event) => {
+      targetX = event.clientX - heroRect().left;
+      targetY = event.clientY - heroRect().top;
+      if (!rafId) rafId = window.requestAnimationFrame(updateEmblem);
+    };
+
+    hero.addEventListener('mousemove', onMove);
+    hero.addEventListener('mouseleave', () => {
+      heroEmblem.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+};
 
 // ─────────────────────────────────────────────────────────
 // 3. Mobile Menu Toggle
@@ -104,6 +125,85 @@ if (hamburgerMenu && mobileMenuOverlay) {
     });
   });
 }
+
+// ─────────────────────────────────────────────────────────
+// Scroll reveal utility
+// ─────────────────────────────────────────────────────────
+const initScrollReveal = () => {
+  const autoTargets = [
+    '.service-card', '.timeline-card', '.tech-card', '.client-type-card', '.why-card', '.test-card'
+  ];
+
+  autoTargets.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((el) => el.classList.add('reveal-on-scroll'));
+  });
+
+  const candidates = document.querySelectorAll('.reveal-on-scroll');
+
+  if (!('IntersectionObserver' in window)) {
+    candidates.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.revealDelay;
+        if (delay) entry.target.style.setProperty('--reveal-delay', delay);
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  candidates.forEach((el) => observer.observe(el));
+};
+
+// ─────────────────────────────────────────────────────────
+// Cursor Spotlight for hero
+// ─────────────────────────────────────────────────────────
+const initCursorSpotlight = () => {
+  if (!hero) return;
+  const prefersMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (prefersMotion || !finePointer) return;
+
+  const setSpot = (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    hero.style.setProperty('--cursor-x', `${x}%`);
+    hero.style.setProperty('--cursor-y', `${y}%`);
+  };
+
+  hero.addEventListener('pointermove', setSpot);
+  hero.addEventListener('pointerleave', () => {
+    hero.style.setProperty('--cursor-x', '50%');
+    hero.style.setProperty('--cursor-y', '50%');
+  });
+};
+
+// ─────────────────────────────────────────────────────────
+// Precision gallery parallax
+// ─────────────────────────────────────────────────────────
+const initParallaxGallery = () => {
+  const parallaxTargets = document.querySelectorAll('.tech-card, .approche-cta-card');
+  if (!parallaxTargets.length) return;
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motionQuery.matches) return;
+
+  const handleScroll = () => {
+    parallaxTargets.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const offset = Math.min(20, Math.max(-20, (window.innerHeight - rect.top) * 0.02));
+      card.style.transform = `translateY(${offset - index * 2}px)`;
+    });
+  };
+
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+};
 
 // Parallax effect already integrated in section 2 above
 
@@ -192,11 +292,24 @@ if (testimonialsSection) {
   }
 }
 
+const initTestimonialsSlider = () => {
 const carouselWrap = document.querySelector('.test-carousel-wrap');
 const testimonialCarousel = carouselWrap ? carouselWrap.querySelector('.test-carousel') : null;
 const testimonialCards = testimonialCarousel ? Array.from(testimonialCarousel.querySelectorAll('.test-card')) : [];
 const prevControl = carouselWrap ? carouselWrap.querySelector('.prev') : null;
 const nextControl = carouselWrap ? carouselWrap.querySelector('.next') : null;
+const dotsContainer = document.querySelector('.testimonial-dots');
+
+if (dotsContainer && testimonialCards.length) {
+  dotsContainer.innerHTML = '';
+  testimonialCards.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Aller au témoignage ${index + 1}`);
+    dot.addEventListener('click', () => scrollToTestimonial(index));
+    dotsContainer.appendChild(dot);
+  });
+}
 
 if (testimonialCarousel && testimonialCards.length > 0) {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -212,6 +325,12 @@ if (testimonialCarousel && testimonialCards.length > 0) {
       card.setAttribute('data-active', isActive.toString());
       card.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
+
+    if (dotsContainer) {
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        dot.classList.toggle('is-active', index === activeTestimonial);
+      });
+    }
   }
 
   function getScrollBehavior() {
@@ -439,6 +558,7 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     });
   }
 }
+};
 
 // ─────────────────────────────────────────────────────────
 // 8. Client Experience Cards – staggered reveal & hover polish
@@ -662,16 +782,21 @@ const initBrandSphere = () => {
   });
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    initClientExperienceCards();
-    initBrandSphere();
-    initPartnersSphere();
-  }, { once: true });
-} else {
+const init = () => {
+  initHeroParallax();
+  initCursorSpotlight();
+  initScrollReveal();
+  initParallaxGallery();
+  initTestimonialsSlider();
   initClientExperienceCards();
   initBrandSphere();
   initPartnersSphere();
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init, { once: true });
+} else {
+  init();
 }
 
 // ─────────────────────────────────────────────────────────
