@@ -454,6 +454,7 @@ const initClientExperienceCards = () => {
 
   if (prefersReducedMotion || !canObserve) {
     cards.forEach((card) => {
+      card.classList.remove('is-reveal-init');
       card.classList.add('is-visible');
       card.style.removeProperty('--card-delay');
     });
@@ -475,6 +476,7 @@ const initClientExperienceCards = () => {
     });
   } catch (error) {
     cards.forEach((card) => {
+      card.classList.remove('is-reveal-init');
       card.classList.add('is-visible');
       card.style.removeProperty('--card-delay');
     });
@@ -482,6 +484,7 @@ const initClientExperienceCards = () => {
   }
 
   cards.forEach((card, index) => {
+    card.classList.add('is-reveal-init');
     card.style.setProperty('--card-delay', `${index * 120}ms`);
     observer.observe(card);
   });
