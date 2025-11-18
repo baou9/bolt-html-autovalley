@@ -62,19 +62,28 @@
     <!-- Cinematic Hero -->
     <main id="main" class="hero">
       <div class="hero-bg" role="img" aria-label="Atelier premium avec véhicule de luxe"></div>
+      <div class="hero-ambient-overlay"></div>
 
-      <div class="hero-content">
-        <section class="hero-glass-card">
-          <h1>La meilleure alternative aux concessionnaires à Casablanca</h1>
-          <p class="sub">Service automobile premium, transparent et certifié.</p>
-          <div class="cta">
-            <a class="btn-primary" href="#rdv">PRENDRE RENDEZ-VOUS</a>
-            <a class="btn-ghost" href="#services">Découvrir nos Services</a>
+      <div class="hero-inner">
+        <section class="hero-content reveal-on-scroll" data-reveal-delay="0.1s">
+          <div class="hero-text">
+            <h1 class="hero-title">La meilleure alternative aux concessionnaires à Casablanca</h1>
+            <p class="hero-subtitle">Service automobile premium, transparent et certifié.</p>
+            <div class="hero-cta-group">
+              <a class="btn-primary" href="#rdv">PRENDRE RENDEZ-VOUS</a>
+              <a class="btn-ghost" href="#services">Découvrir nos Services</a>
+            </div>
+          </div>
+          <div class="hero-emblem" aria-hidden="true">
+            <div class="hero-emblem-glow"></div>
+            <div class="hero-emblem-inner">
+              <span class="emblem-letter">V</span>
+            </div>
           </div>
         </section>
       </div>
 
-      <div class="hero-scroll-cue">
+      <div class="hero-scroll-cue reveal-on-scroll" data-reveal-delay="0.35s">
         <span class="hero-scroll-label">Découvrez Autovalley</span>
         <span class="hero-scroll-icon" aria-hidden="true">⌄</span>
       </div>
@@ -921,6 +930,7 @@
             Voir tous nos articles
           </button>
         </div>
+        <div class="testimonial-dots" aria-hidden="true"></div>
       </div>
     </section>
 
