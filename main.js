@@ -441,7 +441,54 @@ if (testimonialCarousel && testimonialCards.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 8. Notre Approche - Progressive Animations
+// 8. Client Experience Cards – staggered reveal & hover polish
+// ─────────────────────────────────────────────────────────
+const initClientExperienceCards = () => {
+  const cards = Array.from(document.querySelectorAll('.client-type-card'));
+
+  if (!cards.length) return;
+
+  const prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canObserve = typeof window !== 'undefined' && 'IntersectionObserver' in window;
+
+  if (prefersReducedMotion || !canObserve) {
+    cards.forEach((card) => {
+      card.classList.add('is-visible');
+      card.style.removeProperty('--card-delay');
+    });
+    return;
+  }
+
+  let observer;
+
+  try {
+    observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.25,
+    });
+  } catch (error) {
+    cards.forEach((card) => {
+      card.classList.add('is-visible');
+      card.style.removeProperty('--card-delay');
+    });
+    return;
+  }
+
+  cards.forEach((card, index) => {
+    card.style.setProperty('--card-delay', `${index * 120}ms`);
+    observer.observe(card);
+  });
+};
+
+// ─────────────────────────────────────────────────────────
+// 9. Notre Approche - Progressive Animations
 // ─────────────────────────────────────────────────────────
 const bootApprocheAnimations = () => {
   import('./approche-animations.js')
@@ -462,7 +509,7 @@ if (document.readyState === 'loading') {
 }
 
 // ─────────────────────────────────────────────────────────
-// 9. Partners Logos – Liquid Glass Sphere Parallax
+// 10. Partners Logos – Liquid Glass Sphere Parallax
 // ─────────────────────────────────────────────────────────
 const initPartnersSphere = () => {
   const sphere = document.querySelector('.partners-sphere');
@@ -542,7 +589,7 @@ const initPartnersSphere = () => {
 };
 
 // ─────────────────────────────────────────────────────────
-// 10. Technologie & Marques – Gallery parallax tilt
+// 11. Technologie & Marques – Gallery parallax tilt
 // ─────────────────────────────────────────────────────────
 const initBrandSphere = () => {
   const gallery = document.querySelector('.all-brands-gallery');
@@ -617,16 +664,18 @@ const initBrandSphere = () => {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
+    initClientExperienceCards();
     initBrandSphere();
     initPartnersSphere();
   }, { once: true });
 } else {
+  initClientExperienceCards();
   initBrandSphere();
   initPartnersSphere();
 }
 
 // ─────────────────────────────────────────────────────────
-// 11. Footer – Dynamic Year Stamp
+// 12. Footer – Dynamic Year Stamp
 // ─────────────────────────────────────────────────────────
 const yearTarget = document.getElementById('current-year');
 

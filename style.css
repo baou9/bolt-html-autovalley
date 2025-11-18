@@ -5160,10 +5160,16 @@ body,
 .clients-grid {
   position: relative;
   z-index: 2;
-  margin-top: clamp(44px, 6vw, 58px);
+  margin-top: clamp(40px, 5vw, 56px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: clamp(22px, 3vw, 30px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(22px, 3vw, 32px);
+  align-items: stretch;
+}
+
+.client-experience-grid {
+  max-width: 1120px;
+  margin: clamp(40px, 5vw, 56px) auto 0;
   grid-auto-rows: 1fr;
 }
 
@@ -5200,6 +5206,26 @@ body,
     background 260ms ease;
 }
 
+.client-type-card {
+  min-height: 260px;
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+  transition:
+    opacity 450ms ease-out,
+    transform 450ms ease-out,
+    box-shadow 180ms ease-out,
+    background 180ms ease-out,
+    border-color 180ms ease-out;
+  transition-delay: var(--card-delay, 0ms);
+  will-change: opacity, transform;
+  transform-origin: center;
+}
+
+.client-type-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .client-card::before {
   content: '';
   position: absolute;
@@ -5231,6 +5257,15 @@ body,
   box-shadow:
     0 24px 52px rgba(0, 0, 0, 0.75),
     0 0 32px rgba(185, 5, 4, 0.45);
+}
+
+.client-type-card:hover,
+.client-type-card:focus-within {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.85),
+    0 0 32px rgba(185, 5, 4, 0.9);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .client-card:hover::before,
@@ -5370,6 +5405,25 @@ body,
   outline-offset: 2px;
 }
 
+@keyframes clientCardFloat {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@media (min-width: 1024px) {
+  @media (prefers-reduced-motion: no-preference) {
+    .client-type-card.is-visible {
+      animation: clientCardFloat 9s ease-in-out infinite;
+    }
+
+    .client-type-card:hover,
+    .client-type-card:focus-within {
+      animation: none;
+    }
+  }
+}
+
 .client-card--particuliers {
   --client-icon-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Z"/></svg>');
 }
@@ -5505,6 +5559,19 @@ body,
   }
 }
 
+@media (max-width: 1023px) {
+  .client-experience-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 840px) {
+  .client-experience-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+}
+
 @media (max-width: 768px) {
   .clients-grid {
     grid-template-columns: 1fr;
@@ -5514,9 +5581,17 @@ body,
     padding: clamp(20px, 6vw, 26px);
   }
 
+  .client-type-card {
+    min-height: auto;
+  }
+
   .clients-grid::before {
     inset: -20px -18px -26px;
     border-radius: 28px;
+  }
+
+  .client-experience-grid {
+    max-width: 640px;
   }
 
   .clients-refs-track {
@@ -5547,6 +5622,20 @@ body,
     max-width: 76px;
     max-height: 26px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-type-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.no-js .client-type-card {
+  opacity: 1;
+  transform: none;
 }
 
 /* Red Beam Sweep Effect */
