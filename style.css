@@ -3190,7 +3190,7 @@ body,
   top: 0;
   left: 0;
   right: 0;
-  height: 300px;
+  height: calc(var(--approche-icon-size) + var(--approche-icon-offset) * 2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3202,7 +3202,7 @@ body,
 .approche-gradient-transition::before {
   content: '';
   position: absolute;
-  top: 50%;
+  top: calc(var(--approche-icon-offset) + var(--approche-icon-size) / 2);
   left: 5%;
   right: 5%;
   height: 1px;
@@ -3217,6 +3217,7 @@ body,
   box-shadow: 0 0 20px rgba(185, 5, 4, 0.5),
               0 0 40px rgba(185, 5, 4, 0.2);
   animation: dividerGlow 3s ease-in-out infinite;
+  transform: translateY(-50%);
 }
 
 @keyframes dividerGlow {
@@ -3234,7 +3235,7 @@ body,
 .approche-gradient-transition::after {
   content: '';
   position: absolute;
-  top: 50%;
+  top: calc(var(--approche-icon-offset) + var(--approche-icon-size) / 2);
   left: -20%;
   width: 30%;
   height: 40px;
@@ -3259,8 +3260,8 @@ body,
 /* Transition Icon - Chevron Down with Glow */
 .transition-icon-wrapper {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: var(--approche-icon-size);
+  height: var(--approche-icon-size);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3310,6 +3311,8 @@ body,
   margin: 0 auto;
   padding: 0 40px;
   z-index: 2;
+  --approche-icon-size: 60px;
+  --approche-icon-offset: 8px;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -4061,6 +4064,8 @@ body,
 @media (max-width: 768px) {
   .approche-container {
     padding: 0 24px;
+    --approche-icon-size: 50px;
+    --approche-icon-offset: 6px;
   }
 
   .approche-header {
@@ -4069,18 +4074,13 @@ body,
     gap: 10px;
   }
 
-  .approche-gradient-transition {
-    height: 200px;
-  }
-
   .approche-icon {
     margin: 6px auto 20px;
     transform: scale(0.9);
   }
 
-  .transition-icon-wrapper {
-    width: 50px;
-    height: 50px;
+  .approche-gradient-transition {
+    height: calc(var(--approche-icon-size) + var(--approche-icon-offset) * 2);
   }
 
   .transition-icon {
@@ -4149,6 +4149,8 @@ body,
 @media (max-width: 480px) {
   .approche-container {
     padding: 0 20px;
+    --approche-icon-size: 44px;
+    --approche-icon-offset: 5px;
   }
 
   .approche-header {
@@ -4156,12 +4158,7 @@ body,
   }
 
   .approche-gradient-transition {
-    height: 160px;
-  }
-
-  .transition-icon-wrapper {
-    width: 44px;
-    height: 44px;
+    height: calc(var(--approche-icon-size) + var(--approche-icon-offset) * 2);
   }
 
   .transition-icon {
