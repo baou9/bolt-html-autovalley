@@ -188,14 +188,15 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 400;
-  color: var(--text);
-  background-color: var(--bg);
-  transition: color 250ms ease;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top center, #181a1f 0%, #050608 55%, #020204 100%);
+  color: var(--text-main);
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 16px;
 }
 
 h1,
@@ -2612,9 +2613,14 @@ body,
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 40px 28px 48px;
+  padding: 40px 28px 56px;
   border-radius: 32px;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(7, 7, 9, 0.96) 44%, rgba(0, 0, 0, 1) 100%);
+  background:
+    radial-gradient(circle at top center,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(7, 7, 9, 0.96) 55%,
+      rgba(0, 0, 0, 1) 100%
+    );
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9);
   position: relative;
   overflow: hidden;
@@ -2624,12 +2630,28 @@ body,
 .services-section::before {
   content: "";
   position: absolute;
-  inset: -40%;
+  inset: -30%;
   background:
-    radial-gradient(circle at 20% -10%, rgba(255, 255, 255, 0.06) 0, transparent 55%),
-    radial-gradient(circle at 80% -15%, rgba(255, 39, 56, 0.18) 0, transparent 55%);
-  opacity: 0.9;
+    radial-gradient(circle at 50% -40%, rgba(255, 255, 255, 0.07) 0, transparent 65%),
+    radial-gradient(circle at 10% 120%, rgba(255, 39, 56, 0.20) 0, transparent 65%);
+  opacity: 0.75;
   pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.services-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.18) 0, transparent 55%),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.12) 0, transparent 55%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.14) 0, transparent 55%),
+    radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.10) 0, transparent 55%),
+    radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.16) 0, transparent 55%);
 }
 
 .services-inner {
