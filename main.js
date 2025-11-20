@@ -108,56 +108,32 @@ if (hamburgerMenu && mobileMenuOverlay) {
 // Parallax effect already integrated in section 2 above
 
 // ─────────────────────────────────────────────────────────
-// 6. Services Section Scroll-Triggered Animations
+// 6. Services Section – Glassmorphism Load Animation
 // ─────────────────────────────────────────────────────────
 
-// Intersection Observer for scroll-triggered animations
-const observerOptions = {
-  root: null,
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
+// Simple load animation: when the section enters viewport, reveal cards
+(function () {
+  const section = document.getElementById("services-excellence");
+  if (!section) return;
 
-// Observe services section for animations
-const servicesSection = document.querySelector('.services-section');
-if (servicesSection) {
-  const servicesObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
+  const activate = () => section.classList.add("loaded");
 
-  servicesObserver.observe(servicesSection);
-}
-
-// Add subtle parallax to service cards on scroll
-const serviceCards = document.querySelectorAll('.service-card');
-if (serviceCards.length > 0) {
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrolled = window.scrollY;
-
-        serviceCards.forEach((card, index) => {
-          const cardTop = card.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
-
-          // Only apply parallax if card is in viewport
-          if (cardTop < windowHeight && cardTop > -card.offsetHeight) {
-            const parallaxSpeed = 0.05 + (index * 0.01); // Stagger effect
-            const offset = (windowHeight - cardTop) * parallaxSpeed;
-            card.style.transform = `translateY(${-offset}px)`;
-          }
-        });
-
-        ticking = false;
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activate();
+          observer.disconnect();
+        }
       });
-      ticking = true;
-    }
-  });
-}
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  } else {
+    // Fallback
+    window.addEventListener("load", activate);
+  }
+})();
 
 // ─────────────────────────────────────────────────────────
 // 7. Témoignages Section – Reveal & Carousel
