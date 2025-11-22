@@ -7,8 +7,6 @@
 
 document.documentElement.classList.remove('no-js');
 
-const header = document.querySelector('.av-header');
-
 // ─────────────────────────────────────────────────────────
 // 1. Cinematic Parallax Scroll Effect
 // ─────────────────────────────────────────────────────────
@@ -19,15 +17,6 @@ window.addEventListener('scroll', () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
       const scrolled = window.scrollY;
-
-      // Header shrink effect
-      if (header) {
-        if (scrolled > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
 
       // Cinematic parallax - slower movement creates depth
       if (heroBg && scrolled < window.innerHeight) {
@@ -60,50 +49,54 @@ if (scrollIndicator) {
 }
 
 // ─────────────────────────────────────────────────────────
-// 3. Mobile Menu Toggle
+// 3. Floating Capsule Header Behaviors
 // ─────────────────────────────────────────────────────────
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-const body = document.body;
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector(".site-header");
+  const menuBtn = document.querySelector(".menu-trigger");
+  const overlay = document.querySelector(".mobile-nav-overlay");
+  const mobileLinks = document.querySelectorAll(".mobile-link, .btn-mobile");
 
-if (hamburgerMenu && mobileMenuOverlay) {
-  hamburgerMenu.addEventListener('click', () => {
-    const isActive = hamburgerMenu.classList.contains('active');
-
-    if (isActive) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  const onScroll = () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
     } else {
-      hamburgerMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      body.classList.add('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'true');
+      header.classList.remove("scrolled");
     }
-  });
+  };
+  window.addEventListener("scroll", onScroll);
+  onScroll();
 
-  // Close menu when clicking on overlay
-  mobileMenuOverlay.addEventListener('click', (e) => {
-    if (e.target === mobileMenuOverlay) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  const toggleMenu = () => {
+    const isOpen = overlay.classList.contains("active");
+
+    if (isOpen) {
+      overlay.classList.remove("active");
+      menuBtn.classList.remove("is-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "auto";
+    } else {
+      overlay.classList.add("active");
+      menuBtn.classList.add("is-open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
     }
-  });
+  };
 
-  // Close menu when clicking on a link
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  if (menuBtn) {
+    menuBtn.addEventListener("click", toggleMenu);
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (overlay.classList.contains("active")) {
+        toggleMenu();
+      }
     });
   });
-}
+});
 
 // Parallax effect already integrated in section 2 above
 

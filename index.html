@@ -18,46 +18,79 @@
     <!-- Skip to content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- Floating Glass Header -->
-    <header class="av-header">
-      <div class="av-container">
-        <a class="av-logo" href="#" aria-label="AutoValley Accueil">
-          <img src="/public/Converted-PNG.png" alt="AutoValley - Full Car Service" class="logo-img" />
-        </a>
+    <header class="site-header">
+      <div class="header-glass-container">
+        <!-- Logo -->
+        <div class="logo-wrapper">
+          <a href="#accueil" aria-label="Retour à l'accueil">
+            <img src="https://avhtml.anyapi.ma/public/Converted-PNG.png"
+                 alt="AutoValley – Full Car Service"
+                 class="logo-img">
+          </a>
+        </div>
 
-        <nav class="av-nav" aria-label="Navigation principale">
-          <a href="#" class="nav-link">Accueil</a>
-          <a href="#services" class="nav-link">Services</a>
-          <a href="#apropos" class="nav-link">À propos</a>
-          <a href="#blog" class="nav-link">Blog</a>
-          <a href="#carrieres" class="nav-link">Carrières</a>
-          <a href="#faq" class="nav-link">FAQ</a>
+        <!-- Desktop Nav -->
+        <nav class="desktop-nav" aria-label="Navigation principale">
+          <ul class="nav-links">
+            <li><a href="#accueil"   class="nav-link nav-link--active">Accueil</a></li>
+            <li><a href="#services"  class="nav-link">Services</a></li>
+            <li><a href="#apropos"   class="nav-link">À propos</a></li>
+            <li><a href="#blog"      class="nav-link">Blog</a></li>
+            <li><a href="#carrieres" class="nav-link">Carrières</a></li>
+            <li><a href="#faq"       class="nav-link">FAQ</a></li>
+          </ul>
         </nav>
 
-        <div class="av-actions">
-          <button class="lang-flag" aria-label="Français">🇫🇷</button>
-          <a class="btn-cta" href="#rdv">Prendre RDV</a>
-          <button class="hamburger-menu" aria-label="Ouvrir le menu" aria-expanded="false">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
+        <!-- Actions: language + CTA + burger -->
+        <div class="header-actions">
+          <button class="lang-switch" type="button" aria-label="Changer de langue">
+            <span>FR</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <a href="#rdv" class="btn-header-magnetic">
+            <span>Prendre RDV</span>
+            <span class="btn-shimmer" aria-hidden="true"></span>
+          </a>
+
+          <button
+              class="menu-trigger"
+              type="button"
+              aria-label="Ouvrir le menu"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
+          >
+            <span class="hamburger">
+              <span></span>
+              <span></span>
+            </span>
           </button>
         </div>
       </div>
+    </header>
 
-      <!-- Mobile Menu Overlay -->
-      <nav class="mobile-menu-overlay" aria-label="Navigation mobile">
-        <div class="mobile-menu-content">
-          <a href="#" class="mobile-menu-link">Accueil</a>
-          <a href="#services" class="mobile-menu-link">Services</a>
-          <a href="#apropos" class="mobile-menu-link">À propos</a>
-          <a href="#blog" class="mobile-menu-link">Blog</a>
-          <a href="#carrieres" class="mobile-menu-link">Carrières</a>
-          <a href="#faq" class="mobile-menu-link">FAQ</a>
-          <button class="mobile-menu-link lang-flag-mobile-menu" aria-label="Français">🇫🇷 Français</button>
+    <!-- Keep the existing hero section exactly as it is. Do NOT modify it. -->
+
+    <!-- Mobile nav overlay – nav structure aligned with desktop -->
+    <div class="mobile-nav-overlay" aria-hidden="true">
+      <nav class="mobile-nav-content" id="mobile-nav" aria-label="Navigation mobile">
+        <ul>
+          <li style="--delay: 0.1s"><a href="#accueil"   class="mobile-link">Accueil</a></li>
+          <li style="--delay: 0.2s"><a href="#services"  class="mobile-link">Services</a></li>
+          <li style="--delay: 0.3s"><a href="#apropos"   class="mobile-link">À propos</a></li>
+          <li style="--delay: 0.4s"><a href="#blog"      class="mobile-link">Blog</a></li>
+          <li style="--delay: 0.5s"><a href="#carrieres" class="mobile-link">Carrières</a></li>
+          <li style="--delay: 0.6s"><a href="#faq"       class="mobile-link">FAQ</a></li>
+        </ul>
+
+        <div class="mobile-cta" style="--delay: 0.7s">
+          <a href="#rdv" class="btn-mobile">Prendre RDV</a>
         </div>
       </nav>
-    </header>
+    </div>
 
     <!-- Cinematic Hero -->
     <main id="main" class="hero">
