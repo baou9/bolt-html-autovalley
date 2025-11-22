@@ -1,111 +1,217 @@
 /* ============================================================
-   AutoValley – Minimal Interactions (< 60 lines)
-   - Header shrink on scroll
-   - Scroll cue fade
-   - Subtle parallax effect
+   AutoValley – Hero Liquid Glass + Header Behaviors
    ============================================================ */
 
 document.documentElement.classList.remove('no-js');
 
-const header = document.querySelector('.av-header');
+document.addEventListener("DOMContentLoaded", () => {
+  const videoEl = document.getElementById("heroVideo");
+  const videoSourceEl = document.getElementById("heroVideoSource");
 
-// ─────────────────────────────────────────────────────────
-// 1. Cinematic Parallax Scroll Effect
-// ─────────────────────────────────────────────────────────
-const heroBg = document.querySelector('.hero-bg');
-let ticking = false;
+  /* ===================== 1. VIDEO PLAYLIST ===================== */
 
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.scrollY;
+  const videoPlaylist = [
+    "https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1099285173/preview/stock-footage-cars-moves-on-lifts-in-modern-service-station-and-men-repair-cars-and-make-diagnostics-timelapse.webm",
+    "https://www.shutterstock.com/shutterstock/videos/3672297003/preview/stock-footage-mechanic-repairing-a-car-engine-with-a-handheld-wrench-tool-demonstrating-expertise-and-precision.webm",
+    "https://www.shutterstock.com/shutterstock/videos/3826878337/preview/stock-footage-close-up-view-of-process-of-pointless-dent-repair-on-car-body-mechanic-at-the-auto-shop-with-tools.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1111239387/preview/stock-footage-auto-painter-spraying-red-paint-on-car-door-in-special-booth-painting-vehicle-parts-at-car-service.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1100126843/preview/stock-footage-close-up-of-a-man-polishing-a-headlight-with-a-polishing-machine-on-a-car-in-a-service-station.webm"
+  ];
 
-      // Header shrink effect
-      if (header) {
-        if (scrolled > 20) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
+  let currentVideo = 0;
+
+  if (videoEl && videoSourceEl && videoPlaylist.length) {
+    const ensurePlay = () => {
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          // Autoplay might be blocked; fail silently.
+        });
+      }
+    };
+
+    videoEl.addEventListener("canplay", ensurePlay, { once: true });
+    ensurePlay();
+
+    videoEl.addEventListener("ended", () => {
+      currentVideo = (currentVideo + 1) % videoPlaylist.length;
+      videoSourceEl.src = videoPlaylist[currentVideo];
+      videoEl.load();
+      ensurePlay();
+    });
+  }
+
+  /* ===================== 2. WEBGL LIQUID GLASS ===================== */
+
+  const canvas = document.getElementById("heroLiquidCanvas");
+  if (canvas) {
+    const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
+
+    if (!gl) {
+      canvas.style.display = "none";
+    } else {
+      const vertSrc = document.getElementById("hero-lg-vert").textContent.trim();
+      const fragSrc = document.getElementById("hero-lg-frag").textContent.trim();
+
+      function createShader(type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.warn("Shader compile error:", gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      const vertShader = createShader(gl.VERTEX_SHADER, vertSrc);
+      const fragShader = createShader(gl.FRAGMENT_SHADER, fragSrc);
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vertShader);
+      gl.attachShader(program, fragShader);
+      gl.linkProgram(program);
+
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.warn("Program link error:", gl.getProgramInfoLog(program));
+      }
+
+      gl.useProgram(program);
+
+      const positionLoc = gl.getAttribLocation(program, "a_position");
+      const timeLoc = gl.getUniformLocation(program, "u_time");
+      const resLoc = gl.getUniformLocation(program, "u_resolution");
+      const pointerLoc = gl.getUniformLocation(program, "u_pointer");
+      const intensityLoc = gl.getUniformLocation(program, "u_intensity");
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([
+          -1, -1,
+           1, -1,
+          -1,  1,
+          -1,  1,
+           1, -1,
+           1,  1
+        ]),
+        gl.STATIC_DRAW
+      );
+
+      gl.enableVertexAttribArray(positionLoc);
+      gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+      let startTime = performance.now();
+      let pointer = { x: 0.3, y: 0.4 };
+      let intensity = 0.6;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width * dpr;
+        const height = rect.height * dpr;
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          gl.viewport(0, 0, width, height);
+          gl.uniform2f(resLoc, width, height);
         }
       }
 
-      // Cinematic parallax - slower movement creates depth
-      if (heroBg && scrolled < window.innerHeight) {
-        const parallaxSpeed = 0.5;
-        heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
+      resize();
+      window.addEventListener("resize", resize);
+
+      function toShaderCoords(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (clientX - rect.left) / rect.width;
+        const y = 1.0 - (clientY - rect.top) / rect.height;
+        return { x, y };
       }
 
-      ticking = false;
-    });
-    ticking = true;
+      const pointerHandler = (e) => {
+        if (e.touches && e.touches.length) {
+          e = e.touches[0];
+        }
+        const p = toShaderCoords(e.clientX, e.clientY);
+        pointer.x = p.x;
+        pointer.y = p.y;
+        intensity = 1.0;
+      };
+
+      canvas.addEventListener("mousemove", pointerHandler);
+      canvas.addEventListener("touchmove", pointerHandler, { passive: true });
+
+      function render() {
+        const now = performance.now();
+        const t = (now - startTime) / 1000;
+
+        intensity += (0.55 - intensity) * 0.02;
+
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.uniform1f(timeLoc, t);
+        gl.uniform2f(pointerLoc, pointer.x, pointer.y);
+        gl.uniform1f(intensityLoc, intensity);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+        requestAnimationFrame(render);
+      }
+
+      render();
+    }
   }
-});
 
-// ─────────────────────────────────────────────────────────
-// 2. Scroll Cue – Hide on Scroll
-// ─────────────────────────────────────────────────────────
-const scrollIndicator = document.querySelector('.hero-scroll-cue');
+  /* ===================== 3. FLOATING CAPSULE HEADER ===================== */
 
-if (scrollIndicator) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      scrollIndicator.style.opacity = '0';
-      scrollIndicator.style.pointerEvents = 'none';
-    }
-  }, { once: true });
+  const header = document.querySelector(".site-header");
+  const menuBtn = document.querySelector(".menu-trigger");
+  const overlay = document.querySelector(".mobile-nav-overlay");
+  const mobileLinks = document.querySelectorAll(".mobile-link, .btn-mobile");
 
-  scrollIndicator.addEventListener('click', () => {
-    window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
-  });
-}
-
-// ─────────────────────────────────────────────────────────
-// 3. Mobile Menu Toggle
-// ─────────────────────────────────────────────────────────
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-const body = document.body;
-
-if (hamburgerMenu && mobileMenuOverlay) {
-  hamburgerMenu.addEventListener('click', () => {
-    const isActive = hamburgerMenu.classList.contains('active');
-
-    if (isActive) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  const onScroll = () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
     } else {
-      hamburgerMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      body.classList.add('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'true');
+      header.classList.remove("scrolled");
     }
-  });
+  };
+  window.addEventListener("scroll", onScroll);
+  onScroll();
 
-  // Close menu when clicking on overlay
-  mobileMenuOverlay.addEventListener('click', (e) => {
-    if (e.target === mobileMenuOverlay) {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  const toggleMenu = () => {
+    const isOpen = overlay.classList.contains("active");
+
+    if (isOpen) {
+      overlay.classList.remove("active");
+      menuBtn.classList.remove("is-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "auto";
+    } else {
+      overlay.classList.add("active");
+      menuBtn.classList.add("is-open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
     }
-  });
+  };
 
-  // Close menu when clicking on a link
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburgerMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      body.classList.remove('menu-open');
-      hamburgerMenu.setAttribute('aria-expanded', 'false');
+  if (menuBtn) {
+    menuBtn.addEventListener("click", toggleMenu);
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (overlay.classList.contains("active")) {
+        toggleMenu();
+      }
     });
   });
-}
-
-// Parallax effect already integrated in section 2 above
+});
 
 // ─────────────────────────────────────────────────────────
 // 6. Services Section – Glassmorphism Load Animation
@@ -641,16 +747,49 @@ const initBrandSphere = () => {
   });
 };
 
+const initTiltCards = () => {
+  const cards = document.querySelectorAll('[data-tilt]');
+
+  const isCoarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (!cards.length || isCoarsePointer) return;
+
+  cards.forEach(card => {
+    const maxTilt = 5;
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -maxTilt;
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
+
+      card.style.transform =
+        `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform =
+        'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
+    });
+  });
+};
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initClientExperienceCards();
     initBrandSphere();
     initPartnersSphere();
+    initTiltCards();
   }, { once: true });
 } else {
   initClientExperienceCards();
   initBrandSphere();
   initPartnersSphere();
+  initTiltCards();
 }
 
 // ─────────────────────────────────────────────────────────
