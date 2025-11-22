@@ -1,57 +1,172 @@
 /* ============================================================
-   AutoValley – Minimal Interactions (< 60 lines)
-   - Header shrink on scroll
-   - Scroll cue fade
-   - Subtle parallax effect
+   AutoValley – Hero Liquid Glass + Header Behaviors
    ============================================================ */
 
 document.documentElement.classList.remove('no-js');
 
-// ─────────────────────────────────────────────────────────
-// 1. Cinematic Parallax Scroll Effect
-// ─────────────────────────────────────────────────────────
-const heroBg = document.querySelector('.hero-bg');
-let ticking = false;
+document.addEventListener("DOMContentLoaded", () => {
+  const videoEl = document.getElementById("heroVideo");
+  const videoSourceEl = document.getElementById("heroVideoSource");
 
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.scrollY;
+  /* ===================== 1. VIDEO PLAYLIST ===================== */
 
-      // Cinematic parallax - slower movement creates depth
-      if (heroBg && scrolled < window.innerHeight) {
-        const parallaxSpeed = 0.5;
-        heroBg.style.transform = `translateY(${scrolled * parallaxSpeed}px) scale(1.1)`;
+  const videoPlaylist = [
+    "https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1099285173/preview/stock-footage-cars-moves-on-lifts-in-modern-service-station-and-men-repair-cars-and-make-diagnostics-timelapse.webm",
+    "https://www.shutterstock.com/shutterstock/videos/3672297003/preview/stock-footage-mechanic-repairing-a-car-engine-with-a-handheld-wrench-tool-demonstrating-expertise-and-precision.webm",
+    "https://www.shutterstock.com/shutterstock/videos/3826878337/preview/stock-footage-close-up-view-of-process-of-pointless-dent-repair-on-car-body-mechanic-at-the-auto-shop-with-tools.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1111239387/preview/stock-footage-auto-painter-spraying-red-paint-on-car-door-in-special-booth-painting-vehicle-parts-at-car-service.webm",
+    "https://www.shutterstock.com/shutterstock/videos/1100126843/preview/stock-footage-close-up-of-a-man-polishing-a-headlight-with-a-polishing-machine-on-a-car-in-a-service-station.webm"
+  ];
+
+  let currentVideo = 0;
+
+  if (videoEl && videoSourceEl && videoPlaylist.length) {
+    const ensurePlay = () => {
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          // Autoplay might be blocked; fail silently.
+        });
+      }
+    };
+
+    videoEl.addEventListener("canplay", ensurePlay, { once: true });
+    ensurePlay();
+
+    videoEl.addEventListener("ended", () => {
+      currentVideo = (currentVideo + 1) % videoPlaylist.length;
+      videoSourceEl.src = videoPlaylist[currentVideo];
+      videoEl.load();
+      ensurePlay();
+    });
+  }
+
+  /* ===================== 2. WEBGL LIQUID GLASS ===================== */
+
+  const canvas = document.getElementById("heroLiquidCanvas");
+  if (canvas) {
+    const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
+
+    if (!gl) {
+      canvas.style.display = "none";
+    } else {
+      const vertSrc = document.getElementById("hero-lg-vert").textContent.trim();
+      const fragSrc = document.getElementById("hero-lg-frag").textContent.trim();
+
+      function createShader(type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.warn("Shader compile error:", gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
       }
 
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
+      const vertShader = createShader(gl.VERTEX_SHADER, vertSrc);
+      const fragShader = createShader(gl.FRAGMENT_SHADER, fragSrc);
 
-// ─────────────────────────────────────────────────────────
-// 2. Scroll Cue – Hide on Scroll
-// ─────────────────────────────────────────────────────────
-const scrollIndicator = document.querySelector('.hero-scroll-cue');
+      const program = gl.createProgram();
+      gl.attachShader(program, vertShader);
+      gl.attachShader(program, fragShader);
+      gl.linkProgram(program);
 
-if (scrollIndicator) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      scrollIndicator.style.opacity = '0';
-      scrollIndicator.style.pointerEvents = 'none';
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.warn("Program link error:", gl.getProgramInfoLog(program));
+      }
+
+      gl.useProgram(program);
+
+      const positionLoc = gl.getAttribLocation(program, "a_position");
+      const timeLoc = gl.getUniformLocation(program, "u_time");
+      const resLoc = gl.getUniformLocation(program, "u_resolution");
+      const pointerLoc = gl.getUniformLocation(program, "u_pointer");
+      const intensityLoc = gl.getUniformLocation(program, "u_intensity");
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([
+          -1, -1,
+           1, -1,
+          -1,  1,
+          -1,  1,
+           1, -1,
+           1,  1
+        ]),
+        gl.STATIC_DRAW
+      );
+
+      gl.enableVertexAttribArray(positionLoc);
+      gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+      let startTime = performance.now();
+      let pointer = { x: 0.3, y: 0.4 };
+      let intensity = 0.6;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width * dpr;
+        const height = rect.height * dpr;
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          gl.viewport(0, 0, width, height);
+          gl.uniform2f(resLoc, width, height);
+        }
+      }
+
+      resize();
+      window.addEventListener("resize", resize);
+
+      function toShaderCoords(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (clientX - rect.left) / rect.width;
+        const y = 1.0 - (clientY - rect.top) / rect.height;
+        return { x, y };
+      }
+
+      const pointerHandler = (e) => {
+        if (e.touches && e.touches.length) {
+          e = e.touches[0];
+        }
+        const p = toShaderCoords(e.clientX, e.clientY);
+        pointer.x = p.x;
+        pointer.y = p.y;
+        intensity = 1.0;
+      };
+
+      canvas.addEventListener("mousemove", pointerHandler);
+      canvas.addEventListener("touchmove", pointerHandler, { passive: true });
+
+      function render() {
+        const now = performance.now();
+        const t = (now - startTime) / 1000;
+
+        intensity += (0.55 - intensity) * 0.02;
+
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.uniform1f(timeLoc, t);
+        gl.uniform2f(pointerLoc, pointer.x, pointer.y);
+        gl.uniform1f(intensityLoc, intensity);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+        requestAnimationFrame(render);
+      }
+
+      render();
     }
-  }, { once: true });
+  }
 
-  scrollIndicator.addEventListener('click', () => {
-    window.scrollBy({ top: window.innerHeight * 0.9, behavior: 'smooth' });
-  });
-}
+  /* ===================== 3. FLOATING CAPSULE HEADER ===================== */
 
-// ─────────────────────────────────────────────────────────
-// 3. Floating Capsule Header Behaviors
-// ─────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const menuBtn = document.querySelector(".menu-trigger");
   const overlay = document.querySelector(".mobile-nav-overlay");
@@ -97,8 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-// Parallax effect already integrated in section 2 above
 
 // ─────────────────────────────────────────────────────────
 // 6. Services Section – Glassmorphism Load Animation

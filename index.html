@@ -92,25 +92,159 @@
       </nav>
     </div>
 
-    <!-- Cinematic Hero -->
-    <main id="main" class="hero">
-      <div class="hero-bg" role="img" aria-label="Atelier premium avec véhicule de luxe"></div>
-
-      <div class="hero-content">
-        <section class="hero-glass-card">
-          <h1>La meilleure alternative aux concessionnaires à Casablanca</h1>
-          <p class="sub">Service automobile premium, transparent et certifié.</p>
-          <div class="cta">
-            <a class="btn-primary" href="#rdv">PRENDRE RENDEZ-VOUS</a>
-            <a class="btn-ghost" href="#services">Découvrir nos Services</a>
+    <main id="main">
+      <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
+      <section class="hero-lg" id="accueil">
+          <!-- Background video -->
+          <div class="hero-lg__video-layer">
+              <video
+                  id="heroVideo"
+                  class="hero-lg__video"
+                  autoplay
+                  muted
+                  playsinline
+                  loop
+                  preload="auto"
+              >
+                  <source
+                      id="heroVideoSource"
+                      src="https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm"
+                      type="video/webm"
+                  />
+                  Votre navigateur ne supporte pas la vidéo HTML5.
+              </video>
           </div>
-        </section>
-      </div>
 
-      <div class="hero-scroll-cue">
-        <span class="hero-scroll-label">Découvrez Autovalley</span>
-        <span class="hero-scroll-icon" aria-hidden="true">⌄</span>
-      </div>
+          <!-- Liquid glass WebGL canvas -->
+          <canvas id="heroLiquidCanvas" class="hero-lg__liquid-canvas"></canvas>
+
+          <!-- Dark / vignette overlay for readability -->
+          <div class="hero-lg__overlay"></div>
+
+          <!-- CONTENT -->
+          <div class="hero-lg__inner">
+              <div class="hero-lg__content">
+                  <span class="hero-lg__eyebrow lg-fade-up" data-delay="0.05">
+                      L'Atelier des Experts.
+                  </span>
+
+                  <h1 class="hero-lg__title lg-fade-up" data-delay="0.15">
+                      Le Standard <span class="hero-lg__title--accent">Premium</span><br />
+                      de l’Après-Vente.
+                  </h1>
+
+                  <p class="hero-lg__subtitle lg-fade-up" data-delay="0.3">
+                      Expertise constructeur, transparence absolue et technologies de
+                      pointe. Votre véhicule mérite l’exception, sans compromis.
+                  </p>
+
+                  <div class="hero-lg__ctas lg-fade-up" data-delay="0.45">
+                      <a href="#rdv" class="btn-lg btn-lg--primary">
+                          <span>PRENDRE RENDEZ-VOUS</span>
+                          <span class="btn-lg__ring" aria-hidden="true"></span>
+                      </a>
+
+                      <a href="#services" class="btn-lg btn-lg--ghost">
+                          Découvrir nos Services
+                      </a>
+                  </div>
+
+                  <!-- Trust bar -->
+                  <div class="hero-lg__trust lg-fade-up" data-delay="0.6">
+                      <div class="hero-lg__trust-item">
+                          <span class="hero-lg__trust-orb"></span>
+                          <span>Garantie constructeur préservée</span>
+                      </div>
+                      <div class="hero-lg__trust-divider"></div>
+                      <div class="hero-lg__trust-item">
+                          <span class="hero-lg__trust-orb"></span>
+                          <span>Pièces d’origine certifiées</span>
+                      </div>
+                      <div class="hero-lg__trust-divider"></div>
+                      <div class="hero-lg__trust-item">
+                          <span class="hero-lg__trust-orb hero-lg__trust-orb--star"></span>
+                          <span>4,9/5 sur Google Avis Clients</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Scroll hint -->
+          <div class="hero-lg__scroll lg-fade-up" data-delay="0.75">
+              <div class="hero-lg__mouse">
+                  <div class="hero-lg__wheel"></div>
+              </div>
+          </div>
+
+          <!-- Shaders (inline to keep everything self-contained) -->
+          <script id="hero-lg-vert" type="x-shader/x-vertex">
+              attribute vec2 a_position;
+              varying vec2 v_uv;
+              void main() {
+                  v_uv = (a_position + 1.0) * 0.5;
+                  gl_Position = vec4(a_position, 0.0, 1.0);
+              }
+          </script>
+
+          <script id="hero-lg-frag" type="x-shader/x-fragment">
+              precision highp float;
+              varying vec2 v_uv;
+              uniform float u_time;
+              uniform vec2  u_resolution;
+              uniform vec2  u_pointer;
+              uniform float u_intensity;
+
+              float hash(vec2 p) {
+                  p = fract(p * vec2(123.34, 345.45));
+                  p += dot(p, p + 34.345);
+                  return fract(p.x * p.y);
+              }
+
+              float noise(vec2 p) {
+                  vec2 i = floor(p);
+                  vec2 f = fract(p);
+                  float a = hash(i);
+                  float b = hash(i + vec2(1.0, 0.0));
+                  float c = hash(i + vec2(0.0, 1.0));
+                  float d = hash(i + vec2(1.0, 1.0));
+                  vec2 u = f * f * (3.0 - 2.0 * f);
+                  return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+              }
+
+              void main() {
+                  vec2 uv = v_uv;
+                  vec2 st = uv * u_resolution / min(u_resolution.x, u_resolution.y);
+
+                  float t = u_time * 0.25;
+
+                  float beam = smoothstep(0.15, -0.05, abs(st.y - (0.7 + 0.12 * sin(t + st.x*1.4))));
+
+                  vec2 p = st - u_pointer;
+                  float r = length(p);
+                  float waves = sin(10.0 * r - t * 6.0) / (6.0 + 40.0 * r);
+                  float rippleMask = smoothstep(0.6, 0.0, r);
+
+                  float n = noise(st * 3.0 + t * 1.2);
+                  float n2 = noise(st * 7.0 - t * 0.5);
+
+                  float glow = beam * 0.7 + waves * rippleMask * u_intensity + n * 0.25;
+                  glow = max(glow, 0.0);
+
+                  vec3 base = vec3(0.06, 0.01, 0.015);
+                  vec3 highlight = vec3(0.9, 0.25, 0.18);
+                  vec3 edge = vec3(1.0, 0.75, 0.6);
+
+                  float edgeMask = smoothstep(0.0, 0.6, glow) * (0.4 + 0.6 * n2);
+                  vec3 col = mix(base, highlight, glow);
+                  col = mix(col, edge, edgeMask);
+
+                  float vignette = smoothstep(1.4, 0.4, length(st - 0.5));
+                  float alpha = glow * 0.75 * vignette;
+
+                  gl_FragColor = vec4(col, alpha);
+              }
+          </script>
+      </section>
     </main>
 
     <!-- Services d'Excellence Section -->
