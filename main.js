@@ -644,6 +644,9 @@ const initBrandSphere = () => {
 const initTiltCards = () => {
   const cards = document.querySelectorAll('[data-tilt]');
 
+  const isCoarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (!cards.length || isCoarsePointer) return;
+
   cards.forEach(card => {
     const maxTilt = 5;
 
