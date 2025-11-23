@@ -598,105 +598,142 @@
       <div class="tech-transition-divider"></div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         TECHNOLOGIE ET ÉQUIPEMENTS SECTION
-         Dark cinematic showcase of precision tools
-         ═══════════════════════════════════════════════════════════ -->
-    <section id="technologie" class="section section--tight tech-section">
-      <!-- Laser scan overlay to simulate diagnostic precision -->
-      <div class="tech-laser-overlay" aria-hidden="true"></div>
+    <!-- PRECISION SECTION – La précision n'est pas un luxe -->
+    <section class="precision-std" id="precision-standard">
+        <!-- Subtle tech grid background -->
+        <div class="precision-std__bg-grid"></div>
 
-      <div class="tech-container">
-        <!-- Section Header -->
-        <header class="section-header section-header-centered tech-header">
-          <p class="section-kicker tech-eyebrow">TECHNOLOGIE ET ÉQUIPEMENTS</p>
-          <h2 class="section-title tech-title">La précision n'est pas un luxe,<br>c'est notre standard.</h2>
-          <div class="tech-underline"></div>
-        </header>
+        <div class="precision-std__inner">
+            <!-- Section header -->
+            <header class="precision-std__header">
+                <span class="precision-std__eyebrow">
+                    <span class="precision-std__eyebrow-line"></span>
+                    LA PRÉCISION N'EST PAS UN LUXE
+                </span>
+                <h2 class="precision-std__title">
+                    C’est notre <span class="precision-std__title-accent">standard.</span>
+                </h2>
+                <p class="precision-std__subtitle">
+                    AutoValley est équipé des mêmes outils que les ateliers constructeurs&nbsp;:
+                    valises de diagnostic de dernière génération, cabine de peinture pressurisée
+                    et banc de géométrie 3D avec calibration ADAS. Ici, la précision vient
+                    d’abord de la technologie.
+                </p>
+            </header>
 
-        <!-- Three Technology Columns -->
-        <div class="section-body">
-          <div class="tech-grid">
-          <!-- Column 1: Diagnostics -->
-          <article class="card-base card-accent-red tech-card" data-tech="1">
-            <div class="tech-image-wrapper">
-              <div class="tech-image diagnostic-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                  <path d="M7 8h.01M12 8h5"></path>
-                  <path d="M7 12h.01M12 12h5"></path>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
-            </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Diagnostic de Précision</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Lecture numérique complète via outils Bosch, Launch & OEM pour un diagnostic sans erreur.</p>
-            </div>
-          </article>
+            <!-- Cards grid -->
+            <div class="precision-std__grid">
+                <!-- Card 1 -->
+                <article class="precision-std__card js-precision-tilt" style="--stagger:0;">
+                    <div class="precision-std__scan-line"></div>
 
-          <!-- Column 2: 3M Paint Cabin -->
-          <article class="card-base card-accent-red tech-card" data-tech="2">
-            <div class="tech-image-wrapper">
-              <div class="tech-image cabin-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                  <circle cx="12" cy="8" r="1.5" fill="currentColor"></circle>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
-            </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Cabine 3M Premium</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Environnement contrôlé pour finitions certifiées constructeur avec filtration HEPA.</p>
-            </div>
-          </article>
+                    <div class="precision-std__media"
+                         style="--card-image:url('https://eyf5gqdcwsg.exactdn.com/wp-content/uploads/2023/11/LAUNCH-Europe-Startseite-Kategorie-diagnose.jpg?auto=compress&cs=tinysrgb&w=1200');">
+                        <div class="precision-std__media-gradient"></div>
+                        <div class="precision-std__pill precision-std__pill--small">
+                            CONTRÔLE ÉLECTRONIQUE AVANCÉ
+                        </div>
+                        <span class="precision-std__sys-id">PROTO-01</span>
+                    </div>
 
-          <!-- Column 3: Calibration & Tools -->
-          <article class="card-base card-accent-red tech-card" data-tech="3">
-            <div class="tech-image-wrapper">
-              <div class="tech-image calibration-image">
-                <svg class="tech-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"></path>
-                  <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
-                </svg>
-              </div>
-              <div class="tech-beam-sweep"></div>
+                    <div class="precision-std__body">
+                        <h3 class="precision-std__card-title">
+                            Valises de diagnostic de dernière génération.
+                        </h3>
+                        <p class="precision-std__card-text">
+                            Tablettes multi-marques Bosch, Launch et OEM, mises à jour en continu
+                            pour dialoguer avec tous les calculateurs&nbsp;: moteur, sécurité,
+                            ADAS, hybridation… exactement comme chez le constructeur.
+                        </p>
+
+                        <dl class="precision-std__metrics">
+                            <div class="precision-std__metric">
+                                <dt>Marques couvertes</dt>
+                                <dd>40+ </dd>
+                            </div>
+                            <div class="precision-std__metric">
+                                <dt>Protocoles constructeur</dt>
+                                <dd>120+ actifs</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="precision-std__card js-precision-tilt" style="--stagger:1;">
+                    <div class="precision-std__scan-line"></div>
+
+                    <div class="precision-std__media"
+                         style="--card-image:url('https://files.sbcdnsb.com/images/SZlYtT8geQRGL9G9gsOveA/content/1708723515/3445927/img_9170.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+                        <div class="precision-std__media-gradient"></div>
+                        <div class="precision-std__pill precision-std__pill--small">
+                            CABINE DE PEINTURE &amp; FINITION
+                        </div>
+                        <span class="precision-std__sys-id">PROTO-02</span>
+                    </div>
+
+                    <div class="precision-std__body">
+                        <h3 class="precision-std__card-title">
+                            Cabine pressurisée pour une finition miroir.
+                        </h3>
+                        <p class="precision-std__card-text">
+                            Cabine premium à température contrôlée, flux d’air filtré et
+                            éclairage LED plein spectre pour reproduire la lumière du jour.
+                            Résultat&nbsp;: une peinture uniforme, sans poussière, parfaitement
+                            alignée aux teintes constructeur.
+                        </p>
+
+                        <dl class="precision-std__metrics">
+                            <div class="precision-std__metric">
+                                <dt>Température de cuisson</dt>
+                                <dd>jusqu’à 60&nbsp;°C</dd>
+                            </div>
+                            <div class="precision-std__metric">
+                                <dt>Pureté de l’air filtré</dt>
+                                <dd>&gt; 98&nbsp;%</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="precision-std__card js-precision-tilt" style="--stagger:2;">
+                    <div class="precision-std__scan-line"></div>
+
+                    <div class="precision-std__media"
+                         style="--card-image:url('https://lega.ma/wp-content/uploads/2023/06/2023-11-24-14_09_55-Greenshot-01-Recupere-01-39-03-5-Recupere-04-24-Recupere-02-8-01-01-4.png?auto=compress&cs=tinysrgb&w=1200');">
+                        <div class="precision-std__media-gradient"></div>
+                        <div class="precision-std__pill precision-std__pill--small">
+                            BANC 3D &amp; CALIBRATION ADAS
+                        </div>
+                        <span class="precision-std__sys-id">PROTO-03</span>
+                    </div>
+
+                    <div class="precision-std__body">
+                        <h3 class="precision-std__card-title">
+                            Banc de géométrie et de redressage 3D.
+                        </h3>
+                        <p class="precision-std__card-text">
+                            Banc de mesure assisté par ordinateur pour le châssis, la géométrie
+                            et les systèmes ADAS. Lasers, capteurs et gabarits dédiés permettent
+                            de remettre la voiture dans ses cotes d’origine au dixième de
+                            millimètre près.
+                        </p>
+
+                        <dl class="precision-std__metrics">
+                            <div class="precision-std__metric">
+                                <dt>Points mesurés en 3D</dt>
+                                <dd>30+ par véhicule</dd>
+                            </div>
+                            <div class="precision-std__metric">
+                                <dt>Précision de réglage</dt>
+                                <dd>± 0,1&nbsp;mm / ± 0,05°</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </article>
             </div>
-            <div class="tech-content">
-              <div class="tech-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </div>
-              <h3 class="tech-card-title">Calibration Laser & Outillage OEM</h3>
-              <div class="tech-accent"></div>
-              <p class="tech-description">Réglages millimétriques pour ADAS et géométrie complète avec équipement constructeur.</p>
-            </div>
-          </article>
         </div>
-      </div>
-
-      <!-- Bottom Laser Separator -->
-      <div class="tech-separator">
-        <div class="tech-laser-line"></div>
-      </div>
     </section>
 
     <!-- Pour Tous Les Conducteurs Section -->

@@ -7407,3 +7407,368 @@ body {
     }
 }
 
+/* =========================================
+   PRECISION SECTION – C'est notre standard.
+   Scoped under .precision-std
+   ========================================= */
+
+:root {
+    /* Fallbacks – your global vars already define these in the real project */
+    --av-bg: #050505;
+    --av-red: #b90504;
+    --av-text: #ffffff;
+    --av-muted: rgba(255, 255, 255, 0.78);
+    --precision-radius-xl: 32px;
+}
+
+/* Section wrapper */
+.precision-std {
+    position: relative;
+    padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6vw, 4.5rem);
+    background:
+        radial-gradient(circle at 10% 0%, rgba(185, 5, 4, 0.3), transparent 55%),
+        radial-gradient(circle at 90% 110%, rgba(0, 0, 0, 0.9), var(--av-bg) 70%);
+    color: var(--av-text);
+    overflow: hidden;
+}
+
+/* Tech grid background */
+.precision-std__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+/* Inner container */
+.precision-std__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.precision-std__header {
+    max-width: 720px;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+/* When section is revealed */
+.precision-std--revealed .precision-std__header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.precision-std__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 1.25rem;
+}
+
+.precision-std__eyebrow-line {
+    width: 54px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--av-red), transparent);
+    box-shadow: 0 0 16px rgba(185, 5, 4, 0.7);
+}
+
+.precision-std__title {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 4vw, 3.1rem);
+    line-height: 1.08;
+    margin: 0 0 1.5rem;
+}
+
+.precision-std__title-accent {
+    color: var(--av-red);
+    text-shadow:
+        0 0 30px rgba(185, 5, 4, 0.75),
+        0 0 70px rgba(185, 5, 4, 0.5);
+}
+
+.precision-std__subtitle {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: var(--av-muted);
+}
+
+/* Cards grid */
+.precision-std__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Card layout & appearance */
+.precision-std__card {
+    position: relative;
+    border-radius: var(--precision-radius-xl);
+    overflow: hidden;
+    background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 50%),
+                rgba(10, 10, 14, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.25s ease-out,
+        box-shadow 0.25s ease-out,
+        border-color 0.25s ease-out,
+        background 0.25s ease-out;
+    will-change: transform, box-shadow;
+    transform-origin: center center;
+    opacity: 0;
+    transform: translateY(26px);
+    transition-delay: calc(var(--stagger, 0) * 0.07s);
+}
+
+/* revealed state for cards */
+.precision-std--revealed .precision-std__card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* card hover */
+.precision-std__card:hover {
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 42px rgba(185, 5, 4, 0.7);
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* scan line */
+.precision-std__scan-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    top: 18%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    opacity: 0;
+    transform: translateY(-40px);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.precision-std__card:hover .precision-std__scan-line {
+    opacity: 0.85;
+    animation: precisionScan 1.5s ease-out forwards;
+}
+
+@keyframes precisionScan {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(80px);
+        opacity: 0;
+    }
+}
+
+/* Image / media area */
+.precision-std__media {
+    position: relative;
+    height: 200px;
+    background-image: var(--card-image);
+    background-size: cover;
+    background-position: center;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+/* zoomable image layer */
+.precision-std__media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1);
+    transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+    z-index: -1;
+}
+
+/* zoom on hover */
+.precision-std__card:hover .precision-std__media::before {
+    transform: scale(1.12);
+}
+
+.precision-std__media-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.85)),
+        radial-gradient(circle at 10% 0, rgba(185, 5, 4, 0.75), transparent 55%);
+    mix-blend-mode: multiply;
+}
+
+/* category pill */
+.precision-std__pill {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 1.35rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(8, 8, 12, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.precision-std__sys-id {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.3rem;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Body */
+.precision-std__body {
+    padding: 1.6rem 1.8rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.precision-std__card-title {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.precision-std__card-text {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(230, 230, 230, 0.9);
+}
+
+/* Metrics row */
+.precision-std__metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 0;
+}
+
+.precision-std__metric dt {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.25rem;
+}
+
+.precision-std__metric dd {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Responsive behavior */
+@media (max-width: 1024px) {
+    .precision-std {
+        padding-inline: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .precision-std__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .precision-std__media {
+        height: 190px;
+    }
+}
+
+@media (max-width: 768px) {
+    .precision-std {
+        padding-block: 3.25rem 3.75rem;
+    }
+
+    .precision-std__header {
+        max-width: 100%;
+        margin-bottom: 2.5rem;
+    }
+
+    .precision-std__title {
+        font-size: clamp(2rem, 6vw, 2.4rem);
+    }
+
+    .precision-std__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .precision-std__card {
+        border-radius: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .precision-std {
+        padding-inline: 1.25rem;
+    }
+
+    .precision-std__body {
+        padding-inline: 1.35rem;
+    }
+
+    .precision-std__metrics {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .precision-std__media {
+        height: 180px;
+    }
+
+    .precision-std__pill {
+        left: 1.1rem;
+        bottom: 1.1rem;
+    }
+
+    .precision-std__sys-id {
+        right: 1.1rem;
+        top: 1.1rem;
+    }
+}
+
