@@ -7521,6 +7521,9 @@ body {
 
 /* Card layout & appearance */
 .precision-std__card {
+    --tilt-rotate-x: 0deg;
+    --tilt-rotate-y: 0deg;
+    --tilt-translate-y: 0px;
     position: relative;
     border-radius: var(--precision-radius-xl);
     overflow: hidden;
@@ -7540,14 +7543,24 @@ body {
     will-change: transform, box-shadow;
     transform-origin: center center;
     opacity: 0;
-    transform: translateY(26px);
+    transform:
+        translateY(26px)
+        perspective(900px)
+        rotateX(var(--tilt-rotate-x))
+        rotateY(var(--tilt-rotate-y))
+        translateY(var(--tilt-translate-y));
     transition-delay: calc(var(--stagger, 0) * 0.07s);
 }
 
 /* revealed state for cards */
 .precision-std--revealed .precision-std__card {
     opacity: 1;
-    transform: translateY(0);
+    transform:
+        translateY(0)
+        perspective(900px)
+        rotateX(var(--tilt-rotate-x))
+        rotateY(var(--tilt-rotate-y))
+        translateY(var(--tilt-translate-y));
 }
 
 /* card hover */

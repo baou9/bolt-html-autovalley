@@ -821,12 +821,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const maxTilt = 6; // degrees
 
   cards.forEach((card) => {
-    const resetTransform = () => {
-      card.style.transform =
-        "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
+    const resetTilt = () => {
+      card.style.setProperty("--tilt-rotate-x", "0deg");
+      card.style.setProperty("--tilt-rotate-y", "0deg");
+      card.style.setProperty("--tilt-translate-y", "0px");
     };
-
-    resetTransform();
 
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
@@ -842,12 +841,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const rotateY = percentX * maxTilt;
       const rotateX = -percentY * maxTilt;
 
-      card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      card.style.setProperty("--tilt-rotate-x", `${rotateX}deg`);
+      card.style.setProperty("--tilt-rotate-y", `${rotateY}deg`);
+      card.style.setProperty("--tilt-translate-y", "-4px");
     });
 
     card.addEventListener("mouseleave", () => {
-      resetTransform();
+      resetTilt();
     });
+
+    resetTilt();
   });
 });
 
