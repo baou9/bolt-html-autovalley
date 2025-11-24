@@ -781,16 +781,78 @@ const initTiltCards = () => {
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initClientExperienceCards();
-    initBrandSphere();
-    initPartnersSphere();
-    initTiltCards();
-  }, { once: true });
+  initBrandSphere();
+  initPartnersSphere();
+  initTiltCards();
+}, { once: true });
 } else {
   initClientExperienceCards();
   initBrandSphere();
   initPartnersSphere();
   initTiltCards();
 }
+
+// PRECISION SECTION INTERACTIONS
+document.addEventListener("DOMContentLoaded", function () {
+  const section = document.querySelector(".precision-std");
+  const cards = document.querySelectorAll(".precision-std .js-precision-tilt");
+
+  if (!section || !cards.length) return;
+
+  // 1. Scroll-reveal using IntersectionObserver
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add("precision-std--revealed");
+          io.disconnect();
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.25,
+    }
+  );
+
+  io.observe(section);
+
+  // 2. Subtle 3D tilt on cards
+  const maxTilt = 6; // degrees
+
+  cards.forEach((card) => {
+    const resetTilt = () => {
+      card.style.setProperty("--tilt-rotate-x", "0deg");
+      card.style.setProperty("--tilt-rotate-y", "0deg");
+      card.style.setProperty("--tilt-translate-y", "0px");
+    };
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const percentX = (x - centerX) / centerX;
+      const percentY = (y - centerY) / centerY;
+
+      const rotateY = percentX * maxTilt;
+      const rotateX = -percentY * maxTilt;
+
+      card.style.setProperty("--tilt-rotate-x", `${rotateX}deg`);
+      card.style.setProperty("--tilt-rotate-y", `${rotateY}deg`);
+      card.style.setProperty("--tilt-translate-y", "-4px");
+    });
+
+    card.addEventListener("mouseleave", () => {
+      resetTilt();
+    });
+
+    resetTilt();
+  });
+});
 
 // ─────────────────────────────────────────────────────────
 // 12. Footer – Dynamic Year Stamp
