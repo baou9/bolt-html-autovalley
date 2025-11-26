@@ -747,6 +747,28 @@ const initBrandSphere = () => {
   });
 };
 
+// BRANDS SECTION – mouse-follow shine on logos
+const initBrandLogoShine = () => {
+  const logos = document.querySelectorAll('.brands-universe__logo');
+  if (!logos.length) return;
+
+  logos.forEach((logo) => {
+    logo.addEventListener('mousemove', (e) => {
+      const rect = logo.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      logo.style.setProperty('--shine-x', `${x}%`);
+      logo.style.setProperty('--shine-y', `${y}%`);
+    });
+
+    logo.addEventListener('mouseleave', () => {
+      logo.style.setProperty('--shine-x', '50%');
+      logo.style.setProperty('--shine-y', '50%');
+    });
+  });
+};
+
 const initTiltCards = () => {
   const cards = document.querySelectorAll('[data-tilt]');
 
@@ -781,14 +803,16 @@ const initTiltCards = () => {
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initClientExperienceCards();
-  initBrandSphere();
-  initPartnersSphere();
-  initTiltCards();
-}, { once: true });
+    initBrandSphere();
+    initPartnersSphere();
+    initBrandLogoShine();
+    initTiltCards();
+  }, { once: true });
 } else {
   initClientExperienceCards();
   initBrandSphere();
   initPartnersSphere();
+  initBrandLogoShine();
   initTiltCards();
 }
 
