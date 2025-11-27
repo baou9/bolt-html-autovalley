@@ -12,6 +12,17 @@
   --brand-red: #b90504;
   --brand-red-soft: rgba(185, 5, 4, 0.7);
   --brand-red-border: rgba(185, 5, 4, 0.45);
+  --av-red: #b90504;
+  --av-dark-start: #050505;
+  --av-dark-end: #0a0a0f;
+  --av-dark-gray: #333333;
+  --av-light-100: #f9f9f9;
+  --av-light-200: #f6f6f6;
+  --av-light-300: #f2f2f2;
+  --av-text-dark: #333333;
+  --av-text-light: #ffffff;
+  --av-muted-dark: rgba(255, 255, 255, 0.75);
+  --av-muted-light: #666666;
   --brand-red-glow: rgba(185, 5, 4, 0.65);
   --glass-bg-light: rgba(10, 10, 15, 0.40);
   --glass-bg-strong: rgba(8, 8, 12, 0.78);
@@ -310,6 +321,45 @@ body,
     padding-top: 64px;
     padding-bottom: 64px;
   }
+}
+
+.av-section {
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.av-section--dark {
+  color: var(--av-text-light);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(185, 5, 4, 0.32), transparent 55%),
+    radial-gradient(circle at 90% 100%, rgba(0, 0, 0, 0.95), var(--av-dark-start) 70%);
+}
+
+.av-section--light {
+  color: var(--av-text-dark);
+  background: linear-gradient(180deg, #ffffff 0%, var(--av-light-200) 60%, var(--av-light-300) 100%);
+}
+
+.av-section--light .section-kicker,
+.av-section--light .section-title,
+.av-section--light .section-subtitle,
+.av-section--light .subtitle,
+.av-section--light .eyebrow {
+  color: var(--av-text-dark);
+}
+
+.av-section--light .section-subtitle,
+.av-section--light .subtitle {
+  color: var(--av-muted-light);
+}
+
+.hero-section {
+  padding: 0;
+}
+
+.hero-section .hero-lg__inner {
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
 }
 
 .section-header {
@@ -7658,5 +7708,253 @@ body {
         right: 1.1rem;
         top: 1.1rem;
     }
+}
+
+/* ──────────────────────────────────────────────────────────
+   Alternating dark/light homepage layout
+   ────────────────────────────────────────────────────────── */
+
+.av-section--light p,
+.av-section--light li {
+  color: var(--av-text-dark);
+}
+
+.av-section--light .section-subtitle,
+.av-section--light .subtitle,
+.av-section--light .timeline-description,
+.av-section--light .brands-universe__subtitle,
+.av-section--light .blog-card-excerpt,
+.av-section--light .noustrouver-info-text {
+  color: var(--av-muted-light);
+}
+
+.av-section--light .title-underline::after {
+  background: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+}
+
+.av-section--light .title-underline {
+  background: radial-gradient(circle at center, var(--av-red) 0, rgba(185, 5, 4, 0.14) 70%);
+}
+
+.av-section--light .section-kicker,
+.av-section--light .eyebrow {
+  color: var(--av-red);
+}
+
+.av-section--light .section-title,
+.av-section--light .subtitle,
+.av-section--light .section-subtitle {
+  text-shadow: none;
+}
+
+/* Services light shell with dark cards */
+.av-section--light.services-section {
+  background: none;
+}
+
+.services-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.5rem);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--av-light-200) 60%, var(--av-light-300) 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.services-section::before {
+  background:
+    radial-gradient(circle at 50% -40%, rgba(185, 5, 4, 0.12) 0, transparent 65%),
+    radial-gradient(circle at 10% 120%, rgba(185, 5, 4, 0.10) 0, transparent 65%);
+  opacity: 0.45;
+}
+
+.services-section::after {
+  opacity: 0.12;
+}
+
+.services-section .section-kicker { color: var(--av-red); }
+.services-section .section-title { color: var(--av-text-dark); }
+.services-section .section-subtitle { color: var(--av-muted-light); }
+.services-section .overlay-header h3 { color: #ffffff; }
+
+/* Experience AutoValley on dark */
+.experience-section {
+  color: var(--av-text-light);
+}
+
+/* Why section as light precision blocks */
+.why-section {
+  padding: 0;
+}
+
+.av-section--light.why-section {
+  background: none;
+}
+
+.why-section h2,
+.why-section h3,
+.why-section .subtitle {
+  color: var(--av-text-dark);
+}
+
+.why-section .subtitle,
+.why-section .desc {
+  color: var(--av-muted-light);
+}
+
+.why-section .glass-card {
+  background: linear-gradient(150deg, #ffffff 0%, #f6f6f6 100%);
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.why-section .glass-card:hover {
+  border-color: #dcdcdc;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(150deg, #ffffff 0%, #f1f1f1 100%);
+}
+
+.why-section .icon-orbit {
+  background: radial-gradient(circle at 50% 0%, rgba(185, 5, 4, 0.08), #ffffff);
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.why-section .bokeh {
+  filter: blur(70px);
+  opacity: 0.18;
+}
+
+/* Precision wrapper spacing */
+.precision-std-wrapper {
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+/* Brands universe on light */
+.brands-universe {
+  color: var(--av-text-dark);
+  background: none;
+}
+
+.brands-universe__subtitle {
+  color: var(--av-muted-light);
+}
+
+/* Personas / clients remain dark but keep separation */
+.personas-section {
+  color: var(--av-text-light);
+}
+
+/* Trust references on light */
+.trust-section {
+  background: none;
+  color: var(--av-text-dark);
+}
+
+.trust-section .section-title,
+.trust-section .section-subtitle,
+.trust-section .section-kicker {
+  color: var(--av-text-dark);
+}
+
+.trust-section .section-subtitle {
+  color: var(--av-muted-light);
+}
+
+.trust-section .section-partners-divider {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+}
+
+.trust-section .trust-pill {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.1);
+}
+
+.trust-section .trust-pill-glass {
+  background: linear-gradient(135deg, #ffffff 0%, #f2f2f2 100%);
+  border: 1px solid #e9e9e9;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.trust-section .trust-pill-glass::before {
+  background: radial-gradient(circle at 20% 15%, rgba(185, 5, 4, 0.08), transparent 60%);
+  opacity: 0.6;
+}
+
+/* Testimonials keep cinematic dark */
+.testimonials-section {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(185, 5, 4, 0.24), transparent 55%),
+    linear-gradient(180deg, #09090f 0%, #050505 100%);
+}
+
+/* Blog / expertise on light */
+.blog-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 55%, #f0f0f0 100%);
+}
+
+.blog-section::before,
+.blog-section::after,
+.blog-background {
+  display: none;
+}
+
+.blog-inner {
+  color: var(--av-text-dark);
+}
+
+.blog-title,
+.blog-subtitle,
+.blog-kicker {
+  color: var(--av-text-dark);
+}
+
+.blog-subtitle {
+  color: var(--av-muted-light);
+}
+
+.blog-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f7f7f7 100%);
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  color: var(--av-text-dark);
+}
+
+.blog-card-excerpt,
+.blog-card-category {
+  color: var(--av-muted-light);
+}
+
+/* Nous trouver on light */
+.section-noustrouver {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 60%, #f2f2f2 100%);
+  color: var(--av-text-dark);
+}
+
+.section-noustrouver .section-subtitle {
+  color: var(--av-muted-light);
+}
+
+/* Final CTA on dark */
+.footer-cta-section {
+  background:
+    radial-gradient(circle at 10% -10%, rgba(185, 5, 4, 0.4), transparent 45%),
+    radial-gradient(circle at 90% 120%, rgba(0, 0, 0, 0.65), #050505 70%);
+  color: var(--av-text-light);
+}
+
+.footer-cta-section .footer-cta-content {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.footer-cta-section .footer-cta-kicker,
+.footer-cta-section .footer-cta-title,
+.footer-cta-section .footer-cta-subtitle,
+.footer-cta-section .footer-cta-note {
+  color: var(--av-text-light);
 }
 
