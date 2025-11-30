@@ -522,6 +522,123 @@ if (testimonialCarousel && testimonialCards.length > 0) {
   }
 }
 
+
+// NOS CLIENTS – CINEMATIC STRIP INTERACTIONS
+document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#nos-clients-strip");
+    if (!section) return;
+
+    const pills = Array.from(section.querySelectorAll(".clients-strip__pill"));
+    const panels = Array.from(section.querySelectorAll(".clients-strip__panel"));
+    const indicator = section.querySelector(".clients-strip__pill-indicator");
+
+    if (!pills.length || !panels.length || !indicator) return;
+
+    const isMobileLayout = () =>
+        window.matchMedia("(max-width: 1024px)").matches;
+
+    const moveIndicator = (activePill) => {
+        if (!activePill) return;
+        const navRect = activePill.parentElement.getBoundingClientRect();
+        const pillRect = activePill.getBoundingClientRect();
+
+        if (isMobileLayout()) {
+            const left = pillRect.left - navRect.left;
+            const width = pillRect.width;
+
+            indicator.style.transform = `translateX(${left}px)`;
+            indicator.style.width = `${width}px`;
+            indicator.style.height = `3px`;
+        } else {
+            const top = pillRect.top - navRect.top;
+            const height = pillRect.height;
+
+            indicator.style.transform = `translateY(${top}px)`;
+            indicator.style.height = `${height}px`;
+            indicator.style.width = `3px`;
+        }
+    };
+
+    const activateTab = (targetKey, focusPill = false) => {
+        let activePill = null;
+
+        pills.forEach((pill) => {
+            const key = pill.getAttribute("data-strip-target");
+            const isActive = key === targetKey;
+
+            pill.classList.toggle("is-active", isActive);
+            pill.setAttribute("aria-selected", isActive ? "true" : "false");
+            pill.setAttribute("tabindex", isActive ? "0" : "-1");
+
+            if (isActive) activePill = pill;
+        });
+
+        panels.forEach((panel) => {
+            const key = panel.getAttribute("data-strip-panel");
+            const isActive = key === targetKey;
+            panel.classList.toggle("is-active", isActive);
+        });
+
+        if (activePill) {
+            if (focusPill) activePill.focus();
+            requestAnimationFrame(() => moveIndicator(activePill));
+        }
+    };
+
+    pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+            const key = pill.getAttribute("data-strip-target");
+            if (!key) return;
+            activateTab(key, false);
+        });
+
+        pill.addEventListener("keydown", (e) => {
+            const currentIndex = pills.indexOf(pill);
+            if (currentIndex === -1) return;
+
+            let nextIndex = null;
+
+            if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                nextIndex = (currentIndex + 1) % pills.length;
+            } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                nextIndex = (currentIndex - 1 + pills.length) % pills.length;
+            } else if (e.key === "Home") {
+                nextIndex = 0;
+            } else if (e.key === "End") {
+                nextIndex = pills.length - 1;
+            }
+
+            if (nextIndex !== null) {
+                e.preventDefault();
+                const nextPill = pills[nextIndex];
+                const key = nextPill.getAttribute("data-strip-target");
+                if (key) activateTab(key, true);
+            }
+
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                const key = pill.getAttribute("data-strip-target");
+                if (key) activateTab(key, false);
+            }
+        });
+    });
+
+    window.addEventListener("resize", () => {
+        const activePill = section.querySelector(".clients-strip__pill.is-active");
+        if (activePill) {
+            requestAnimationFrame(() => moveIndicator(activePill));
+        }
+    });
+
+    const initialKey = pills[0].getAttribute("data-strip-target");
+    activateTab(initialKey || "particuliers", false);
+
+    setTimeout(() => {
+        const activePill = section.querySelector(".clients-strip__pill.is-active");
+        if (activePill) moveIndicator(activePill);
+    }, 150);
+});
+
 // ─────────────────────────────────────────────────────────
 // 8. Client Experience Cards – staggered reveal & hover polish
 // ─────────────────────────────────────────────────────────

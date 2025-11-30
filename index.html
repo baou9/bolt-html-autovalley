@@ -820,104 +820,323 @@
             </p>
         </div>
     </section>
-    <!-- Nos Clients Section -->
-    <section id="nos-clients" class="section section--tall av-section clients-section section-experience-clients client-experience">
-      <div class="clients-inner">
-        <div class="clients-atmosphere" aria-hidden="true"></div>
-        <header class="section-header section-header-centered clients-header client-experience-header">
-          <p class="section-kicker clients-kicker">NOS CLIENTS</p>
-          <h2 class="section-title clients-title">Une expérience pensée pour chaque type de client.</h2>
-          <p class="section-subtitle clients-subtitle">
-            Particuliers, entreprises, loueurs, assureurs et institutions publiques : AutoValley adapte ses process,
-            ses délais et son accompagnement à vos besoins spécifiques.
-          </p>
-          <div class="clients-laser" aria-hidden="true"></div>
+<!-- NOS CLIENTS – CINEMATIC STRIP -->
+<section class="clients-strip" id="nos-clients-strip">
+    <div class="clients-strip__inner">
+        <!-- Header -->
+        <header class="clients-strip__header">
+            <span class="clients-strip__eyebrow">
+                <span class="clients-strip__eyebrow-line"></span>
+                NOS CLIENTS
+            </span>
+            <h2 class="clients-strip__title">
+                Une base client aussi exigeante<br />
+                <span class="clients-strip__title-accent">que nos standards d’atelier.</span>
+            </h2>
+            <p class="clients-strip__subtitle">
+                Particulier, société, assurance ou gestionnaire de flottes&nbsp;: Autovalley adapte ses
+                process, ses délais et son reporting à chaque profil. Même exigence technique,
+                mais une expérience pensée pour vos contraintes.
+            </p>
         </header>
 
-        <div class="section-body">
-          <div class="clients-grid client-experience-grid" id="client-experience">
-            <article class="card-base card-base--strong card-tall client-card client-type-card client-card--particuliers">
-              <div class="client-card-header">
-                <div class="client-icon client-icon--particuliers" aria-hidden="true"></div>
-                <h3 class="client-card-title">Particuliers</h3>
-                <p class="client-card-tagline">Pour les conducteurs qui veulent être rassurés à chaque visite.</p>
-              </div>
-              <ul class="client-card-list">
-                <li>Diagnostic complet et explicité, avant chaque réparation.</li>
-                <li>Pièces d’origine ou équivalentes qualité OEM.</li>
-                <li>Devis validé ensemble, sans surprise sur la facture.</li>
-                <li>Garantie sur les interventions réalisées.</li>
-                <li>Suivi de votre historique d’entretien.</li>
-              </ul>
-              <p class="client-card-promise">
-                « Votre voiture est entre de bonnes mains : service premium, transparence totale, prix maîtrisés. »
-              </p>
-              <button class="client-card-cta" type="button">Prendre rendez-vous</button>
-            </article>
+        <div class="clients-strip__layout">
+            <!-- Sidebar navigation -->
+            <aside class="clients-strip__sidebar">
+                <p class="clients-strip__nav-label">Profils accompagnés</p>
+                <nav class="clients-strip__nav"
+                     aria-label="Catégories de clients"
+                     role="tablist">
+                    <button
+                        id="clients-tab-particuliers"
+                        class="clients-strip__pill is-active"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        tabindex="0"
+                        aria-controls="clients-panel-particuliers"
+                        data-strip-target="particuliers">
+                        <span class="clients-strip__pill-label">Particuliers</span>
+                    </button>
 
-            <article class="card-base card-base--strong card-tall client-card client-type-card client-card--entreprises">
-              <div class="client-card-header">
-                <div class="client-icon client-icon--entreprises" aria-hidden="true"></div>
-                <h3 class="client-card-title">Entreprises</h3>
-                <p class="client-card-tagline">Pour les flottes professionnelles qui ne peuvent pas s’arrêter.</p>
-              </div>
-              <ul class="client-card-list">
-                <li>Gestion de flotte avec rappels d’entretien et historiques centralisés.</li>
-                <li>Délai de prise en charge prioritaire pour les véhicules pros.</li>
-                <li>Conditions tarifaires corporate et facturation groupée.</li>
-                <li>Rapports mensuels sur les interventions et coûts.</li>
-                <li>Solutions de mobilité pour limiter l’immobilisation.</li>
-              </ul>
-              <p class="client-card-promise">
-                « Réduisez vos arrêts de flotte : nous sécurisons la continuité de votre activité. »
-              </p>
-              <button class="client-card-cta" type="button">Devenir partenaire fleet</button>
-            </article>
+                    <button
+                        id="clients-tab-assureurs"
+                        class="clients-strip__pill"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        aria-controls="clients-panel-assureurs"
+                        data-strip-target="assureurs">
+                        <span class="clients-strip__pill-label">Assurances &amp; Experts</span>
+                    </button>
 
-            <article class="card-base card-base--strong card-tall client-card client-type-card client-card--loueurs">
-              <div class="client-card-header">
-                <div class="client-icon client-icon--loueurs" aria-hidden="true"></div>
-                <h3 class="client-card-title">Loueurs &amp; Leasing</h3>
-                <p class="client-card-tagline">Pour les loueurs courte et longue durée à forte rotation.</p>
-              </div>
-              <ul class="client-card-list">
-                <li>Traitement prioritaire pour limiter l’immobilisation des véhicules.</li>
-                <li>Carrosserie &amp; peinture adaptées aux gros volumes.</li>
-                <li>Contrôle qualité renforcé pour éviter les retours clients.</li>
-                <li>Photos avant / après intégrées à vos dossiers.</li>
-                <li>Accompagnement dans la gestion des sinistres.</li>
-              </ul>
-              <p class="client-card-promise">
-                « Moins de véhicules immobilisés, plus de contrats honorés et de clients satisfaits. »
-              </p>
-              <button class="client-card-cta" type="button">Optimiser votre parc</button>
-            </article>
+                    <button
+                        id="clients-tab-entreprises"
+                        class="clients-strip__pill"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        aria-controls="clients-panel-entreprises"
+                        data-strip-target="entreprises">
+                        <span class="clients-strip__pill-label">Entreprises &amp; B2B</span>
+                    </button>
 
-            <article class="card-base card-base--strong card-tall client-card client-type-card client-card--assureurs">
-              <div class="client-card-header">
-                <div class="client-icon client-icon--assureurs" aria-hidden="true"></div>
-                <h3 class="client-card-title">Assureurs &amp; Institutions</h3>
-                <p class="client-card-tagline">
-                  Pour les compagnies d’assurance et les véhicules publics (Agréé SNTL).
-                </p>
-              </div>
-              <ul class="client-card-list">
-                <li>Processus de réparation documenté et traçable.</li>
-                <li>Conformité aux standards des compagnies d’assurance.</li>
-                <li>Centralisation des sinistres et communication simplifiée.</li>
-                <li>Prise en charge des véhicules de services publics via l’accord SNTL.</li>
-                <li>Délais maîtrisés et reporting régulier.</li>
-              </ul>
-              <p class="client-card-promise">
-                « Votre partenaire réparation fiable : conformité, délais, transparence &amp; reporting, pour chaque dossier. »
-              </p>
-              <button class="client-card-cta" type="button">Collaboration assureurs</button>
-            </article>
+                    <button
+                        id="clients-tab-flottes"
+                        class="clients-strip__pill"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        tabindex="-1"
+                        aria-controls="clients-panel-flottes"
+                        data-strip-target="flottes">
+                        <span class="clients-strip__pill-label">Flottes &amp; Leasing</span>
+                    </button>
+
+                    <!-- Sliding indicator (vertical on desktop, horizontal on mobile) -->
+                    <div class="clients-strip__pill-indicator"></div>
+                </nav>
+            </aside>
+
+            <!-- Display panel -->
+            <div class="clients-strip__display">
+                <!-- Particuliers -->
+                <article
+                    class="clients-strip__panel is-active"
+                    id="clients-panel-particuliers"
+                    role="tabpanel"
+                    aria-labelledby="clients-tab-particuliers"
+                    data-strip-panel="particuliers">
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-icon">
+                                <span class="panel-icon__glyph">PR</span>
+                            </span>
+                            <div>
+                                <p class="panel-kicker">Particuliers exigeants</p>
+                                <h3 class="panel-title">
+                                    L’atelier de confiance pour votre véhicule du quotidien.
+                                </h3>
+                            </div>
+                        </div>
+
+                        <p class="panel-text">
+                            Explications claires, devis détaillé et zéro surprise. Des interventions
+                            inspirées des ateliers constructeurs, avec un accompagnement humain&nbsp;:
+                            suivi par SMS, photos des travaux et restitution sur rendez-vous.
+                        </p>
+
+                        <div class="panel-tags">
+                            <span class="panel-tag">Garantie constructeur préservée</span>
+                            <span class="panel-tag">Suivi digitalisé</span>
+                        </div>
+
+                        <div class="panel-stats">
+                            <div class="stat-box">
+                                <span class="stat-num">98&nbsp;%</span>
+                                <span class="stat-desc">Clients qui reviennent</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">24&nbsp;h</span>
+                                <span class="stat-desc">Délai moyen entretien</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-actions">
+                            <a href="#reservation"
+                               class="panel-cta panel-cta--primary">
+                                Prendre rendez-vous
+                            </a>
+                            <a href="#services"
+                               class="panel-cta panel-cta--ghost">
+                                Voir nos services
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-image"
+                         style="background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1600&auto=format&fit=crop');">
+                    </div>
+                </article>
+
+                <!-- Assurances & Experts -->
+                <article
+                    class="clients-strip__panel"
+                    id="clients-panel-assureurs"
+                    role="tabpanel"
+                    aria-labelledby="clients-tab-assureurs"
+                    data-strip-panel="assureurs">
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-icon panel-icon--accent">
+                                <span class="panel-icon__glyph">AS</span>
+                            </span>
+                            <div>
+                                <p class="panel-kicker">Assurances &amp; cabinets d’expertise</p>
+                                <h3 class="panel-title">
+                                    Un partenaire atelier qui sécurise vos décisions.
+                                </h3>
+                            </div>
+                        </div>
+
+                        <p class="panel-text">
+                            Process sinistre standardisé, photos horodatées, devis structuré et
+                            respect des procédures des compagnies. Objectif&nbsp;: réduire les échanges
+                            inutiles et raccourcir le cycle de traitement des dossiers.
+                        </p>
+
+                        <div class="panel-tags">
+                            <span class="panel-tag">Procédures normalisées</span>
+                            <span class="panel-tag">Reporting sinistre</span>
+                        </div>
+
+                        <div class="panel-stats">
+                            <div class="stat-box">
+                                <span class="stat-num">1,5k+</span>
+                                <span class="stat-desc">Dossiers traités / an</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">&lt; 2&nbsp;%</span>
+                                <span class="stat-desc">Taux de reprise</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-actions">
+                            <a href="#contact-assurances"
+                               class="panel-cta panel-cta--primary">
+                                Devenir partenaire
+                            </a>
+                            <a href="#contact"
+                               class="panel-cta panel-cta--ghost">
+                                Contacter notre cellule sinistres
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-image"
+                         style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop');">
+                    </div>
+                </article>
+
+                <!-- Entreprises & B2B -->
+                <article
+                    class="clients-strip__panel"
+                    id="clients-panel-entreprises"
+                    role="tabpanel"
+                    aria-labelledby="clients-tab-entreprises"
+                    data-strip-panel="entreprises">
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-icon panel-icon--neutral">
+                                <span class="panel-icon__glyph">B2B</span>
+                            </span>
+                            <div>
+                                <p class="panel-kicker">Entreprises &amp; B2B</p>
+                                <h3 class="panel-title">
+                                    Vos véhicules restent disponibles, votre activité continue.
+                                </h3>
+                            </div>
+                        </div>
+
+                        <p class="panel-text">
+                            Créneaux prioritaires, planification groupée et facturation consolidée.
+                            Nous dimensionnons nos équipes et nos process pour suivre votre activité
+                            et limiter au maximum l’immobilisation de vos véhicules.
+                        </p>
+
+                        <div class="panel-tags">
+                            <span class="panel-tag">Facturation centralisée</span>
+                            <span class="panel-tag">Créneaux prioritaires</span>
+                        </div>
+
+                        <div class="panel-stats">
+                            <div class="stat-box">
+                                <span class="stat-num">24&nbsp;h</span>
+                                <span class="stat-desc">Immobilisation moyenne</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">100&nbsp;%</span>
+                                <span class="stat-desc">Traçabilité interventions</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-actions">
+                            <a href="#contact-b2b"
+                               class="panel-cta panel-cta--primary">
+                                Planifier un audit de parc
+                            </a>
+                            <a href="#contact"
+                               class="panel-cta panel-cta--ghost">
+                                Parler à un conseiller B2B
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-image"
+                         style="background-image:url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1600&auto=format&fit=crop');">
+                    </div>
+                </article>
+
+                <!-- Flottes & Leasing -->
+                <article
+                    class="clients-strip__panel"
+                    id="clients-panel-flottes"
+                    role="tabpanel"
+                    aria-labelledby="clients-tab-flottes"
+                    data-strip-panel="flottes">
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-icon panel-icon--dark">
+                                <span class="panel-icon__glyph">FL</span>
+                            </span>
+                            <div>
+                                <p class="panel-kicker">Flottes &amp; leasing</p>
+                                <h3 class="panel-title">
+                                    Une gestion industrielle de volumes, sans perdre en finesse.
+                                </h3>
+                            </div>
+                        </div>
+
+                        <p class="panel-text">
+                            Entrées / sorties de parc, remises en état de fin de contrat et
+                            campagnes de rappel planifiées. Un interlocuteur dédié et un reporting
+                            KPI pour suivre les coûts, les délais et les SLA en temps réel.
+                        </p>
+
+                        <div class="panel-tags">
+                            <span class="panel-tag">Fin de contrat LLD</span>
+                            <span class="panel-tag">SLA suivis et mesurés</span>
+                        </div>
+
+                        <div class="panel-stats">
+                            <div class="stat-box">
+                                <span class="stat-num">300+</span>
+                                <span class="stat-desc">Retours leasing / an</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-num">99&nbsp;%</span>
+                                <span class="stat-desc">Respect SLA</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-actions">
+                            <a href="#contact-flottes"
+                               class="panel-cta panel-cta--primary">
+                                Parler à notre cellule flottes
+                            </a>
+                            <a href="#documentation-flottes"
+                               class="panel-cta panel-cta--ghost">
+                                Télécharger la plaquette
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-image"
+                         style="background-image:url('https://images.unsplash.com/photo-1597502319427-e17f0d0611e9?q=80&w=1600&auto=format&fit=crop');">
+                    </div>
+                </article>
+            </div>
         </div>
-      </div>
-
-      </div>
-    </section>
+    </div>
+</section>
 
     <section class="section section-partners" aria-label="Références clients AutoValley">
       <div class="section-header section-header-centered">
