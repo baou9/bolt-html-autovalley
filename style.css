@@ -6495,212 +6495,283 @@ body,
     transition-duration: 0.01ms !important;
   }
 }
-.section-partners {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: var(--bg-section-soft);
+/* =========================================
+   ILS NOUS FONT CONFIANCE – SECTION
+   ========================================= */
+
+.trust-section {
+    position: relative;
+    padding: clamp(4rem, 8vw, 5.5rem) clamp(1.75rem, 6vw, 4.75rem);
+    background: radial-gradient(circle at 50% 0%, rgba(185, 5, 4, 0.18), transparent 60%),
+                radial-gradient(circle at 0% 110%, #050101, #000000 70%);
+    color: #ffffff;
 }
 
-.section-partners-divider {
-  height: 1px;
-  margin: 14px auto 18px;
-  max-width: 420px;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.22),
-    rgba(255, 255, 255, 0)
-  );
+.trust-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.trust-liquid-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
+.trust-section__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
-.trust-pill {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1100px;
-  width: 100%;
-  height: 150px;
-  border-radius: 999px;
-  padding: 0;
-  overflow: visible;
-  box-shadow:
-    0 0 50px rgba(185, 5, 4, 0.55),
-    0 25px 60px rgba(0, 0, 0, 0.75);
+.trust-section__eyebrow {
+    display: inline-block;
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.7rem;
 }
 
-.trust-pill-glass {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 999px;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 15% 20%, #4d1515 0, #1b0606 55%, #050000 100%);
-  isolation: isolate;
+.trust-section__title {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    margin: 0 0 0.9rem;
 }
 
-.trust-pill-glass::before,
-.trust-pill-glass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
+.trust-section__subtitle {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.trust-pill-glass::before {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.25) 18%,
-    transparent 55%
-  );
-  mix-blend-mode: screen;
-  opacity: 0.8;
+.trust-section__divider {
+    width: 160px;
+    height: 1px;
+    margin: 1.8rem auto 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.35) 40%,
+        rgba(255, 255, 255, 0.35) 60%,
+        transparent 100%
+    );
 }
 
-.trust-pill-glass::after {
-  background: radial-gradient(circle at 50% 120%, rgba(0, 0, 0, 0.85) 0, transparent 60%);
-  opacity: 0.9;
+/* -----------------------------------------
+   GEMINI 3 RUBY GLASS CAROUSEL
+   ----------------------------------------- */
+
+.trust-carousel {
+    margin-top: clamp(2.5rem, 4vw, 3rem);
+    display: flex;
+    justify-content: center;
 }
 
-.trust-pill-glow {
-  position: absolute;
-  inset: 10% 6% 12%;
-  border-radius: inherit;
-  pointer-events: none;
-  filter: blur(20px);
-  mix-blend-mode: screen;
-  opacity: 0.3;
-  background:
-    radial-gradient(circle at 18% 30%, rgba(255, 190, 190, 0.4), transparent 55%),
-    radial-gradient(circle at 75% 70%, rgba(185, 5, 4, 0.55), transparent 60%),
-    radial-gradient(circle at 42% 120%, rgba(120, 10, 12, 0.4), transparent 70%);
-  background-size: 160% 140%;
-  background-position: 0% 40%;
-  animation: trust-glow-shift 26s ease-in-out infinite;
-  z-index: 1;
+/* Capsule container */
+.glass-capsule {
+    position: relative;
+    width: min(920px, 100%);
+    height: 150px;
+    border-radius: 75px;
+
+    /* Base dark material */
+    background: #050000;
+
+    /* Gel lighting effect (Gemini) */
+    box-shadow:
+        0 0 50px rgba(220, 10, 10, 0.15),
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+        inset -4px -4px 15px rgba(220, 20, 20, 0.5),
+        inset 0 0 90px rgba(0, 0, 0, 1);
+
+    border: 1px solid rgba(255, 50, 50, 0.15);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.trust-pill:hover .trust-pill-glow {
-  animation-play-state: paused;
+/* Aura / nebula */
+.aura-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 75px;
+    z-index: 0;
+    mix-blend-mode: screen;
+    opacity: 0.8;
 }
 
-.trust-pill-inner {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 60px;
+.nebula-blob {
+    position: absolute;
+    filter: blur(50px);
+    opacity: 0.7;
+    animation: aurora-drift 10s infinite alternate ease-in-out;
 }
 
-.trust-logos-track {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+/* Stream 1: core red */
+.blob-1 {
+    width: 500px;
+    height: 120px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0) 0%,
+        rgba(255, 20, 20, 0.8) 50%,
+        rgba(255, 0, 0, 0) 100%
+    );
+    top: 20%;
+    left: -20%;
+    transform: rotate(-10deg);
+    animation-duration: 12s;
 }
 
-.trust-track {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  animation: trust-marquee 28s linear infinite;
-  will-change: transform;
+/* Stream 2: highlight */
+.blob-2 {
+    width: 400px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 80, 80, 0.6) 0%, transparent 70%);
+    bottom: -20px;
+    right: -50px;
+    animation-name: aurora-float;
+    animation-duration: 18s;
 }
 
-.trust-pill:hover .trust-track {
-  animation-play-state: paused;
+/* Stream 3: deep crimson */
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(150, 0, 0, 0.6) 0%, transparent 70%);
+    top: -100px;
+    right: 20%;
+    filter: blur(60px);
+    animation: pulse-glow 8s infinite alternate;
 }
 
-.trust-logo {
-  height: 50px;
-  width: auto;
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.7)) brightness(1.15);
-  opacity: 0.96;
+/* Animations */
+@keyframes aurora-drift {
+    0%   { transform: translateX(0) rotate(-10deg) scale(1); }
+    100% { transform: translateX(40px) rotate(-5deg) scale(1.1); }
 }
 
-@media (max-width: 1023px) {
-  .trust-pill {
-    height: 140px;
-  }
-
-  .trust-pill-inner {
-    padding: 0 36px;
-  }
-
-  .trust-pill-glow {
-    opacity: 0.26;
-    animation-duration: 30s;
-  }
-
-  .trust-logo {
-    height: 44px;
-  }
-
-  .trust-track {
-    gap: 40px;
-  }
+@keyframes aurora-float {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(-40px, -20px); }
+    100% { transform: translate(20px, 10px); }
 }
 
-@media (max-width: 767px) {
-  .trust-pill {
-    max-width: 100%;
-    height: 130px;
-  }
-
-  .trust-pill-inner {
-    padding: 0 24px;
-  }
-
-  .trust-pill-glow {
-    opacity: 0.22;
-    animation-duration: 34s;
-  }
-
-  .trust-logo {
-    height: 36px;
-  }
+@keyframes pulse-glow {
+    0%   { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.2); }
 }
 
-@keyframes trust-glow-shift {
-  0% {
-    background-position: -10% 35%;
-    background-size: 160% 140%;
-  }
-  40% {
-    background-position: 45% 55%;
-    background-size: 165% 145%;
-  }
-  70% {
-    background-position: 90% 40%;
-    background-size: 155% 138%;
-  }
-  100% {
-    background-position: 50% 80%;
-    background-size: 160% 142%;
-  }
+/* Carousel wrapper + fading edges */
+.carousel-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
-@keyframes trust-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* Track */
+.carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    padding-right: 100px;
+    width: max-content;
+    animation: scroll-left 25s linear infinite;
+}
+
+.glass-capsule:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Shine overlay */
+.shine-overlay {
+    position: absolute;
+    top: 8px;
+    left: 25px;
+    width: 65%;
+    height: 40%;
+    border-radius: 100px;
+    background: linear-gradient(175deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    filter: blur(4px);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Logos */
+.logo-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logo-img {
+    display: block;
+    width: auto;
+    max-height: 50px;
+    filter: brightness(0) invert(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.logo-img:hover {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+    .trust-section {
+        padding-inline: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .glass-capsule {
+        width: 100%;
+        height: 140px;
+        border-radius: 65px;
+    }
+
+    .carousel-track {
+        gap: 70px;
+        padding-right: 70px;
+    }
+
+    .logo-img {
+        max-height: 44px;
+    }
+}
+
+@media (max-width: 640px) {
+    .trust-section {
+        padding-block: 3.25rem;
+    }
+
+    .glass-capsule {
+        height: 120px;
+        border-radius: 55px;
+    }
+
+    .carousel-track {
+        gap: 48px;
+        padding-right: 48px;
+        animation-duration: 22s;
+    }
+
+    .logo-img {
+        max-height: 36px;
+    }
 }
 
 /* ========== ROOT / BASE ========== */

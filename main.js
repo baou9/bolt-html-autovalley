@@ -211,6 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // ILS NOUS FONT CONFIANCE – infinite loop for logo carousel
+  const trustTrack = document.getElementById("trust-carousel-track");
+  if (trustTrack && trustTrack.dataset.cloned !== "true") {
+    const trustContent = trustTrack.innerHTML;
+    trustTrack.innerHTML += trustContent;
+    trustTrack.dataset.cloned = "true";
+  }
 });
 
 // ─────────────────────────────────────────────────────────

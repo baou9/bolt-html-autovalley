@@ -1138,75 +1138,61 @@
     </div>
 </section>
 
-    <section class="section section-partners" aria-label="Références clients AutoValley">
-      <div class="section-header section-header-centered">
-        <p class="section-kicker">ILS NOUS FONT CONFIANCE</p>
-        <h3 class="section-title clients-refs-title">Ils nous font confiance</h3>
-        <p class="section-subtitle clients-refs-subtitle">
-          Assureurs, loueurs, entreprises et institutions publiques nous confient leurs véhicules au quotidien.
-        </p>
-      </div>
+<!-- ILS NOUS FONT CONFIANCE -->
+<section class="trust-section" id="ils-nous-font-confiance">
+    <div class="trust-section__inner">
+        <header class="trust-section__header">
+            <span class="trust-section__eyebrow">
+                ILS NOUS FONT CONFIANCE
+            </span>
+            <h2 class="trust-section__title">
+                Ils nous font confiance
+            </h2>
+            <p class="trust-section__subtitle">
+                Assureurs, loueurs, entreprises et institutions publiques nous confient leurs véhicules au
+                quotidien.
+            </p>
+            <div class="trust-section__divider"></div>
+        </header>
 
-      <div class="section-partners-divider" aria-hidden="true"></div>
-
-      <div class="section-body">
-        <div class="trust-liquid-wrapper">
-          <div class="trust-pill">
-            <div class="trust-pill-glass">
-              <div class="trust-pill-glow" aria-hidden="true"></div>
-              <div class="trust-pill-inner">
-                <div class="trust-logos-track" aria-label="Logos de partenaires AutoValley">
-                  <div class="trust-track">
-                    <img src="./public/img/refs/axa.svg" alt="AXA" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/allianz.svg" alt="Allianz" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/rma.svg" alt="RMA" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/sntl.svg" alt="SNTL" class="trust-logo" loading="lazy" />
-
-                    <img src="./public/img/refs/axa.svg" alt="AXA" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/allianz.svg" alt="Allianz" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/rma.svg" alt="RMA" class="trust-logo" loading="lazy" />
-                    <img src="./public/img/refs/sntl.svg" alt="SNTL" class="trust-logo" loading="lazy" />
-                  </div>
+        <!-- CAROUSEL – GEMINI 3 RUBY GLASS CAPSULE -->
+        <div class="trust-carousel">
+            <div class="glass-capsule">
+                <!-- Aura / plasma -->
+                <div class="aura-layer">
+                    <div class="nebula-blob blob-1"></div>
+                    <div class="nebula-blob blob-2"></div>
+                    <div class="nebula-blob blob-3"></div>
                 </div>
-              </div>
+
+                <!-- Logos track -->
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="trust-carousel-track">
+                        <div class="logo-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hertz_Car_Rental_logo.svg/1200px-Hertz_Car_Rental_logo.svg.png" alt="AXA" class="logo-img">
+                        </div>
+                        <div class="logo-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hertz_Car_Rental_logo.svg/1200px-Hertz_Car_Rental_logo.svg.png" alt="Wafa Assurance" class="logo-img">
+                        </div>
+                        <div class="logo-item">
+                            <img src="assets/logos/europcar.svg" alt="Europcar" class="logo-img">
+                        </div>
+                        <div class="logo-item">
+                            <img src="https://wp.logos-download.com/wp-content/uploads/2016/10/Europcar_logo_logotype.png?dl" alt="CAT Assurance" class="logo-img">
+                        </div>
+                        <div class="logo-item">
+                            <img src="https://appsaf.apieproject.com/business/wp-content/uploads/sites/3/2021/08/logo-CAT-Assurance.png" alt="Sanlam" class="logo-img">
+                        </div>
+                        <!-- Duplicate / extend list as needed -->
+                    </div>
+                </div>
+
+                <!-- Top shine -->
+                <div class="shine-overlay"></div>
             </div>
-          </div>
         </div>
-      </div>
-
-      <div class="section-partners-divider" aria-hidden="true"></div>
-    </section>
-
-    <svg
-      class="trust-glass-filter"
-      aria-hidden="true"
-      focusable="false"
-      style="position: absolute; width: 0; height: 0; pointer-events: none;"
-    >
-      <filter id="trust-glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
-        <feComponentTransfer in="turbulence" result="mapped">
-          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-        </feComponentTransfer>
-        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-        <feSpecularLighting
-          in="softMap"
-          surfaceScale="5"
-          specularConstant="1"
-          specularExponent="100"
-          lighting-color="white"
-          result="specLight"
-        >
-          <fePointLight x="-200" y="-200" z="300" />
-        </feSpecularLighting>
-        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
-        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
-      </filter>
-    </svg>
+    </div>
+</section>
 
     <!-- Témoignages Section -->
     <section id="temoignages" class="section test-sec section-testimonials" aria-labelledby="temoignages-title">
