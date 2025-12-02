@@ -6709,7 +6709,7 @@ body,
 }
 
 /* Logos */
-.logo-item {
+.trust-section .logo-item {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -6717,7 +6717,7 @@ body,
     cursor: pointer;
 }
 
-.logo-img {
+.trust-section .logo-img {
     display: block;
     width: auto;
     max-height: 50px;
@@ -6726,7 +6726,7 @@ body,
     transition: all 0.3s ease;
 }
 
-.logo-img:hover {
+.trust-section .logo-img:hover {
     opacity: 1;
     filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
@@ -6748,7 +6748,7 @@ body,
         padding-right: 70px;
     }
 
-    .logo-img {
+    .trust-section .logo-img {
         max-height: 44px;
     }
 }
@@ -6769,7 +6769,7 @@ body,
         animation-duration: 22s;
     }
 
-    .logo-img {
+    .trust-section .logo-img {
         max-height: 36px;
     }
 }
