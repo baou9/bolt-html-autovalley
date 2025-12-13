@@ -1,0 +1,1414 @@
+/* ============================================================
+   AutoValley Premium Design System
+   Million Dollar UI/UX Enhancements
+   ============================================================ */
+
+/* ──────────────────────────────────────────────────────────
+   1. Custom Cursor System
+   ────────────────────────────────────────────────────────── */
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.cursor-glow {
+  position: fixed;
+  top: -30px;
+  left: -30px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(185, 5, 4, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-hover .cursor-dot {
+  width: 12px;
+  height: 12px;
+  top: -6px;
+  left: -6px;
+  background: var(--brand-red, #b90504);
+}
+
+.cursor-hover .cursor-ring {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: -30px;
+  border-color: var(--brand-red, #b90504);
+  background: rgba(185, 5, 4, 0.1);
+}
+
+.cursor-hover .cursor-glow {
+  opacity: 1;
+}
+
+.cursor-click .cursor-dot {
+  transform: scale(0.8);
+}
+
+.cursor-click .cursor-ring {
+  transform: scale(0.9);
+}
+
+.cursor-hidden .cursor-dot,
+.cursor-hidden .cursor-ring,
+.cursor-hidden .cursor-glow {
+  opacity: 0;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   2. Scroll Progress Bar
+   ────────────────────────────────────────────────────────── */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b90504 0%, #ff4d4d 50%, #b90504 100%);
+  box-shadow: 0 0 20px rgba(185, 5, 4, 0.8), 0 0 40px rgba(185, 5, 4, 0.4);
+  z-index: 99998;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ──────────────────────────────────────────────────────────
+   3. Grain Overlay
+   ────────────────────────────────────────────────────────── */
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ──────────────────────────────────────────────────────────
+   4. Scroll Reveal Animations
+   ────────────────────────────────────────────────────────── */
+
+.reveal-element {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-element.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.header-animate.header-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-animate .section-kicker,
+.header-animate .section-title,
+.header-animate .section-subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.header-animate.header-revealed .section-kicker {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.header-animate.header-revealed .section-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.header-animate.header-revealed .section-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+/* ──────────────────────────────────────────────────────────
+   5. Card Shine Effect
+   ────────────────────────────────────────────────────────── */
+
+.card-shine-effect {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  z-index: 10;
+}
+
+/* ──────────────────────────────────────────────────────────
+   6. Enhanced Hero Section
+   ────────────────────────────────────────────────────────── */
+
+.hero-lg {
+  position: relative;
+}
+
+.hero-lg__content {
+  transition: transform 0.15s ease-out;
+}
+
+.hero-lg__eyebrow {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-lg__eyebrow::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-red), transparent);
+  transform: scaleX(0);
+  animation: eyebrowLine 1s ease 0.5s forwards;
+}
+
+@keyframes eyebrowLine {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-lg__title {
+  overflow: hidden;
+}
+
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: wordReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--word-index) * 0.05s + 0.3s);
+}
+
+@keyframes wordReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.hero-lg__trust-item {
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────────────────────
+   7. Enhanced Button Styles
+   ────────────────────────────────────────────────────────── */
+
+.btn-lg--primary,
+.btn-primary,
+.btn-header-magnetic,
+.btn-approche,
+.cta-button,
+.panel-cta--primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn-lg--primary::before,
+.btn-primary::before,
+.btn-approche::before,
+.cta-button::before,
+.panel-cta--primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.btn-lg--primary:hover::before,
+.btn-primary:hover::before,
+.btn-approche:hover::before,
+.cta-button:hover::before,
+.panel-cta--primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   8. Enhanced Service Cards
+   ────────────────────────────────────────────────────────── */
+
+.service-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-12px) rotateX(2deg);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(185, 5, 4, 0.2);
+}
+
+.service-card .service-overlay {
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              opacity 0.4s ease;
+}
+
+.service-card:hover .service-overlay {
+  transform: translateY(0);
+}
+
+/* ──────────────────────────────────────────────────────────
+   9. Enhanced Timeline Cards
+   ────────────────────────────────────────────────────────── */
+
+.timeline-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, transparent 0%, rgba(185, 5, 4, 0.5) 50%, transparent 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.timeline-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-card:hover::before {
+  opacity: 1;
+}
+
+.timeline-card .card-number {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.timeline-card:hover .card-number {
+  color: var(--brand-red);
+  text-shadow: 0 0 30px rgba(185, 5, 4, 0.6);
+}
+
+/* ──────────────────────────────────────────────────────────
+   10. Enhanced Glass Cards (Why AutoValley)
+   ────────────────────────────────────────────────────────── */
+
+.glass-card {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(185, 5, 4, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glass-card:hover::after {
+  opacity: 1;
+}
+
+.icon-orbit {
+  transition: transform 0.6s cubic-bezier(0.03, 0.98, 0.52, 0.99);
+}
+
+.glass-card:hover .icon-orbit {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ──────────────────────────────────────────────────────────
+   11. Enhanced Precision Cards
+   ────────────────────────────────────────────────────────── */
+
+.precision-std__card {
+  --tilt-rotate-x: 0deg;
+  --tilt-rotate-y: 0deg;
+  --tilt-translate-y: 0px;
+  transform: perspective(1000px)
+             rotateX(var(--tilt-rotate-x))
+             rotateY(var(--tilt-rotate-y))
+             translateY(var(--tilt-translate-y));
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.precision-std__card:hover {
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(185, 5, 4, 0.15);
+}
+
+.precision-std__scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-red), transparent);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease;
+}
+
+.precision-std__card:hover .precision-std__scan-line {
+  opacity: 1;
+  animation: scanDown 2s linear infinite;
+}
+
+@keyframes scanDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(calc(100% + 400px));
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   12. Enhanced Blog Cards
+   ────────────────────────────────────────────────────────── */
+
+.blog-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-15px) rotateX(3deg);
+}
+
+.blog-card-category::before {
+  animation: categoryPulse 2s ease-in-out infinite;
+}
+
+@keyframes categoryPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 70, 70, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 70, 70, 1), 0 0 30px rgba(255, 70, 70, 0.5);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   13. Enhanced Testimonials
+   ────────────────────────────────────────────────────────── */
+
+.test-card {
+  transition: transform 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.5s ease,
+              opacity 0.5s ease;
+}
+
+.test-card[data-active="true"] {
+  transform: scale(1.02);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(185, 5, 4, 0.2);
+}
+
+.test-card .stars span {
+  display: inline-block;
+  animation: starPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.test-card .stars span:nth-child(1) { animation-delay: 0.1s; }
+.test-card .stars span:nth-child(2) { animation-delay: 0.2s; }
+.test-card .stars span:nth-child(3) { animation-delay: 0.3s; }
+.test-card .stars span:nth-child(4) { animation-delay: 0.4s; }
+.test-card .stars span:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes starPop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   14. Enhanced Client Tabs
+   ────────────────────────────────────────────────────────── */
+
+.clients-strip__pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.clients-strip__pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.clients-strip__pill:hover::before {
+  transform: translateX(100%);
+}
+
+.clients-strip__panel {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.clients-strip__panel:not(.is-active) {
+  opacity: 0;
+  transform: translateX(20px);
+  pointer-events: none;
+  position: absolute;
+}
+
+.clients-strip__panel.is-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ──────────────────────────────────────────────────────────
+   15. Enhanced Footer
+   ────────────────────────────────────────────────────────── */
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand-red), transparent);
+  animation: footerLine 3s ease-in-out infinite;
+}
+
+@keyframes footerLine {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.footer-column {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: footerReveal 0.6s ease forwards;
+}
+
+.footer-column:nth-child(1) { animation-delay: 0.1s; }
+.footer-column:nth-child(2) { animation-delay: 0.2s; }
+.footer-column:nth-child(3) { animation-delay: 0.3s; }
+.footer-column:nth-child(4) { animation-delay: 0.4s; }
+.footer-column:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes footerReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-social-icon {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(185, 5, 4, 0.4);
+}
+
+.footer-links a {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand-red);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* ──────────────────────────────────────────────────────────
+   16. Enhanced Brand Logos
+   ────────────────────────────────────────────────────────── */
+
+.brands-universe__logo {
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              filter 0.4s ease;
+}
+
+.brands-universe__logo:hover {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.2);
+}
+
+/* ──────────────────────────────────────────────────────────
+   17. Enhanced Trust Section
+   ────────────────────────────────────────────────────────── */
+
+.glass-capsule {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-capsule::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(185, 5, 4, 0.1) 10%,
+    transparent 20%
+  );
+  animation: capsuleRotate 10s linear infinite;
+}
+
+@keyframes capsuleRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   18. Smooth Page Load Animation
+   ────────────────────────────────────────────────────────── */
+
+body {
+  animation: pageLoad 0.6s ease;
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   19. Enhanced Mobile Navigation
+   ────────────────────────────────────────────────────────── */
+
+.mobile-nav-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(5, 5, 5, 0.98) 0%,
+    rgba(20, 5, 5, 0.98) 100%
+  );
+}
+
+.mobile-nav-overlay.active {
+  animation: mobileNavReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mobileNavReveal {
+  from {
+    clip-path: circle(0% at top right);
+  }
+  to {
+    clip-path: circle(150% at top right);
+  }
+}
+
+.mobile-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-link::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--brand-red);
+  transition: left 0.4s ease;
+}
+
+.mobile-link:hover::before {
+  left: 100%;
+}
+
+/* ──────────────────────────────────────────────────────────
+   20. Enhanced Section Dividers
+   ────────────────────────────────────────────────────────── */
+
+.title-underline {
+  position: relative;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--brand-red), transparent);
+  margin: 20px auto;
+  width: 120px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: underlineShine 3s ease-in-out infinite;
+}
+
+@keyframes underlineShine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   21. Reduced Motion Support
+   ────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+
+  .grain-overlay {
+    display: none;
+  }
+
+  .reveal-element {
+    opacity: 1;
+    transform: none;
+  }
+
+  .header-animate {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   22. Mobile Optimizations
+   ────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+
+  .scroll-progress {
+    height: 2px;
+  }
+
+  .grain-overlay {
+    opacity: 0.02;
+  }
+
+  .reveal-element {
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .title-underline {
+    width: 80px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   23. High Contrast Mode Support
+   ────────────────────────────────────────────────────────── */
+
+@media (prefers-contrast: high) {
+  .cursor-dot {
+    background: #fff;
+  }
+
+  .cursor-ring {
+    border-width: 2px;
+  }
+
+  .scroll-progress {
+    height: 4px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   24. Enhanced Responsive Breakpoints
+   ────────────────────────────────────────────────────────── */
+
+@media (min-width: 1400px) {
+  .services-grid {
+    gap: 28px;
+  }
+
+  .precision-std__grid {
+    gap: 32px;
+  }
+
+  .blog-grid {
+    gap: 36px;
+  }
+
+  .hero-lg__title {
+    font-size: 4.5rem;
+  }
+
+  .hero-lg__subtitle {
+    font-size: 1.35rem;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .services-grid {
+    gap: 18px;
+  }
+
+  .precision-std__grid {
+    gap: 20px;
+  }
+
+  .timeline-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-lg__content {
+    padding: 0 20px;
+  }
+
+  .hero-lg__title {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+  }
+
+  .hero-lg__subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-lg__trust {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hero-lg__trust-divider {
+    display: none;
+  }
+
+  .precision-std__grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .clients-strip__layout {
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-lg {
+    min-height: 100svh;
+    padding: 100px 16px 60px;
+  }
+
+  .hero-lg__title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .hero-lg__subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .hero-lg__ctas {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 24px;
+  }
+
+  .hero-lg__trust {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-lg__trust-item {
+    font-size: 0.85rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    height: auto;
+    min-height: 260px;
+  }
+
+  .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .timeline-card {
+    padding: 24px 20px;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blog-card {
+    padding: 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    grid-column: 1;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-lg__eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-lg__title {
+    font-size: 1.75rem;
+  }
+
+  .hero-lg__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-kicker {
+    font-size: 0.7rem;
+  }
+
+  .service-card {
+    min-height: 240px;
+  }
+
+  .service-overlay {
+    height: 80px;
+  }
+
+  .service-title {
+    font-size: 14px;
+  }
+
+  .timeline-card .card-number {
+    font-size: 2rem;
+  }
+
+  .timeline-title {
+    font-size: 1rem;
+  }
+
+  .glass-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .precision-std__card-title {
+    font-size: 1.1rem;
+  }
+
+  .blog-card-title {
+    font-size: 1rem;
+  }
+
+  .btn-footer-primary,
+  .btn-footer-secondary {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  .footer-cta-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   25. Touch Device Optimizations
+   ────────────────────────────────────────────────────────── */
+
+@media (hover: none) and (pointer: coarse) {
+  .service-card:hover {
+    transform: none;
+  }
+
+  .service-card:active {
+    transform: scale(0.98);
+  }
+
+  .timeline-card:hover {
+    transform: none;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  .blog-card:hover {
+    transform: none;
+  }
+
+  .precision-std__card:hover {
+    transform: none;
+  }
+
+  .btn-header-magnetic:hover {
+    transform: none;
+  }
+
+  .service-overlay {
+    height: 100px;
+  }
+
+  .service-card .overlay-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card .service-overlay {
+    height: auto;
+    min-height: 100px;
+    padding-bottom: 16px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   26. Landscape Mode Tablet Optimization
+   ────────────────────────────────────────────────────────── */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-lg {
+    min-height: 100vh;
+    padding: 80px 40px 40px;
+  }
+
+  .hero-lg__title {
+    font-size: 2rem;
+  }
+
+  .hero-lg__subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-lg__ctas {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .hero-lg__trust {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .hero-lg__scroll {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   27. Print Styles
+   ────────────────────────────────────────────────────────── */
+
+@media print {
+  .custom-cursor,
+  .scroll-progress,
+  .grain-overlay,
+  .hero-lg__video-layer,
+  .hero-lg__liquid-canvas,
+  .hero-lg__scroll,
+  .mobile-nav-overlay {
+    display: none !important;
+  }
+
+  .hero-lg {
+    min-height: auto;
+    padding: 40px;
+  }
+
+  .service-card,
+  .timeline-card,
+  .glass-card,
+  .blog-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   28. Enhanced Focus States for Accessibility
+   ────────────────────────────────────────────────────────── */
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--brand-red, #b90504);
+  outline-offset: 3px;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.service-card:focus-visible,
+.timeline-card:focus-visible,
+.glass-card:focus-visible,
+.blog-card:focus-visible {
+  outline: 2px solid var(--brand-red, #b90504);
+  outline-offset: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   29. Mobile Floating CTA Button
+   ────────────────────────────────────────────────────────── */
+
+.mobile-float-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-float-cta {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4a4a 0%, #b90504 100%);
+    box-shadow:
+      0 4px 20px rgba(185, 5, 4, 0.5),
+      0 8px 40px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: floatPulse 2s ease-in-out infinite;
+  }
+
+  .mobile-float-cta:active {
+    transform: scale(0.95);
+  }
+
+  @keyframes floatPulse {
+    0%, 100% {
+      box-shadow:
+        0 4px 20px rgba(185, 5, 4, 0.5),
+        0 8px 40px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      box-shadow:
+        0 4px 30px rgba(185, 5, 4, 0.7),
+        0 8px 50px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   30. Smooth State Transitions
+   ────────────────────────────────────────────────────────── */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-padding-top: 100px;
+}
+
+::selection {
+  background: rgba(185, 5, 4, 0.3);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: rgba(185, 5, 4, 0.3);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   31. Loading Skeleton Styles
+   ────────────────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   32. Enhanced Navigation Active States
+   ────────────────────────────────────────────────────────── */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-red, #b90504), transparent);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link--active::before {
+  width: 100%;
+}
+
+/* ──────────────────────────────────────────────────────────
+   33. Button Ripple Effect
+   ────────────────────────────────────────────────────────── */
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.btn-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}

@@ -2,7 +2,15 @@
    AutoValley – Hero Liquid Glass + Header Behaviors
    ============================================================ */
 
+import { initAllPremiumEffects } from './premium-effects.js';
+
 document.documentElement.classList.remove('no-js');
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAllPremiumEffects, { once: true });
+} else {
+  initAllPremiumEffects();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const videoEl = document.getElementById("heroVideo");
