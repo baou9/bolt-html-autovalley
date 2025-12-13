@@ -3965,7 +3965,7 @@ body,
 }
 
 .approche-cta-wrapper.is-visible {
-  animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 1.4s forwards;
+  animation: approcheFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
 }
 
 .no-js .approche-cta-wrapper {
