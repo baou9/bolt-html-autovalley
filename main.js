@@ -3,6 +3,7 @@
    ============================================================ */
 
 import { initAllPremiumEffects } from './premium-effects.js';
+import './testimonials.js';
 
 document.documentElement.classList.remove('no-js');
 
@@ -258,8 +259,9 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 // ─────────────────────────────────────────────────────────
-// 7. Témoignages Section – Reveal & Carousel
+// 7. Témoignages Section – NOW HANDLED BY testimonials.js MODULE
 // ─────────────────────────────────────────────────────────
+/* OLD CODE REPLACED BY NEW MODULE - COMMENTED OUT
 const testimonialsSection = document.querySelector('.test-sec');
 
 if (testimonialsSection) {
@@ -537,6 +539,7 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     });
   }
 }
+END OF OLD TESTIMONIALS CODE */
 
 
 // NOS CLIENTS – CINEMATIC STRIP INTERACTIONS
