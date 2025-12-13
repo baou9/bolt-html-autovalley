@@ -8,6 +8,7 @@
    ────────────────────────────────────────────────────────── */
 
 .custom-cursor {
+  display: none; /* Disabled per user request */
   pointer-events: none;
   position: fixed;
   top: 0;

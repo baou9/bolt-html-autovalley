@@ -337,7 +337,7 @@ export function initFloatingElements() {
 
 export function initAllPremiumEffects() {
   initLenisSmoothScroll();
-  initCustomCursor();
+  // initCustomCursor(); // Disabled per user request
   initMagneticButtons();
   initScrollReveal();
   initSectionHeaders();
