@@ -7009,6 +7009,10 @@ body {
     transform: scale(1.02);
 }
 
+.hero-lg__video--disabled {
+    display: none; /* [PATCH] avoid GPU-heavy video on mobile/data-saver */
+}
+
 /* Liquid glass canvas layer */
 .hero-lg__liquid-canvas {
     position: absolute;

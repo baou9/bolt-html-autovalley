@@ -31,6 +31,23 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersSaveData = navigator.connection && navigator.connection.saveData;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isNarrowViewport = window.matchMedia("(max-width: 900px)").matches;
+
+    const shouldLimitBackgroundVideo = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport;
+
+    if (shouldLimitBackgroundVideo) {
+      videoEl.removeAttribute("autoplay");
+      videoEl.preload = "metadata"; // [PATCH] keep only the first frame on mobile/data-saver
+      videoEl.pause();
+      videoSourceEl.src = videoPlaylist[0];
+      videoEl.classList.add("hero-lg__video--disabled");
+      videoEl.load();
+      return;
+    }
+
     const ensurePlay = () => {
       const p = videoEl.play();
       if (p && typeof p.catch === "function") {
