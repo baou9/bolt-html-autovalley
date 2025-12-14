@@ -6,21 +6,31 @@
 class TestimonialsManager {
   constructor() {
     this.section = document.querySelector('.testimonials-section');
-    if (!this.section) return;
+    if (!this.section) {
+      console.warn('TestimonialsManager: Section not found in DOM');
+      return;
+    }
 
     this.currentFilter = 'tous';
     this.currentMobileIndex = 0;
     this.mobileAutoplayInterval = null;
+    this.isInitialized = false;
 
     this.init();
   }
 
   init() {
-    this.initScrollReveal();
-    this.initMetricCounters();
-    this.initFilters();
-    this.initMobileCarousel();
-    this.initAccessibility();
+    try {
+      this.initScrollReveal();
+      this.initMetricCounters();
+      this.initFilters();
+      this.initMobileCarousel();
+      this.initAccessibility();
+      this.isInitialized = true;
+    } catch (error) {
+      console.error('TestimonialsManager initialization error:', error);
+      this.section.classList.add('is-visible');
+    }
   }
 
   initScrollReveal() {
@@ -29,16 +39,37 @@ class TestimonialsManager {
     };
 
     if ('IntersectionObserver' in window) {
+      let hasRevealed = false;
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasRevealed) {
+            hasRevealed = true;
             revealSection();
             observer.disconnect();
           }
         });
-      }, { threshold: 0.2 });
+      }, {
+        threshold: 0.1,
+        rootMargin: '50px 0px'
+      });
 
       observer.observe(this.section);
+
+      const rect = this.section.getBoundingClientRect();
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isInViewport) {
+        revealSection();
+        observer.disconnect();
+      }
+
+      setTimeout(() => {
+        if (!hasRevealed) {
+          revealSection();
+          observer.disconnect();
+        }
+      }, 1000);
     } else {
       revealSection();
     }
