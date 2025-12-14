@@ -124,11 +124,13 @@
   padding: clamp(20px, 3vw, 28px) clamp(24px, 4vw, 40px);
   background: rgba(12, 12, 12, 0.80);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 999px;
   border: 1px solid rgba(185, 5, 4, 0.25);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  max-width: -moz-fit-content;
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -262,6 +264,7 @@
   padding: 10px 20px;
   background: rgba(25, 10, 10, 0.60);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   font-family: 'Montserrat', sans-serif;
@@ -357,6 +360,7 @@
   padding: 32px;
   background: rgba(25, 10, 10, 0.75);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(185, 5, 4, 0.20);
   border-radius: 24px;
   box-shadow:
@@ -708,6 +712,7 @@
   height: 48px;
   background: rgba(25, 10, 10, 0.80);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.85);
@@ -755,6 +760,7 @@
   padding: clamp(48px, 8vw, 70px) clamp(32px, 6vw, 60px);
   background: linear-gradient(135deg, rgba(185, 5, 4, 0.15), rgba(211, 47, 47, 0.08));
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(185, 5, 4, 0.25);
   border-radius: 32px;
   box-shadow:
@@ -849,6 +855,7 @@
   padding: 16px 32px;
   background: rgba(25, 10, 10, 0.60);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 2px solid rgba(255, 255, 255, 0.25);
   border-radius: 999px;
   font-family: 'Montserrat', sans-serif;
@@ -971,6 +978,38 @@
 
   .carousel-controls {
     display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   Glass Fallbacks for Non-Supporting Browsers
+   ────────────────────────────────────────────────────────── */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .testimonials-rating-display,
+  .filter-btn,
+  .testimonial-card,
+  .carousel-btn,
+  .testimonials-cta,
+  .btn-secondary-outline {
+    background: rgba(20, 14, 18, 0.92);
+  }
+
+  .testimonials-rating-display {
+    border-color: rgba(185, 5, 4, 0.38);
+  }
+
+  .testimonial-card {
+    border-color: rgba(185, 5, 4, 0.24);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  }
+
+  .carousel-btn {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .testimonials-cta {
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
   }
 }
 
