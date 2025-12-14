@@ -16,6 +16,14 @@ if (document.readyState === 'loading') {
 document.addEventListener("DOMContentLoaded", () => {
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // [PATCH]
+  const prefersSaveData = navigator.connection && navigator.connection.saveData; // [PATCH]
+  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches; // [PATCH]
+  const isNarrowViewport = window.matchMedia("(max-width: 1024px)").matches; // [PATCH]
+  const isLowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4; // [PATCH]
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent); // [PATCH]
+
+  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport || isLowMemory || isIOS; // [PATCH]
 
   /* ===================== 1. VIDEO PLAYLIST ===================== */
 
@@ -31,21 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const prefersSaveData = navigator.connection && navigator.connection.saveData;
-    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    const isNarrowViewport = window.matchMedia("(max-width: 900px)").matches;
-
-    const shouldLimitBackgroundVideo = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport;
-
-    if (shouldLimitBackgroundVideo) {
-      videoEl.removeAttribute("autoplay");
-      videoEl.preload = "metadata"; // [PATCH] keep only the first frame on mobile/data-saver
-      videoEl.pause();
-      videoSourceEl.src = videoPlaylist[0];
-      videoEl.classList.add("hero-lg__video--disabled");
-      videoEl.load();
-      return;
+    if (shouldLimitHeroEffects) {
+      videoEl.removeAttribute("autoplay"); // [PATCH]
+      videoEl.removeAttribute("loop"); // [PATCH]
+      videoEl.preload = "metadata"; // [PATCH] keep only the first frame on constrained devices
+      videoEl.pause(); // [PATCH]
+      videoSourceEl.removeAttribute("src"); // [PATCH] avoid loading remote previews on iOS/mobile
+      videoEl.classList.add("hero-lg__video--disabled"); // [PATCH]
+      videoEl.load(); // [PATCH]
+      return; // [PATCH]
     }
 
     const ensurePlay = () => {
@@ -71,6 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===================== 2. WEBGL LIQUID GLASS ===================== */
 
   const canvas = document.getElementById("heroLiquidCanvas");
+  if (canvas && shouldLimitHeroEffects) { // [PATCH]
+    canvas.classList.add("hero-lg__liquid-canvas--disabled"); // [PATCH]
+    return; // [PATCH]
+  }
+
   if (canvas) {
     const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
 

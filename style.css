@@ -7022,6 +7022,10 @@ body {
     mix-blend-mode: screen;
 }
 
+.hero-lg__liquid-canvas--disabled { /* [PATCH] disable WebGL layer on constrained devices */
+    display: none;
+}
+
 /* Dark overlay */
 .hero-lg__overlay {
     position: absolute;
