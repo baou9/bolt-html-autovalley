@@ -241,6 +241,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const activate = () => section.classList.add("loaded");
 
+  window.addEventListener("load", () => { // [PATCH] ensure cards appear even if observers fail
+    if (!section.classList.contains("loaded")) {
+      activate();
+    }
+  });
+
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
