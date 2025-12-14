@@ -5,6 +5,7 @@
 import { initAllPremiumEffects } from './premium-effects.js';
 import './testimonials.js';
 import './blog-effects.js';
+import './location-effects.js';
 
 document.documentElement.classList.remove('no-js');
 
