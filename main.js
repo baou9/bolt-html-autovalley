@@ -565,6 +565,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const left = pillRect.left - navRect.left;
             const width = pillRect.width;
 
+            indicator.style.top = "auto";
+            indicator.style.bottom = "0";
+            indicator.style.right = "auto";
+            indicator.style.left = "0";
             indicator.style.transform = `translateX(${left}px)`;
             indicator.style.width = `${width}px`;
             indicator.style.height = `3px`;
@@ -572,6 +576,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const top = pillRect.top - navRect.top;
             const height = pillRect.height;
 
+            indicator.style.top = "0";
+            indicator.style.bottom = "auto";
+            indicator.style.left = "0";
+            indicator.style.right = "auto";
             indicator.style.transform = `translateY(${top}px)`;
             indicator.style.height = `${height}px`;
             indicator.style.width = `3px`;
