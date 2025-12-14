@@ -6873,8 +6873,7 @@ body,
 .carousel-track {
     display: flex;
     align-items: center;
-    gap: 100px;
-    padding-right: 100px;
+    gap: 78px; /* [PATCH] tighter spacing to keep the loop visually continuous */
     width: max-content;
     animation: scroll-left 25s linear infinite;
 }
@@ -6938,8 +6937,7 @@ body,
     }
 
     .carousel-track {
-        gap: 70px;
-        padding-right: 70px;
+        gap: 62px; /* [PATCH] reduce spacing so duplicated logos keep capsule filled */
     }
 
     .trust-section .logo-img {
@@ -6958,8 +6956,7 @@ body,
     }
 
     .carousel-track {
-        gap: 48px;
-        padding-right: 48px;
+        gap: 44px; /* [PATCH] keep tight spacing on mobile */
         animation-duration: 22s;
     }
 

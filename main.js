@@ -223,8 +223,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ILS NOUS FONT CONFIANCE – infinite loop for logo carousel
   const trustTrack = document.getElementById("trust-carousel-track");
-  if (trustTrack && trustTrack.dataset.cloned !== "true") {
+  const trustWrapper = document.querySelector(".trust-section .carousel-wrapper");
+
+  if (trustTrack && trustWrapper && trustTrack.dataset.cloned !== "true") {
     const trustContent = trustTrack.innerHTML;
+
+    // [PATCH] Repeat logos until the track is wide enough to loop seamlessly
+    while (trustTrack.scrollWidth < trustWrapper.clientWidth * 2) {
+      trustTrack.innerHTML += trustContent;
+    }
+
+    // Ensure at least one duplicate for smooth animation
     trustTrack.innerHTML += trustContent;
     trustTrack.dataset.cloned = "true";
   }
