@@ -717,15 +717,33 @@ const initClientExperienceCards = () => {
 // ─────────────────────────────────────────────────────────
 // 9. Notre Approche - Progressive Animations
 // ─────────────────────────────────────────────────────────
+const revealApprocheFallback = () => { // [PATCH] ensure visibility when animations fail
+  const section = document.querySelector('.approche-section');
+  if (!section) return;
+
+  section.classList.add('approche-fallback');
+
+  const elements = section.querySelectorAll(
+    '.approche-header, .timeline-connector, .timeline-card, .approche-cta-wrapper'
+  );
+
+  elements.forEach((el) => {
+    el.classList.add('is-visible');
+  });
+};
+
 const bootApprocheAnimations = () => {
   import('./approche-animations.js')
     .then((module) => {
       if (module && typeof module.initApproche === 'function') {
         module.initApproche();
+      } else {
+        revealApprocheFallback(); // [PATCH]
       }
     })
     .catch((error) => {
       console.warn('Approche animations unavailable', error);
+      revealApprocheFallback(); // [PATCH]
     });
 };
 

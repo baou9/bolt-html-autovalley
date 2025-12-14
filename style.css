@@ -3491,6 +3491,26 @@ html.no-js .service-card { /* // [PATCH] ensure visibility when scripts are bloc
   opacity: 1;
 }
 
+/* Fallback: ensure approach content stays visible if animations fail */
+.approche-section.approche-fallback .approche-header { /* // [PATCH] */
+  opacity: 1; /* // [PATCH] */
+  transform: none; /* // [PATCH] */
+}
+
+.approche-section.approche-fallback .timeline-connector { /* // [PATCH] */
+  transform: scaleX(1); /* // [PATCH] */
+}
+
+.approche-section.approche-fallback .timeline-card { /* // [PATCH] */
+  opacity: 1; /* // [PATCH] */
+  transform: none; /* // [PATCH] */
+}
+
+.approche-section.approche-fallback .approche-cta-wrapper { /* // [PATCH] */
+  opacity: 1; /* // [PATCH] */
+  transform: none; /* // [PATCH] */
+}
+
 /* Top Horizontal Laser Beam */
 .approche-header::before {
   content: '';
