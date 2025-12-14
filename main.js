@@ -40,13 +40,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
     if (shouldLimitHeroEffects) {
-      videoEl.removeAttribute("autoplay"); // [PATCH]
-      videoEl.removeAttribute("loop"); // [PATCH]
-      videoEl.preload = "metadata"; // [PATCH] keep only the first frame on constrained devices
-      videoEl.pause(); // [PATCH]
-      videoSourceEl.removeAttribute("src"); // [PATCH] avoid loading remote previews on iOS/mobile
-      videoEl.classList.add("hero-lg__video--disabled"); // [PATCH]
+      videoEl.setAttribute("autoplay", "true"); // [PATCH] keep a single source playing without swaps
+      videoEl.setAttribute("loop", "true"); // [PATCH]
+      videoEl.preload = "auto"; // [PATCH] allow smooth playback of the first video only
+      videoSourceEl.src = videoPlaylist[0]; // [PATCH] lock to the first video to avoid reloading the playlist
+      videoEl.classList.remove("hero-lg__video--disabled"); // [PATCH]
       videoEl.load(); // [PATCH]
+
+      const ensureSinglePlay = () => {
+        const p = videoEl.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(() => {
+            // Autoplay might be blocked; fail silently.
+          });
+        }
+      };
+
+      videoEl.addEventListener("canplay", ensureSinglePlay, { once: true }); // [PATCH]
+      ensureSinglePlay(); // [PATCH]
+
       return; // [PATCH]
     }
 
