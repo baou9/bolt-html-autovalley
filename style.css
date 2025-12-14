@@ -5580,11 +5580,19 @@ body,
 
     .clients-strip__panel {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: 220px auto;
+        grid-template-rows: minmax(240px, 45vh) auto;
+        align-items: start;
+    }
+
+    .panel-content {
+        grid-row: 2;
     }
 
     .panel-image {
-        min-height: 220px;
+        grid-row: 1;
+        min-height: 240px;
+        border-radius: 18px 18px 0 0;
+        overflow: hidden;
     }
 
     .panel-image::after {
@@ -5620,6 +5628,10 @@ body,
         min-height: auto;
     }
 
+    .panel-content {
+        gap: 1.25rem;
+    }
+
     .clients-strip__pill {
         padding-block: 0.75rem;
         font-size: 0.9rem;
@@ -5631,10 +5643,11 @@ body,
 
     .panel-stats {
         gap: 1.25rem;
+        flex-direction: column;
     }
 
     .panel-stats .stat-box {
-        flex: 1 1 45%;
+        flex: 1 1 100%;
     }
 
     .panel-actions {
