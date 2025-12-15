@@ -1,39 +1,60 @@
-import Lenis from 'lenis';
-
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let LenisConstructor = null;
+
+async function loadLenisModule() {
+  if (LenisConstructor) return LenisConstructor;
+  if (typeof window !== 'undefined' && window.Lenis) {
+    LenisConstructor = window.Lenis;
+    return LenisConstructor;
+  }
+
+  const module = await import('https://unpkg.com/lenis@1.3.16/dist/lenis.esm.js');
+  LenisConstructor = module.default || module.Lenis || module;
+  return LenisConstructor;
+}
 
 export function initLenisSmoothScroll() {
   if (prefersReducedMotion) return null;
 
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 2,
-    infinite: false,
-  });
+  loadLenisModule()
+    .then((LenisModule) => {
+      const Lenis = LenisModule;
+      if (!Lenis) return null;
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      });
 
-  requestAnimationFrame(raf);
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        lenis.scrollTo(target, { offset: -80 });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
       }
-    });
-  });
 
-  return lenis;
+      requestAnimationFrame(raf);
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            lenis.scrollTo(target, { offset: -80 });
+          }
+        });
+      });
+
+      return lenis;
+    })
+    .catch(() => {
+      // Lenis failed to load; gracefully skip smooth scroll to keep other interactions active.
+    });
 }
 
 export function initCustomCursor() {

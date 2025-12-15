@@ -17,6 +17,14 @@ if (document.readyState === 'loading') {
 document.addEventListener("DOMContentLoaded", () => {
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // [PATCH]
+  const prefersSaveData = navigator.connection && navigator.connection.saveData; // [PATCH]
+  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches; // [PATCH]
+  const isNarrowViewport = window.matchMedia("(max-width: 1024px)").matches; // [PATCH]
+  const isLowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4; // [PATCH]
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent); // [PATCH]
+
+  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport || isLowMemory || isIOS; // [PATCH]
 
   /* ===================== 1. VIDEO PLAYLIST ===================== */
 
@@ -32,6 +40,29 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
+    if (shouldLimitHeroEffects) {
+      videoEl.setAttribute("autoplay", "true"); // [PATCH] keep a single source playing without swaps
+      videoEl.setAttribute("loop", "true"); // [PATCH]
+      videoEl.preload = "auto"; // [PATCH] allow smooth playback of the first video only
+      videoSourceEl.src = videoPlaylist[0]; // [PATCH] lock to the first video to avoid reloading the playlist
+      videoEl.classList.remove("hero-lg__video--disabled"); // [PATCH]
+      videoEl.load(); // [PATCH]
+
+      const ensureSinglePlay = () => {
+        const p = videoEl.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(() => {
+            // Autoplay might be blocked; fail silently.
+          });
+        }
+      };
+
+      videoEl.addEventListener("canplay", ensureSinglePlay, { once: true }); // [PATCH]
+      ensureSinglePlay(); // [PATCH]
+
+      return; // [PATCH]
+    }
+
     const ensurePlay = () => {
       const p = videoEl.play();
       if (p && typeof p.catch === "function") {
@@ -55,6 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===================== 2. WEBGL LIQUID GLASS ===================== */
 
   const canvas = document.getElementById("heroLiquidCanvas");
+  if (canvas && shouldLimitHeroEffects) { // [PATCH]
+    canvas.classList.add("hero-lg__liquid-canvas--disabled"); // [PATCH]
+    return; // [PATCH]
+  }
+
   if (canvas) {
     const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
 
@@ -224,8 +260,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ILS NOUS FONT CONFIANCE – infinite loop for logo carousel
   const trustTrack = document.getElementById("trust-carousel-track");
-  if (trustTrack && trustTrack.dataset.cloned !== "true") {
+  const trustWrapper = document.querySelector(".trust-section .carousel-wrapper");
+
+  if (trustTrack && trustWrapper && trustTrack.dataset.cloned !== "true") {
     const trustContent = trustTrack.innerHTML;
+
+    // [PATCH] Repeat logos until the track is wide enough to loop seamlessly
+    while (trustTrack.scrollWidth < trustWrapper.clientWidth * 2) {
+      trustTrack.innerHTML += trustContent;
+    }
+
+    // Ensure at least one duplicate for smooth animation
     trustTrack.innerHTML += trustContent;
     trustTrack.dataset.cloned = "true";
   }
@@ -566,6 +611,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const left = pillRect.left - navRect.left;
             const width = pillRect.width;
 
+            indicator.style.top = "auto";
+            indicator.style.bottom = "0";
+            indicator.style.right = "auto";
+            indicator.style.left = "0";
             indicator.style.transform = `translateX(${left}px)`;
             indicator.style.width = `${width}px`;
             indicator.style.height = `3px`;
@@ -573,6 +622,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const top = pillRect.top - navRect.top;
             const height = pillRect.height;
 
+            indicator.style.top = "0";
+            indicator.style.bottom = "auto";
+            indicator.style.left = "0";
+            indicator.style.right = "auto";
             indicator.style.transform = `translateY(${top}px)`;
             indicator.style.height = `${height}px`;
             indicator.style.width = `3px`;
