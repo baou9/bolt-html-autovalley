@@ -91,6 +91,12 @@
                          inset 0 1px 0 rgba(255, 120, 120, 0.35);
   --ghost-focus-outline: rgba(255, 80, 80, 0.85);
 
+  /* [PATCH] Section edge fades for seamless transitions */
+  --section-fade-top: linear-gradient(180deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
+  --section-fade-bottom: linear-gradient(0deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
+  --section-fade-red-top: linear-gradient(180deg, rgba(185, 5, 4, 0.35) 0%, rgba(5, 6, 9, 0) 42%);
+  --section-fade-red-bottom: linear-gradient(0deg, rgba(185, 5, 4, 0.3) 0%, rgba(5, 6, 9, 0) 42%);
+
   --card-bg-normal: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 60%),
     rgba(10, 7, 15, 0.96);
   --card-bg-strong: radial-gradient(circle at top left, rgba(255, 255, 255, 0.10), transparent 55%),
@@ -1430,7 +1436,10 @@ body,
 
 .blog-section {
   position: relative;
-  background: var(--bg-section-strong);
+  background:
+    var(--section-fade-red-top),
+    var(--section-fade-bottom),
+    var(--bg-section-strong);
   overflow: hidden;
   isolation: isolate;
 }
@@ -1857,7 +1866,10 @@ body,
 
 .section-noustrouver {
   position: relative;
-  background: var(--bg-section-soft);
+  background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
+    var(--bg-section-soft);
   overflow: hidden;
   isolation: isolate;
 }
@@ -2148,6 +2160,8 @@ body,
   position: relative;
   padding: 0;
   background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center, rgba(185, 5, 4, 0.4) 0%, transparent 60%),
     linear-gradient(180deg, #050509 0%, #050509 100%);
   overflow: hidden;
@@ -2728,6 +2742,8 @@ body,
   padding: 40px 28px 56px;
   border-radius: 32px;
   background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center,
       rgba(255, 255, 255, 0.05) 0%,
       rgba(7, 7, 9, 0.96) 55%,
@@ -3258,7 +3274,10 @@ body,
 
 .approche-section {
   position: relative;
-  background: #0a0a0a;
+  background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
+    #0a0a0a;
   padding: 0;
   overflow: hidden;
 }
@@ -4785,6 +4804,8 @@ body,
   position: relative;
   padding: clamp(4rem, 8vw, 6rem) clamp(1.75rem, 6vw, 4.75rem) clamp(3.5rem, 7vw, 5rem);
   background:
+      var(--section-fade-top),
+      var(--section-fade-bottom),
       radial-gradient(circle at 15% 0%, rgba(185, 5, 4, 0.3), transparent 55%),
       radial-gradient(circle at 85% 100%, rgba(0, 0, 0, 0.9), var(--av-bg) 70%);
   color: var(--av-text);
@@ -5054,6 +5075,8 @@ body,
     position: relative;
     padding: clamp(4rem, 8vw, 6rem) clamp(1.75rem, 6vw, 4.75rem);
     background: radial-gradient(circle at 110% -10%, rgba(185, 5, 4, 0.18), transparent 60%),
+                var(--section-fade-top),
+                var(--section-fade-bottom),
                 radial-gradient(circle at -10% 110%, rgba(4, 4, 8, 0.9), var(--av-bg) 70%);
     color: var(--av-text);
     overflow: hidden;
@@ -6246,6 +6269,8 @@ body,
   padding: 100px 20px 120px;
   overflow: hidden;
   background:
+    var(--section-fade-red-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center, #2b0808 0, #050609 55%, #000000 100%);
 }
 
@@ -6697,6 +6722,8 @@ body,
     position: relative;
     padding: clamp(4rem, 8vw, 5.5rem) clamp(1.75rem, 6vw, 4.75rem);
     background: radial-gradient(circle at 50% 0%, rgba(185, 5, 4, 0.18), transparent 60%),
+                var(--section-fade-top),
+                var(--section-fade-bottom),
                 radial-gradient(circle at 0% 110%, #050101, #000000 70%);
     color: #ffffff;
 }
@@ -7446,6 +7473,8 @@ body {
     position: relative;
     padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6vw, 4.5rem);
     background:
+        var(--section-fade-top),
+        var(--section-fade-bottom),
         radial-gradient(circle at 10% 0%, rgba(185, 5, 4, 0.3), transparent 55%),
         radial-gradient(circle at 90% 110%, rgba(0, 0, 0, 0.9), var(--av-bg) 70%);
     color: var(--av-text);
