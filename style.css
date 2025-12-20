@@ -2158,7 +2158,7 @@ body,
 
 .footer-cta-section {
   position: relative;
-  padding: 0;
+  padding: 0 0 clamp(56px, 8vw, 96px); /* [PATCH] add breathing room below CTA band */
   background:
     var(--section-fade-top),
     var(--section-fade-bottom),
