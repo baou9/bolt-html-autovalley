@@ -2158,7 +2158,7 @@ body,
 
 .footer-cta-section {
   position: relative;
-  padding: 0 0 clamp(56px, 8vw, 96px); /* [PATCH] add breathing room below CTA band */
+  padding: clamp(56px, 8vw, 96px) 0 clamp(56px, 8vw, 96px); /* [PATCH] balanced breathing room above/below CTA band */
   background:
     var(--section-fade-top),
     var(--section-fade-bottom),
@@ -4030,8 +4030,8 @@ body,
 .approche-cta-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
-  margin-bottom: clamp(56px, 9vw, 104px); /* [PATCH] add breathing room after CTA */
+  margin-top: clamp(56px, 9vw, 104px);
+  margin-bottom: clamp(56px, 9vw, 104px); /* [PATCH] balanced breathing room around CTA */
   opacity: 0;
   transform: translateY(30px);
 }
