@@ -4031,6 +4031,7 @@ body,
   display: flex;
   justify-content: center;
   margin-top: 80px;
+  margin-bottom: clamp(56px, 9vw, 104px); /* [PATCH] add breathing room after CTA */
   opacity: 0;
   transform: translateY(30px);
 }
