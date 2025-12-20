@@ -6901,9 +6901,10 @@ body,
 .carousel-track {
     display: flex;
     align-items: center;
-    gap: 78px; /* [PATCH] tighter spacing to keep the loop visually continuous */
+    gap: 64px; /* [PATCH] refined spacing for smoother, denser loop */
     width: max-content;
-    animation: scroll-left 25s linear infinite;
+    animation: scroll-left 32s linear infinite; /* [PATCH] slower glide for premium feel */
+    will-change: transform;
 }
 
 .glass-capsule:hover .carousel-track {
