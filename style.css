@@ -91,6 +91,12 @@
                          inset 0 1px 0 rgba(255, 120, 120, 0.35);
   --ghost-focus-outline: rgba(255, 80, 80, 0.85);
 
+  /* [PATCH] Section edge fades for seamless transitions */
+  --section-fade-top: linear-gradient(180deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
+  --section-fade-bottom: linear-gradient(0deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
+  --section-fade-red-top: linear-gradient(180deg, rgba(185, 5, 4, 0.35) 0%, rgba(5, 6, 9, 0) 42%);
+  --section-fade-red-bottom: linear-gradient(0deg, rgba(185, 5, 4, 0.3) 0%, rgba(5, 6, 9, 0) 42%);
+
   --card-bg-normal: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 60%),
     rgba(10, 7, 15, 0.96);
   --card-bg-strong: radial-gradient(circle at top left, rgba(255, 255, 255, 0.10), transparent 55%),
@@ -1430,7 +1436,10 @@ body,
 
 .blog-section {
   position: relative;
-  background: var(--bg-section-strong);
+  background:
+    var(--section-fade-red-top),
+    var(--section-fade-bottom),
+    var(--bg-section-strong);
   overflow: hidden;
   isolation: isolate;
 }
@@ -1857,7 +1866,10 @@ body,
 
 .section-noustrouver {
   position: relative;
-  background: var(--bg-section-soft);
+  background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
+    var(--bg-section-soft);
   overflow: hidden;
   isolation: isolate;
 }
@@ -2146,8 +2158,10 @@ body,
 
 .footer-cta-section {
   position: relative;
-  padding: 0;
+  padding: clamp(56px, 8vw, 96px) 0 clamp(56px, 8vw, 96px); /* [PATCH] balanced breathing room above/below CTA band */
   background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center, rgba(185, 5, 4, 0.4) 0%, transparent 60%),
     linear-gradient(180deg, #050509 0%, #050509 100%);
   overflow: hidden;
@@ -2728,6 +2742,8 @@ body,
   padding: 40px 28px 56px;
   border-radius: 32px;
   background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center,
       rgba(255, 255, 255, 0.05) 0%,
       rgba(7, 7, 9, 0.96) 55%,
@@ -3258,7 +3274,10 @@ body,
 
 .approche-section {
   position: relative;
-  background: #0a0a0a;
+  background:
+    var(--section-fade-top),
+    var(--section-fade-bottom),
+    #0a0a0a;
   padding: 0;
   overflow: hidden;
 }
@@ -3290,12 +3309,20 @@ body,
   left: 0;
   right: 0;
   height: 500px;
-  background: radial-gradient(
-    ellipse 90% 100% at 50% 100%,
-    rgba(185, 5, 4, 0.08) 0%,
-    rgba(185, 5, 4, 0.02) 50%,
-    transparent 80%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 6, 9, 0.9) 0%,
+      rgba(12, 8, 10, 0.8) 28%,
+      rgba(43, 8, 8, 0.38) 62%,
+      rgba(43, 8, 8, 0) 100%
+    ),
+    radial-gradient(
+      ellipse 90% 100% at 50% 100%,
+      rgba(185, 5, 4, 0.08) 0%,
+      rgba(185, 5, 4, 0.02) 50%,
+      transparent 80%
+    );
   pointer-events: none;
   z-index: 1;
 }
@@ -4011,7 +4038,8 @@ body,
 .approche-cta-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: clamp(56px, 9vw, 104px);
+  margin-bottom: clamp(56px, 9vw, 104px); /* [PATCH] balanced breathing room around CTA */
   opacity: 0;
   transform: translateY(30px);
 }
@@ -4058,6 +4086,23 @@ body,
   transition: opacity 800ms ease;
   pointer-events: none;
   z-index: 0;
+}
+
+.approche-cta-card::after { /* [PATCH] soften bottom edge to avoid hard cutoff */
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(90px, 16vw, 180px);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.65) 55%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 .approche-cta-card.scrolled::before {
@@ -4785,6 +4830,8 @@ body,
   position: relative;
   padding: clamp(4rem, 8vw, 6rem) clamp(1.75rem, 6vw, 4.75rem) clamp(3.5rem, 7vw, 5rem);
   background:
+      var(--section-fade-top),
+      var(--section-fade-bottom),
       radial-gradient(circle at 15% 0%, rgba(185, 5, 4, 0.3), transparent 55%),
       radial-gradient(circle at 85% 100%, rgba(0, 0, 0, 0.9), var(--av-bg) 70%);
   color: var(--av-text);
@@ -5054,6 +5101,8 @@ body,
     position: relative;
     padding: clamp(4rem, 8vw, 6rem) clamp(1.75rem, 6vw, 4.75rem);
     background: radial-gradient(circle at 110% -10%, rgba(185, 5, 4, 0.18), transparent 60%),
+                var(--section-fade-top),
+                var(--section-fade-bottom),
                 radial-gradient(circle at -10% 110%, rgba(4, 4, 8, 0.9), var(--av-bg) 70%);
     color: var(--av-text);
     overflow: hidden;
@@ -6246,7 +6295,27 @@ body,
   padding: 100px 20px 120px;
   overflow: hidden;
   background:
+    var(--section-fade-red-top),
+    var(--section-fade-bottom),
     radial-gradient(circle at top center, #2b0808 0, #050609 55%, #000000 100%);
+}
+
+.why-section::before { /* [PATCH] top bridge fade from approche */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12%;
+  height: clamp(220px, 26vw, 340px);
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 9, 0.92) 0%,
+    rgba(16, 10, 12, 0.82) 30%,
+    rgba(43, 8, 8, 0.46) 65%,
+    rgba(43, 8, 8, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .bokeh {
@@ -6697,6 +6766,8 @@ body,
     position: relative;
     padding: clamp(4rem, 8vw, 5.5rem) clamp(1.75rem, 6vw, 4.75rem);
     background: radial-gradient(circle at 50% 0%, rgba(185, 5, 4, 0.18), transparent 60%),
+                var(--section-fade-top),
+                var(--section-fade-bottom),
                 radial-gradient(circle at 0% 110%, #050101, #000000 70%);
     color: #ffffff;
 }
@@ -6873,9 +6944,10 @@ body,
 .carousel-track {
     display: flex;
     align-items: center;
-    gap: 78px; /* [PATCH] tighter spacing to keep the loop visually continuous */
+    gap: 64px; /* [PATCH] refined spacing for smoother, denser loop */
     width: max-content;
-    animation: scroll-left 25s linear infinite;
+    animation: scroll-left 32s linear infinite; /* [PATCH] slower glide for premium feel */
+    will-change: transform;
 }
 
 .glass-capsule:hover .carousel-track {
@@ -7446,6 +7518,8 @@ body {
     position: relative;
     padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 6vw, 4.5rem);
     background:
+        var(--section-fade-top),
+        var(--section-fade-bottom),
         radial-gradient(circle at 10% 0%, rgba(185, 5, 4, 0.3), transparent 55%),
         radial-gradient(circle at 90% 110%, rgba(0, 0, 0, 0.9), var(--av-bg) 70%);
     color: var(--av-text);

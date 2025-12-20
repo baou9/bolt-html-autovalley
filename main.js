@@ -262,15 +262,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const trustWrapper = document.querySelector(".trust-section .carousel-wrapper");
 
   if (trustTrack && trustWrapper && trustTrack.dataset.cloned !== "true") {
-    const trustContent = trustTrack.innerHTML;
+    const originals = Array.from(trustTrack.children).map((node) => node.cloneNode(true));
+    trustTrack.innerHTML = "";
 
-    // [PATCH] Repeat logos until the track is wide enough to loop seamlessly
-    while (trustTrack.scrollWidth < trustWrapper.clientWidth * 2) {
-      trustTrack.innerHTML += trustContent;
+    // [PATCH] Build exactly two identical sets for a seamless 0% → -50% marquee
+    originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+    originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+
+    // Guard: if the duplicated width is still smaller than the viewport, append one more set
+    if (trustTrack.scrollWidth < trustWrapper.clientWidth * 1.5) {
+      originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
     }
 
-    // Ensure at least one duplicate for smooth animation
-    trustTrack.innerHTML += trustContent;
     trustTrack.dataset.cloned = "true";
   }
 });
