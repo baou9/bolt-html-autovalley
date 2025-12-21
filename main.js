@@ -1078,3 +1078,192 @@ const yearTarget = document.getElementById('current-year');
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear().toString();
 }
+
+// ─────────────────────────────────────────────────────────
+// 13. Académie – Reveal on scroll
+// ─────────────────────────────────────────────────────────
+function initAcademyReveal() { // [PATCH]
+  const cards = document.querySelectorAll('.academy-card, .academy-topic');
+  if (!cards.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    cards.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '40px 0px' });
+
+  cards.forEach((el, idx) => {
+    el.style.transitionDelay = `${Math.min(idx * 40, 200)}ms`;
+    io.observe(el);
+  });
+}
+
+function initAcademyCarouselCounter() { // [PATCH]
+  const list = document.querySelector('.academy-list');
+  const counter = document.querySelector('.academy-carousel-counter');
+  if (!list || !counter) return;
+
+  const items = list.querySelectorAll('.academy-card--secondary');
+  if (!items.length) {
+    counter.style.display = 'none';
+    return;
+  }
+
+  const update = () => {
+    const center = list.scrollLeft + list.clientWidth / 2;
+    let closest = 0;
+    let minDist = Infinity;
+
+    items.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      const cardCenter = (rect.left - listRect.left) + rect.width / 2 + list.scrollLeft;
+      const dist = Math.abs(center - cardCenter);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = idx;
+      }
+    });
+
+    counter.textContent = `${closest + 1} / ${items.length}`;
+  };
+
+  let ticking = false;
+  list.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAcademyReveal();
+  initAcademyCarouselCounter();
+}); // [PATCH]
+
+// ─────────────────────────────────────────────────────────
+// 14. Footer accordions (mobile-only)
+// ─────────────────────────────────────────────────────────
+function initFooterAccordions() { // [PATCH]
+  const footer = document.getElementById('site-footer');
+  if (!footer) return;
+
+  const accordions = Array.from(footer.querySelectorAll('.footer-accordion'));
+  if (!accordions.length) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 860px)');
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  let isEnabled = false;
+  let cleanupFns = [];
+
+  const setExpandedState = (accordion, expanded) => {
+    const trigger = accordion.querySelector('.footer-accordion-trigger');
+    const panel = accordion.querySelector('.footer-accordion-panel');
+    if (!trigger || !panel) return;
+
+    accordion.classList.toggle('is-open', expanded);
+    trigger.setAttribute('aria-expanded', String(expanded));
+
+    if (expanded) {
+      panel.style.maxHeight = reduceMotionQuery.matches ? 'none' : `${panel.scrollHeight}px`;
+    } else {
+      panel.style.maxHeight = '0px';
+    }
+  };
+
+  const refreshOpenPanels = () => {
+    if (!isEnabled) return;
+    accordions.forEach((accordion) => {
+      const trigger = accordion.querySelector('.footer-accordion-trigger');
+      const panel = accordion.querySelector('.footer-accordion-panel');
+      if (!trigger || !panel) return;
+
+      if (trigger.getAttribute('aria-expanded') === 'true') {
+        panel.style.maxHeight = reduceMotionQuery.matches ? 'none' : `${panel.scrollHeight}px`;
+      }
+    });
+  };
+
+  const enableAccordions = () => {
+    if (isEnabled) return;
+    isEnabled = true;
+    footer.classList.add('footer-accordions-enabled');
+
+    accordions.forEach((accordion) => {
+      const trigger = accordion.querySelector('.footer-accordion-trigger');
+      const panel = accordion.querySelector('.footer-accordion-panel');
+      if (!trigger || !panel) return;
+
+      trigger.disabled = false;
+      trigger.removeAttribute('aria-disabled');
+      setExpandedState(accordion, false);
+
+      const onToggle = () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        setExpandedState(accordion, !expanded);
+      };
+
+      trigger.addEventListener('click', onToggle);
+      cleanupFns.push(() => trigger.removeEventListener('click', onToggle));
+    });
+
+    const onResize = () => refreshOpenPanels();
+    window.addEventListener('resize', onResize);
+    cleanupFns.push(() => window.removeEventListener('resize', onResize));
+  };
+
+  const disableAccordions = () => {
+    if (isEnabled) {
+      cleanupFns.forEach((fn) => fn());
+      cleanupFns = [];
+
+      isEnabled = false;
+      footer.classList.remove('footer-accordions-enabled');
+    }
+
+    accordions.forEach((accordion) => {
+      const trigger = accordion.querySelector('.footer-accordion-trigger');
+      const panel = accordion.querySelector('.footer-accordion-panel');
+      if (!trigger || !panel) return;
+
+      accordion.classList.add('is-open');
+      trigger.disabled = true;
+      trigger.setAttribute('aria-disabled', 'true');
+      trigger.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = '';
+      panel.style.opacity = '';
+      panel.style.visibility = '';
+    });
+  };
+
+  const evaluate = () => {
+    if (mobileQuery.matches) {
+      enableAccordions();
+    } else {
+      disableAccordions();
+    }
+  };
+
+  evaluate();
+  mobileQuery.addEventListener('change', evaluate);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initFooterAccordions();
+}); // [PATCH]
