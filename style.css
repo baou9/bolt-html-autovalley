@@ -3645,6 +3645,7 @@ body,
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
+  position: relative;
 }
 
 .service-card {
@@ -4046,17 +4047,57 @@ body,
 
 @media (max-width: 640px) {
   .services-section {
-    border-radius: 22px;
-    padding: 26px 16px 28px;
+    border-radius: 20px;
+    padding: 22px 12px 24px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6);
   }
 
   .services-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: unset;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(78%, 320px);
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 6px 12px;
+    margin: 0 -6px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  }
+
+  .services-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .service-card {
-    height: 260px;
+    height: auto;
+    min-height: 230px;
+    scroll-snap-align: start;
+    padding: 18px 14px;
+  }
+
+  .service-overlay {
+    padding: 18px 14px;
+    gap: 10px;
+  }
+
+  .overlay-header {
+    align-items: flex-start;
+  }
+
+  .service-title {
+    font-size: 17px;
+  }
+
+  .overlay-content ul {
+    gap: 6px;
+  }
+
+  .overlay-content li {
+    font-size: 14px;
   }
 
   .section-title {
@@ -5099,6 +5140,86 @@ body,
   }
 }
 
+@media (max-width: 640px) {
+  .approche-section {
+    padding: 0 0 56px;
+  }
+
+  .approche-section::before {
+    height: 260px;
+    opacity: 0.7;
+  }
+
+  .approche-section::after {
+    height: 120px;
+    background:
+      linear-gradient(180deg, rgba(5, 6, 9, 0.9) 0%, rgba(18, 10, 12, 0.78) 40%, rgba(43, 8, 8, 0) 100%),
+      radial-gradient(ellipse 90% 100% at 50% 100%, rgba(185, 5, 4, 0.08) 0%, rgba(185, 5, 4, 0.04) 48%, transparent 82%);
+  }
+
+  .approche-header {
+    padding: 38px 0 26px;
+    gap: 10px;
+  }
+
+  .approche-subtitle {
+    max-width: 92%;
+    margin: 0 auto;
+  }
+
+  .timeline-wrapper {
+    position: relative;
+  }
+
+  .timeline-connector,
+  .timeline-beam {
+    display: none;
+  }
+
+  .timeline-grid {
+    grid-template-columns: unset;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(82%, 260px);
+    gap: 12px;
+    overflow-x: auto;
+    padding: 6px 10px 18px;
+    margin: 0 -10px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .timeline-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .timeline-card {
+    margin-left: 0;
+    min-height: 240px;
+    padding: 24px 18px;
+    scroll-snap-align: start;
+  }
+
+  .timeline-title {
+    font-size: 18px;
+  }
+
+  .timeline-description {
+    font-size: 14px;
+  }
+
+  .approche-cta-wrapper {
+    margin-top: 36px;
+    margin-bottom: 64px;
+  }
+
+  .approche-cta-card {
+    padding: 30px 24px;
+    border-radius: 20px;
+  }
+}
+
 @media (max-width: 480px) {
   .approche-container {
     padding: 0 20px;
@@ -5120,9 +5241,9 @@ body,
   }
 
   .timeline-card {
-    margin-left: 60px;
-    padding: 32px 24px;
-    min-height: 280px;
+    margin-left: 0;
+    padding: 26px 18px;
+    min-height: 230px;
   }
 
   .card-number {
