@@ -178,7 +178,8 @@ class TestimonialsManager {
   }
 
   filterTestimonials(filter) {
-    const cards = this.section.querySelectorAll('.testimonial-card');
+    // [PATCH] Limit filtering to the desktop set; rebuild mobile carousel separately
+    const cards = this.section.querySelectorAll('.testimonials-layout .testimonial-card, .testimonials-layout .testimonial-featured');
 
     cards.forEach((card, index) => {
       const category = card.dataset.category;
@@ -200,6 +201,10 @@ class TestimonialsManager {
         }
       }, 300);
     });
+
+    if (this.renderMobileCarousel) {
+      this.renderMobileCarousel(filter);
+    }
   }
 
   initMobileCarousel() {
@@ -213,112 +218,120 @@ class TestimonialsManager {
 
     if (!track || !paginationContainer) return;
 
-    const allCards = this.section.querySelectorAll('.testimonial-card');
+    this.renderMobileCarousel = (activeFilter = 'tous') => {
+      const sourceCards = Array.from(this.section.querySelectorAll('.testimonials-layout .testimonial-card, .testimonials-layout .testimonial-featured'));
+      const filteredCards = sourceCards.filter((card) => activeFilter === 'tous' || card.dataset.category === activeFilter);
 
-    track.innerHTML = '';
-    allCards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      clone.classList.remove('testimonial-featured', 'is-hidden', 'fade-out', 'fade-in');
-      clone.style.animation = 'none';
-      clone.style.opacity = '1';
-      clone.style.transform = 'none';
-      track.appendChild(clone);
-    });
+      this.stopMobileAutoplay();
+      this.currentMobileIndex = 0;
+      track.innerHTML = '';
 
-    const mobileCards = track.querySelectorAll('.testimonial-card');
-
-    paginationContainer.innerHTML = Array.from(mobileCards).map((_, index) =>
-      `<button class="carousel-dot ${index === 0 ? 'is-active' : ''}"
-              role="tab"
-              aria-label="Témoignage ${index + 1}"
-              aria-selected="${index === 0}"
-              data-index="${index}"></button>`
-    ).join('');
-
-    const dots = paginationContainer.querySelectorAll('.carousel-dot');
-
-    const updateCarousel = (index) => {
-      const targetCard = mobileCards[index];
-
-      if (!targetCard) return;
-
-      const scrollLeft = targetCard.offsetLeft - (track.clientWidth - targetCard.clientWidth) / 2;
-
-      track.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth'
+      filteredCards.forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.classList.remove('testimonial-featured', 'is-hidden', 'fade-out', 'fade-in');
+        clone.style.animation = 'none';
+        clone.style.opacity = '1';
+        clone.style.transform = 'none';
+        track.appendChild(clone);
       });
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === index);
-        dot.setAttribute('aria-selected', i === index);
-      });
+      const mobileCards = track.querySelectorAll('.testimonial-card');
 
-      this.currentMobileIndex = index;
-    };
+      paginationContainer.innerHTML = Array.from(mobileCards).map((_, index) =>
+        `<button class="carousel-dot ${index === 0 ? 'is-active' : ''}"
+                role="tab"
+                aria-label="Témoignage ${index + 1}"
+                aria-selected="${index === 0}"
+                data-index="${index}"></button>`
+      ).join('');
 
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        const newIndex = (this.currentMobileIndex - 1 + mobileCards.length) % mobileCards.length;
-        updateCarousel(newIndex);
-        this.resetMobileAutoplay(updateCarousel, mobileCards.length);
-      });
-    }
+      const dots = paginationContainer.querySelectorAll('.carousel-dot');
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        const newIndex = (this.currentMobileIndex + 1) % mobileCards.length;
-        updateCarousel(newIndex);
-        this.resetMobileAutoplay(updateCarousel, mobileCards.length);
-      });
-    }
+      const updateCarousel = (index) => {
+        const targetCard = mobileCards[index];
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        updateCarousel(index);
-        this.resetMobileAutoplay(updateCarousel, mobileCards.length);
-      });
-    });
+        if (!targetCard) return;
 
-    const handleScroll = () => {
-      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+        const scrollLeft = targetCard.offsetLeft - (track.clientWidth - targetCard.clientWidth) / 2;
 
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      mobileCards.forEach((card, index) => {
-        const cardCenter = card.offsetLeft + card.clientWidth / 2;
-        const distance = Math.abs(trackCenter - cardCenter);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      if (closestIndex !== this.currentMobileIndex) {
-        this.currentMobileIndex = closestIndex;
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('is-active', i === closestIndex);
-          dot.setAttribute('aria-selected', i === closestIndex);
+        track.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
         });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === index);
+          dot.setAttribute('aria-selected', i === index);
+        });
+
+        this.currentMobileIndex = index;
+      };
+
+      if (prevBtn) {
+        prevBtn.onclick = () => {
+          const newIndex = (this.currentMobileIndex - 1 + mobileCards.length) % mobileCards.length;
+          updateCarousel(newIndex);
+          this.resetMobileAutoplay(updateCarousel, mobileCards.length);
+        };
       }
+
+      if (nextBtn) {
+        nextBtn.onclick = () => {
+          const newIndex = (this.currentMobileIndex + 1) % mobileCards.length;
+          updateCarousel(newIndex);
+          this.resetMobileAutoplay(updateCarousel, mobileCards.length);
+        };
+      }
+
+      dots.forEach((dot, index) => {
+        dot.onclick = () => {
+          updateCarousel(index);
+          this.resetMobileAutoplay(updateCarousel, mobileCards.length);
+        };
+      });
+
+      const handleScroll = () => {
+        const trackCenter = track.scrollLeft + track.clientWidth / 2;
+
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        mobileCards.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const distance = Math.abs(trackCenter - cardCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        if (closestIndex !== this.currentMobileIndex) {
+          this.currentMobileIndex = closestIndex;
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('is-active', i === closestIndex);
+            dot.setAttribute('aria-selected', i === closestIndex);
+          });
+        }
+      };
+
+      track.onscroll = () => {
+        clearTimeout(this.mobileScrollTimeout);
+        this.mobileScrollTimeout = setTimeout(handleScroll, 100);
+      };
+
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!motionQuery.matches) {
+        this.startMobileAutoplay(updateCarousel, mobileCards.length);
+      }
+
+      track.ontouchstart = () => this.stopMobileAutoplay();
+      track.onmouseenter = () => this.stopMobileAutoplay();
+      track.onmouseleave = () => this.startMobileAutoplay(updateCarousel, mobileCards.length);
+      track.ontouchend = () => this.startMobileAutoplay(updateCarousel, mobileCards.length);
     };
 
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleScroll, 100);
-    }, { passive: true });
-
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!motionQuery.matches) {
-      this.startMobileAutoplay(updateCarousel, mobileCards.length);
-    }
-
-    track.addEventListener('touchstart', () => this.stopMobileAutoplay());
-    track.addEventListener('mouseenter', () => this.stopMobileAutoplay());
-    track.addEventListener('mouseleave', () => this.startMobileAutoplay(updateCarousel, mobileCards.length));
+    this.renderMobileCarousel('tous');
   }
 
   startMobileAutoplay(updateFn, totalCards) {
