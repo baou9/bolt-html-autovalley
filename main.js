@@ -1113,7 +1113,10 @@ function initAcademyCarouselCounter() { // [PATCH]
   if (!list || !counter) return;
 
   const items = list.querySelectorAll('.academy-card--secondary');
-  if (!items.length) return;
+  if (!items.length) {
+    counter.style.display = 'none';
+    return;
+  }
 
   const update = () => {
     const center = list.scrollLeft + list.clientWidth / 2;
