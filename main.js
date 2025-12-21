@@ -1107,4 +1107,48 @@ function initAcademyReveal() { // [PATCH]
   });
 }
 
-document.addEventListener('DOMContentLoaded', initAcademyReveal); // [PATCH]
+function initAcademyCarouselCounter() { // [PATCH]
+  const list = document.querySelector('.academy-list');
+  const counter = document.querySelector('.academy-carousel-counter');
+  if (!list || !counter) return;
+
+  const items = list.querySelectorAll('.academy-card--secondary');
+  if (!items.length) return;
+
+  const update = () => {
+    const center = list.scrollLeft + list.clientWidth / 2;
+    let closest = 0;
+    let minDist = Infinity;
+
+    items.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      const cardCenter = (rect.left - listRect.left) + rect.width / 2 + list.scrollLeft;
+      const dist = Math.abs(center - cardCenter);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = idx;
+      }
+    });
+
+    counter.textContent = `${closest + 1} / ${items.length}`;
+  };
+
+  let ticking = false;
+  list.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAcademyReveal();
+  initAcademyCarouselCounter();
+}); // [PATCH]
