@@ -2974,6 +2974,163 @@ body,
   z-index: 1;
 }
 
+.footer-accordion {
+  position: relative;
+}
+
+.footer-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 8px;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 200ms ease,
+    transform 180ms ease;
+}
+
+.site-footer:not(.footer-accordions-enabled) .footer-accordion-trigger {
+  cursor: default;
+}
+
+.footer-accordion-trigger:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion-trigger {
+  padding: 10px 12px;
+  margin: 0 -6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion-trigger:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.footer-accordion-trigger:focus-visible {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.35),
+    0 0 0 6px rgba(185, 5, 4, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.footer-accordion-trigger .footer-column-title {
+  margin: 0;
+}
+
+.footer-accordion-icon {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.12), transparent 70%),
+    rgba(255, 255, 255, 0.04);
+  box-shadow:
+    inset 0 0 8px rgba(255, 255, 255, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-accordion-icon::before,
+.footer-accordion-icon::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.footer-accordion-icon::after {
+  transform: rotate(90deg);
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion-icon {
+  display: inline-flex;
+}
+
+.footer-accordion.is-open .footer-accordion-icon::after {
+  transform: rotate(0deg);
+}
+
+.footer-accordion.is-open .footer-accordion-icon::before {
+  transform: scaleX(0.86);
+}
+
+.footer-accordion-panel {
+  position: relative;
+  max-height: none;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    max-height 320ms ease,
+    opacity 220ms ease,
+    visibility 0s linear,
+    padding 220ms ease;
+}
+
+.footer-accordion-panel::before {
+  content: '';
+  position: absolute;
+  inset: -4px -6px auto;
+  height: 12px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.footer-accordion.is-open .footer-accordion-panel::before {
+  opacity: 1;
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion-panel {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition:
+    max-height 320ms ease,
+    opacity 220ms ease,
+    visibility 0s linear 320ms,
+    padding 220ms ease;
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion.is-open .footer-accordion-panel {
+  opacity: 1;
+  visibility: visible;
+  padding-top: 6px;
+  padding-bottom: 4px;
+}
+
+.site-footer.footer-accordions-enabled .footer-accordion.is-open .footer-accordion-panel::before {
+  opacity: 1;
+}
+
 .footer-column-title {
   font-size: 0.95rem;
   text-transform: uppercase;
@@ -3309,6 +3466,11 @@ body,
     align-items: flex-start;
   }
 
+  .site-footer.footer-accordions-enabled .footer-accordion-panel {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
   .footer-bottom-right {
     width: 100%;
     display: flex;
@@ -3334,6 +3496,12 @@ body,
 
   .footer-lang-switch {
     order: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-accordion-panel {
+    transition: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
