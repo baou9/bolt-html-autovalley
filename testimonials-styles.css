@@ -454,6 +454,15 @@
     grid-template-columns: minmax(400px, 1fr) 2fr;
     align-items: start;
   }
+
+  /* [PATCH] Expand grid when featured card is hidden */
+  .testimonials-layout.testimonials-layout--single {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-layout.testimonials-layout--single .testimonials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
 }
 
 @media (min-width: 1280px) {
