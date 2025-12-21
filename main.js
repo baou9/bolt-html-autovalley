@@ -1078,3 +1078,33 @@ const yearTarget = document.getElementById('current-year');
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear().toString();
 }
+
+// ─────────────────────────────────────────────────────────
+// 13. Académie – Reveal on scroll
+// ─────────────────────────────────────────────────────────
+function initAcademyReveal() { // [PATCH]
+  const cards = document.querySelectorAll('.academy-card, .academy-topic');
+  if (!cards.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    cards.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '40px 0px' });
+
+  cards.forEach((el, idx) => {
+    el.style.transitionDelay = `${Math.min(idx * 40, 200)}ms`;
+    io.observe(el);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initAcademyReveal); // [PATCH]
