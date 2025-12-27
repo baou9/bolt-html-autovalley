@@ -1104,13 +1104,19 @@ body {
 
   .btn-footer-primary,
   .btn-footer-secondary {
-    width: 100%;
+    /* [PATCH] keep footer CTAs centered and consistent on small screens */
+    width: auto;
+    max-width: 320px;
+    align-self: center;
     padding: 14px 20px;
   }
 
   .footer-cta-actions {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
+    text-align: center;
   }
 }
 
