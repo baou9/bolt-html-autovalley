@@ -1,0 +1,851 @@
+/* ============================================================
+   AutoValley Services Page Styles
+   Consistent with main site premium design system
+   ============================================================ */
+
+/* ──────────────────────────────────────────────────────────
+   1. Services Hero Section
+   ────────────────────────────────────────────────────────── */
+
+.services-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px 80px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(185, 5, 4, 0.35) 0%,
+    rgba(5, 6, 9, 0.95) 60%,
+    #050609 100%
+  );
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b90504' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.services-hero__content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.services-hero__text {
+  margin-top: 32px;
+}
+
+.services-hero__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.services-hero__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  margin-bottom: 24px;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+
+.breadcrumb li {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: 12px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--brand-red);
+}
+
+.breadcrumb li[aria-current="page"] {
+  color: var(--brand-red);
+  font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────────────────
+   2. Featured Services Grid
+   ────────────────────────────────────────────────────────── */
+
+.services-featured {
+  padding: 100px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 9, 0.95) 0%,
+    rgba(10, 8, 12, 1) 50%,
+    rgba(5, 6, 9, 1) 100%
+  );
+}
+
+.services-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.service-detail-card {
+  padding: 40px 32px;
+  background: var(--card-bg-normal);
+  border: 1px solid var(--card-border-color);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-detail-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, transparent 0%, rgba(185, 5, 4, 0.4) 50%, transparent 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.service-detail-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+              0 0 40px rgba(185, 5, 4, 0.15);
+  border-color: rgba(185, 5, 4, 0.3);
+}
+
+.service-detail-card:hover::before {
+  opacity: 1;
+}
+
+.service-detail-card__icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(185, 5, 4, 0.15), rgba(185, 5, 4, 0.05));
+  border: 1px solid rgba(185, 5, 4, 0.3);
+  border-radius: 16px;
+  color: var(--brand-red);
+  margin-bottom: 24px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-detail-card:hover .service-detail-card__icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(185, 5, 4, 0.3);
+}
+
+.service-detail-card__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.service-detail-card__description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.service-detail-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.service-detail-card__features li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px 0;
+  padding-left: 28px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-detail-card__features li:last-child {
+  border-bottom: none;
+}
+
+.service-detail-card__features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.service-detail-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid rgba(185, 5, 4, 0.7);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-detail-card__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #b90504, #ff4d4d);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50px;
+}
+
+.service-detail-card__cta:hover {
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(185, 5, 4, 0.6);
+  transform: translateY(-2px);
+}
+
+.service-detail-card__cta:hover::before {
+  opacity: 1;
+}
+
+.service-detail-card__cta span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ──────────────────────────────────────────────────────────
+   3. Service Process Timeline
+   ────────────────────────────────────────────────────────── */
+
+.service-process {
+  padding: 100px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 9, 1) 0%,
+    rgba(8, 5, 10, 1) 100%
+  );
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 48px;
+  margin-top: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+}
+
+.process-step::after {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: calc(100% + 24px);
+  width: calc(100% - 48px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(185, 5, 4, 0.5), transparent);
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .process-timeline {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .process-step:not(:last-child)::after {
+    display: block;
+  }
+}
+
+.process-step__number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: transparent;
+  background: linear-gradient(135deg, var(--brand-red), #ff4d4d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.process-step__content {
+  padding: 0 12px;
+}
+
+.process-step__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 12px;
+}
+
+.process-step__description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* ──────────────────────────────────────────────────────────
+   4. Pricing Section
+   ────────────────────────────────────────────────────────── */
+
+.pricing-section {
+  padding: 100px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 5, 10, 1) 0%,
+    rgba(5, 6, 9, 1) 100%
+  );
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricing-card {
+  padding: 40px 32px;
+  background: var(--card-bg-normal);
+  border: 1px solid var(--card-border-color);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card--featured {
+  border-color: rgba(185, 5, 4, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+              0 0 30px rgba(185, 5, 4, 0.2);
+}
+
+.pricing-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-red), #ff4d4d);
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+              0 0 40px rgba(185, 5, 4, 0.15);
+  border-color: rgba(185, 5, 4, 0.3);
+}
+
+.pricing-card__badge {
+  display: inline-block;
+  padding: 6px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-red);
+  background: rgba(185, 5, 4, 0.1);
+  border: 1px solid rgba(185, 5, 4, 0.3);
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.pricing-card__badge--featured {
+  color: white;
+  background: linear-gradient(90deg, var(--brand-red), #ff4d4d);
+  border: none;
+}
+
+.pricing-card__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 16px;
+}
+
+.pricing-card__price {
+  margin-bottom: 32px;
+}
+
+.pricing-card__amount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-red);
+  display: block;
+}
+
+.pricing-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.pricing-card__features li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 12px 0;
+  padding-left: 28px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pricing-card__features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-card__features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.pricing-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid rgba(185, 5, 4, 0.7);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #b90504, #ff4d4d);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50px;
+}
+
+.pricing-card--featured .pricing-card__cta {
+  background: linear-gradient(90deg, #b90504, #ff4d4d);
+  border: none;
+}
+
+.pricing-card__cta:hover {
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(185, 5, 4, 0.7);
+  transform: translateY(-2px);
+}
+
+.pricing-card__cta:hover::before {
+  opacity: 1;
+}
+
+.pricing-card__cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-note {
+  margin-top: 48px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.pricing-note p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pricing-note strong {
+  color: var(--brand-red);
+}
+
+/* ──────────────────────────────────────────────────────────
+   5. CTA Section
+   ────────────────────────────────────────────────────────── */
+
+.cta-section {
+  padding: 100px 24px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(185, 5, 4, 0.15) 0%,
+    rgba(5, 6, 9, 1) 60%
+  );
+}
+
+.cta-box {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 48px;
+  background: var(--card-bg-strong);
+  border: 1px solid rgba(185, 5, 4, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7),
+              0 0 60px rgba(185, 5, 4, 0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(185, 5, 4, 0.1) 0%,
+    transparent 50%,
+    rgba(185, 5, 4, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+.cta-box__content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cta-box__description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-box__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.btn-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-lg--primary {
+  color: white;
+  background: linear-gradient(90deg, #b90504, #ff4d4d);
+  border: none;
+  box-shadow: 0 0 30px rgba(185, 5, 4, 0.5);
+}
+
+.btn-lg--primary:hover {
+  box-shadow: 0 0 40px rgba(185, 5, 4, 0.8);
+  transform: translateY(-3px);
+}
+
+.btn-lg--secondary {
+  color: white;
+  background: transparent;
+  border: 2px solid rgba(185, 5, 4, 0.7);
+}
+
+.btn-lg--secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #b90504, #ff4d4d);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50px;
+}
+
+.btn-lg--secondary:hover {
+  border-color: transparent;
+  box-shadow: 0 0 30px rgba(185, 5, 4, 0.6);
+  transform: translateY(-3px);
+}
+
+.btn-lg--secondary:hover::before {
+  opacity: 1;
+}
+
+.btn-lg svg,
+.btn-lg span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box__info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.info-item strong {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-item span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+/* ──────────────────────────────────────────────────────────
+   6. Responsive Design
+   ────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .services-featured__grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    min-height: 50vh;
+    padding: 120px 20px 60px;
+  }
+
+  .services-hero__title {
+    font-size: 2rem;
+  }
+
+  .services-hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .services-featured,
+  .service-process,
+  .pricing-section,
+  .cta-section {
+    padding: 60px 20px;
+  }
+
+  .services-featured__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-detail-card {
+    padding: 32px 24px;
+  }
+
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cta-box {
+    padding: 40px 28px;
+  }
+
+  .cta-box__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-box__info {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    font-size: 0.8rem;
+  }
+
+  .services-hero__title {
+    font-size: 1.75rem;
+  }
+
+  .service-detail-card__title {
+    font-size: 1.25rem;
+  }
+
+  .pricing-card {
+    padding: 32px 24px;
+  }
+
+  .cta-box__title {
+    font-size: 1.5rem;
+  }
+
+  .cta-box__description {
+    font-size: 1rem;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   7. Animation Enhancements
+   ────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-detail-card,
+  .pricing-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .service-detail-card:nth-child(1) { animation-delay: 0.1s; }
+  .service-detail-card:nth-child(2) { animation-delay: 0.2s; }
+  .service-detail-card:nth-child(3) { animation-delay: 0.3s; }
+  .service-detail-card:nth-child(4) { animation-delay: 0.4s; }
+  .service-detail-card:nth-child(5) { animation-delay: 0.5s; }
+  .service-detail-card:nth-child(6) { animation-delay: 0.6s; }
+
+  .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+  .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+  .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-detail-card,
+  .pricing-card {
+    opacity: 1;
+    animation: none;
+  }
+}
