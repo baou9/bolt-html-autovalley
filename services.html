@@ -22,77 +22,7 @@
     <!-- Skip to content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <header class="site-header">
-      <div class="header-glass-container">
-        <!-- Logo -->
-        <div class="logo-wrapper">
-          <a href="./index.html" aria-label="Retour à l'accueil">
-            <img src="https://avhtml.anyapi.ma/public/Converted-PNG.png"
-                 alt="AutoValley – Full Car Service"
-                 class="logo-img">
-          </a>
-        </div>
-
-        <!-- Desktop Nav -->
-        <nav class="desktop-nav" aria-label="Navigation principale">
-          <ul class="nav-links">
-            <li><a href="./index.html" class="nav-link">Accueil</a></li>
-            <li><a href="./services.html" class="nav-link nav-link--active">Services</a></li>
-            <li><a href="./index.html#apropos" class="nav-link">À propos</a></li>
-            <li><a href="./index.html#blog" class="nav-link">Blog</a></li>
-            <li><a href="./index.html#carrieres" class="nav-link">Carrières</a></li>
-            <li><a href="./index.html#faq" class="nav-link">FAQ</a></li>
-          </ul>
-        </nav>
-
-        <!-- Actions: language + CTA + burger -->
-        <div class="header-actions">
-          <button class="lang-switch" type="button" aria-label="Changer de langue">
-            <span>FR</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-
-          <a href="#rdv" class="btn-header-magnetic">
-            <span>Prendre RDV</span>
-            <span class="btn-shimmer" aria-hidden="true"></span>
-          </a>
-
-          <button
-              class="menu-trigger"
-              type="button"
-              aria-label="Ouvrir le menu"
-              aria-expanded="false"
-              aria-controls="mobile-nav"
-          >
-            <span class="hamburger">
-              <span></span>
-              <span></span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Mobile nav overlay -->
-    <div class="mobile-nav-overlay" aria-hidden="true">
-      <nav class="mobile-nav-content" id="mobile-nav" aria-label="Navigation mobile">
-        <ul>
-          <li style="--delay: 0.1s"><a href="./index.html" class="mobile-link">Accueil</a></li>
-          <li style="--delay: 0.2s"><a href="./services.html" class="mobile-link">Services</a></li>
-          <li style="--delay: 0.3s"><a href="./index.html#apropos" class="mobile-link">À propos</a></li>
-          <li style="--delay: 0.4s"><a href="./index.html#blog" class="mobile-link">Blog</a></li>
-          <li style="--delay: 0.5s"><a href="./index.html#carrieres" class="mobile-link">Carrières</a></li>
-          <li style="--delay: 0.6s"><a href="./index.html#faq" class="mobile-link">FAQ</a></li>
-        </ul>
-
-        <div class="mobile-cta" style="--delay: 0.7s">
-          <a href="#rdv" class="btn-mobile">Prendre RDV</a>
-        </div>
-      </nav>
-    </div>
+    <!-- @include "partials/header.html" -->
 
     <main id="main">
       <!-- HERO SECTION – SERVICES -->
@@ -522,153 +452,7 @@
       </section>
     </main>
 
-    <!-- FOOTER (copy from index.html) -->
-    <footer id="site-footer" class="site-footer" aria-label="Pied de page principal">
-      <div class="footer-grid">
-        <div class="footer-column footer-brand">
-          <div class="footer-logo-row">
-            <div class="footer-logo" aria-label="AutoValley">
-              <img src="./public/Converted-PNG.png" alt="AutoValley" loading="lazy" />
-            </div>
-          </div>
-          <p class="footer-brand-text">
-            AutoValley est l'atelier automobile premium à Casablanca, spécialisé en diagnostic,
-            mécanique, carrosserie et technologies de pointe.
-          </p>
-
-          <div class="footer-google-badge">
-            <div class="footer-google-stars" aria-hidden="true">★★★★★</div>
-            <div class="footer-google-text">
-              <span>5,0 / 5 sur Google</span>
-              <button class="footer-google-link" type="button">Voir nos avis vérifiés</button>
-            </div>
-          </div>
-
-          <p class="footer-badges-note">
-            Agréé SNTL et partenaire de grandes compagnies d'assurance.
-          </p>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-atelier"
-            id="footer-trigger-atelier"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">L'Atelier</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-atelier"
-            role="region"
-            aria-labelledby="footer-trigger-atelier"
-          >
-            <ul class="footer-links">
-              <li><a href="./index.html">Accueil</a></li>
-              <li><a href="./services.html">Nos Services</a></li>
-              <li><a href="./index.html#apropos">Notre Approche</a></li>
-              <li><a href="./index.html#technologie">Technologie &amp; Équipements</a></li>
-              <li><a href="./index.html#all-brands">Toutes les Marques</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-services"
-            id="footer-trigger-services"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Services</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-services"
-            role="region"
-            aria-labelledby="footer-trigger-services"
-          >
-            <ul class="footer-links">
-              <li><a href="#services-grid">Diagnostic & Mécanique</a></li>
-              <li><a href="#services-grid">Entretien & Maintenance</a></li>
-              <li><a href="#services-grid">Carrosserie & Peinture</a></li>
-              <li><a href="#services-grid">Véhicules Électriques</a></li>
-              <li><a href="#services-grid">Gestion Sinistres</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-info"
-            id="footer-trigger-info"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Informations</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-info"
-            role="region"
-            aria-labelledby="footer-trigger-info"
-          >
-            <ul class="footer-links">
-              <li><a href="./index.html#blog">Blog</a></li>
-              <li><a href="./index.html#faq">FAQ</a></li>
-              <li><a href="./index.html#carrieres">Carrières</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-contact"
-            id="footer-trigger-contact"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Contact</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-contact"
-            role="region"
-            aria-labelledby="footer-trigger-contact"
-          >
-            <ul class="footer-links">
-              <li><a href="tel:+212522123456">+212 522 123 456</a></li>
-              <li><a href="mailto:contact@autovalley.ma">contact@autovalley.ma</a></li>
-              <li>Zone Industrielle<br>Sidi Bernoussi<br>Casablanca</li>
-              <li>Lun-Sam : 8h-19h</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-inner">
-          <p class="footer-copyright">
-            &copy; 2024 AutoValley. Tous droits réservés.
-          </p>
-          <div class="footer-legal">
-            <a href="#">Mentions légales</a>
-            <a href="#">Politique de confidentialité</a>
-            <a href="#">CGV</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- @include "partials/footer.html" -->
 
     <!-- Service Details Modal -->
     <div id="service-modal" class="service-modal" aria-hidden="true">
@@ -689,12 +473,9 @@
       </div>
     </div>
 
-    <!-- Scroll progress bar -->
-    <div class="scroll-progress"></div>
+    <!-- @include "partials/mobile-float-cta.html" -->
 
-    <!-- Grain overlay -->
-    <div class="grain-overlay" aria-hidden="true"></div>
-
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./nav-active.js"></script>
+    <script type="module" src="./services-page.js"></script>
   </body>
 </html>
