@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nos Services d'Excellence – AutoValley | Casablanca</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,449 +14,780 @@
     <link rel="stylesheet" href="./header-responsive.css">
     <link rel="stylesheet" href="./header-styles.css">
     <link rel="stylesheet" href="./premium-styles.css">
-    <link rel="stylesheet" href="./testimonials-styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <link rel="stylesheet" href="./services-styles.css">
   </head>
   <body>
-    <!-- Skip to content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <!-- @include "partials/header.html" -->
 
     <main id="main">
-      <!-- HERO SECTION – SERVICES -->
-      <section class="hero-lg services-hero-section">
-        <div class="hero-lg__overlay" aria-hidden="true"></div>
 
-        <div class="hero-lg__content">
-          <div class="hero-lg__text">
-            <h1 class="hero-lg__title">Nos Services d'Excellence</h1>
-            <p class="hero-lg__subtitle">
-              La meilleure alternative aux concessionnaires automobiles à Casablanca.
-            </p>
+      <!-- HERO -->
+      <section class="sv-hero" id="services-hero">
+        <div class="sv-hero__bg" aria-hidden="true">
+          <img
+            src="https://images.pexels.com/photos/4489794/pexels-photo-4489794.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            alt=""
+            class="sv-hero__bg-img"
+            loading="eager"
+          />
+          <div class="sv-hero__overlay"></div>
+        </div>
+
+        <div class="sv-hero__inner">
+          <nav class="sv-hero__breadcrumb" aria-label="Fil d'Ariane">
+            <a href="./index.html">Accueil</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Services</span>
+          </nav>
+
+          <p class="sv-hero__kicker sv-reveal">EXPERTISE COMPLETE</p>
+          <h1 class="sv-hero__title sv-reveal">
+            Nos Services <span class="sv-hero__title-accent">d'Excellence</span>
+          </h1>
+          <p class="sv-hero__subtitle sv-reveal">
+            De la mecanique de precision a la carrosserie haute couture, un service complet
+            et transparent pour tous types de vehicules a Casablanca.
+          </p>
+
+          <div class="sv-hero__stats sv-reveal">
+            <div class="sv-hero__stat">
+              <span class="sv-hero__stat-value">15+</span>
+              <span class="sv-hero__stat-label">Annees d'expertise</span>
+            </div>
+            <div class="sv-hero__stat-divider" aria-hidden="true"></div>
+            <div class="sv-hero__stat">
+              <span class="sv-hero__stat-value">10 000+</span>
+              <span class="sv-hero__stat-label">Vehicules entretenus</span>
+            </div>
+            <div class="sv-hero__stat-divider" aria-hidden="true"></div>
+            <div class="sv-hero__stat">
+              <span class="sv-hero__stat-value">98%</span>
+              <span class="sv-hero__stat-label">Taux de satisfaction</span>
+            </div>
+            <div class="sv-hero__stat-divider" aria-hidden="true"></div>
+            <div class="sv-hero__stat">
+              <span class="sv-hero__stat-value">20+</span>
+              <span class="sv-hero__stat-label">Marques couvertes</span>
+            </div>
           </div>
 
-          <div class="hero-lg__ctas">
+          <div class="sv-hero__ctas sv-reveal">
             <a href="#rdv" class="btn-lg btn-lg--primary">
               <span>Prendre rendez-vous</span>
             </a>
-            <a href="#contact" class="btn-lg btn-lg--ghost">
-              <span>Demander un devis</span>
+            <a href="#sv-catalogue" class="btn-lg btn-lg--ghost">
+              <span>Explorer nos services</span>
             </a>
           </div>
         </div>
+
+        <div class="sv-hero__scroll" aria-hidden="true">
+          <div class="sv-hero__mouse">
+            <div class="sv-hero__wheel"></div>
+          </div>
+        </div>
       </section>
 
-      <!-- SERVICES GRID SECTION -->
-      <section id="services-grid" class="section services-grid-section">
-        <div class="section-inner">
-          <header class="section-header section-header-centered reveal-element">
-            <p class="section-kicker">NOTRE EXPERTISE</p>
-            <h2 class="section-title">Tous Nos Services Premium</h2>
+      <!-- SERVICE CATALOGUE -->
+      <section class="sv-catalogue" id="sv-catalogue">
+        <div class="sv-catalogue__inner">
+          <header class="sv-catalogue__header sv-reveal">
+            <p class="section-kicker">NOTRE SAVOIR-FAIRE</p>
+            <h2 class="section-title">Tous Nos Services</h2>
             <p class="section-subtitle">
-              Des prestations complètes réalisées par des techniciens certifiés avec équipements de dernière génération
+              Des prestations completes realisees par des techniciens certifies,
+              avec des equipements de derniere generation
             </p>
           </header>
 
-          <div class="services-grid">
-            <!-- Service Card 1 -->
-            <div class="service-card-full glass-card reveal-element" data-service="diagnostic">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="4" y="4" width="16" height="16" rx="2"/>
-                  <path d="M9 9h6v6H9z"/>
-                </svg>
-              </div>
-              <h3 class="service-card-full__title">Diagnostic électronique & mécanique</h3>
-              <p class="service-card-full__description">
-                Analyse complète avec équipements professionnels pour identifier précisément toute anomalie.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="diagnostic">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+          <nav class="sv-filters" aria-label="Filtrer les services">
+            <button class="sv-filters__btn is-active" data-filter="all">Tout</button>
+            <button class="sv-filters__btn" data-filter="mecanique">Mecanique &amp; Diagnostic</button>
+            <button class="sv-filters__btn" data-filter="entretien">Entretien &amp; Prevention</button>
+            <button class="sv-filters__btn" data-filter="carrosserie">Carrosserie</button>
+            <button class="sv-filters__btn" data-filter="electrique">Electrique &amp; Systemes</button>
+            <button class="sv-filters__btn" data-filter="specialise">Services Specialises</button>
+          </nav>
 
-            <!-- Service Card 2 -->
-            <div class="service-card-full glass-card reveal-element" data-service="entretien">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 6v6l4 2"/>
-                </svg>
-              </div>
-              <h3 class="service-card-full__title">Entretien & maintenance</h3>
-              <p class="service-card-full__description">
-                Révisions périodiques et entretien préventif pour garantir la longévité de votre véhicule.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="entretien">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+          <div class="sv-grid" id="sv-grid">
 
-            <!-- Service Card 3 -->
-            <div class="service-card-full glass-card reveal-element" data-service="mecanique">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="mecanique" data-service="diagnostic">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Diagnostic electronique et mecanique automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
-              <h3 class="service-card-full__title">Mécanique générale</h3>
-              <p class="service-card-full__description">
-                Réparation moteur, boîte de vitesses, embrayage et tous systèmes mécaniques.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="mecanique">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Diagnostic electronique &amp; mecanique</h3>
+                <p class="sv-card__desc">
+                  Identification precise de toute anomalie grace a nos valises
+                  professionnelles multi-marques de derniere generation.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Diagnostic electronique multi-marques</li>
+                  <li>Analyse moteur, boite et transmission</li>
+                  <li>Rapport detaille avec recommandations</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="diagnostic">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 4 -->
-            <div class="service-card-full glass-card reveal-element" data-service="carrosserie">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M18 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/>
-                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="mecanique" data-service="mecanique">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Mecanique generale automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
-              <h3 class="service-card-full__title">Carrosserie & peinture</h3>
-              <p class="service-card-full__description">
-                Remise en état complète avec cabine de peinture professionnelle et techniques de débosselage.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="carrosserie">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Mecanique generale</h3>
+                <p class="sv-card__desc">
+                  Toutes reparations mecaniques, des plus simples aux plus complexes,
+                  avec des pieces de qualite et une garantie sur chaque intervention.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Moteur, embrayage et distribution</li>
+                  <li>Freinage et systeme d'echappement</li>
+                  <li>Boite de vitesses manuelle et automatique</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="mecanique">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 5 -->
-            <div class="service-card-full glass-card reveal-element" data-service="climatisation">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2v20M17 7l-5 5-5-5M17 17l-5-5-5 5"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="mecanique" data-service="geometrie">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Geometrie et suspension automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
-              <h3 class="service-card-full__title">Climatisation & refroidissement</h3>
-              <p class="service-card-full__description">
-                Diagnostic, recharge gaz, réparation circuit de climatisation et système de refroidissement moteur.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="climatisation">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Geometrie &amp; suspension</h3>
+                <p class="sv-card__desc">
+                  Reglages au millimetre sur banc 3D pour une tenue de route optimale,
+                  une usure uniforme des pneus et un confort de conduite retrouve.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Geometrie 3D et parallelisme toutes marques</li>
+                  <li>Amortisseurs, ressorts et silentblocs</li>
+                  <li>Rapport avant/apres avec mesures</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="geometrie">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 6 -->
-            <div class="service-card-full glass-card reveal-element" data-service="electricite">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="entretien" data-service="entretien">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Entretien et maintenance automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
-              <h3 class="service-card-full__title">Électricité automobile</h3>
-              <p class="service-card-full__description">
-                Intervention sur systèmes électriques, batterie, alternateur, démarreur et faisceaux électriques.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="electricite">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Entretien &amp; maintenance</h3>
+                <p class="sv-card__desc">
+                  Forfaits d'entretien adaptes a votre vehicule, dans le respect
+                  strict des preconisations constructeur pour preserver votre garantie.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Revision complete selon plan constructeur</li>
+                  <li>Vidange, filtres et consommables premium</li>
+                  <li>Controle de securite 50 points offert</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="entretien">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 7 -->
-            <div class="service-card-full glass-card reveal-element" data-service="geometrie">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="10"/>
-                  <circle cx="12" cy="12" r="6"/>
-                  <circle cx="12" cy="12" r="2"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="entretien" data-service="controle">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/3806252/pexels-photo-3806252.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pre-controle technique automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
-              <h3 class="service-card-full__title">Géométrie & suspension</h3>
-              <p class="service-card-full__description">
-                Réglage géométrie 3D, remplacement amortisseurs, ressorts et tous éléments de liaison au sol.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="geometrie">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Pre-controle technique</h3>
+                <p class="sv-card__desc">
+                  Maximisez vos chances de reussite au controle technique officiel.
+                  Nous verifions et corrigeons chaque point avant votre passage.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Verification selon grille officielle complete</li>
+                  <li>Reparations immediates si necessaire</li>
+                  <li>Prise en charge du rendez-vous sur demande</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="controle">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 8 -->
-            <div class="service-card-full glass-card reveal-element" data-service="controle">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M9 11l3 3L22 4"/>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="carrosserie" data-service="carrosserie">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Carrosserie et peinture automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Carrosserie</span>
               </div>
-              <h3 class="service-card-full__title">Pré-contrôle technique</h3>
-              <p class="service-card-full__description">
-                Vérification complète avant contrôle technique officiel pour assurer la réussite du passage.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="controle">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Carrosserie &amp; peinture</h3>
+                <p class="sv-card__desc">
+                  Remise en etat impeccable dans notre cabine de peinture infrarouge
+                  professionnelle, avec teintes d'origine et finitions haut de gamme.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Debosselage, redressage et remplacement</li>
+                  <li>Peinture en cabine avec teinte constructeur</li>
+                  <li>Polissage, lustrage et renovation optiques</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="carrosserie">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 9 -->
-            <div class="service-card-full glass-card reveal-element" data-service="hybride">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                  <circle cx="18" cy="18" r="3"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="electrique" data-service="electricite">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Electricite automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
-              <h3 class="service-card-full__title">Véhicules hybrides & électriques</h3>
-              <p class="service-card-full__description">
-                Expertise spécialisée sur technologies hybrides et 100% électriques avec équipements adaptés.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="hybride">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Electricite automobile</h3>
+                <p class="sv-card__desc">
+                  Diagnostic et reparation de tous systemes electriques et
+                  electroniques embarques, du simple fusible au multiplexage CAN.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Batterie, alternateur et demarreur</li>
+                  <li>Faisceaux, eclairage et capteurs</li>
+                  <li>Systemes multimedia et start&amp;stop</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="electricite">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Service Card 10 -->
-            <div class="service-card-full glass-card reveal-element" data-service="sinistres">
-              <div class="service-card-full__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                </svg>
+            <article class="sv-card sv-reveal" data-category="electrique" data-service="climatisation">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Climatisation et refroidissement automobile"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
-              <h3 class="service-card-full__title">Gestion sinistres & assurances</h3>
-              <p class="service-card-full__description">
-                Accompagnement complet : expertise, devis, réparations et relations avec votre assureur.
-              </p>
-              <button class="service-card-full__cta" data-modal-trigger="sinistres">
-                En savoir plus
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Climatisation &amp; refroidissement</h3>
+                <p class="sv-card__desc">
+                  Diagnostic, recharge et reparation de votre systeme de climatisation
+                  et du circuit de refroidissement moteur pour un confort optimal.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Recharge gaz R134a et R1234yf</li>
+                  <li>Radiateur, thermostat et pompe a eau</li>
+                  <li>Desinfection et assainissement habitacle</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="climatisation">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="sv-card sv-reveal" data-category="specialise" data-service="hybride">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Vehicules hybrides et electriques"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Services Specialises</span>
+              </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Vehicules hybrides &amp; electriques</h3>
+                <p class="sv-card__desc">
+                  Techniciens certifies B2XL pour interventions en toute securite
+                  sur les systemes haute tension jusqu'a 800V.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Diagnostic et entretien haute tension</li>
+                  <li>Batterie, moteur electrique et inverter</li>
+                  <li>Freinage regeneratif et pompe a chaleur</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="hybride">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="sv-card sv-reveal" data-category="specialise" data-service="sinistres">
+              <div class="sv-card__media">
+                <img
+                  src="https://images.pexels.com/photos/6872169/pexels-photo-6872169.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Gestion sinistres et assurances"
+                  loading="lazy"
+                />
+                <div class="sv-card__media-overlay"></div>
+                <span class="sv-card__badge">Services Specialises</span>
+              </div>
+              <div class="sv-card__body">
+                <h3 class="sv-card__title">Gestion sinistres &amp; assurances</h3>
+                <p class="sv-card__desc">
+                  Prise en charge complete de votre sinistre : de l'expertise a la
+                  reparation, en passant par toutes les demarches administratives.
+                </p>
+                <ul class="sv-card__list">
+                  <li>Expertise contradictoire et devis assureur</li>
+                  <li>Gestion administrative A a Z</li>
+                  <li>Partenaire de toutes les compagnies marocaines</li>
+                </ul>
+                <div class="sv-card__footer">
+                  <button class="sv-card__cta" data-modal-trigger="sinistres">
+                    En savoir plus
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="sv-card__quote-tag">Devis gratuit</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPMENT SHOWCASE -->
+      <section class="sv-equipment" id="sv-equipment">
+        <div class="sv-equipment__inner">
+          <header class="sv-equipment__header sv-reveal">
+            <p class="section-kicker">NOS EQUIPEMENTS</p>
+            <h2 class="section-title">Technologies &amp; Equipements de Pointe</h2>
+            <p class="section-subtitle">
+              Un investissement continu dans les meilleurs outils du marche pour des interventions precises et fiables
+            </p>
+          </header>
+
+          <div class="sv-equipment__scroll">
+            <div class="sv-equipment__track">
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <path d="M8 21h8M12 17v4"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Valises diagnostiques multi-marques</h3>
+                <p class="sv-equipment__desc">
+                  Bosch KTS, Launch X431 Pro et Autel MaxiSys pour un diagnostic complet de tous les calculateurs embarques.
+                </p>
+                <span class="sv-equipment__tag">Multi-marques</span>
+              </div>
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2v6M12 18v4M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M18 12h4M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Cabine de peinture infrarouge</h3>
+                <p class="sv-equipment__desc">
+                  Technologie de sechage infrarouge pour une finition parfaite, des teintes fideles et un respect des normes environnementales.
+                </p>
+                <span class="sv-equipment__tag">Derniere generation</span>
+              </div>
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Banc de geometrie 3D</h3>
+                <p class="sv-equipment__desc">
+                  Mesures au centieme de degre pour un parallelisme et une geometrie parfaits. Compatible toutes marques et tous types de jantes.
+                </p>
+                <span class="sv-equipment__tag">Precision 3D</span>
+              </div>
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Equipements haute tension</h3>
+                <p class="sv-equipment__desc">
+                  Outillage certifie B2XL pour interventions securisees sur vehicules hybrides et 100% electriques jusqu'a 800V.
+                </p>
+                <span class="sv-equipment__tag">Certifie B2XL</span>
+              </div>
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22V8M5 12H2a10 10 0 0 0 20 0h-3"/>
+                    <circle cx="12" cy="5" r="3"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Ponts elevateurs 4 colonnes</h3>
+                <p class="sv-equipment__desc">
+                  Capacite jusqu'a 5 tonnes pour accueillir tout type de vehicule, du citadin au SUV, en toute securite.
+                </p>
+                <span class="sv-equipment__tag">5 tonnes</span>
+              </div>
+
+              <div class="sv-equipment__card sv-reveal">
+                <div class="sv-equipment__icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2v20M17 7l-5 5-5-5M17 17l-5-5-5 5"/>
+                  </svg>
+                </div>
+                <h3 class="sv-equipment__name">Station climatisation automatique</h3>
+                <p class="sv-equipment__desc">
+                  Recharge et diagnostic automatises pour gaz R134a et R1234yf avec detection de fuites par ultrasons.
+                </p>
+                <span class="sv-equipment__tag">R134a / R1234yf</span>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PROCESS SECTION (How it works) -->
-      <section id="process" class="section process-section">
-        <div class="section-inner">
-          <header class="section-header section-header-centered reveal-element">
-            <p class="section-kicker">NOTRE MÉTHODE</p>
-            <h2 class="section-title">Comment Ça Marche ?</h2>
+      <!-- PROCESS TIMELINE -->
+      <section class="sv-process" id="sv-process">
+        <div class="sv-process__inner">
+          <header class="sv-process__header sv-reveal">
+            <p class="section-kicker">NOTRE METHODE</p>
+            <h2 class="section-title">Comment Ca Marche ?</h2>
             <p class="section-subtitle">
-              Un processus simple et transparent en 5 étapes pour votre tranquillité d'esprit
+              Un processus simple et transparent en 5 etapes pour votre tranquillite d'esprit
             </p>
           </header>
 
-          <div class="process-steps">
-            <div class="process-step reveal-element">
-              <div class="process-step__number">01</div>
-              <div class="process-step__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="4" width="18" height="18" rx="2"/>
-                  <path d="M16 2v4M8 2v4M3 10h18"/>
-                </svg>
+          <div class="sv-process__timeline">
+            <div class="sv-process__line" aria-hidden="true"></div>
+
+            <div class="sv-process__step sv-reveal">
+              <div class="sv-process__dot" aria-hidden="true">
+                <span>01</span>
               </div>
-              <h3 class="process-step__title">Prise de rendez-vous</h3>
-              <p class="process-step__description">
-                Réservez votre créneau en ligne ou par téléphone. Flexibilité horaire garantie.
-              </p>
+              <div class="sv-process__content">
+                <h3 class="sv-process__title">Prise de rendez-vous</h3>
+                <p class="sv-process__desc">
+                  Reservez votre creneau en ligne, par telephone ou WhatsApp. Confirmation instantanee et flexibilite horaire garantie.
+                </p>
+              </div>
             </div>
 
-            <div class="process-step reveal-element">
-              <div class="process-step__number">02</div>
-              <div class="process-step__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="M21 21l-4.35-4.35"/>
-                </svg>
+            <div class="sv-process__step sv-reveal">
+              <div class="sv-process__dot" aria-hidden="true">
+                <span>02</span>
               </div>
-              <h3 class="process-step__title">Diagnostic précis</h3>
-              <p class="process-step__description">
-                Analyse complète par nos experts avec équipements de dernière génération.
-              </p>
+              <div class="sv-process__content">
+                <h3 class="sv-process__title">Diagnostic precis</h3>
+                <p class="sv-process__desc">
+                  Analyse complete par nos experts avec equipements de derniere generation. Identification exacte du probleme.
+                </p>
+              </div>
             </div>
 
-            <div class="process-step reveal-element">
-              <div class="process-step__number">03</div>
-              <div class="process-step__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                </svg>
+            <div class="sv-process__step sv-reveal">
+              <div class="sv-process__dot" aria-hidden="true">
+                <span>03</span>
               </div>
-              <h3 class="process-step__title">Validation client</h3>
-              <p class="process-step__description">
-                Devis détaillé et transparent. Aucune intervention sans votre accord préalable.
-              </p>
+              <div class="sv-process__content">
+                <h3 class="sv-process__title">Validation client</h3>
+                <p class="sv-process__desc">
+                  Devis detaille et transparent envoye par WhatsApp. Aucune intervention sans votre accord prealable explicite.
+                </p>
+              </div>
             </div>
 
-            <div class="process-step reveal-element">
-              <div class="process-step__number">04</div>
-              <div class="process-step__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                </svg>
+            <div class="sv-process__step sv-reveal">
+              <div class="sv-process__dot" aria-hidden="true">
+                <span>04</span>
               </div>
-              <h3 class="process-step__title">Intervention</h3>
-              <p class="process-step__description">
-                Réparation par techniciens certifiés. Suivi en temps réel de l'avancement.
-              </p>
+              <div class="sv-process__content">
+                <h3 class="sv-process__title">Intervention experte</h3>
+                <p class="sv-process__desc">
+                  Reparation par techniciens certifies avec pieces d'origine. Suivi en temps reel de l'avancement des travaux.
+                </p>
+              </div>
             </div>
 
-            <div class="process-step reveal-element">
-              <div class="process-step__number">05</div>
-              <div class="process-step__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M9 11l3 3L22 4"/>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                </svg>
+            <div class="sv-process__step sv-reveal">
+              <div class="sv-process__dot" aria-hidden="true">
+                <span>05</span>
               </div>
-              <h3 class="process-step__title">Contrôle qualité & livraison</h3>
-              <p class="process-step__description">
-                Vérification finale rigoureuse et essai routier avant remise de votre véhicule.
-              </p>
+              <div class="sv-process__content">
+                <h3 class="sv-process__title">Controle qualite &amp; livraison</h3>
+                <p class="sv-process__desc">
+                  Verification finale rigoureuse, essai routier et nettoyage de courtoisie avant remise de votre vehicule.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- TRUST / WHY AUTOVALLEY SECTION -->
-      <section id="trust" class="section trust-section">
-        <div class="section-inner">
-          <header class="section-header section-header-centered reveal-element">
-            <p class="section-kicker">NOTRE ENGAGEMENT</p>
+      <!-- TRUST & GUARANTEES -->
+      <section class="sv-trust" id="sv-trust">
+        <div class="sv-trust__inner">
+          <header class="sv-trust__header sv-reveal">
+            <p class="section-kicker">NOS ENGAGEMENTS</p>
             <h2 class="section-title">Pourquoi Choisir AutoValley ?</h2>
             <p class="section-subtitle">
-              L'excellence et la confiance au cœur de chaque intervention
+              L'excellence et la confiance au coeur de chaque intervention
             </p>
           </header>
 
-          <div class="trust-grid">
-            <div class="trust-card glass-card reveal-element">
-              <div class="trust-card__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          <div class="sv-trust__grid">
+            <div class="sv-trust__card sv-reveal">
+              <div class="sv-trust__icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
                 </svg>
               </div>
-              <h3 class="trust-card__title">Transparence totale</h3>
-              <p class="trust-card__description">
-                Devis détaillé avant intervention. Suivi en temps réel. Aucune surprise sur la facture finale.
+              <h3 class="sv-trust__title">Transparence totale</h3>
+              <p class="sv-trust__desc">
+                Devis detaille avant toute intervention. Suivi en temps reel par WhatsApp. Aucune surprise sur la facture finale.
               </p>
             </div>
 
-            <div class="trust-card glass-card reveal-element">
-              <div class="trust-card__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="sv-trust__card sv-reveal">
+              <div class="sv-trust__icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                   <circle cx="9" cy="7" r="4"/>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
               </div>
-              <h3 class="trust-card__title">Techniciens certifiés</h3>
-              <p class="trust-card__description">
-                Équipe formée aux dernières technologies. Certification constructeurs et formation continue.
+              <h3 class="sv-trust__title">Techniciens certifies</h3>
+              <p class="sv-trust__desc">
+                Equipe formee aux dernieres technologies avec certifications constructeurs. Formation continue garantie.
               </p>
             </div>
 
-            <div class="trust-card glass-card reveal-element">
-              <div class="trust-card__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="sv-trust__card sv-reveal">
+              <div class="sv-trust__icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="4" y="4" width="16" height="16" rx="2"/>
                   <path d="M9 9h6v6H9z"/>
                 </svg>
               </div>
-              <h3 class="trust-card__title">Équipements de pointe</h3>
-              <p class="trust-card__description">
-                Outils diagnostiques dernière génération. Cabine de peinture professionnelle. Banc géométrie 3D.
+              <h3 class="sv-trust__title">Equipements de pointe</h3>
+              <p class="sv-trust__desc">
+                Outils diagnostiques derniere generation, cabine de peinture professionnelle et banc de geometrie 3D.
               </p>
             </div>
 
-            <div class="trust-card glass-card reveal-element">
-              <div class="trust-card__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="sv-trust__card sv-reveal">
+              <div class="sv-trust__icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <circle cx="12" cy="12" r="10"/>
                   <path d="M12 6v6l4 2"/>
                 </svg>
               </div>
-              <h3 class="trust-card__title">Respect des délais</h3>
-              <p class="trust-card__description">
-                Planning précis et respecté. Information proactive en cas d'imprévu. Véhicule de courtoisie disponible.
+              <h3 class="sv-trust__title">Respect des delais</h3>
+              <p class="sv-trust__desc">
+                Planning precis et respecte. Information proactive en cas d'imprevu. Vehicule de courtoisie disponible.
               </p>
             </div>
 
-            <div class="trust-card glass-card reveal-element">
-              <div class="trust-card__icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="sv-trust__card sv-reveal">
+              <div class="sv-trust__icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
               </div>
-              <h3 class="trust-card__title">Garantie sur intervention</h3>
-              <p class="trust-card__description">
-                Garantie constructeur respectée. Engagement qualité sur toutes nos réparations et pièces installées.
+              <h3 class="sv-trust__title">Garantie sur intervention</h3>
+              <p class="sv-trust__desc">
+                Garantie constructeur preservee. Engagement qualite sur toutes nos reparations et pieces installees.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FINAL CTA SECTION -->
-      <section id="rdv" class="section cta-final-section">
-        <div class="section-inner">
-          <div class="cta-final-box glass-card reveal-element">
-            <h2 class="cta-final-box__title">Confiez votre véhicule à des experts.</h2>
-            <p class="cta-final-box__subtitle">
-              Notre équipe est à votre disposition pour tout renseignement et prise de rendez-vous.
+      <!-- FAQ -->
+      <section class="sv-faq" id="sv-faq">
+        <div class="sv-faq__inner">
+          <header class="sv-faq__header sv-reveal">
+            <p class="section-kicker">QUESTIONS FREQUENTES</p>
+            <h2 class="section-title">Tout Ce Que Vous Devez Savoir</h2>
+          </header>
+
+          <div class="sv-faq__list">
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>Combien de temps dure un diagnostic complet ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Un diagnostic electronique complet prend en moyenne 45 minutes a 1 heure. Pour un diagnostic mecanique approfondi incluant des essais routiers, comptez environ 1h30 a 2h. Nous vous communiquons un rapport detaille avec photos a l'issue du diagnostic.</p>
+              </div>
+            </div>
+
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>Proposez-vous un vehicule de courtoisie ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Oui, nous disposons de vehicules de courtoisie pour les interventions de longue duree. La disponibilite est soumise a reservation prealable. Pour les interventions rapides, notre salle d'attente est equipee de Wi-Fi, cafe et espace de travail.</p>
+              </div>
+            </div>
+
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>Travaillez-vous avec toutes les marques automobiles ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Absolument. Nous intervenons sur plus de 20 marques : Renault, Peugeot, Citroen, Volkswagen, Audi, BMW, Mercedes, Toyota, Hyundai, Kia, Dacia, Fiat, Opel, Skoda, Seat, Nissan, et bien d'autres. Nos equipements de diagnostic sont compatibles avec tous les protocoles constructeurs.</p>
+              </div>
+            </div>
+
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>Comment puis-je obtenir un devis ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Vous pouvez obtenir un devis gratuit de plusieurs facons : en prenant rendez-vous pour un diagnostic, en nous contactant par telephone, par WhatsApp ou par email. Pour les interventions courantes (vidange, freins, pneus), nous pouvons vous donner une estimation immediate.</p>
+              </div>
+            </div>
+
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>La garantie constructeur est-elle preservee ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Oui, toutes nos interventions sont realisees dans le strict respect des preconisations constructeur. Nous utilisons des pieces d'origine ou equivalentes certifiees, et nous suivons les plans d'entretien officiels. Votre garantie constructeur est integralement preservee.</p>
+              </div>
+            </div>
+
+            <div class="sv-faq__item sv-reveal">
+              <button class="sv-faq__trigger" type="button" aria-expanded="false">
+                <span>Quels modes de paiement acceptez-vous ?</span>
+                <svg class="sv-faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sv-faq__answer" aria-hidden="true">
+                <p>Nous acceptons les paiements par carte bancaire, especes, virement et cheque. Pour les interventions importantes, nous proposons des facilites de paiement. Les dossiers d'assurance sont traites directement avec votre compagnie.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="sv-cta" id="rdv">
+        <div class="sv-cta__inner">
+          <div class="sv-cta__card sv-reveal">
+            <p class="sv-cta__kicker">Pret a passer au niveau superieur ?</p>
+            <h2 class="sv-cta__title">Confiez votre vehicule a des experts.</h2>
+            <p class="sv-cta__subtitle">
+              Notre equipe est a votre disposition pour tout renseignement, diagnostic ou prise de rendez-vous.
             </p>
-            <div class="cta-final-box__actions">
+            <div class="sv-cta__actions">
               <a href="tel:+212522123456" class="btn-lg btn-lg--primary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
                 <span>Prendre rendez-vous</span>
               </a>
-              <a href="#contact" class="btn-lg btn-lg--ghost">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <path d="M22 6l-10 7L2 6"/>
-                </svg>
+              <a href="https://wa.me/212600000000" class="btn-lg btn-lg--ghost" target="_blank" rel="noopener">
                 <span>Nous contacter</span>
               </a>
             </div>
+            <p class="sv-cta__note">Reponse en moins de 2 heures ouvrees.</p>
           </div>
         </div>
       </section>
+
     </main>
 
     <!-- @include "partials/footer.html" -->
 
-    <!-- Service Details Modal -->
     <div id="service-modal" class="service-modal" aria-hidden="true">
       <div class="service-modal__overlay"></div>
-      <div class="service-modal__container glass-card">
+      <div class="service-modal__container">
         <button class="service-modal__close" aria-label="Fermer">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 6L6 18M6 6l12 12"/>
@@ -467,7 +797,7 @@
           <h3 class="service-modal__title"></h3>
           <div class="service-modal__body"></div>
           <div class="service-modal__cta">
-            <a href="#rdv" class="btn-primary">Prendre rendez-vous</a>
+            <a href="#rdv" class="sv-modal__btn">Prendre rendez-vous</a>
           </div>
         </div>
       </div>
