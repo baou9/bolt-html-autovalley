@@ -1,0 +1,57 @@
+.page-services {
+  --xenon-progress: 0;
+}
+
+.xenon-glow {
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 58% 50%,
+      rgba(210, 225, 255, calc(0.06 + var(--xenon-progress) * 0.16)) 0%,
+      rgba(190, 210, 250, calc(0.03 + var(--xenon-progress) * 0.08)) 30%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 45% 60%,
+      rgba(200, 218, 248, calc(0.02 + var(--xenon-progress) * 0.06)) 0%,
+      transparent 60%
+    );
+  filter: blur(calc(50px + var(--xenon-progress) * 70px));
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: filter, background;
+}
+
+.page-services #main,
+.page-services header,
+.page-services footer,
+.page-services .service-modal {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .xenon-glow {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 55% 50%,
+        rgba(210, 225, 255, calc(0.03 + var(--xenon-progress) * 0.08)) 0%,
+        rgba(190, 210, 250, calc(0.015 + var(--xenon-progress) * 0.04)) 30%,
+        transparent 65%
+      );
+    filter: blur(calc(40px + var(--xenon-progress) * 40px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-services {
+    --xenon-progress: 0.25;
+  }
+
+  .xenon-glow {
+    transition: none;
+  }
+}
