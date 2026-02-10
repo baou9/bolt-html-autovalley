@@ -1508,3 +1508,81 @@
     font-size: 1.25rem;
   }
 }
+
+/* ──────────────────────────────────────────────────────────
+   XENON HEADLIGHT AMBIENCE
+   ────────────────────────────────────────────────────────── */
+.xenon-ambience {
+  --xenon-intensity: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--xenon-intensity);
+  transition: opacity 0.35s linear;
+  will-change: opacity;
+  mix-blend-mode: screen;
+}
+
+.xenon-ambience__beam {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.xenon-ambience__beam--top {
+  width: 60%;
+  height: 320px;
+  top: -80px;
+  left: 20%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(220, 235, 255, 0.18) 0%,
+    rgba(200, 222, 250, 0.08) 40%,
+    transparent 70%
+  );
+}
+
+.xenon-ambience__beam--left {
+  width: 300px;
+  height: 50%;
+  top: 25%;
+  left: -60px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(210, 230, 255, 0.12) 0%,
+    rgba(200, 222, 250, 0.04) 50%,
+    transparent 70%
+  );
+}
+
+.xenon-ambience__beam--right {
+  width: 300px;
+  height: 50%;
+  top: 30%;
+  right: -60px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(210, 230, 255, 0.12) 0%,
+    rgba(200, 222, 250, 0.04) 50%,
+    transparent 70%
+  );
+}
+
+.xenon-ambience__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(230, 243, 255, 0.0) 0%,
+    rgba(220, 235, 255, 0.03) 30%,
+    rgba(210, 228, 250, 0.06) 60%,
+    rgba(200, 222, 250, 0.1) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xenon-ambience {
+    transition: none;
+  }
+}

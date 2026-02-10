@@ -480,6 +480,33 @@ function initFooterAccordions() {
   mobileQuery.addEventListener('change', evaluate);
 }
 
+function initXenonAmbience() {
+  const el = document.querySelector('.xenon-ambience');
+  if (!el) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+
+  const update = () => {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
+    const intensity = 0.08 + progress * 0.22;
+    el.style.setProperty('--xenon-intensity', intensity.toFixed(3));
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+}
+
 function initCurrentYear() {
   const el = document.getElementById('current-year');
   if (el) el.textContent = new Date().getFullYear();
@@ -494,4 +521,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceModal();
   initFooterAccordions();
   initCurrentYear();
+  initXenonAmbience();
 });
