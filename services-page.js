@@ -480,6 +480,62 @@ function initFooterAccordions() {
   mobileQuery.addEventListener('change', evaluate);
 }
 
+function initStatCounters() {
+  const stats = document.querySelectorAll('.sv-hero__stat[data-count]');
+  if (!stats.length) return;
+
+  const formatNumber = (num, format) => {
+    if (format === 'space') {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+    return num.toString();
+  };
+
+  const animateCounter = (el) => {
+    const valueEl = el.querySelector('.sv-hero__stat-value');
+    if (!valueEl || el.classList.contains('is-counted')) return;
+
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const format = el.dataset.format || '';
+    const duration = 1800;
+    const startTime = performance.now();
+
+    const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+    const update = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutExpo(progress);
+      const current = Math.floor(easedProgress * target);
+
+      valueEl.textContent = formatNumber(current, format) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        valueEl.textContent = formatNumber(target, format) + suffix;
+        el.classList.add('is-counted');
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  stats.forEach((stat) => observer.observe(stat));
+}
+
 function initXenonAmbience() {
   const el = document.querySelector('.xenon-ambience');
   if (!el) return;
@@ -521,5 +577,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceModal();
   initFooterAccordions();
   initCurrentYear();
+  initStatCounters();
   initXenonAmbience();
 });
