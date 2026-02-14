@@ -413,7 +413,6 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
-  /* [PATCH] Unified card base shadow scale across service surfaces */
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
               box-shadow 0.4s ease,
@@ -584,7 +583,6 @@
 
 .sv-equipment::before,
 .sv-equipment::after {
-  /* [PATCH] Subtle horizontal edge masks for additional section depth */
   content: '';
   position: absolute;
   top: 0;
@@ -676,7 +674,10 @@
 .eq-card:hover {
   transform: translateY(-6px);
   border-color: rgba(185, 5, 4, 0.28);
-  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, 0.56),
+    0 0 0 1px rgba(185, 5, 4, 0.08),
+    0 0 24px rgba(185, 5, 4, 0.06);
 }
 
 .eq-card__visual {
