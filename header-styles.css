@@ -600,3 +600,64 @@
     display: none;
   }
 }
+
+/* [PATCH] Accessible language selector styling for the shared header component. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-switcher::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.75);
+  transform: translateY(-35%) rotate(45deg);
+  pointer-events: none;
+}
+
+.lang-select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 38px;
+  padding: 8px 30px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 10, 10, 0.5);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.lang-select:hover {
+  border-color: rgba(185, 5, 4, 0.75);
+  background: rgba(22, 22, 22, 0.6);
+}
+
+.lang-select:focus-visible {
+  outline: 2px solid rgba(185, 5, 4, 0.95);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(185, 5, 4, 0.18);
+}

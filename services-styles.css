@@ -392,6 +392,14 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* [PATCH] Keyboard users get a dedicated focus indicator without changing active state visuals. */
+.sv-filters__btn:focus-visible {
+  outline: 2px solid rgba(185, 5, 4, 0.9);
+  outline-offset: 3px;
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(185, 5, 4, 0.5);
+}
+
 .sv-filters__btn.is-active {
   color: #fff;
   background: linear-gradient(135deg, rgba(185, 5, 4, 0.85), rgba(70, 8, 6, 0.9));
@@ -413,7 +421,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
               box-shadow 0.4s ease,
               border-color 0.4s ease;
@@ -421,7 +429,7 @@
 
 .sv-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.65), 0 0 24px rgba(185, 5, 4, 0.12);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -485,8 +493,9 @@
 }
 
 .sv-card__desc {
+  /* [PATCH] Ensure reading text meets 1rem baseline for service cards */
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.65);
@@ -504,7 +513,7 @@
 
 .sv-card__list li {
   font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.55);
   padding-left: 18px;
@@ -576,9 +585,30 @@
    ────────────────────────────────────────────────────────── */
 .sv-equipment {
   position: relative;
-  padding: 120px 24px;
+  padding: 104px 24px;
   background: #050609;
   overflow: hidden;
+}
+
+.sv-equipment::before,
+.sv-equipment::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(32px, 6vw, 88px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sv-equipment::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(5, 6, 9, 0.5) 0%, rgba(5, 6, 9, 0) 100%);
+}
+
+.sv-equipment::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(5, 6, 9, 0.5) 0%, rgba(5, 6, 9, 0) 100%);
 }
 
 .sv-equipment__bg {
@@ -592,7 +622,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.25;
+  opacity: 0.18;
 }
 
 .sv-equipment__glow--1 {
@@ -600,7 +630,7 @@
   height: 480px;
   top: -10%;
   left: -5%;
-  background: radial-gradient(circle, rgba(185, 5, 4, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(185, 5, 4, 0.22) 0%, transparent 70%);
 }
 
 .sv-equipment__glow--2 {
@@ -608,7 +638,7 @@
   height: 400px;
   bottom: -12%;
   right: -4%;
-  background: radial-gradient(circle, rgba(185, 5, 4, 0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(185, 5, 4, 0.12) 0%, transparent 70%);
 }
 
 .sv-equipment__inner {
@@ -625,7 +655,7 @@
 
 .sv-equipment__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.5);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-equipment__grid {
@@ -643,6 +673,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition:
     transform 0.45s cubic-bezier(0.03, 0.98, 0.52, 0.99),
     border-color 0.4s ease,
@@ -650,17 +681,17 @@
 }
 
 .eq-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: rgba(185, 5, 4, 0.28);
   box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(185, 5, 4, 0.12),
-    0 0 48px rgba(185, 5, 4, 0.06);
+    0 24px 54px rgba(0, 0, 0, 0.56),
+    0 0 0 1px rgba(185, 5, 4, 0.08),
+    0 0 24px rgba(185, 5, 4, 0.06);
 }
 
 .eq-card__visual {
   position: relative;
-  height: 200px;
+  height: 176px;
   overflow: hidden;
 }
 
@@ -755,7 +786,7 @@
 
 .eq-card__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.5);
@@ -767,7 +798,7 @@
    PROCESS TIMELINE
    ────────────────────────────────────────────────────────── */
 .sv-process {
-  padding: 100px 24px;
+  padding: 88px 24px;
   background: linear-gradient(
     180deg,
     rgba(5, 6, 9, 1) 0%,
@@ -788,7 +819,7 @@
 
 .sv-process__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.6);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-process__timeline {
@@ -800,7 +831,7 @@
 
 .sv-process__line {
   position: absolute;
-  left: 24px;
+  left: 23px;
   top: 0;
   bottom: 0;
   width: 2px;
@@ -814,30 +845,32 @@
 .sv-process__step {
   display: flex;
   align-items: flex-start;
-  gap: 28px;
-  padding: 28px 0;
+  gap: 30px;
+  padding: 34px 0;
   position: relative;
 }
 
 .sv-process__dot {
   flex-shrink: 0;
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(185, 5, 4, 0.9), rgba(70, 8, 6, 0.95));
   border: 2px solid rgba(185, 5, 4, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(185, 5, 4, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 14px rgba(185, 5, 4, 0.22), 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
 .sv-process__dot span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .sv-process__content {
@@ -854,7 +887,7 @@
 
 .sv-process__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.6);
@@ -864,7 +897,7 @@
    TRUST & GUARANTEES
    ────────────────────────────────────────────────────────── */
 .sv-trust {
-  padding: 100px 24px;
+  padding: 124px 24px 100px;
   background: linear-gradient(
     180deg,
     rgba(5, 6, 9, 1) 0%,
@@ -885,7 +918,7 @@
 
 .sv-trust__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.5);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-trust__grid {
@@ -909,6 +942,7 @@
   border-radius: 20px;
   text-align: center;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition:
     transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
     border-color 0.4s ease,
@@ -930,9 +964,7 @@
 .sv-trust__card:hover {
   transform: translateY(-6px);
   border-color: rgba(185, 5, 4, 0.2);
-  box-shadow:
-    0 24px 56px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(185, 5, 4, 0.05);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
 }
 
 .sv-trust__card:hover::before {
@@ -993,7 +1025,7 @@
 
 .sv-trust__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
@@ -1110,7 +1142,7 @@
 .sv-faq__answer p {
   padding: 0 24px 20px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.6);
@@ -1141,8 +1173,8 @@
     radial-gradient(ellipse at top, rgba(185, 5, 4, 0.12) 0%, transparent 60%),
     rgba(10, 10, 16, 0.9);
   border: 1px solid rgba(185, 5, 4, 0.2);
-  border-radius: 24px;
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 32px rgba(185, 5, 4, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 20px rgba(185, 5, 4, 0.08);
 }
 
 .sv-cta__kicker {
@@ -1164,7 +1196,7 @@
 
 .sv-cta__subtitle {
   font-family: 'Inter', sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
@@ -1182,18 +1214,33 @@
 }
 
 .sv-cta__actions .btn-lg--primary {
+  /* [PATCH] Keep glow emphasis only on the primary CTA. */
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  box-shadow: 0 0 18px rgba(185, 5, 4, 0.2);
+}
+
+.sv-cta__actions .btn-lg--primary:hover {
+  box-shadow: 0 0 24px rgba(185, 5, 4, 0.24);
 }
 
 .sv-cta__actions .btn-lg--primary svg {
   flex-shrink: 0;
 }
 
+.sv-cta__actions .btn-lg--ghost {
+  box-shadow: none;
+}
+
+.sv-cta__actions .btn-lg {
+  min-width: 220px;
+  justify-content: center;
+}
+
 .sv-cta__note {
   font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.35);
 }
@@ -1405,6 +1452,18 @@
     padding: 80px 20px;
   }
 
+  .sv-equipment {
+    padding: 68px 20px;
+  }
+
+  .sv-process {
+    padding: 68px 20px;
+  }
+
+  .sv-trust {
+    padding-top: 96px;
+  }
+
   .sv-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
@@ -1480,6 +1539,18 @@
     padding: 64px 16px;
   }
 
+  .sv-equipment {
+    padding: 56px 16px;
+  }
+
+  .sv-process {
+    padding: 56px 16px;
+  }
+
+  .sv-trust {
+    padding-top: 80px;
+  }
+
   .sv-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1505,7 +1576,7 @@
   }
 
   .eq-card__visual {
-    height: 180px;
+    height: 160px;
   }
 
   .sv-process__inner {
@@ -1513,17 +1584,17 @@
   }
 
   .sv-process__line {
-    left: 24px;
+    left: 20px;
   }
 
   .sv-process__step {
     gap: 20px;
-    padding: 20px 0;
+    padding: 24px 0;
   }
 
   .sv-process__dot {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 
   .sv-trust__grid {
@@ -1597,6 +1668,18 @@
     padding: 48px 14px;
   }
 
+  .sv-equipment {
+    padding: 40px 14px;
+  }
+
+  .sv-process {
+    padding: 40px 14px;
+  }
+
+  .sv-trust {
+    padding-top: 64px;
+  }
+
   .sv-card__body {
     padding: 20px 18px;
   }
@@ -1607,7 +1690,7 @@
   }
 
   .eq-card__visual {
-    height: 160px;
+    height: 142px;
   }
 
   .eq-card__body {
@@ -1627,9 +1710,13 @@
     gap: 16px;
   }
 
+  .sv-process__line {
+    left: 18px;
+  }
+
   .sv-process__dot {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   .sv-process__dot span {
@@ -1643,7 +1730,7 @@
 
   .sv-faq__answer p {
     padding: 0 18px 16px;
-    font-size: 0.84rem;
+    font-size: 1rem;
   }
 
   .sv-cta__card {
