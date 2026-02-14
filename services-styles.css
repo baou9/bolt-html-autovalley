@@ -413,7 +413,8 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  /* [PATCH] Unified card base shadow scale across service surfaces */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
               box-shadow 0.4s ease,
               border-color 0.4s ease;
@@ -421,7 +422,7 @@
 
 .sv-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.65), 0 0 24px rgba(185, 5, 4, 0.12);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -581,6 +582,28 @@
   overflow: hidden;
 }
 
+.sv-equipment::before,
+.sv-equipment::after {
+  /* [PATCH] Subtle horizontal edge masks for additional section depth */
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(32px, 6vw, 88px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sv-equipment::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(5, 6, 9, 0.5) 0%, rgba(5, 6, 9, 0) 100%);
+}
+
+.sv-equipment::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(5, 6, 9, 0.5) 0%, rgba(5, 6, 9, 0) 100%);
+}
+
 .sv-equipment__bg {
   position: absolute;
   inset: 0;
@@ -643,6 +666,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition:
     transform 0.45s cubic-bezier(0.03, 0.98, 0.52, 0.99),
     border-color 0.4s ease,
@@ -650,17 +674,14 @@
 }
 
 .eq-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: rgba(185, 5, 4, 0.28);
-  box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(185, 5, 4, 0.12),
-    0 0 48px rgba(185, 5, 4, 0.06);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
 }
 
 .eq-card__visual {
   position: relative;
-  height: 200px;
+  height: 176px;
   overflow: hidden;
 }
 
@@ -800,7 +821,7 @@
 
 .sv-process__line {
   position: absolute;
-  left: 24px;
+  left: 23px;
   top: 0;
   bottom: 0;
   width: 2px;
@@ -814,15 +835,15 @@
 .sv-process__step {
   display: flex;
   align-items: flex-start;
-  gap: 28px;
-  padding: 28px 0;
+  gap: 30px;
+  padding: 34px 0;
   position: relative;
 }
 
 .sv-process__dot {
   flex-shrink: 0;
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(185, 5, 4, 0.9), rgba(70, 8, 6, 0.95));
   border: 2px solid rgba(185, 5, 4, 0.6);
@@ -835,9 +856,11 @@
 
 .sv-process__dot span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .sv-process__content {
@@ -909,6 +932,7 @@
   border-radius: 20px;
   text-align: center;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   transition:
     transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
     border-color 0.4s ease,
@@ -930,9 +954,7 @@
 .sv-trust__card:hover {
   transform: translateY(-6px);
   border-color: rgba(185, 5, 4, 0.2);
-  box-shadow:
-    0 24px 56px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(185, 5, 4, 0.05);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.56), 0 0 20px rgba(185, 5, 4, 0.08);
 }
 
 .sv-trust__card:hover::before {
@@ -1141,8 +1163,8 @@
     radial-gradient(ellipse at top, rgba(185, 5, 4, 0.12) 0%, transparent 60%),
     rgba(10, 10, 16, 0.9);
   border: 1px solid rgba(185, 5, 4, 0.2);
-  border-radius: 24px;
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 32px rgba(185, 5, 4, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 20px rgba(185, 5, 4, 0.08);
 }
 
 .sv-cta__kicker {
@@ -1505,7 +1527,7 @@
   }
 
   .eq-card__visual {
-    height: 180px;
+    height: 160px;
   }
 
   .sv-process__inner {
@@ -1513,17 +1535,17 @@
   }
 
   .sv-process__line {
-    left: 24px;
+    left: 20px;
   }
 
   .sv-process__step {
     gap: 20px;
-    padding: 20px 0;
+    padding: 24px 0;
   }
 
   .sv-process__dot {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 
   .sv-trust__grid {
@@ -1607,7 +1629,7 @@
   }
 
   .eq-card__visual {
-    height: 160px;
+    height: 142px;
   }
 
   .eq-card__body {
@@ -1627,9 +1649,13 @@
     gap: 16px;
   }
 
+  .sv-process__line {
+    left: 18px;
+  }
+
   .sv-process__dot {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   .sv-process__dot span {
