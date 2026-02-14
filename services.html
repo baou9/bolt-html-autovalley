@@ -144,13 +144,14 @@
           </header>
 
           <nav class="sv-filters" aria-label="Filtrer les services">
-            <button class="sv-filters__btn is-active" data-filter="all">Tout</button>
-            <button class="sv-filters__btn" data-filter="mecanique">Mecanique &amp; Diagnostic</button>
-            <button class="sv-filters__btn" data-filter="entretien">Entretien &amp; Prevention</button>
-            <button class="sv-filters__btn" data-filter="carrosserie">Carrosserie</button>
-            <button class="sv-filters__btn" data-filter="electrique">Electrique &amp; Systemes</button>
-            <button class="sv-filters__btn" data-filter="specialise">Services Specialises</button>
+            <button class="sv-filters__btn is-active" data-filter="all" aria-pressed="true">Tous</button>
+            <button class="sv-filters__btn" data-filter="mecanique" aria-pressed="false">Mecanique &amp; Diagnostic</button>
+            <button class="sv-filters__btn" data-filter="entretien" aria-pressed="false">Entretien &amp; Prevention</button>
+            <button class="sv-filters__btn" data-filter="carrosserie" aria-pressed="false">Carrosserie</button>
+            <button class="sv-filters__btn" data-filter="electrique" aria-pressed="false">Electrique &amp; Systemes</button>
+            <button class="sv-filters__btn" data-filter="specialise" aria-pressed="false">Services Specialises</button>
           </nav>
+          <p id="sv-filter-status" class="visually-hidden" aria-live="polite">10 services affiches.</p>
 
           <div class="sv-grid" id="sv-grid">
 
@@ -846,7 +847,7 @@
         <div class="sv-cta__inner">
           <div class="sv-cta__card sv-reveal">
             <p class="sv-cta__kicker">Pret a passer au niveau superieur ?</p>
-            <h2 class="sv-cta__title">Confiez votre vehicule a des experts.</h2>
+            <h2 class="sv-cta__title">Offrez à votre véhicule le traitement qu’il mérite.</h2>
             <p class="sv-cta__subtitle">
               Notre equipe est a votre disposition pour tout renseignement, diagnostic ou prise de rendez-vous.
             </p>

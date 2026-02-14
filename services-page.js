@@ -293,18 +293,50 @@ function initCategoryFilters() {
   const cards = document.querySelectorAll('.sv-card[data-category]');
   if (!buttons.length || !cards.length) return;
 
+  const liveRegionId = 'sv-filter-status';
+  let liveRegion = document.getElementById(liveRegionId);
+
+  if (!liveRegion) {
+    liveRegion = document.createElement('p');
+    liveRegion.id = liveRegionId;
+    liveRegion.className = 'visually-hidden';
+    liveRegion.setAttribute('aria-live', 'polite');
+    const filters = document.querySelector('.sv-filters');
+    if (filters && filters.parentNode) {
+      filters.parentNode.insertBefore(liveRegion, filters.nextSibling);
+    } else {
+      document.body.appendChild(liveRegion);
+    }
+  }
+
+  const applyFilter = (filter) => {
+    let visibleCount = 0;
+
+    buttons.forEach(button => {
+      const isActive = button.getAttribute('data-filter') === filter;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    cards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      const show = filter === 'all' || category === filter;
+      card.classList.toggle('is-hidden', !show);
+      card.setAttribute('aria-hidden', String(!show));
+      if (show) visibleCount += 1;
+    });
+
+    liveRegion.textContent = `${visibleCount} service${visibleCount > 1 ? 's' : ''} affich${visibleCount > 1 ? 'es' : 'e'}.`;
+  };
+
+  const initialActiveButton = document.querySelector('.sv-filters__btn.is-active') || buttons[0];
+  const initialFilter = initialActiveButton?.getAttribute('data-filter') || 'all';
+  applyFilter(initialFilter);
+
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-
-      buttons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const show = filter === 'all' || cat === filter;
-        card.classList.toggle('is-hidden', !show);
-      });
+      const filter = btn.getAttribute('data-filter') || 'all';
+      applyFilter(filter);
     });
   });
 }
