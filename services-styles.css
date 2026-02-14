@@ -585,7 +585,7 @@
    ────────────────────────────────────────────────────────── */
 .sv-equipment {
   position: relative;
-  padding: 120px 24px;
+  padding: 104px 24px;
   background: #050609;
   overflow: hidden;
 }
@@ -601,7 +601,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.25;
+  opacity: 0.18;
 }
 
 .sv-equipment__glow--1 {
@@ -609,7 +609,7 @@
   height: 480px;
   top: -10%;
   left: -5%;
-  background: radial-gradient(circle, rgba(185, 5, 4, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(185, 5, 4, 0.22) 0%, transparent 70%);
 }
 
 .sv-equipment__glow--2 {
@@ -617,7 +617,7 @@
   height: 400px;
   bottom: -12%;
   right: -4%;
-  background: radial-gradient(circle, rgba(185, 5, 4, 0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(185, 5, 4, 0.12) 0%, transparent 70%);
 }
 
 .sv-equipment__inner {
@@ -634,7 +634,7 @@
 
 .sv-equipment__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.5);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-equipment__grid {
@@ -664,7 +664,7 @@
   box-shadow:
     0 32px 64px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(185, 5, 4, 0.12),
-    0 0 48px rgba(185, 5, 4, 0.06);
+    0 0 32px rgba(185, 5, 4, 0.04);
 }
 
 .eq-card__visual {
@@ -776,7 +776,7 @@
    PROCESS TIMELINE
    ────────────────────────────────────────────────────────── */
 .sv-process {
-  padding: 100px 24px;
+  padding: 88px 24px;
   background: linear-gradient(
     180deg,
     rgba(5, 6, 9, 1) 0%,
@@ -797,7 +797,7 @@
 
 .sv-process__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.6);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-process__timeline {
@@ -838,7 +838,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(185, 5, 4, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 14px rgba(185, 5, 4, 0.22), 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -873,7 +873,7 @@
    TRUST & GUARANTEES
    ────────────────────────────────────────────────────────── */
 .sv-trust {
-  padding: 100px 24px;
+  padding: 124px 24px 100px;
   background: linear-gradient(
     180deg,
     rgba(5, 6, 9, 1) 0%,
@@ -894,7 +894,7 @@
 
 .sv-trust__header .section-kicker {
   color: #b90504;
-  text-shadow: 0 0 16px rgba(185, 5, 4, 0.5);
+  text-shadow: 0 0 12px rgba(185, 5, 4, 0.35);
 }
 
 .sv-trust__grid {
@@ -1191,13 +1191,28 @@
 }
 
 .sv-cta__actions .btn-lg--primary {
+  /* [PATCH] Keep glow emphasis only on the primary CTA. */
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  box-shadow: 0 0 18px rgba(185, 5, 4, 0.2);
+}
+
+.sv-cta__actions .btn-lg--primary:hover {
+  box-shadow: 0 0 24px rgba(185, 5, 4, 0.24);
 }
 
 .sv-cta__actions .btn-lg--primary svg {
   flex-shrink: 0;
+}
+
+.sv-cta__actions .btn-lg--ghost {
+  box-shadow: none;
+}
+
+.sv-cta__actions .btn-lg {
+  min-width: 220px;
+  justify-content: center;
 }
 
 .sv-cta__note {
@@ -1414,6 +1429,18 @@
     padding: 80px 20px;
   }
 
+  .sv-equipment {
+    padding: 68px 20px;
+  }
+
+  .sv-process {
+    padding: 68px 20px;
+  }
+
+  .sv-trust {
+    padding-top: 96px;
+  }
+
   .sv-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
@@ -1487,6 +1514,18 @@
   .sv-faq,
   .sv-cta {
     padding: 64px 16px;
+  }
+
+  .sv-equipment {
+    padding: 56px 16px;
+  }
+
+  .sv-process {
+    padding: 56px 16px;
+  }
+
+  .sv-trust {
+    padding-top: 80px;
   }
 
   .sv-grid {
@@ -1604,6 +1643,18 @@
   .sv-faq,
   .sv-cta {
     padding: 48px 14px;
+  }
+
+  .sv-equipment {
+    padding: 40px 14px;
+  }
+
+  .sv-process {
+    padding: 40px 14px;
+  }
+
+  .sv-trust {
+    padding-top: 64px;
   }
 
   .sv-card__body {
