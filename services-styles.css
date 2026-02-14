@@ -392,6 +392,14 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* [PATCH] Keyboard users get a dedicated focus indicator without changing active state visuals. */
+.sv-filters__btn:focus-visible {
+  outline: 2px solid rgba(185, 5, 4, 0.9);
+  outline-offset: 3px;
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(185, 5, 4, 0.5);
+}
+
 .sv-filters__btn.is-active {
   color: #fff;
   background: linear-gradient(135deg, rgba(185, 5, 4, 0.85), rgba(70, 8, 6, 0.9));
