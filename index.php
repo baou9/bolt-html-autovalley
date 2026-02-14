@@ -22,7 +22,7 @@
     <!-- Skip to content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <?php include 'partials/header.php'; ?>
+    <?php include '/partials/header.php'; ?>
 
     <main id="main">
       <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
