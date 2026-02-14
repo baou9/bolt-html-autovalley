@@ -20,13 +20,17 @@
         </nav>
 
         <div class="header-actions">
-          <button class="lang-switch" type="button" aria-label="Changer de langue">
-            <span>FR</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          <div class="lang-switcher">
+            <label class="sr-only" for="header-language-select">Langue du site</label>
+            <select
+              id="header-language-select"
+              class="lang-select"
+              aria-label="Choisir la langue du site"
+            >
+              <option value="fr">FR</option>
+              <option value="en">EN</option>
+            </select>
+          </div>
 
           <a href="./index.html#rdv" class="btn-header-magnetic">
             <span>Prendre RDV</span>

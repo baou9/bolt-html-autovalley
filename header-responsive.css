@@ -1,1 +1,28 @@
-/* Header styles consolidated into style.css for the floating liquid capsule header. */
+/* [PATCH] Header responsive overrides for the shared language selector. */
+@media (max-width: 768px) {
+  .header-actions {
+    gap: 10px;
+  }
+
+  .lang-switcher {
+    max-width: 70px;
+  }
+
+  .lang-select {
+    min-height: 36px;
+    padding: 6px 24px 6px 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 480px) {
+  .lang-switcher {
+    max-width: 64px;
+  }
+
+  .lang-select {
+    min-height: 34px;
+    padding: 5px 22px 5px 8px;
+  }
+}
