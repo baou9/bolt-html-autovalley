@@ -1,3 +1,5 @@
+import { includePartials } from './include-partials.js';
+
 const serviceDetails = {
   diagnostic: {
     title: 'Diagnostic electronique & mecanique',
@@ -568,7 +570,8 @@ function initCurrentYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await includePartials(); // [PATCH] inject shared header/footer partials before binding UI logic
   initMobileMenu();
   initHeaderScroll();
   initScrollReveal();

@@ -4,6 +4,7 @@
 
 import { initAllPremiumEffects } from './premium-effects.js';
 import './testimonials.js';
+import { includePartials } from './include-partials.js';
 
 document.documentElement.classList.remove('no-js');
 
@@ -13,7 +14,8 @@ if (document.readyState === 'loading') {
   initAllPremiumEffects();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await includePartials(); // [PATCH] inject shared header/footer partials before binding UI logic
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // [PATCH]
@@ -591,7 +593,8 @@ END OF OLD TESTIMONIALS CODE */
 
 
 // NOS CLIENTS – CINEMATIC STRIP INTERACTIONS
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await includePartials(); // [PATCH] inject shared header/footer partials before binding UI logic
     const section = document.querySelector("#nos-clients-strip");
     if (!section) return;
 
