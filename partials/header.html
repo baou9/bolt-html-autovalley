@@ -23,13 +23,14 @@
 
         <!-- Actions: language + CTA + burger -->
         <div class="header-actions">
-          <button class="lang-switch" type="button" aria-label="Changer de langue">
-            <span>FR</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          <select
+            class="lang-switch"
+            aria-label="Choisir la langue"
+            onchange="window.location.href = this.value === 'en' ? window.location.pathname.replace('.html', '-en.html') : window.location.pathname.replace('-en.html', '.html');"
+          >
+            <option value="fr" selected>FR</option>
+            <option value="en">EN</option>
+          </select>
 
           <a href="#rdv" class="btn-header-magnetic">
             <span>Prendre RDV</span>

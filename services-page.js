@@ -293,22 +293,44 @@ function initScrollReveal() {
 function initCategoryFilters() {
   const buttons = document.querySelectorAll('.sv-filters__btn');
   const cards = document.querySelectorAll('.sv-card[data-category]');
+  const status = document.getElementById('sv-filter-status');
   if (!buttons.length || !cards.length) return;
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+  const applyFilter = (filter) => {
+    let visibleCount = 0;
 
-      buttons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+    buttons.forEach((button) => {
+      const isActive = button.getAttribute('data-filter') === filter;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
 
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const show = filter === 'all' || cat === filter;
-        card.classList.toggle('is-hidden', !show);
-      });
+    cards.forEach((card) => {
+      const category = (card.getAttribute('data-category') || '').split(' ');
+      const show = filter === 'all' || category.includes(filter);
+      card.classList.toggle('is-hidden', !show);
+      card.setAttribute('aria-hidden', String(!show));
+
+      if (show) {
+        visibleCount += 1;
+        card.removeAttribute('hidden');
+      } else {
+        card.setAttribute('hidden', 'hidden');
+      }
+    });
+
+    if (status) {
+      status.textContent = `${visibleCount} service${visibleCount > 1 ? 's' : ''} affiché${visibleCount > 1 ? 's' : ''}`;
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      applyFilter(button.getAttribute('data-filter') || 'all');
     });
   });
+
+  applyFilter('all');
 }
 
 function initFaqAccordion() {

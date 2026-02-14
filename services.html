@@ -35,7 +35,7 @@
         <div class="sv-hero__bg" aria-hidden="true">
           <img
             src="https://images.pexels.com/photos/4489794/pexels-photo-4489794.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
+            alt="Technicien automobile en atelier pendant une intervention de maintenance"
             class="sv-hero__bg-img"
             loading="eager"
           />
@@ -143,18 +143,20 @@
             </p>
           </header>
 
-          <nav class="sv-filters" aria-label="Filtrer les services">
-            <button class="sv-filters__btn is-active" data-filter="all">Tout</button>
-            <button class="sv-filters__btn" data-filter="mecanique">Mecanique &amp; Diagnostic</button>
-            <button class="sv-filters__btn" data-filter="entretien">Entretien &amp; Prevention</button>
-            <button class="sv-filters__btn" data-filter="carrosserie">Carrosserie</button>
-            <button class="sv-filters__btn" data-filter="electrique">Electrique &amp; Systemes</button>
-            <button class="sv-filters__btn" data-filter="specialise">Services Specialises</button>
+          <nav class="sv-filters" aria-label="Filtrer les services" role="toolbar">
+            <button class="sv-filters__btn is-active" type="button" data-filter="all" aria-pressed="true" aria-label="Afficher tous les services">Tous</button>
+            <button class="sv-filters__btn" type="button" data-filter="diagnostic" aria-pressed="false" aria-label="Filtrer par Diagnostic">Diagnostic</button>
+            <button class="sv-filters__btn" type="button" data-filter="mecanique" aria-pressed="false" aria-label="Filtrer par Réparation et mécanique">Réparation / Mécanique</button>
+            <button class="sv-filters__btn" type="button" data-filter="carrosserie" aria-pressed="false" aria-label="Filtrer par Carrosserie et peinture">Carrosserie &amp; Peinture</button>
+            <button class="sv-filters__btn" type="button" data-filter="entretien" aria-pressed="false" aria-label="Filtrer par Entretien">Entretien</button>
+            <button class="sv-filters__btn" type="button" data-filter="electronique" aria-pressed="false" aria-label="Filtrer par Systèmes électroniques">Systèmes Électroniques</button>
+            <button class="sv-filters__btn" type="button" data-filter="urgence" aria-pressed="false" aria-label="Filtrer par Urgence">Urgence</button>
           </nav>
+          <p class="sv-filters__status" id="sv-filter-status" aria-live="polite">10 services affichés</p>
 
           <div class="sv-grid" id="sv-grid">
 
-            <article class="sv-card sv-reveal" data-category="mecanique" data-service="diagnostic">
+            <article class="sv-card sv-reveal" data-category="diagnostic" data-service="diagnostic">
               <div class="sv-card__media">
                 <img
                   src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -340,7 +342,7 @@
               </div>
             </article>
 
-            <article class="sv-card sv-reveal" data-category="electrique" data-service="electricite">
+            <article class="sv-card sv-reveal" data-category="electronique" data-service="electricite">
               <div class="sv-card__media">
                 <img
                   src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -371,7 +373,7 @@
               </div>
             </article>
 
-            <article class="sv-card sv-reveal" data-category="electrique" data-service="climatisation">
+            <article class="sv-card sv-reveal" data-category="electronique" data-service="climatisation">
               <div class="sv-card__media">
                 <img
                   src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -402,7 +404,7 @@
               </div>
             </article>
 
-            <article class="sv-card sv-reveal" data-category="specialise" data-service="hybride">
+            <article class="sv-card sv-reveal" data-category="electronique" data-service="hybride">
               <div class="sv-card__media">
                 <img
                   src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -433,7 +435,7 @@
               </div>
             </article>
 
-            <article class="sv-card sv-reveal" data-category="specialise" data-service="sinistres">
+            <article class="sv-card sv-reveal" data-category="urgence" data-service="sinistres">
               <div class="sv-card__media">
                 <img
                   src="https://images.pexels.com/photos/6872169/pexels-photo-6872169.jpeg?auto=compress&cs=tinysrgb&w=600"

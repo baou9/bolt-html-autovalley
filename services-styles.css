@@ -18,6 +18,18 @@
   transform: translateY(0);
 }
 
+
+/* [PATCH] services page readability baseline */
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* [PATCH] breathing room between major sections */
+main#main > section + section {
+  margin-top: 4rem;
+}
+
 /* ──────────────────────────────────────────────────────────
    HERO
    ────────────────────────────────────────────────────────── */
@@ -42,7 +54,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center 40%;
-  filter: brightness(0.35) saturate(0.7);
+  filter: brightness(0.48) saturate(0.74);
 }
 
 .sv-hero__overlay {
@@ -50,10 +62,10 @@
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(5, 6, 9, 0.7) 0%,
-      rgba(5, 6, 9, 0.3) 35%,
-      rgba(5, 6, 9, 0.5) 65%,
-      rgba(5, 6, 9, 0.95) 100%
+      rgba(16, 18, 28, 0.62) 0%,
+      rgba(16, 18, 28, 0.3) 35%,
+      rgba(16, 18, 28, 0.5) 65%,
+      rgba(12, 14, 22, 0.9) 100%
     ),
     radial-gradient(ellipse at 30% 50%, rgba(185, 5, 4, 0.15) 0%, transparent 60%);
 }
@@ -79,7 +91,7 @@
 }
 
 .sv-hero__breadcrumb a {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: color 0.25s ease;
 }
@@ -93,7 +105,7 @@
 }
 
 .sv-hero__breadcrumb span[aria-current] {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .sv-hero__kicker {
@@ -129,7 +141,7 @@
   font-size: clamp(0.95rem, 1.6vw, 1.12rem);
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 640px;
   margin: 0 auto 40px;
 }
@@ -378,7 +390,7 @@
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
@@ -399,6 +411,19 @@
   box-shadow: 0 0 20px rgba(185, 5, 4, 0.35);
 }
 
+.sv-filters__btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
+
+.sv-filters__status {
+  margin: -24px 0 30px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 /* ──────────────────────────────────────────────────────────
    SERVICE CARDS GRID
    ────────────────────────────────────────────────────────── */
@@ -409,7 +434,7 @@
 }
 
 .sv-card {
-  background: rgba(10, 10, 16, 0.95);
+  background: rgba(18, 20, 30, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   overflow: hidden;
@@ -486,10 +511,10 @@
 
 .sv-card__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.82);
   margin-bottom: 16px;
   display: -webkit-box; /* [PATCH] keep card descriptions compact */
   -webkit-line-clamp: 2; /* [PATCH] */
@@ -731,7 +756,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.84);
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -880,10 +905,10 @@
 
 .sv-process__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -1136,10 +1161,10 @@
 .sv-faq__answer p {
   padding: 0 24px 20px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -1173,7 +1198,7 @@
 
 .sv-cta__kicker {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.55);
   margin-bottom: 12px;
@@ -1193,7 +1218,7 @@
   font-size: 0.92rem;
   font-weight: 300;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   max-width: 520px;
   margin: 0 auto 32px;
 }
@@ -1308,7 +1333,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease;
   z-index: 2;
@@ -1337,7 +1362,7 @@
   font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.84);
 }
 
 .service-modal__body p {
@@ -1361,7 +1386,7 @@
 .service-modal__body ul li {
   padding: 6px 0 6px 20px;
   position: relative;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .service-modal__body ul li::before {
@@ -1531,6 +1556,15 @@
   .sv-filters__btn {
     padding: 8px 16px;
     font-size: 0.72rem;
+  }
+
+  .sv-filters__status {
+    margin: -8px 0 20px;
+    font-size: 0.84rem;
+  }
+
+  main#main > section + section {
+    margin-top: 2.5rem;
   }
 
   .sv-card__media {
