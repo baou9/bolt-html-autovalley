@@ -291,22 +291,39 @@ function initScrollReveal() {
 function initCategoryFilters() {
   const buttons = document.querySelectorAll('.sv-filters__btn');
   const cards = document.querySelectorAll('.sv-card[data-category]');
+  const liveRegion = document.getElementById('sv-filter-status');
   if (!buttons.length || !cards.length) return;
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+  // [PATCH] Keep visual state and ARIA state synchronized for category filtering
+  const applyFilter = (activeBtn) => {
+    const filter = activeBtn.getAttribute('data-filter');
+    let visibleCount = 0;
 
-      buttons.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const show = filter === 'all' || cat === filter;
-        card.classList.toggle('is-hidden', !show);
-      });
+    buttons.forEach((button) => {
+      const isActive = button === activeBtn;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
     });
+
+    cards.forEach((card) => {
+      const category = card.getAttribute('data-category');
+      const show = filter === 'all' || category === filter;
+      card.classList.toggle('is-hidden', !show);
+      card.setAttribute('aria-hidden', String(!show));
+      if (show) visibleCount += 1;
+    });
+
+    if (liveRegion) {
+      liveRegion.textContent = `${visibleCount} service${visibleCount > 1 ? 's' : ''} affiche${visibleCount > 1 ? 's' : ''}`;
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => applyFilter(button));
   });
+
+  const initialActive = Array.from(buttons).find((button) => button.classList.contains('is-active')) || buttons[0];
+  applyFilter(initialActive);
 }
 
 function initFaqAccordion() {
