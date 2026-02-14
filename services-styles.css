@@ -485,8 +485,9 @@
 }
 
 .sv-card__desc {
+  /* [PATCH] Ensure reading text meets 1rem baseline for service cards */
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.65);
@@ -504,7 +505,7 @@
 
 .sv-card__list li {
   font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.55);
   padding-left: 18px;
@@ -755,7 +756,7 @@
 
 .eq-card__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.5);
@@ -854,7 +855,7 @@
 
 .sv-process__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.6);
@@ -993,7 +994,7 @@
 
 .sv-trust__desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
@@ -1110,7 +1111,7 @@
 .sv-faq__answer p {
   padding: 0 24px 20px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.6);
@@ -1164,7 +1165,7 @@
 
 .sv-cta__subtitle {
   font-family: 'Inter', sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
@@ -1193,7 +1194,7 @@
 
 .sv-cta__note {
   font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.35);
 }
@@ -1643,7 +1644,7 @@
 
   .sv-faq__answer p {
     padding: 0 18px 16px;
-    font-size: 0.84rem;
+    font-size: 1rem;
   }
 
   .sv-cta__card {
