@@ -21,7 +21,7 @@
   <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- @include "partials/header.html" -->
+    <?php include __DIR__ . '/partials/header.php'; ?>
 
     <main id="main">
       <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
@@ -1820,11 +1820,11 @@
       </div>
     </section>
 
-    <!-- @include "partials/footer-cta.html" -->
+    <?php include __DIR__ . '/partials/footer-cta.html'; ?>
 
-    <!-- @include "partials/footer.html" -->
+    <?php include __DIR__ . '/partials/footer.php'; ?>
 
-    <!-- @include "partials/mobile-float-cta.html" -->
+    <?php include __DIR__ . '/partials/mobile-float-cta.html'; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./approche-animations.js"></script>

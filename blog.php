@@ -14,15 +14,11 @@
     <link rel="stylesheet" href="./header-responsive.css">
     <link rel="stylesheet" href="./header-styles.css">
     <link rel="stylesheet" href="./blog-styles.css">
-
-    <script>
-      (function(){var t=localStorage.getItem('av-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
-    </script>
   </head>
   <body class="blog-page">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- @include "partials/header.html" -->
+    <?php include __DIR__ . '/partials/header.php'; ?>
 
     <main id="main">
 
@@ -111,7 +107,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Comment lire un rapport de diagnostic comme un pro"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Comment lire un rapport de diagnostic comme un pro"></a>
             </article>
 
             <article class="blog-card" data-category="Carrosserie">
@@ -142,7 +138,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Peinture constructeur expliquee"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Peinture constructeur expliquee"></a>
             </article>
 
             <article class="blog-card" data-category="Entretien">
@@ -173,7 +169,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Les 5 verifications avant l'hiver"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Les 5 verifications avant l'hiver"></a>
             </article>
 
             <article class="blog-card" data-category="Performance">
@@ -204,7 +200,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Hybrides et electriques en atelier"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Hybrides et electriques en atelier"></a>
             </article>
 
             <article class="blog-card" data-category="Conseils">
@@ -235,7 +231,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Assurance sinistre vos droits"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Assurance sinistre vos droits"></a>
             </article>
 
             <article class="blog-card" data-category="Entretien">
@@ -266,7 +262,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Climatisation auto entretien annuel"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Climatisation auto entretien annuel"></a>
             </article>
 
             <article class="blog-card" data-category="Performance">
@@ -297,7 +293,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : ADAS et calibration"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : ADAS et calibration"></a>
             </article>
 
             <article class="blog-card" data-category="Conseils">
@@ -328,7 +324,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Guide premiere visite AutoValley"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Guide premiere visite AutoValley"></a>
             </article>
 
             <article class="blog-card" data-category="Actualites">
@@ -359,7 +355,7 @@
                 </div>
                 <div class="blog-card__read-indicator" aria-hidden="true"></div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Tendances auto 2025 au Maroc"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Tendances auto 2025 au Maroc"></a>
             </article>
 
             <div class="blog-empty" id="blog-empty" style="display:none">
@@ -377,28 +373,28 @@
                 <li class="trending-item">
                   <span class="trending-item__rank">01</span>
                   <div class="trending-item__content">
-                    <a href="./article.html" class="trending-item__title">Comment lire un rapport diagnostic</a>
+                    <a href="./article.php" class="trending-item__title">Comment lire un rapport diagnostic</a>
                     <span class="trending-item__views">2,4k vues</span>
                   </div>
                 </li>
                 <li class="trending-item">
                   <span class="trending-item__rank">02</span>
                   <div class="trending-item__content">
-                    <a href="./article.html" class="trending-item__title">Peinture constructeur expliquee</a>
+                    <a href="./article.php" class="trending-item__title">Peinture constructeur expliquee</a>
                     <span class="trending-item__views">1,8k vues</span>
                   </div>
                 </li>
                 <li class="trending-item">
                   <span class="trending-item__rank">03</span>
                   <div class="trending-item__content">
-                    <a href="./article.html" class="trending-item__title">5 verifications avant l'hiver</a>
+                    <a href="./article.php" class="trending-item__title">5 verifications avant l'hiver</a>
                     <span class="trending-item__views">1,5k vues</span>
                   </div>
                 </li>
                 <li class="trending-item">
                   <span class="trending-item__rank">04</span>
                   <div class="trending-item__content">
-                    <a href="./article.html" class="trending-item__title">Hybrides : ce qui change</a>
+                    <a href="./article.php" class="trending-item__title">Hybrides : ce qui change</a>
                     <span class="trending-item__views">1,2k vues</span>
                   </div>
                 </li>
@@ -408,7 +404,7 @@
             <div class="sidebar-block">
               <h3 class="sidebar-block__title">Nos services</h3>
               <div class="sidebar-service-cards">
-                <a href="./services.html" class="sidebar-service-card">
+                <a href="./services.php" class="sidebar-service-card">
                   <span class="sidebar-service-card__icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                   </span>
@@ -417,7 +413,7 @@
                     <span class="sidebar-service-card__desc">Analyse multi-marques</span>
                   </span>
                 </a>
-                <a href="./services.html" class="sidebar-service-card">
+                <a href="./services.php" class="sidebar-service-card">
                   <span class="sidebar-service-card__icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                   </span>
@@ -426,7 +422,7 @@
                     <span class="sidebar-service-card__desc">Finition constructeur</span>
                   </span>
                 </a>
-                <a href="./services.html" class="sidebar-service-card">
+                <a href="./services.php" class="sidebar-service-card">
                   <span class="sidebar-service-card__icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>
                   </span>
@@ -448,9 +444,9 @@
                   </button>
                   <div class="sidebar-archive__panel">
                     <ul class="sidebar-archive__links">
-                      <li><a href="./article.html" class="sidebar-archive__link">Comment lire un rapport diagnostic</a></li>
-                      <li><a href="./article.html" class="sidebar-archive__link">5 verifications avant l'hiver</a></li>
-                      <li><a href="./article.html" class="sidebar-archive__link">Guide premiere visite AutoValley</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">Comment lire un rapport diagnostic</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">5 verifications avant l'hiver</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">Guide premiere visite AutoValley</a></li>
                     </ul>
                   </div>
                 </li>
@@ -461,8 +457,8 @@
                   </button>
                   <div class="sidebar-archive__panel">
                     <ul class="sidebar-archive__links">
-                      <li><a href="./article.html" class="sidebar-archive__link">Peinture constructeur expliquee</a></li>
-                      <li><a href="./article.html" class="sidebar-archive__link">Assurance sinistre : vos droits</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">Peinture constructeur expliquee</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">Assurance sinistre : vos droits</a></li>
                     </ul>
                   </div>
                 </li>
@@ -473,8 +469,8 @@
                   </button>
                   <div class="sidebar-archive__panel">
                     <ul class="sidebar-archive__links">
-                      <li><a href="./article.html" class="sidebar-archive__link">Hybrides et electriques en atelier</a></li>
-                      <li><a href="./article.html" class="sidebar-archive__link">ADAS et calibration</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">Hybrides et electriques en atelier</a></li>
+                      <li><a href="./article.php" class="sidebar-archive__link">ADAS et calibration</a></li>
                     </ul>
                   </div>
                 </li>
@@ -488,9 +484,9 @@
 
     </main>
 
-    <!-- @include "partials/footer-cta.html" -->
-    <!-- @include "partials/footer.html" -->
-    <!-- @include "partials/mobile-float-cta.html" -->
+    <?php include __DIR__ . '/partials/footer-cta.html'; ?>
+    <?php include __DIR__ . '/partials/footer.php'; ?>
+    <?php include __DIR__ . '/partials/mobile-float-cta.html'; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./blog.js"></script>

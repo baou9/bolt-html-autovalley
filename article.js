@@ -71,14 +71,3 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 updateProgressBar();
 updateTocHighlight();
-
-const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('av-theme', next);
-  });
-}

@@ -1,73 +1,50 @@
 const currentPath = window.location.pathname;
-const currentPage = currentPath.split('/').pop() || 'index.html';
-const normalizedCurrentPage = currentPage === '' ? 'index.html' : currentPage;
-const isServicesPage = normalizedCurrentPage === 'services.html' || normalizedCurrentPage.startsWith('services-');
-const isBlogPage = normalizedCurrentPage === 'blog.html' || normalizedCurrentPage === 'article.html';
+const currentPage = (currentPath.split('/').pop() || 'index.php').toLowerCase();
 
-const isActiveLink = (linkPage) => {
-  if (!linkPage) {
-    return false;
+const getPageGroup = (page) => {
+  if (page === 'services.php' || page.startsWith('services-')) {
+    return 'services';
   }
 
-  if (linkPage === normalizedCurrentPage || (normalizedCurrentPage === '' && linkPage === 'index.html')) {
-    return true;
+  if (page === 'blog.php' || page === 'article.php') {
+    return 'blog';
   }
 
-  if (linkPage === 'services.html' && isServicesPage) {
-    return true;
-  }
-
-  if (linkPage === 'blog.html' && isBlogPage) {
-    return true;
-  }
-
-  return false;
+  return 'index';
 };
 
+const currentGroup = getPageGroup(currentPage);
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
-const activePages = new Set();
 
 navLinks.forEach((link) => {
   const href = link.getAttribute('href') || '';
-  const linkPage = href.split('#')[0].split('/').pop();
+  const [baseHref, hash] = href.split('#');
+  const linkPage = (baseHref.split('/').pop() || 'index.php').toLowerCase();
+  const linkGroup = getPageGroup(linkPage);
+  const isSectionLink = Boolean(hash);
+  const shouldHighlight = linkGroup === currentGroup && !isSectionLink;
 
-  if (isActiveLink(linkPage)) {
-    activePages.add(linkPage);
-  }
-});
-
-navLinks.forEach((link) => {
-  const href = link.getAttribute('href') || '';
-  const linkPage = href.split('#')[0].split('/').pop();
-
-  if (activePages.has(linkPage)) {
-    link.classList.add('nav-link--active');
-  } else {
-    link.classList.remove('nav-link--active');
-  }
+  link.classList.toggle('nav-link--active', shouldHighlight);
 });
 
 const languageSelect = document.getElementById('header-language-select');
 
 if (languageSelect) {
   const languageRoutes = {
-    index: { fr: 'index.html', en: 'index-en.html' },
-    services: { fr: 'services.html', en: 'services-en.html' }
+    index: { fr: 'index.php', en: 'index-en.php' },
+    services: { fr: 'services.php', en: 'services-en.php' },
+    blog: { fr: 'blog.php', en: 'blog-en.php' }
   };
 
-  const normalizedPage = (currentPage || 'index.html').toLowerCase();
-  const pageKey = normalizedPage.includes('services') ? 'services' : 'index';
-  const currentLanguage = normalizedPage.endsWith('-en.html') ? 'en' : 'fr';
-
+  const currentLanguage = currentPage.endsWith('-en.php') ? 'en' : 'fr';
   languageSelect.value = currentLanguage;
 
   languageSelect.addEventListener('change', (event) => {
     const nextLanguage = event.target.value === 'en' ? 'en' : 'fr';
-    const targetPage = languageRoutes[pageKey][nextLanguage];
-    const nextUrl = `${targetPage}${window.location.search}${window.location.hash}`;
+    const targetPage = languageRoutes[currentGroup]?.[nextLanguage];
 
     if (targetPage && !window.location.pathname.endsWith(targetPage)) {
-      window.location.assign(nextUrl);
+      window.location.assign(`${targetPage}${window.location.search}${window.location.hash}`);
     }
   });
 }
