@@ -1154,11 +1154,32 @@ function initAcademyCarouselCounter() { // [PATCH]
 document.addEventListener('DOMContentLoaded', () => {
   initAcademyReveal();
   initAcademyCarouselCounter();
+  initAcademySidebarAccordion();
 }); // [PATCH]
 
 // ─────────────────────────────────────────────────────────
 // 14. Footer accordions (mobile-only)
 // ─────────────────────────────────────────────────────────
+
+function initAcademySidebarAccordion() { // [PATCH]
+  const sidebar = document.querySelector('.academy-sidebar');
+  if (!sidebar) return;
+
+  const triggers = sidebar.querySelectorAll('.academy-accordion-trigger');
+  triggers.forEach((trigger) => {
+    const panelId = trigger.getAttribute('aria-controls');
+    if (!panelId) return;
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      panel.hidden = expanded;
+    });
+  });
+}
+
 function initFooterAccordions() { // [PATCH]
   const footer = document.getElementById('site-footer');
   if (!footer) return;

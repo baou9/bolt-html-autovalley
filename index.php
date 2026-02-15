@@ -1655,63 +1655,101 @@
 
         <div class="academy-divider" role="presentation"></div>
 
-        <div class="academy-grid" role="list">
-          <article class="academy-card academy-card--feature" role="listitem">
-            <div class="academy-media" aria-hidden="true">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80" alt="Diagnostic haute tension sur véhicule moderne">
-              <span class="academy-media-overlay"></span>
-            </div>
-            <div class="academy-card-body">
-              <div class="academy-meta-row">
-                <span class="academy-pill">Diagnostic</span>
-                <span class="academy-meta">Déc 2025</span>
-                <span class="academy-dot" aria-hidden="true">•</span>
-                <span class="academy-meta">5 min</span>
-              </div>
-              <h3 class="academy-card-title">How to read a diagnostic report like a pro</h3>
-              <p class="academy-card-excerpt">Décrypter les codes défauts, distinguer critique vs préventif, et décider des priorités sans perdre en garantie.</p>
-              <div class="academy-card-actions">
-                <a class="academy-button" href="#blog">Read article</a>
-                <span class="academy-underline" aria-hidden="true"></span>
-              </div>
-            </div>
-          </article>
-
-          <div class="academy-list" role="list">
-            <article class="academy-card academy-card--secondary" role="listitem">
-              <div class="academy-secondary-media" aria-hidden="true">
-                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1100&q=80&sat=-30" alt="Inspection carrosserie avec lumière rasante">
+        <div class="academy-layout">
+          <div class="academy-grid" role="list">
+            <article class="academy-card academy-card--feature" role="listitem">
+              <div class="academy-media" aria-hidden="true">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80" alt="Diagnostic haute tension sur véhicule moderne">
+                <span class="academy-media-overlay"></span>
               </div>
               <div class="academy-card-body">
                 <div class="academy-meta-row">
-                  <span class="academy-pill">Bodywork</span>
+                  <span class="academy-pill">Diagnostic</span>
                   <span class="academy-meta">Déc 2025</span>
                   <span class="academy-dot" aria-hidden="true">•</span>
                   <span class="academy-meta">5 min</span>
                 </div>
-                <h3 class="academy-card-title">OEM paint match: the process explained</h3>
-                <p class="academy-card-excerpt">Préparation des panneaux, lecture du spectro, mélange contrôlé et vernis pour restituer la teinte d’origine.</p>
+                <h3 class="academy-card-title">How to read a diagnostic report like a pro</h3>
+                <p class="academy-card-excerpt">Décrypter les codes défauts, distinguer critique vs préventif, et décider des priorités sans perdre en garantie.</p>
+                <div class="academy-card-actions">
+                  <a class="academy-button" href="#blog">Read article</a>
+                  <span class="academy-underline" aria-hidden="true"></span>
+                </div>
               </div>
             </article>
 
-            <article class="academy-card academy-card--secondary" role="listitem">
-              <div class="academy-secondary-media" aria-hidden="true">
-                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1100&q=80&sat=-20" alt="Dossier assurance automobile">
-              </div>
-              <div class="academy-card-body">
-                <div class="academy-meta-row">
-                  <span class="academy-pill">Insurance</span>
-                  <span class="academy-meta">Déc 2025</span>
-                  <span class="academy-dot" aria-hidden="true">•</span>
-                  <span class="academy-meta">4 min</span>
+            <div class="academy-list" role="list">
+              <article class="academy-card academy-card--secondary" role="listitem">
+                <div class="academy-secondary-media" aria-hidden="true">
+                  <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1100&q=80&sat=-30" alt="Inspection carrosserie avec lumière rasante">
                 </div>
-                <h3 class="academy-card-title">Insurance repairs: what you should demand</h3>
-                <p class="academy-card-excerpt">Pièces d’origine, délais engagés et contrôle qualité documenté pour défendre la valeur résiduelle.</p>
-              </div>
-            </article>
+                <div class="academy-card-body">
+                  <div class="academy-meta-row">
+                    <span class="academy-pill">Bodywork</span>
+                    <span class="academy-meta">Déc 2025</span>
+                    <span class="academy-dot" aria-hidden="true">•</span>
+                    <span class="academy-meta">5 min</span>
+                  </div>
+                  <h3 class="academy-card-title">OEM paint match: the process explained</h3>
+                  <p class="academy-card-excerpt">Préparation des panneaux, lecture du spectro, mélange contrôlé et vernis pour restituer la teinte d’origine.</p>
+                </div>
+              </article>
+
+              <article class="academy-card academy-card--secondary" role="listitem">
+                <div class="academy-secondary-media" aria-hidden="true">
+                  <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1100&q=80&sat=-20" alt="Dossier assurance automobile">
+                </div>
+                <div class="academy-card-body">
+                  <div class="academy-meta-row">
+                    <span class="academy-pill">Insurance</span>
+                    <span class="academy-meta">Déc 2025</span>
+                    <span class="academy-dot" aria-hidden="true">•</span>
+                    <span class="academy-meta">4 min</span>
+                  </div>
+                  <h3 class="academy-card-title">Insurance repairs: what you should demand</h3>
+                  <p class="academy-card-excerpt">Pièces d’origine, délais engagés et contrôle qualité documenté pour défendre la valeur résiduelle.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="academy-carousel-counter" aria-live="polite">1 / 2</div>
           </div>
 
-          <div class="academy-carousel-counter" aria-live="polite">1 / 2</div>
+          <aside class="academy-sidebar" aria-label="Tendances du blog">
+            <h3 class="academy-sidebar-title">Tendances</h3>
+
+            <div class="academy-accordion-group">
+              <button class="academy-accordion-trigger" type="button" aria-expanded="true" aria-controls="academy-trend-decembre" id="academy-trigger-decembre">
+                Décembre 2025
+              </button>
+              <div class="academy-accordion-panel" id="academy-trend-decembre" role="region" aria-labelledby="academy-trigger-decembre">
+                <a class="academy-mini-card" href="services.php#sv-catalogue">
+                  <span class="academy-mini-card-title">Diagnostic électronique</span>
+                  <span class="academy-mini-card-meta">Accéder au catalogue services</span>
+                </a>
+                <a class="academy-mini-card" href="services.php#sv-process">
+                  <span class="academy-mini-card-title">Processus carrosserie</span>
+                  <span class="academy-mini-card-meta">Voir les étapes atelier</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="academy-accordion-group">
+              <button class="academy-accordion-trigger" type="button" aria-expanded="false" aria-controls="academy-trend-categories" id="academy-trigger-categories">
+                Catégories suivies
+              </button>
+              <div class="academy-accordion-panel" id="academy-trend-categories" role="region" aria-labelledby="academy-trigger-categories" hidden>
+                <a class="academy-mini-card" href="services.php#sv-equipment">
+                  <span class="academy-mini-card-title">Équipements de contrôle</span>
+                  <span class="academy-mini-card-meta">Comparer les technologies</span>
+                </a>
+                <a class="academy-mini-card" href="services.php#sv-faq">
+                  <span class="academy-mini-card-title">Assurance &amp; garanties</span>
+                  <span class="academy-mini-card-meta">Consulter les réponses utiles</span>
+                </a>
+              </div>
+            </div>
+          </aside>
         </div>
 
         <div class="academy-topics" role="list" aria-label="Thématiques du blog">
