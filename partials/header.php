@@ -13,7 +13,7 @@
             <li><a href="./index.php" class="nav-link">Accueil</a></li>
             <li><a href="./services.php" class="nav-link">Services</a></li>
             <li><a href="./index.php#apropos" class="nav-link">À propos</a></li>
-            <li><a href="./index.php#blog" class="nav-link">Blog</a></li>
+            <li><a href="./blog.php" class="nav-link">Blog</a></li>
             <li><a href="./index.php#carrieres" class="nav-link">Carrières</a></li>
             <li><a href="./index.php#faq" class="nav-link">FAQ</a></li>
           </ul>
@@ -69,7 +69,7 @@
           <li style="--delay: 0.1s"><a href="./index.php" class="mobile-link">Accueil</a></li>
           <li style="--delay: 0.2s"><a href="./services.php" class="mobile-link">Services</a></li>
           <li style="--delay: 0.3s"><a href="./index.php#apropos" class="mobile-link">À propos</a></li>
-          <li style="--delay: 0.4s"><a href="./index.php#blog" class="mobile-link">Blog</a></li>
+          <li style="--delay: 0.4s"><a href="./blog.php" class="mobile-link">Blog</a></li>
           <li style="--delay: 0.5s"><a href="./index.php#carrieres" class="mobile-link">Carrières</a></li>
           <li style="--delay: 0.6s"><a href="./index.php#faq" class="mobile-link">FAQ</a></li>
         </ul>

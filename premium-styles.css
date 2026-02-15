@@ -468,6 +468,21 @@
   transform: translateY(-15px) rotateX(3deg);
 }
 
+/* [PATCH] Blog filter visibility transitions are opacity/transform based to avoid display toggling churn. */
+.blog-page .blog-card {
+  transition: transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease,
+              opacity 0.28s ease;
+}
+
+.blog-page .blog-card.blog-card-hidden {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .blog-card-category::before {
   animation: categoryPulse 2s ease-in-out infinite;
 }
