@@ -17,9 +17,16 @@
     <link rel="stylesheet" href="./services-styles.css">
   </head>
   <body>
+    <?php
+    $partialsCandidates = [
+      __DIR__ . '/partials',
+      dirname(__DIR__) . '/partials',
+    ];
+    $partialsDir = is_dir($partialsCandidates[0]) ? $partialsCandidates[0] : $partialsCandidates[1];
+    ?>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php include $partialsDir . '/header.php'; ?>
 
     <div class="xenon-ambience" aria-hidden="true">
       <div class="xenon-ambience__beam xenon-ambience__beam--top"></div>
@@ -869,7 +876,7 @@
 
     </main>
 
-    <?php include __DIR__ . '/partials/footer.php'; ?>
+    <?php include $partialsDir . '/footer.php'; ?>
 
     <div id="service-modal" class="service-modal" aria-hidden="true">
       <div class="service-modal__overlay"></div>
@@ -889,7 +896,7 @@
       </div>
     </div>
 
-    <?php include __DIR__ . '/partials/mobile-float-cta.html'; ?>
+    <?php include $partialsDir . '/mobile-float-cta.html'; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./services-page.js"></script>
