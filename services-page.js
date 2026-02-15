@@ -252,7 +252,7 @@ function initHeaderScroll() {
   const onScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        header.classList.toggle('is-scrolled', window.scrollY > 60);
+        header.classList.toggle('scrolled', window.scrollY > 60);
         ticking = false;
       });
       ticking = true;
