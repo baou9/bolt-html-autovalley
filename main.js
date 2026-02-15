@@ -5,6 +5,20 @@
 import { initAllPremiumEffects } from './premium-effects.js';
 import './testimonials.js';
 
+const THEME_STORAGE_KEY = 'autovalley-theme'; // [PATCH]
+const THEME_VALUES = new Set(['light', 'dark']); // [PATCH]
+
+const getStoredTheme = () => { // [PATCH]
+  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return THEME_VALUES.has(storedTheme) ? storedTheme : null;
+};
+
+const getSystemTheme = () =>
+  window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; // [PATCH]
+
+const hydratedTheme = getStoredTheme() || getSystemTheme(); // [PATCH]
+document.documentElement.setAttribute('data-theme', hydratedTheme); // [PATCH]
+
 document.documentElement.classList.remove('no-js');
 
 if (document.readyState === 'loading') {
@@ -216,8 +230,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.querySelector(".menu-trigger");
   const overlay = document.querySelector(".mobile-nav-overlay");
   const mobileLinks = document.querySelectorAll(".mobile-link, .btn-mobile");
+  const themeToggleButtons = document.querySelectorAll('[data-theme-toggle]'); // [PATCH]
+
+  const applyTheme = (themeValue) => { // [PATCH]
+    const theme = themeValue === 'light' ? 'light' : 'dark';
+    const isDark = theme === 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
+
+    if (header) {
+      header.setAttribute('data-theme', theme);
+    }
+
+    themeToggleButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(isDark));
+      button.setAttribute('aria-label', isDark ? 'Activer le thème clair' : 'Activer le thème sombre');
+
+      const icon = button.querySelector('[data-theme-icon]');
+      if (icon) {
+        icon.textContent = isDark ? '☀️' : '🌙';
+      }
+    });
+  };
+
+  const saveThemePreference = (theme) => { // [PATCH]
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  };
+
+  applyTheme(getStoredTheme() || hydratedTheme);
+
+  themeToggleButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      saveThemePreference(nextTheme);
+    });
+  });
 
   const onScroll = () => {
+    if (!header) {
+      return;
+    }
+
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
     } else {
