@@ -1,18 +1,27 @@
 const currentPath = window.location.pathname;
-const currentPage = currentPath.split('/').pop() || 'index.php';
-const normalizedCurrentPage = currentPage === '' ? 'index.php' : currentPage;
-const isServicesPage = normalizedCurrentPage === 'services.php' || normalizedCurrentPage.startsWith('services-');
+const currentPage = currentPath.split('/').pop() || 'index.html';
+const normalizedCurrentPage = currentPage === '' ? 'index.html' : currentPage;
+const isServicesPage = normalizedCurrentPage === 'services.html' || normalizedCurrentPage.startsWith('services-');
+const isBlogPage = normalizedCurrentPage === 'blog.html' || normalizedCurrentPage === 'article.html';
 
 const isActiveLink = (linkPage) => {
   if (!linkPage) {
     return false;
   }
 
-  if (linkPage === normalizedCurrentPage || (normalizedCurrentPage === '' && linkPage === 'index.php')) {
+  if (linkPage === normalizedCurrentPage || (normalizedCurrentPage === '' && linkPage === 'index.html')) {
     return true;
   }
 
-  return linkPage === 'services.php' && isServicesPage;
+  if (linkPage === 'services.html' && isServicesPage) {
+    return true;
+  }
+
+  if (linkPage === 'blog.html' && isBlogPage) {
+    return true;
+  }
+
+  return false;
 };
 
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
@@ -42,13 +51,13 @@ const languageSelect = document.getElementById('header-language-select');
 
 if (languageSelect) {
   const languageRoutes = {
-    index: { fr: 'index.php', en: 'index-en.php' },
-    services: { fr: 'services.php', en: 'services-en.php' }
+    index: { fr: 'index.html', en: 'index-en.html' },
+    services: { fr: 'services.html', en: 'services-en.html' }
   };
 
-  const normalizedPage = (currentPage || 'index.php').toLowerCase();
+  const normalizedPage = (currentPage || 'index.html').toLowerCase();
   const pageKey = normalizedPage.includes('services') ? 'services' : 'index';
-  const currentLanguage = normalizedPage.endsWith('-en.php') ? 'en' : 'fr';
+  const currentLanguage = normalizedPage.endsWith('-en.html') ? 'en' : 'fr';
 
   languageSelect.value = currentLanguage;
 
