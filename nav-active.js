@@ -31,16 +31,16 @@ const languageSelect = document.getElementById('header-language-select');
 
 if (languageSelect) {
   const languageRoutes = {
-    index: { fr: 'index.php', en: 'index-en.php' },
-    services: { fr: 'services.php', en: 'services-en.php' },
-    blog: { fr: 'blog.php', en: 'blog-en.php' }
+    index: { fr: 'index.php', ar: 'index.php' },
+    services: { fr: 'services.php', ar: 'services.php' },
+    blog: { fr: 'blog.php', ar: 'blog.php' }
   };
 
-  const currentLanguage = currentPage.endsWith('-en.php') ? 'en' : 'fr';
+  const currentLanguage = currentPage.endsWith('-ar.php') ? 'ar' : 'fr';
   languageSelect.value = currentLanguage;
 
   languageSelect.addEventListener('change', (event) => {
-    const nextLanguage = event.target.value === 'en' ? 'en' : 'fr';
+    const nextLanguage = event.target.value === 'ar' ? 'ar' : 'fr';
     const targetPage = languageRoutes[currentGroup]?.[nextLanguage];
 
     if (targetPage && !window.location.pathname.endsWith(targetPage)) {
