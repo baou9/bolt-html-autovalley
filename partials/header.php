@@ -20,6 +20,16 @@
         </nav>
 
         <div class="header-actions">
+          <button
+            type="button"
+            class="theme-toggle-btn"
+            data-theme-toggle
+            aria-label="Activer le thème clair"
+            aria-pressed="true"
+          >
+            <span class="theme-toggle-icon" data-theme-icon aria-hidden="true">☀️</span>
+          </button>
+
           <div class="lang-switcher">
             <label class="sr-only" for="header-language-select">Langue du site</label>
             <select
@@ -65,6 +75,17 @@
         </ul>
 
         <div class="mobile-cta" style="--delay: 0.7s">
+          <button
+            type="button"
+            class="theme-toggle-btn theme-toggle-btn--mobile"
+            data-theme-toggle
+            aria-label="Activer le thème clair"
+            aria-pressed="true"
+          >
+            <span class="theme-toggle-icon" data-theme-icon aria-hidden="true">☀️</span>
+            <span>Thème</span>
+          </button>
+
           <a href="./index.php#rdv" class="btn-mobile">Prendre RDV</a>
         </div>
       </nav>
