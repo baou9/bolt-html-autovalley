@@ -19,10 +19,17 @@
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
   </head>
   <body>
+    <?php
+    $partialsCandidates = [
+      __DIR__ . '/partials',
+      dirname(__DIR__) . '/partials',
+    ];
+    $partialsDir = is_dir($partialsCandidates[0]) ? $partialsCandidates[0] : $partialsCandidates[1];
+    ?>
     <!-- Skip to content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <?php include __DIR__ . '/partials/header.php'; ?>
+    <?php include $partialsDir . '/header.php'; ?>
 
     <main id="main">
       <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
@@ -1821,11 +1828,11 @@
       </div>
     </section>
 
-    <?php include __DIR__ . '/partials/footer-cta.html'; ?>
+    <?php include $partialsDir . '/footer-cta.html'; ?>
 
-    <?php include __DIR__ . '/partials/footer.php'; ?>
+    <?php include $partialsDir . '/footer.php'; ?>
 
-    <?php include __DIR__ . '/partials/mobile-float-cta.html'; ?>
+    <?php include $partialsDir . '/mobile-float-cta.html'; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./approche-animations.js"></script>
