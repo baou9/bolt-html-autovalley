@@ -19,7 +19,7 @@
   <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- @include "partials/header.html" -->
+    <?php include __DIR__ . "/partials/header.php"; ?>
 
     <div class="xenon-ambience" aria-hidden="true">
       <div class="xenon-ambience__beam xenon-ambience__beam--top"></div>
@@ -44,7 +44,7 @@
 
         <div class="sv-hero__inner">
           <nav class="sv-hero__breadcrumb" aria-label="Fil d'Ariane">
-            <a href="./index.html">Accueil</a>
+            <a href="./index.php">Accueil</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">Services</span>
           </nav>
@@ -869,7 +869,7 @@
 
     </main>
 
-    <!-- @include "partials/footer.html" -->
+    <?php include __DIR__ . "/partials/footer.php"; ?>
 
     <div id="service-modal" class="service-modal" aria-hidden="true">
       <div class="service-modal__overlay"></div>
@@ -889,7 +889,7 @@
       </div>
     </div>
 
-    <!-- @include "partials/mobile-float-cta.html" -->
+    <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./services-page.js"></script>

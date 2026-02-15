@@ -28,7 +28,7 @@
 
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- @include "partials/header.html" -->
+    <?php include __DIR__ . "/partials/header.php"; ?>
 
     <main id="main">
 
@@ -40,9 +40,9 @@
 
         <div class="article-hero__inner">
           <nav class="article-hero__breadcrumb" aria-label="Fil d'Ariane">
-            <a href="./index.html">Accueil</a>
+            <a href="./index.php">Accueil</a>
             <span aria-hidden="true">/</span>
-            <a href="./blog.html">Academie</a>
+            <a href="./blog.php">Academie</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">Diagnostic</span>
           </nav>
@@ -77,10 +77,10 @@
           </div>
 
           <div class="article-hero__tags">
-            <a href="./blog.html" class="article-hero__tag">Diagnostic</a>
-            <a href="./blog.html" class="article-hero__tag">Codes defauts</a>
-            <a href="./blog.html" class="article-hero__tag">Garantie</a>
-            <a href="./blog.html" class="article-hero__tag">OBD-II</a>
+            <a href="./blog.php" class="article-hero__tag">Diagnostic</a>
+            <a href="./blog.php" class="article-hero__tag">Codes defauts</a>
+            <a href="./blog.php" class="article-hero__tag">Garantie</a>
+            <a href="./blog.php" class="article-hero__tag">OBD-II</a>
           </div>
 
           <div class="article-hero__cover">
@@ -274,7 +274,7 @@
                 Nos techniciens certifies analysent votre vehicule avec les memes outils que les concessionnaires.
                 Rapport detaille et explications incluses.
               </p>
-              <a href="./index.html#rdv" class="article-cta__btn">
+              <a href="./index.php#rdv" class="article-cta__btn">
                 Prendre rendez-vous
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
@@ -309,7 +309,7 @@
                   <span class="blog-card__meta-item">6 min</span>
                 </div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Peinture constructeur"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Peinture constructeur"></a>
             </article>
 
             <article class="blog-card" data-category="Performance">
@@ -331,7 +331,7 @@
                   <span class="blog-card__meta-item">6 min</span>
                 </div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : ADAS et calibration"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : ADAS et calibration"></a>
             </article>
 
             <article class="blog-card" data-category="Conseils">
@@ -353,7 +353,7 @@
                   <span class="blog-card__meta-item">5 min</span>
                 </div>
               </div>
-              <a href="./article.html" class="blog-card__link" aria-label="Lire : Assurance sinistre vos droits"></a>
+              <a href="./article.php" class="blog-card__link" aria-label="Lire : Assurance sinistre vos droits"></a>
             </article>
 
           </div>
@@ -362,8 +362,8 @@
 
     </main>
 
-    <!-- @include "partials/footer.html" -->
-    <!-- @include "partials/mobile-float-cta.html" -->
+    <?php include __DIR__ . "/partials/footer.php"; ?>
+    <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
     <script type="module" src="./nav-active.js"></script>
     <script type="module" src="./article.js"></script>
