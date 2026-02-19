@@ -426,6 +426,31 @@ body,
   top: 0;
 }
 
+body.blog-page #main {
+  padding-top: 128px;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+body.blog-page #main > section[aria-labelledby="blog-title"] {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+body.blog-page #main > section[aria-labelledby="blog-title"] > header,
+body.blog-page #main > section[aria-labelledby="blog-title"] > article {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  body.blog-page #main {
+    padding-top: 96px;
+  }
+}
+
 /* ──────────────────────────────────────────────────────────
    3. Floating Liquid Capsule Header
    ────────────────────────────────────────────────────────── */

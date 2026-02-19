@@ -21,33 +21,6 @@
     <link rel="stylesheet" href="./header-responsive.css" />
     <link rel="stylesheet" href="./header-styles.css" />
     <link rel="stylesheet" href="./premium-styles.css" />
-
-    <style>
-      .blog-page-main {
-        padding-top: 128px;
-        padding-inline: clamp(16px, 4vw, 48px);
-        padding-bottom: clamp(40px, 6vw, 72px);
-      }
-
-      .blog-page-content {
-        width: min(100%, 1080px);
-        margin: 0 auto;
-        display: grid;
-        gap: clamp(20px, 3vw, 32px);
-      }
-
-      .blog-page-content > header,
-      .blog-page-content > article {
-        display: grid;
-        gap: 12px;
-      }
-
-      @media (max-width: 768px) {
-        .blog-page-main {
-          padding-top: 96px;
-        }
-      }
-    </style>
   </head>
   <body class="blog-page">
     <?php
@@ -61,8 +34,8 @@
 
     <?php include $partialsDir . '/header.php'; ?>
 
-    <main id="main" class="blog-page-main">
-      <section class="blog-page-content" aria-labelledby="blog-title">
+    <main id="main">
+      <section aria-labelledby="blog-title">
         <header>
           <h1 id="blog-title">Blog AutoValley</h1>
           <p>
