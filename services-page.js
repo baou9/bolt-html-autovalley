@@ -363,111 +363,6 @@ function initServiceModal() {
   });
 }
 
-function initFooterAccordions() {
-  const footer = document.getElementById('site-footer');
-  if (!footer) return;
-
-  const accordions = Array.from(footer.querySelectorAll('.footer-accordion'));
-  if (!accordions.length) return;
-
-  const mobileQuery = window.matchMedia('(max-width: 860px)');
-  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  let isEnabled = false;
-  let cleanupFns = [];
-
-  const setExpandedState = (accordion, expanded) => {
-    const trigger = accordion.querySelector('.footer-accordion-trigger');
-    const panel = accordion.querySelector('.footer-accordion-panel');
-    if (!trigger || !panel) return;
-
-    accordion.classList.toggle('is-open', expanded);
-    trigger.setAttribute('aria-expanded', String(expanded));
-
-    if (expanded) {
-      panel.style.maxHeight = reduceMotionQuery.matches ? 'none' : `${panel.scrollHeight}px`;
-    } else {
-      panel.style.maxHeight = '0px';
-    }
-  };
-
-  const refreshOpenPanels = () => {
-    if (!isEnabled) return;
-    accordions.forEach((accordion) => {
-      const trigger = accordion.querySelector('.footer-accordion-trigger');
-      const panel = accordion.querySelector('.footer-accordion-panel');
-      if (!trigger || !panel) return;
-
-      if (trigger.getAttribute('aria-expanded') === 'true') {
-        panel.style.maxHeight = reduceMotionQuery.matches ? 'none' : `${panel.scrollHeight}px`;
-      }
-    });
-  };
-
-  const enableAccordions = () => {
-    if (isEnabled) return;
-    isEnabled = true;
-    footer.classList.add('footer-accordions-enabled');
-
-    accordions.forEach((accordion) => {
-      const trigger = accordion.querySelector('.footer-accordion-trigger');
-      const panel = accordion.querySelector('.footer-accordion-panel');
-      if (!trigger || !panel) return;
-
-      trigger.disabled = false;
-      trigger.removeAttribute('aria-disabled');
-      setExpandedState(accordion, false);
-
-      const onToggle = () => {
-        const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        setExpandedState(accordion, !expanded);
-      };
-
-      trigger.addEventListener('click', onToggle);
-      cleanupFns.push(() => trigger.removeEventListener('click', onToggle));
-    });
-
-    const onResize = () => refreshOpenPanels();
-    window.addEventListener('resize', onResize);
-    cleanupFns.push(() => window.removeEventListener('resize', onResize));
-  };
-
-  const disableAccordions = () => {
-    if (isEnabled) {
-      cleanupFns.forEach((fn) => fn());
-      cleanupFns = [];
-
-      isEnabled = false;
-      footer.classList.remove('footer-accordions-enabled');
-    }
-
-    accordions.forEach((accordion) => {
-      const trigger = accordion.querySelector('.footer-accordion-trigger');
-      const panel = accordion.querySelector('.footer-accordion-panel');
-      if (!trigger || !panel) return;
-
-      accordion.classList.add('is-open');
-      trigger.disabled = true;
-      trigger.setAttribute('aria-disabled', 'true');
-      trigger.setAttribute('aria-expanded', 'true');
-      panel.style.maxHeight = '';
-      panel.style.opacity = '';
-      panel.style.visibility = '';
-    });
-  };
-
-  const evaluate = () => {
-    if (mobileQuery.matches) {
-      enableAccordions();
-    } else {
-      disableAccordions();
-    }
-  };
-
-  evaluate();
-  mobileQuery.addEventListener('change', evaluate);
-}
-
 function initStatCounters() {
   const stats = document.querySelectorAll('.sv-hero__stat[data-count]');
   if (!stats.length) return;
@@ -551,18 +446,11 @@ function initXenonAmbience() {
   update();
 }
 
-function initCurrentYear() {
-  const el = document.getElementById('current-year');
-  if (el) el.textContent = new Date().getFullYear();
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initCategoryFilters();
   initFaqAccordion();
   initServiceModal();
-  initFooterAccordions();
-  initCurrentYear();
   initStatCounters();
   initXenonAmbience();
 });
