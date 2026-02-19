@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./header-responsive.css">
     <link rel="stylesheet" href="./header-styles.css">
+    <link rel="stylesheet" href="./premium-styles.css">
     <link rel="stylesheet" href="./blog-styles.css">
     <link rel="stylesheet" href="./article-styles.css">
 
@@ -366,6 +367,7 @@
     <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
     <script type="module" src="./nav-active.js"></script>
+    <script type="module" src="./premium-effects.js"></script>
     <script type="module" src="./article.js"></script>
   </body>
 </html>
