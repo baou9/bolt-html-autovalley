@@ -2,7 +2,7 @@
       <div class="header-glass-container">
         <div class="logo-wrapper">
           <a href="./index.php" aria-label="Retour a l'accueil">
-            <img src="https://avhtml.anyapi.ma/public/Converted-PNG.png"
+            <img src="./public/img/Converted-PNG.png"
                  alt="AutoValley - Full Car Service"
                  class="logo-img">
           </a>

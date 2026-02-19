@@ -3,7 +3,7 @@
         <div class="footer-column footer-brand">
           <div class="footer-logo-row">
             <div class="footer-logo" aria-label="AutoValley">
-              <img src="./public/Converted-PNG.png" alt="AutoValley" loading="lazy" />
+              <img src="./public/img/Converted-PNG.png" alt="AutoValley" loading="lazy" />
             </div>
           </div>
           <p class="footer-brand-text">
