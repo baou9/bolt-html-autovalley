@@ -2,7 +2,7 @@
 <html lang="fr" class="no-js">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nos Services d'Excellence – AutoValley | Casablanca</title>
 
@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./header-responsive.css">
-    <link rel="stylesheet" href="./header-styles.css">
-    <link rel="stylesheet" href="./premium-styles.css">
-    <link rel="stylesheet" href="./services-styles.css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/header-responsive.css">
+    <link rel="stylesheet" href="./style/css/header-styles.css">
+    <link rel="stylesheet" href="./style/css/premium-styles.css">
+    <link rel="stylesheet" href="./style/css/services-styles.css">
   </head>
   <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -893,8 +893,8 @@
 
     <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
-    <script type="module" src="./nav-active.js"></script>
-    <script type="module" src="./premium-effects.js"></script>
-    <script type="module" src="./services-page.js"></script>
+    <script type="module" src="./style/js/nav-active.js"></script>
+    <script type="module" src="./style/js/premium-effects.js"></script>
+    <script type="module" src="./style/js/services-page.js"></script>
   </body>
 </html>
