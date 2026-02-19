@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./header-responsive.css">
     <link rel="stylesheet" href="./header-styles.css">
+    <link rel="stylesheet" href="./premium-styles.css">
     <link rel="stylesheet" href="./blog-styles.css">
 
     <script>
