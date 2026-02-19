@@ -216,18 +216,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (trustTrack && trustWrapper && trustTrack.dataset.cloned !== "true") {
     const originals = Array.from(trustTrack.children).map((node) => node.cloneNode(true));
-    trustTrack.innerHTML = "";
 
-    // [PATCH] Build exactly two identical sets for a seamless 0% → -50% marquee
-    originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
-    originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+    const buildCarousel = () => {
+      if (trustTrack.dataset.cloned === "true") return;
+      trustTrack.innerHTML = "";
 
-    // Guard: if the duplicated width is still smaller than the viewport, append one more set
-    if (trustTrack.scrollWidth < trustWrapper.clientWidth * 1.5) {
       originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
-    }
+      originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
 
-    trustTrack.dataset.cloned = "true";
+      const minWidth = trustWrapper.clientWidth * 3;
+      while (trustTrack.scrollWidth < minWidth) {
+        originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+        originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+      }
+
+      const totalSets = trustTrack.children.length / originals.length;
+      if (totalSets % 2 !== 0) {
+        originals.forEach((node) => trustTrack.appendChild(node.cloneNode(true)));
+      }
+
+      trustTrack.dataset.cloned = "true";
+    };
+
+    const imgs = Array.from(trustTrack.querySelectorAll("img"));
+    if (imgs.length === 0 || imgs.every((img) => img.complete)) {
+      buildCarousel();
+    } else {
+      let loaded = 0;
+      const onLoad = () => {
+        loaded++;
+        if (loaded >= imgs.length) buildCarousel();
+      };
+      imgs.forEach((img) => {
+        if (img.complete) { loaded++; }
+        else { img.addEventListener("load", onLoad); img.addEventListener("error", onLoad); }
+      });
+      if (loaded >= imgs.length) buildCarousel();
+    }
   }
 });
 
