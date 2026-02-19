@@ -1,3 +1,5 @@
+import { initMagneticButtons } from './premium-effects.js';
+
 const progressBar = document.getElementById('reading-progress-bar');
 const articleContent = document.getElementById('article-content');
 
@@ -81,4 +83,10 @@ if (themeToggle) {
     html.setAttribute('data-theme', next);
     localStorage.setItem('av-theme', next);
   });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMagneticButtons, { once: true });
+} else {
+  initMagneticButtons();
 }

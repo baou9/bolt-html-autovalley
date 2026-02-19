@@ -1,3 +1,5 @@
+import { initMagneticButtons } from './premium-effects.js';
+
 const serviceDetails = {
   diagnostic: {
     title: 'Diagnostic electronique & mecanique',
@@ -453,4 +455,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceModal();
   initStatCounters();
   initXenonAmbience();
+  initMagneticButtons();
 });

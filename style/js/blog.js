@@ -1,3 +1,5 @@
+import { initMagneticButtons } from './premium-effects.js';
+
 const grid = document.getElementById('blog-grid');
 const cards = grid ? Array.from(grid.querySelectorAll('.blog-card')) : [];
 const emptyState = document.getElementById('blog-empty');
@@ -78,3 +80,8 @@ if (themeToggle) {
   });
 }
 
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMagneticButtons, { once: true });
+} else {
+  initMagneticButtons();
+}
