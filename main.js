@@ -210,53 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ===================== 3. FLOATING CAPSULE HEADER ===================== */
-
-  const header = document.querySelector(".site-header");
-  const menuBtn = document.querySelector(".menu-trigger");
-  const overlay = document.querySelector(".mobile-nav-overlay");
-  const mobileLinks = document.querySelectorAll(".mobile-link, .btn-mobile");
-
-  const onScroll = () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  };
-  window.addEventListener("scroll", onScroll);
-  onScroll();
-
-  const toggleMenu = () => {
-    const isOpen = overlay.classList.contains("active");
-
-    if (isOpen) {
-      overlay.classList.remove("active");
-      menuBtn.classList.remove("is-open");
-      menuBtn.setAttribute("aria-expanded", "false");
-      overlay.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "auto";
-    } else {
-      overlay.classList.add("active");
-      menuBtn.classList.add("is-open");
-      menuBtn.setAttribute("aria-expanded", "true");
-      overlay.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-  };
-
-  if (menuBtn) {
-    menuBtn.addEventListener("click", toggleMenu);
-  }
-
-  mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      if (overlay.classList.contains("active")) {
-        toggleMenu();
-      }
-    });
-  });
-
   // ILS NOUS FONT CONFIANCE – infinite loop for logo carousel
   const trustTrack = document.getElementById("trust-carousel-track");
   const trustWrapper = document.querySelector(".trust-section .carousel-wrapper");

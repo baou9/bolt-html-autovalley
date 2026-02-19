@@ -219,50 +219,6 @@ const serviceDetails = {
   }
 };
 
-function initMobileMenu() {
-  const trigger = document.querySelector('.menu-trigger');
-  const overlay = document.querySelector('.mobile-nav-overlay');
-  if (!trigger || !overlay) return;
-
-  trigger.addEventListener('click', () => {
-    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-    trigger.setAttribute('aria-expanded', String(!isOpen));
-    trigger.classList.toggle('is-active', !isOpen);
-    overlay.classList.toggle('is-open', !isOpen);
-    overlay.setAttribute('aria-hidden', String(isOpen));
-    document.body.style.overflow = isOpen ? '' : 'hidden';
-  });
-
-  overlay.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      trigger.setAttribute('aria-expanded', 'false');
-      trigger.classList.remove('is-active');
-      overlay.classList.remove('is-open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    });
-  });
-}
-
-function initHeaderScroll() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-
-  let ticking = false;
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        header.classList.toggle('scrolled', window.scrollY > 60);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
-
 function initScrollReveal() {
   const items = document.querySelectorAll('.sv-reveal');
   if (!items.length) return;
@@ -601,8 +557,6 @@ function initCurrentYear() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu();
-  initHeaderScroll();
   initScrollReveal();
   initCategoryFilters();
   initFaqAccordion();
