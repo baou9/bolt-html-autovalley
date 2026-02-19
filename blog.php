@@ -493,6 +493,7 @@
     <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
     <script type="module" src="./nav-active.js"></script>
+    <script type="module" src="./premium-effects.js"></script>
     <script type="module" src="./blog.js"></script>
   </body>
 </html>

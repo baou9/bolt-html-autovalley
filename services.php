@@ -869,6 +869,8 @@
 
     </main>
 
+    <?php include __DIR__ . "/partials/footer-cta.php"; ?>
+
     <?php include __DIR__ . "/partials/footer.php"; ?>
 
     <div id="service-modal" class="service-modal" aria-hidden="true">
@@ -892,6 +894,7 @@
     <?php include __DIR__ . "/partials/mobile-float-cta.php"; ?>
 
     <script type="module" src="./nav-active.js"></script>
+    <script type="module" src="./premium-effects.js"></script>
     <script type="module" src="./services-page.js"></script>
   </body>
 </html>
