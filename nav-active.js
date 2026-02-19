@@ -40,6 +40,23 @@ navLinks.forEach((link) => {
 
 const languageSelect = document.getElementById('header-language-select');
 
+const syncHeaderScrollState = () => {
+  const header = document.querySelector('.site-header');
+
+  if (!header) {
+    return;
+  }
+
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+};
+
+syncHeaderScrollState();
+window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+
 if (languageSelect) {
   const languageRoutes = {
     index: { fr: 'index.php', en: 'index-en.php' },

@@ -74,5 +74,6 @@
     </main>
 
     <?php include $partialsDir . '/footer.php'; ?>
+    <script type="module" src="./nav-active.js"></script>
   </body>
 </html>
