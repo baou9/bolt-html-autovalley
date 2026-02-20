@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Politique de Confidentialité – AutoValley</title>
     <meta name="description" content="Politique de confidentialité d'AutoValley – comment nous collectons, utilisons et protégeons vos données personnelles." />
+    <!-- [INTENT] Privacy policy stays noindex by design: legal transparency page, not a landing page for search acquisition. -->
     <meta name="robots" content="noindex" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
