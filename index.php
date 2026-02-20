@@ -74,7 +74,7 @@ $pageStyles = [
                       </a>
 
                       <a href="#services" class="btn-lg btn-lg--ghost">
-                          Découvrir nos Services
+                          Découvrir nos services
                       </a>
                   </div>
 
@@ -434,7 +434,7 @@ $pageStyles = [
           <div class="approche-cta-wrapper">
             <div class="approche-cta-card">
               <p class="cta-message">Une expérience claire, transparente et certifiée — c'est ça AutoValley.</p>
-              <a href="#contact" class="btn-approche">Prenez rendez-vous maintenant</a>
+              <a href="#contact" class="btn-approche">Prendre rendez-vous</a>
             </div>
           </div>
         </div>
@@ -1616,7 +1616,7 @@ $pageStyles = [
           </div>
           <div class="cta-actions">
             <a href="#rdv" class="btn-primary-large">
-              Prendre Rendez-vous
+              Prendre rendez-vous
               <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
