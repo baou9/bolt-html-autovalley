@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cet article explique comment interpréter un rapport de diagnostic automobile, lire les codes défauts et définir les priorités d'intervention en toute clarté." />
     <title>Comment lire un rapport de diagnostic comme un pro - Academie AutoValley</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

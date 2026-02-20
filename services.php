@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Consultez les services AutoValley à Casablanca: diagnostic électronique, entretien préventif, réparations mécaniques et suivi clair pour votre véhicule." />
     <title>Nos Services d'Excellence – AutoValley | Casablanca</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
