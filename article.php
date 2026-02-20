@@ -1,6 +1,6 @@
 <?php
-$metaTitle = "Guide de lecture d'un diagnostic auto | AutoValley Casablanca";
-$metaDescription = "Consultez cet article AutoValley pour comprendre un sujet d'entretien automobile, avec explications techniques et recommandations d'usage adaptées au client.";
+$metaTitle = "Comment lire un diagnostic auto | AutoValley";
+$metaDescription = "Apprenez à lire un rapport de diagnostic automobile et à prioriser les interventions sur votre véhicule.";
 $ogType = 'article';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
@@ -11,35 +11,22 @@ $pageStyles = [
     './style/css/blog-styles.css',
     './style/css/article-styles.css'
 ];
+$articleHeadline = 'Comment lire un rapport de diagnostic comme un pro';
 $articlePublishedIso = '2025-11-15';
-$articleModifiedIso = $articlePublishedIso;
 $articleAuthorName = 'Karim El Mansouri';
 $articleImageUrl = 'https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1400';
 
 $articleSchema = [
     '@context' => 'https://schema.org',
     '@type' => 'Article',
-    'headline' => 'Comment lire un rapport de diagnostic comme un pro',
-];
-
-if (!empty($articlePublishedIso)) {
-    $articleSchema['datePublished'] = $articlePublishedIso;
-}
-
-if (!empty($articleModifiedIso)) {
-    $articleSchema['dateModified'] = $articleModifiedIso;
-}
-
-if (!empty($articleAuthorName)) {
-    $articleSchema['author'] = [
+    'headline' => $articleHeadline,
+    'datePublished' => $articlePublishedIso,
+    'author' => [
         '@type' => 'Person',
         'name' => $articleAuthorName,
-    ];
-}
-
-if (!empty($articleImageUrl)) {
-    $articleSchema['image'] = $articleImageUrl;
-}
+    ],
+    'image' => $articleImageUrl,
+];
 
 $structuredData = [$articleSchema];
 $headExtra = <<<HTML
