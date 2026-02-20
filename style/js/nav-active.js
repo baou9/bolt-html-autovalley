@@ -21,30 +21,101 @@ navLinks.forEach((link) => {
   }
 });
 
-const languageSelect = document.getElementById('header-language-select');
-
-if (languageSelect) {
-  const languageRoutes = {
-    index: { fr: 'index.php', en: 'index-en.php' },
-    services: { fr: 'services.php', en: 'services-en.php' }
-  };
-
+function initSharedLanguageControls() {
+  const languageSelect = document.getElementById('header-language-select');
+  const footerLanguageSwitch = document.querySelector('.footer-lang-switch');
+  const footerLocaleButtons = Array.from(document.querySelectorAll('.footer-lang[data-locale]'));
   const normalizedPage = normalizedCurrentPage.toLowerCase();
-  const pageKey = normalizedPage.includes('services') ? 'services' : 'index';
   const currentLanguage = normalizedPage.endsWith('-en.php') ? 'en' : 'fr';
 
-  languageSelect.value = currentLanguage;
+  if (!languageSelect && !footerLanguageSwitch) return;
 
-  languageSelect.addEventListener('change', (event) => {
-    const nextLanguage = event.target.value === 'en' ? 'en' : 'fr';
-    const targetPage = languageRoutes[pageKey][nextLanguage];
+  const setUnavailableState = () => {
+    if (languageSelect) {
+      languageSelect.value = currentLanguage;
+      languageSelect.disabled = true;
+      languageSelect.setAttribute('aria-disabled', 'true');
+      languageSelect.title = 'Bientôt disponible';
+    }
+
+    footerLocaleButtons.forEach((button) => {
+      const locale = button.dataset.locale === 'en' ? 'en' : 'fr';
+      const isActive = locale === currentLanguage;
+
+      button.disabled = true;
+      button.setAttribute('aria-disabled', 'true');
+      button.classList.toggle('is-active', isActive);
+      if (isActive) {
+        button.setAttribute('aria-current', 'true');
+      } else {
+        button.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const parsedRoutes = (() => {
+    if (!languageSelect?.dataset.languageRoutes) return null;
+
+    try {
+      return JSON.parse(languageSelect.dataset.languageRoutes);
+    } catch (error) {
+      return null;
+    }
+  })();
+
+  const pageRoutes = parsedRoutes?.[normalizedCurrentPage] || parsedRoutes?.default || null;
+  const hasMultilingualRouting = Boolean(pageRoutes?.fr && pageRoutes?.en);
+
+  if (!hasMultilingualRouting) {
+    setUnavailableState();
+    return;
+  }
+
+  const navigateToLocale = (locale) => {
+    const safeLocale = locale === 'en' ? 'en' : 'fr';
+    const targetPage = pageRoutes[safeLocale];
+    if (!targetPage || window.location.pathname.endsWith(targetPage)) return;
+
     const nextUrl = `${targetPage}${window.location.search}${window.location.hash}`;
+    window.location.assign(nextUrl);
+  };
 
-    if (targetPage && !window.location.pathname.endsWith(targetPage)) {
-      window.location.assign(nextUrl);
+  if (languageSelect) {
+    languageSelect.disabled = false;
+    languageSelect.removeAttribute('aria-disabled');
+    languageSelect.removeAttribute('title');
+    languageSelect.value = currentLanguage;
+
+    languageSelect.addEventListener('change', (event) => {
+      navigateToLocale(event.target.value);
+    });
+  }
+
+  footerLocaleButtons.forEach((button) => {
+    const locale = button.dataset.locale === 'en' ? 'en' : 'fr';
+    const targetPage = pageRoutes[locale];
+    const isActive = locale === currentLanguage;
+    const isAvailable = Boolean(targetPage);
+
+    button.classList.toggle('is-active', isActive);
+    button.disabled = !isAvailable || isActive;
+    button.setAttribute('aria-disabled', String(!isAvailable || isActive));
+
+    if (isActive) {
+      button.setAttribute('aria-current', 'true');
+    } else {
+      button.removeAttribute('aria-current');
+    }
+
+    if (isAvailable && !isActive) {
+      button.addEventListener('click', () => {
+        navigateToLocale(locale);
+      });
     }
   });
 }
+
+initSharedLanguageControls();
 
 function initSharedHeaderInteractions() {
   if (document.body.dataset.headerInteractionsInitialized === 'true') return;

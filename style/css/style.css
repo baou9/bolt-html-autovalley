@@ -657,6 +657,21 @@ body,
     0 0 0 4px rgba(185, 5, 4, 0.22);
 }
 
+.lang-select[aria-disabled='true'],
+.lang-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.74;
+  transform: none;
+}
+
+.lang-select[aria-disabled='true']:hover,
+.lang-select:disabled:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.48);
+}
+
 .btn-header-magnetic {
   position: relative;
   display: inline-flex;
@@ -3473,6 +3488,18 @@ body,
   color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.footer-lang[aria-disabled='true'],
+.footer-lang:disabled {
+  cursor: default;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.footer-lang-note {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.62);
+  margin-left: 4px;
 }
 
 .footer-lang:focus-visible {

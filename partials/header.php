@@ -20,16 +20,21 @@
         </nav>
 
         <div class="header-actions">
-          <div class="lang-switcher">
+          <div class="lang-switcher" data-lang-status-label="Bientôt disponible">
             <label class="sr-only" for="header-language-select">Langue du site</label>
             <select
               id="header-language-select"
               class="lang-select"
               aria-label="Choisir la langue du site"
+              aria-describedby="header-language-status"
+              data-language-routes="{}"
+              disabled
+              aria-disabled="true"
             >
               <option value="fr">FR</option>
-              <option value="en">EN</option>
+              <option value="en">EN (Bientôt disponible)</option>
             </select>
+            <span id="header-language-status" class="sr-only">Version anglaise bientôt disponible.</span>
           </div>
 
           <a href="./contact.php" class="btn-header-magnetic">

@@ -100,3 +100,15 @@
   outline-offset: 2px;
   box-shadow: 0 0 0 3px rgba(185, 5, 4, 0.18);
 }
+
+.lang-select[aria-disabled='true'],
+.lang-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.74;
+}
+
+.lang-select[aria-disabled='true']:hover,
+.lang-select:disabled:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(10, 10, 10, 0.5);
+}
