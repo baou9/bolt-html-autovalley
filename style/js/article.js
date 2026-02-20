@@ -2,6 +2,10 @@ import { initMagneticButtons } from './premium-effects.js';
 
 const progressBar = document.getElementById('reading-progress-bar');
 const articleContent = document.getElementById('article-content');
+const tocToggle = document.querySelector('.article-toc-toggle');
+const toc = document.getElementById('article-toc');
+const tabletBreakpoint = window.matchMedia('(max-width: 1024px)');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function updateProgressBar() {
   if (!progressBar || !articleContent) return;
@@ -53,10 +57,54 @@ tocLinks.forEach((link) => {
     const targetId = link.getAttribute('href')?.replace('#', '');
     const target = targetId ? document.getElementById(targetId) : null;
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // [PATCH]
+      target.scrollIntoView({
+        behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+
+      if (tocToggle && toc && tabletBreakpoint.matches) {
+        toc.classList.add('is-collapsed');
+        tocToggle.setAttribute('aria-expanded', 'false');
+      }
     }
   });
 });
+
+// [PATCH]
+function syncTocDisclosure() {
+  if (!tocToggle || !toc) return;
+
+  if (tabletBreakpoint.matches) {
+    if (!toc.classList.contains('is-collapsed') && tocToggle.getAttribute('aria-expanded') !== 'true') {
+      toc.classList.add('is-collapsed');
+    }
+    if (tocToggle.getAttribute('aria-expanded') === null) {
+      tocToggle.setAttribute('aria-expanded', 'false');
+    }
+    return;
+  }
+
+  toc.classList.remove('is-collapsed');
+  tocToggle.setAttribute('aria-expanded', 'true');
+}
+
+if (tocToggle && toc) {
+  syncTocDisclosure();
+
+  tocToggle.addEventListener('click', () => {
+    if (!tabletBreakpoint.matches) return;
+    const isExpanded = tocToggle.getAttribute('aria-expanded') === 'true';
+    tocToggle.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+    toc.classList.toggle('is-collapsed', isExpanded);
+  });
+
+  if (typeof tabletBreakpoint.addEventListener === 'function') {
+    tabletBreakpoint.addEventListener('change', syncTocDisclosure);
+  } else {
+    tabletBreakpoint.addListener(syncTocDisclosure);
+  }
+}
 
 let ticking = false;
 function onScroll() {
