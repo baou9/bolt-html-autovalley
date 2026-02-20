@@ -891,9 +891,15 @@ body,
     font-size: 0.72rem;
   }
 
-  .lang-switch {
-    padding: 5px 10px;
-    font-size: 0.68rem;
+  .lang-switcher {
+    max-width: 74px;
+  }
+
+  .lang-select {
+    min-height: 36px;
+    padding: 6px 24px 6px 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
   }
 }
 
@@ -948,8 +954,15 @@ body,
     font-size: 0.7rem;
   }
 
-  .lang-switch {
-    display: none;
+  .lang-switcher {
+    max-width: 70px;
+  }
+
+  .lang-select {
+    min-height: 36px;
+    padding: 6px 24px 6px 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
   }
 }
 
@@ -1000,6 +1013,15 @@ body,
     content: 'RDV';
     font-size: 0.7rem;
     font-weight: 700;
+  }
+
+  .lang-switcher {
+    max-width: 64px;
+  }
+
+  .lang-select {
+    min-height: 34px;
+    padding: 5px 22px 5px 8px;
   }
 }
 
