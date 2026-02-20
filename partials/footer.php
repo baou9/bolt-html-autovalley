@@ -44,7 +44,7 @@
             <ul class="footer-links">
               <li><a href="./index.php">Accueil</a></li>
               <li><a href="./services.php">Nos Services d'Excellence</a></li>
-              <li><a href="./index.php#approche">Notre Approche</a></li>
+              <li><a href="./apropos.php">À Propos</a></li>
               <li><a href="./index.php#technologie">Technologie &amp; Équipements</a></li>
               <li><a href="./index.php#all-brands">Toutes les Marques</a></li>
               <li><a href="./index.php#temoignages">Témoignages / Nos Clients</a></li>
@@ -153,15 +153,15 @@
           >
             <ul class="footer-links">
               <li><a href="./blog.php">L'Academie AutoValley (Blog)</a></li>
-              <li><a href="./index.php#faq">FAQ</a></li>
-              <li><a href="./index.php#carrieres">Carrières</a></li>
-              <li><a href="#">Devenir partenaire</a></li>
+              <li><a href="./faq.php">FAQ</a></li>
+              <li><a href="./carrieres.php">Carrières</a></li>
+              <li><a href="./contact.php">Devenir partenaire</a></li>
             </ul>
 
             <h3 class="footer-column-title footer-legal-title">Légal</h3>
             <ul class="footer-links">
-              <li><a href="#">Mentions légales</a></li>
-              <li><a href="#">Politique de confidentialité</a></li>
+              <li><a href="./mentions-legales.php">Mentions légales</a></li>
+              <li><a href="./politique-confidentialite.php">Politique de confidentialité</a></li>
               <li><a href="#">Gestion des cookies</a></li>
             </ul>
           </div>

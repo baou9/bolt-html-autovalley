@@ -22,7 +22,18 @@ function resolvePhpIncludes(content, baseDir) {
 }
 
 function buildPhpToHtml() {
-  const phpPages = ['index', 'services', 'blog', 'article'];
+  const phpPages = [
+    'index',
+    'services',
+    'blog',
+    'article',
+    'contact',
+    'apropos',
+    'faq',
+    'carrieres',
+    'mentions-legales',
+    'politique-confidentialite',
+  ];
   const input = {};
 
   mkdirSync(tempDir, { recursive: true });
