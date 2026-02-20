@@ -701,54 +701,54 @@
                     <div class="brands-universe__track">
                         <!-- SET 1 -->
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
-                            <img src="https://www.freepnglogos.com/uploads/mercedes-logo-png/mercedes-logo-home-page-palm-beach-classics-8.png" alt="Renault" loading="lazy" />
+                            <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
-                            <img src="https://www.freepnglogos.com/uploads/mercedes-logo-png/mercedes-logo-home-page-palm-beach-classics-8.png" alt="Peugeot" loading="lazy" />
+                            <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img src="https://companieslogo.com/img/orig/002594.SZ_BIG.D-c7082222.png?t=1745059055" alt="BYD" loading="lazy" />
+                            <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img src="https://1000logos.net/wp-content/uploads/2021/10/Dacia-logo.png" alt="Dacia" loading="lazy" />
+                            <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/2048px-Volkswagen_logo_2019.svg.png" alt="BMW" loading="lazy" />
+                            <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img src="https://www.freepnglogos.com/uploads/audi-logo-2.png" alt="Audi" loading="lazy" />
+                            <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/KIA_logo3.svg/2560px-KIA_logo3.svg.png" alt="Kia" loading="lazy" />
+                            <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img src="assets/logos/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                            <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
                         </button>
 
                         <!-- SET 2 (duplicate for seamless loop) -->
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Renault_2021.svg" alt="Renault" loading="lazy" />
+                            <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
-                            <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/peugeot-f5ch6zrffmrhpxzrhamei9.png/peugeot-hr9mpwy4ofq76w8gtj8wp.png?_a=DATAg1AAZAA0" alt="Peugeot" loading="lazy" />
+                            <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img src="assets/logos/byd.svg" alt="BYD" loading="lazy" />
+                            <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img src="assets/logos/dacia.svg" alt="Dacia" loading="lazy" />
+                            <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img src="assets/logos/bmw.svg" alt="BMW" loading="lazy" />
+                            <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img src="assets/logos/audi.svg" alt="Audi" loading="lazy" />
+                            <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
-                            <img src="assets/logos/kia.svg" alt="Kia" loading="lazy" />
+                            <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img src="https://www.clipartmax.com/png/middle/165-1659514_free-vector-volkswagen-logo-volkswagen-logo.png" alt="Volkswagen" loading="lazy" />
+                            <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
                         </button>
                     </div>
                 </div>
