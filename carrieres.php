@@ -1,5 +1,5 @@
 <?php
-$metaTitle = 'Carrières | AutoValley Casablanca';
+$metaTitle = 'Carrières – Rejoignez AutoValley | Casablanca';
 $metaDescription = "Offres d'emploi et informations de candidature pour rejoindre l'équipe AutoValley à Casablanca.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';

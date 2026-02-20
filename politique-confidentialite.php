@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Politique de confidentialité | AutoValley';
-$metaDescription = "Informations sur la collecte, l'usage et la protection des données personnelles sur le site AutoValley.";
+$metaTitle = 'Politique de Confidentialité – AutoValley';
+$metaDescription = "Politique de confidentialité d'AutoValley : collecte, utilisation et protection des données personnelles.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $metaRobots = 'noindex';

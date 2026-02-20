@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Mentions légales | AutoValley';
-$metaDescription = 'Informations légales relatives au site AutoValley: éditeur, hébergement et propriété intellectuelle.';
+$metaTitle = 'Mentions Légales – AutoValley';
+$metaDescription = 'Mentions légales du site AutoValley : éditeur, hébergeur et informations juridiques.';
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $metaRobots = 'noindex';

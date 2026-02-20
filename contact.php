@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Contact | AutoValley Casablanca';
-$metaDescription = "Coordonnées, formulaire de contact et horaires de l'atelier AutoValley à Casablanca.";
+$metaTitle = 'Nous Contacter – AutoValley | Casablanca';
+$metaDescription = "Coordonnées, formulaire de contact, WhatsApp et horaires d'ouverture d'AutoValley à Casablanca.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

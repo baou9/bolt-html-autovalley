@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Services | AutoValley Casablanca';
-$metaDescription = "Détail des services d'entretien, diagnostic, mécanique et carrosserie proposés par AutoValley à Casablanca.";
+$metaTitle = "Nos Services d'Excellence – AutoValley | Casablanca";
+$metaDescription = 'Détail des services de diagnostic, mécanique, entretien et carrosserie proposés par AutoValley à Casablanca.';
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'FAQ | AutoValley Casablanca';
-$metaDescription = "Réponses aux questions fréquentes sur les services, délais et conditions d'intervention AutoValley.";
+$metaTitle = 'FAQ – Questions Fréquentes | AutoValley Casablanca';
+$metaDescription = 'Réponses aux questions fréquentes sur les services, délais, garanties et réservations chez AutoValley.';
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

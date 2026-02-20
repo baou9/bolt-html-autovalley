@@ -1,5 +1,5 @@
 <?php
-$metaTitle = 'Comment lire un rapport de diagnostic | AutoValley';
+$metaTitle = 'Comment lire un rapport de diagnostic - Académie AutoValley';
 $metaDescription = "Guide AutoValley pour comprendre les informations essentielles d'un rapport de diagnostic automobile.";
 $ogType = 'article';
 $metaImagePath = '/public/Converted-PNG2.png';
