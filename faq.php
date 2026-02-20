@@ -56,7 +56,7 @@ $pageStyles = [
       </section>
 
       <!-- FAQ SECTION -->
-      <section aria-labelledby="faq-section-title" style="background: #050609; padding: 96px 0;">
+      <section aria-labelledby="faq-section-title" class="pg-surface-dark">
         <div class="pg-section pg-section--narrow">
 
           <h2 id="faq-section-title" class="sr-only">Questions fréquemment posées</h2>
@@ -308,17 +308,17 @@ $pageStyles = [
           </div>
 
           <div class="faq-no-results" role="status" aria-live="polite">
-            Aucun résultat ne correspond à votre recherche. <a href="./contact.php" style="color: var(--brand-red);">Contactez-nous directement →</a>
+            Aucun résultat ne correspond à votre recherche. <a href="./contact.php" class="pg-inline-link-red">Contactez-nous directement →</a>
           </div>
 
           <!-- CTA Contact -->
-          <div class="pg-card pg-reveal" style="text-align:center; margin-top: 64px; padding: 48px 32px;">
-            <p style="font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-red); margin-bottom: 12px;">BESOIN D'UNE RÉPONSE PERSONNALISÉE ?</p>
-            <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 12px;">Nous sommes là pour vous aider</h3>
-            <p style="font-family: 'Inter', sans-serif; font-size: 0.93rem; color: rgba(255,255,255,0.55); margin-bottom: 28px; max-width: 460px; margin-left: auto; margin-right: auto;">
+          <div class="pg-card pg-reveal pg-card-cta">
+            <p class="pg-card-cta__kicker">BESOIN D'UNE RÉPONSE PERSONNALISÉE ?</p>
+            <h3 class="pg-card-cta__title">Nous sommes là pour vous aider</h3>
+            <p class="pg-card-cta__desc">
               Notre équipe répond à toutes vos questions en moins de 2 heures ouvrées.
             </p>
-            <a href="./contact.php" style="display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--brand-red); border: none; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; text-decoration: none; transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;">
+            <a href="./contact.php" class="pg-card-cta__button">
               Nous contacter
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>

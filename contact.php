@@ -213,9 +213,9 @@ $pageStyles = [
                 <circle cx="12" cy="10" r="3"/>
               </svg>
               <div>
-                <strong style="display:block; color: rgba(255,255,255,0.7); margin-bottom: 4px;">AutoValley – Sapino, Nouaceur – Casablanca</strong>
+                <strong class="contact-map__address">AutoValley – Sapino, Nouaceur – Casablanca</strong>
                 <a href="https://maps.google.com/?q=Sapino+Nouaceur+Casablanca" target="_blank" rel="noopener"
-                   style="color: var(--brand-red); text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid rgba(185,5,4,0.4);">
+                   class="contact-map__link">
                   Voir sur Google Maps →
                 </a>
               </div>
