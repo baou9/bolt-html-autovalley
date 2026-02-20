@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'AutoValley – Alternative aux concessionnaires | Casablanca';
-$metaDescription = "Présentation des services d'entretien, de diagnostic et de carrosserie AutoValley à Casablanca.";
+$metaTitle = 'Atelier automobile multimarque | AutoValley Casablanca';
+$metaDescription = "Découvrez l'atelier AutoValley à Casablanca: entretien, diagnostic, carrosserie, maintenance multimarque et informations pratiques pour préparer votre visite.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
