@@ -230,6 +230,7 @@ $pageStyles = [
       </svg>
     </button>
 
+    <script type="module" src="./style/js/nav-active.js"></script>
     <script type="module" src="./style/js/premium-effects.js"></script>
     <script type="module" src="./style/js/pages-common.js"></script>
   </body>
