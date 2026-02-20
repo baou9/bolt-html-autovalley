@@ -134,6 +134,10 @@ function initSharedHeaderInteractions() {
 
   document.body.dataset.headerInteractionsInitialized = 'true';
 
+  if (!overlay.hasAttribute('tabindex')) {
+    overlay.setAttribute('tabindex', '-1');
+  }
+
   const setScrolledState = () => {
     header.classList.toggle('scrolled', window.scrollY > 60);
   };
@@ -150,25 +154,43 @@ function initSharedHeaderInteractions() {
     ticking = true;
   }, { passive: true });
 
+  const focusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(', ');
+
+  const getFocusableInOverlay = () => Array.from(overlay.querySelectorAll(focusableSelector))
+    .filter((el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+
+  const getFirstMenuLink = () => overlay.querySelector('a[href]');
+
+  const isMenuOpen = () => menuTrigger.getAttribute('aria-expanded') === 'true';
+
+  const setMenuState = (open) => {
+    menuTrigger.classList.toggle('is-open', open);
+    menuTrigger.setAttribute('aria-expanded', String(open));
+    overlay.classList.toggle('active', open);
+    overlay.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
   const closeMenu = () => {
-    menuTrigger.classList.remove('is-open');
-    menuTrigger.setAttribute('aria-expanded', 'false');
-    overlay.classList.remove('active');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    setMenuState(false);
+    menuTrigger.focus(); // [PATCH] Restore focus to trigger when overlay closes.
   };
 
   const openMenu = () => {
-    menuTrigger.classList.add('is-open');
-    menuTrigger.setAttribute('aria-expanded', 'true');
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    setMenuState(true);
+    const firstMenuLink = getFirstMenuLink();
+    (firstMenuLink || getFocusableInOverlay()[0] || overlay).focus(); // [PATCH] Move focus into opened mobile menu.
   };
 
   menuTrigger.addEventListener('click', () => {
-    const isOpen = menuTrigger.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
+    if (isMenuOpen()) {
       closeMenu();
       return;
     }
@@ -178,6 +200,40 @@ function initSharedHeaderInteractions() {
 
   overlay.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!isMenuOpen()) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusableItems = getFocusableInOverlay();
+    if (!focusableItems.length) {
+      event.preventDefault();
+      overlay.focus();
+      return;
+    }
+
+    const firstFocusable = focusableItems[0];
+    const lastFocusable = focusableItems[focusableItems.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && (activeElement === firstFocusable || !overlay.contains(activeElement))) {
+      event.preventDefault();
+      lastFocusable.focus();
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === lastFocusable) {
+      event.preventDefault();
+      firstFocusable.focus();
+    }
   });
 
   setScrolledState();
