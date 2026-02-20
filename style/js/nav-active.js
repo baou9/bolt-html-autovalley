@@ -129,6 +129,7 @@ function initSharedHeaderInteractions() {
   const header = document.querySelector('.site-header');
   const menuTrigger = document.querySelector('.menu-trigger');
   const overlay = document.querySelector('.mobile-nav-overlay');
+  const closeButton = overlay?.querySelector('.mobile-nav-close');
 
   if (!header || !menuTrigger || !overlay) return;
 
@@ -170,12 +171,18 @@ function initSharedHeaderInteractions() {
 
   const isMenuOpen = () => menuTrigger.getAttribute('aria-expanded') === 'true';
 
+  const menuLabelWhenClosed = menuTrigger.getAttribute('data-label-closed') || 'Ouvrir le menu';
+  const menuLabelWhenOpen = menuTrigger.getAttribute('data-label-open') || 'Fermer le menu';
+
   const setMenuState = (open) => {
+    const isOpen = Boolean(open);
+
     menuTrigger.classList.toggle('is-open', open);
-    menuTrigger.setAttribute('aria-expanded', String(open));
-    overlay.classList.toggle('active', open);
-    overlay.setAttribute('aria-hidden', String(!open));
-    document.body.style.overflow = open ? 'hidden' : '';
+    menuTrigger.setAttribute('aria-expanded', String(isOpen));
+    menuTrigger.setAttribute('aria-label', isOpen ? menuLabelWhenOpen : menuLabelWhenClosed);
+    overlay.classList.toggle('active', isOpen);
+    overlay.setAttribute('aria-hidden', String(!isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   };
 
   const closeMenu = () => {
@@ -197,6 +204,8 @@ function initSharedHeaderInteractions() {
 
     openMenu();
   });
+
+  closeButton?.addEventListener('click', closeMenu);
 
   overlay.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
@@ -224,7 +233,13 @@ function initSharedHeaderInteractions() {
     const lastFocusable = focusableItems[focusableItems.length - 1];
     const activeElement = document.activeElement;
 
-    if (event.shiftKey && (activeElement === firstFocusable || !overlay.contains(activeElement))) {
+    if (!overlay.contains(activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? lastFocusable : firstFocusable).focus();
+      return;
+    }
+
+    if (event.shiftKey && activeElement === firstFocusable) {
       event.preventDefault();
       lastFocusable.focus();
       return;
@@ -236,6 +251,7 @@ function initSharedHeaderInteractions() {
     }
   });
 
+  setMenuState(isMenuOpen());
   setScrolledState();
 }
 
