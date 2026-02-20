@@ -59,6 +59,11 @@
   min-height: 52vh;
 }
 
+/* [PATCH] Legal hero variants replacing inline style attributes */
+.pg-hero--legal {
+  min-height: 38vh;
+}
+
 .pg-hero__bg {
   position: absolute;
   inset: 0;
@@ -84,6 +89,11 @@
       rgba(5, 6, 9, 0.97) 100%
     ),
     radial-gradient(ellipse at 30% 50%, rgba(185, 5, 4, 0.15) 0%, transparent 60%);
+}
+
+/* [PATCH] Legal hero overlay gradient variant */
+.pg-hero__overlay--legal {
+  background: linear-gradient(180deg, rgba(5, 6, 9, 0.85) 0%, rgba(5, 6, 9, 0.6) 40%, rgba(5, 6, 9, 0.98) 100%);
 }
 
 .pg-hero__inner {
@@ -140,6 +150,11 @@
   color: #fff;
   margin-bottom: var(--pg-space-5);
   letter-spacing: -0.02em;
+}
+
+/* [PATCH] Legal hero typography variant */
+.pg-hero__title--legal {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
 .pg-hero__title-accent {
@@ -1527,6 +1542,21 @@ a.contact-info-card__value:hover {
 }
 
 .legal-contact-box p:last-child { margin-bottom: 0; }
+
+/* [PATCH] Legal notes replacing inline paragraph styles */
+.legal-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+}
+
+.legal-note--muted {
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: var(--pg-space-2);
+}
+
+.legal-note--mt-md {
+  margin-top: var(--pg-space-5);
+}
 
 /* Back to top */
 .pg-back-top {
