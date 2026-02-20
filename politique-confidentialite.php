@@ -44,8 +44,8 @@ $pageStyles = [
       </section>
 
       <!-- CONTENT -->
-      <section aria-labelledby="privacy-heading" style="background: #050609; padding: 72px 0 96px;">
-        <div class="pg-section pg-section--wide" style="padding-top: 0; padding-bottom: 0;">
+      <section aria-labelledby="privacy-heading" class="pg-section-shell pg-section-shell--legal">
+        <div class="pg-section pg-section--wide pg-section--flush-y">
 
           <div class="legal-layout">
 
