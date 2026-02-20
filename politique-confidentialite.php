@@ -3,7 +3,7 @@ $metaTitle = 'Politique de Confidentialité – AutoValley';
 $metaDescription = "Politique de confidentialité d'AutoValley : collecte, utilisation et protection des données personnelles.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
-$metaRobots = 'noindex';
+$metaRobots = 'noindex,follow';
 $pageStyles = [
     './style/css/style.css',
     './style/css/header-responsive.css',

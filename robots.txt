@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /politique-confidentialite.php
 
 Sitemap: https://autovalley.ma/sitemap.xml
