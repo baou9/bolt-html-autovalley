@@ -1107,28 +1107,28 @@ $pageStyles = [
                     <div class="carousel-wrapper">
                         <div class="carousel-track" id="trust-carousel-track">
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/axa.svg" alt="AXA" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/axa.svg" alt="AXA" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/sntl.svg" alt="SNTL" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/sntl.svg" alt="SNTL" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/allianz.svg" alt="Allianz" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/allianz.svg" alt="Allianz" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/axa.svg" alt="AXA" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/axa.svg" alt="AXA" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img width="120" height="40" src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
+                                <img width="120" height="40" src="./public/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
                             </div>
                         </div>
                     </div>
