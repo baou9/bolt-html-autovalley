@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./style/css/premium-styles.css">
     <link rel="stylesheet" href="./style/css/pages-styles.css">
   </head>
-  <body>
+  <body class="pg-page">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>
@@ -62,13 +62,13 @@
       </section>
 
       <!-- CONTACT SECTION -->
-      <section aria-labelledby="contact-section-title" style="background: #050609; padding: 0 0 96px;">
+      <section aria-labelledby="contact-section-title" class="pg-section-shell pg-section-shell--bottom-lg">
         <div class="pg-section">
           <div class="contact-layout">
 
             <!-- Left: info -->
             <aside>
-              <h2 id="contact-section-title" class="pg-section-title pg-reveal" style="text-align:left; margin-bottom: 32px; font-size: 1.5rem;">
+              <h2 id="contact-section-title" class="pg-section-title pg-section-title--left pg-section-title--sm pg-section-title--mb-lg pg-reveal">
                 Nos coordonnées
               </h2>
 
@@ -212,7 +212,7 @@
           </div>
 
           <!-- Map -->
-          <div class="contact-map pg-reveal" style="margin-top: 80px;">
+          <div class="contact-map pg-reveal">
             <div class="contact-map__placeholder">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
