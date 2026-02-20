@@ -33,12 +33,7 @@ $pageStyles = [
       <!-- HERO -->
       <section class="pg-hero" id="apropos-hero">
         <div class="pg-hero__bg" aria-hidden="true">
-          <img width="1920" height="1198"
-            src="https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
-            class="pg-hero__bg-img"
-            loading="eager"
-          />
+          <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=1920', 'alt' => '', 'width' => 1920, 'height' => 1198, 'class' => 'pg-hero__bg-img', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '100vw', 'fetchpriority' => 'high']); ?>
           <div class="pg-hero__overlay"></div>
         </div>
 
@@ -111,12 +106,7 @@ $pageStyles = [
               </div>
             </div>
             <div class="apropos-story__img-wrap pg-reveal pg-reveal--delay-2">
-              <img width="900" height="1350"
-                src="https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900"
-                alt="Technicien AutoValley en atelier"
-                class="apropos-story__img"
-                loading="lazy"
-              />
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900', 'alt' => 'Technicien AutoValley en atelier', 'width' => 900, 'height' => 1350, 'class' => 'apropos-story__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
           </div>
         </div>
@@ -237,12 +227,7 @@ $pageStyles = [
           <div class="apropos-team-grid">
             <article class="apropos-team-card pg-reveal">
               <div class="apropos-team-card__img-wrap">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/3807474/pexels-photo-3807474.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Directeur Technique AutoValley"
-                  class="apropos-team-card__img"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807474/pexels-photo-3807474.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Directeur Technique AutoValley', 'width' => 600, 'height' => 400, 'class' => 'apropos-team-card__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">
@@ -253,12 +238,7 @@ $pageStyles = [
 
             <article class="apropos-team-card pg-reveal pg-reveal--delay-1">
               <div class="apropos-team-card__img-wrap">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Chef d'atelier AutoValley"
-                  class="apropos-team-card__img"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Chef d\'atelier AutoValley', 'width' => 600, 'height' => 400, 'class' => 'apropos-team-card__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">
@@ -269,12 +249,7 @@ $pageStyles = [
 
             <article class="apropos-team-card pg-reveal pg-reveal--delay-2">
               <div class="apropos-team-card__img-wrap">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Responsable Carrosserie AutoValley"
-                  class="apropos-team-card__img"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Responsable Carrosserie AutoValley', 'width' => 600, 'height' => 400, 'class' => 'apropos-team-card__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">

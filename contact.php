@@ -33,12 +33,7 @@ $pageStyles = [
       <!-- HERO -->
       <section class="pg-hero pg-hero--compact" id="contact-hero">
         <div class="pg-hero__bg" aria-hidden="true">
-          <img
-            src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
-            class="pg-hero__bg-img"
-            loading="eager"
-          />
+          <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1920', 'alt' => '', 'width' => 1200, 'height' => 800, 'class' => 'pg-hero__bg-img', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '100vw', 'fetchpriority' => 'high']); ?>
           <div class="pg-hero__overlay"></div>
         </div>
 

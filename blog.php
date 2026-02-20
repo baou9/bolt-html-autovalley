@@ -86,13 +86,7 @@ HTML;
 
             <article class="blog-card blog-card--featured" data-category="Diagnostic">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Technicien effectuant un diagnostic electronique sur vehicule"
-                  loading="eager"
-                  width="600"
-                  height="380"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Technicien effectuant un diagnostic electronique sur vehicule', 'width' => 600, 'height' => 380, 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw', 'fetchpriority' => 'high']); ?>
                 <span class="blog-card__category">Diagnostic</span>
               </div>
               <div class="blog-card__body">
@@ -118,13 +112,7 @@ HTML;
 
             <article class="blog-card" data-category="Carrosserie">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Travaux de carrosserie et peinture en cabine"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Travaux de carrosserie et peinture en cabine', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Carrosserie</span>
               </div>
               <div class="blog-card__body">
@@ -149,13 +137,7 @@ HTML;
 
             <article class="blog-card" data-category="Entretien">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Mecanicien effectuant une revision complete"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Mecanicien effectuant une revision complete', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Entretien</span>
               </div>
               <div class="blog-card__body">
@@ -180,13 +162,7 @@ HTML;
 
             <article class="blog-card" data-category="Performance">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Vehicule hybride en cours de maintenance"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Vehicule hybride en cours de maintenance', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Performance</span>
               </div>
               <div class="blog-card__body">
@@ -211,13 +187,7 @@ HTML;
 
             <article class="blog-card" data-category="Conseils">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/4480505/pexels-photo-4480505.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Expert automobile examinant un dossier sinistre"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4480505/pexels-photo-4480505.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Expert automobile examinant un dossier sinistre', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Conseils</span>
               </div>
               <div class="blog-card__body">
@@ -242,13 +212,7 @@ HTML;
 
             <article class="blog-card" data-category="Entretien">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Systeme de climatisation automobile"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Systeme de climatisation automobile', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Entretien</span>
               </div>
               <div class="blog-card__body">
@@ -273,13 +237,7 @@ HTML;
 
             <article class="blog-card" data-category="Performance">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Calibration ADAS et systemes de securite avances"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Calibration ADAS et systemes de securite avances', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Performance</span>
               </div>
               <div class="blog-card__body">
@@ -304,13 +262,7 @@ HTML;
 
             <article class="blog-card" data-category="Conseils">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Accueil client dans un atelier automobile premium"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Accueil client dans un atelier automobile premium', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Conseils</span>
               </div>
               <div class="blog-card__body">
@@ -335,13 +287,7 @@ HTML;
 
             <article class="blog-card" data-category="Actualites">
               <div class="blog-card__media">
-                <img
-                  src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Voitures neuves au salon automobile"
-                  loading="lazy"
-                  width="400"
-                  height="220"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800', 'alt' => 'Voitures neuves au salon automobile', 'width' => 400, 'height' => 220, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, 400px']); ?>
                 <span class="blog-card__category">Actualites</span>
               </div>
               <div class="blog-card__body">
