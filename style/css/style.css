@@ -570,12 +570,27 @@ body,
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: var(--white);
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
+/* [PATCH] Distinct keyboard focus ring that stays visible on translucent header backgrounds. */
+.nav-link:focus-visible {
+  color: var(--white);
+  outline: 2px solid var(--white);
+  outline-offset: 8px;
+  text-shadow: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px var(--brand-red-soft);
+}
+
+.nav-link:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
 .nav-link--active {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .nav-link--active::after {
