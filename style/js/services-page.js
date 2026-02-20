@@ -369,6 +369,8 @@ function initStatCounters() {
   const stats = document.querySelectorAll('.sv-hero__stat[data-count]');
   if (!stats.length) return;
 
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const formatNumber = (num, format) => {
     if (format === 'space') {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -383,6 +385,13 @@ function initStatCounters() {
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
     const format = el.dataset.format || '';
+
+    if (prefersReduced) {
+      valueEl.textContent = formatNumber(target, format) + suffix;
+      el.classList.add('is-counted');
+      return;
+    }
+
     const duration = 1800;
     const startTime = performance.now();
 

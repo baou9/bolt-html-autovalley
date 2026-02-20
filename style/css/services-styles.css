@@ -1839,8 +1839,4 @@
   );
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .xenon-ambience {
-    transition: none;
-  }
-}
+/* Reduced-motion behavior is consolidated in style.css. */

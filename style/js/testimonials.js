@@ -15,6 +15,7 @@ class TestimonialsManager {
     this.currentMobileIndex = 0;
     this.mobileAutoplayInterval = null;
     this.isInitialized = false;
+    this.motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     this.init();
   }
@@ -26,6 +27,7 @@ class TestimonialsManager {
       this.initFilters();
       this.initMobileCarousel();
       this.initAccessibility();
+      this.bindMotionPreference();
       this.isInitialized = true;
     } catch (error) {
       console.error('TestimonialsManager initialization error:', error);
@@ -183,9 +185,15 @@ class TestimonialsManager {
     const layout = this.section.querySelector('.testimonials-layout');
     const featuredCard = this.section.querySelector('.testimonials-layout .testimonial-featured');
 
-    cards.forEach((card, index) => {
+    cards.forEach((card) => {
       const category = card.dataset.category;
       const shouldShow = filter === 'tous' || category === filter;
+
+      if (this.motionQuery.matches) {
+        card.classList.toggle('is-hidden', !shouldShow);
+        card.classList.remove('fade-out', 'fade-in');
+        return;
+      }
 
       card.classList.add('fade-out');
 
@@ -263,7 +271,7 @@ class TestimonialsManager {
 
         track.scrollTo({
           left: scrollLeft,
-          behavior: 'smooth'
+          behavior: this.motionQuery.matches ? 'auto' : 'smooth'
         });
 
         dots.forEach((dot, i) => {
@@ -327,22 +335,25 @@ class TestimonialsManager {
         this.mobileScrollTimeout = setTimeout(handleScroll, 100);
       };
 
-      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (!motionQuery.matches) {
+      if (!this.motionQuery.matches) {
         this.startMobileAutoplay(updateCarousel, mobileCards.length);
       }
 
       track.ontouchstart = () => this.stopMobileAutoplay();
       track.onmouseenter = () => this.stopMobileAutoplay();
-      track.onmouseleave = () => this.startMobileAutoplay(updateCarousel, mobileCards.length);
-      track.ontouchend = () => this.startMobileAutoplay(updateCarousel, mobileCards.length);
+      track.onmouseleave = () => {
+        if (!this.motionQuery.matches) this.startMobileAutoplay(updateCarousel, mobileCards.length);
+      };
+      track.ontouchend = () => {
+        if (!this.motionQuery.matches) this.startMobileAutoplay(updateCarousel, mobileCards.length);
+      };
     };
 
     this.renderMobileCarousel('tous');
   }
 
   startMobileAutoplay(updateFn, totalCards) {
-    if (this.mobileAutoplayInterval) return;
+    if (this.motionQuery.matches || this.mobileAutoplayInterval) return;
 
     this.mobileAutoplayInterval = setInterval(() => {
       const newIndex = (this.currentMobileIndex + 1) % totalCards;
@@ -359,7 +370,24 @@ class TestimonialsManager {
 
   resetMobileAutoplay(updateFn, totalCards) {
     this.stopMobileAutoplay();
-    this.startMobileAutoplay(updateFn, totalCards);
+    if (!this.motionQuery.matches) {
+      this.startMobileAutoplay(updateFn, totalCards);
+    }
+  }
+
+
+  bindMotionPreference() {
+    const handleMotionChange = (event) => {
+      if (event.matches) {
+        this.stopMobileAutoplay();
+      }
+    };
+
+    if (typeof this.motionQuery.addEventListener === 'function') {
+      this.motionQuery.addEventListener('change', handleMotionChange);
+    } else if (typeof this.motionQuery.addListener === 'function') {
+      this.motionQuery.addListener(handleMotionChange);
+    }
   }
 
   initAccessibility() {

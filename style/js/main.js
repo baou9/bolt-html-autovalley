@@ -22,6 +22,19 @@ const shouldLimitPremiumEffects = () => {
 
 document.documentElement.classList.remove('no-js');
 
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const syncReducedMotionClass = (isReduced) => {
+  document.documentElement.classList.toggle('reduced-motion', isReduced);
+};
+
+syncReducedMotionClass(reducedMotionQuery.matches);
+if (typeof reducedMotionQuery.addEventListener === 'function') {
+  reducedMotionQuery.addEventListener('change', (event) => syncReducedMotionClass(event.matches));
+} else if (typeof reducedMotionQuery.addListener === 'function') {
+  reducedMotionQuery.addListener((event) => syncReducedMotionClass(event.matches));
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAllPremiumEffects, { once: true });
 } else {
@@ -1151,5 +1164,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initAcademyReveal();
   initAcademyCarouselCounter();
 }); // [PATCH]
-
 

@@ -1324,42 +1324,7 @@
   outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .testimonials-section {
-    opacity: 1;
-    transform: none;
-  }
-
-  .testimonials-bg {
-    animation: none;
-  }
-
-  .testimonial-card {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .carousel-track {
-    scroll-behavior: auto;
-  }
-
-  .rating-stars .star,
-  .card-rating .star {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-  }
-}
+/* Reduced-motion behavior is consolidated in style.css. */
 
 /* ──────────────────────────────────────────────────────────
    Loading States & Skeleton

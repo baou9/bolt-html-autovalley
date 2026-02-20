@@ -783,39 +783,8 @@ body {
 
 /* ──────────────────────────────────────────────────────────
    21. Reduced Motion Support
+   Consolidated in style.css to keep one source of truth.
    ────────────────────────────────────────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .custom-cursor {
-    display: none;
-  }
-
-  .scroll-progress {
-    display: none;
-  }
-
-  .grain-overlay {
-    display: none;
-  }
-
-  .reveal-element {
-    opacity: 1;
-    transform: none;
-  }
-
-  .header-animate {
-    opacity: 1;
-    transform: none;
-  }
-}
 
 /* ──────────────────────────────────────────────────────────
    22. Mobile Optimizations
