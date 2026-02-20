@@ -1,6 +1,6 @@
 <?php
-$metaTitle = "Présentation de l'atelier | AutoValley Casablanca";
-$metaDescription = "Découvrez la présentation d'AutoValley Casablanca: histoire de l'atelier, organisation, méthodes de travail et engagements de service au quotidien.";
+$metaTitle = "À propos de l’atelier | AutoValley Casablanca";
+$metaDescription = "Consultez la page de présentation AutoValley à Casablanca: parcours de l’atelier, fonctionnement et informations sur l’équipe.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

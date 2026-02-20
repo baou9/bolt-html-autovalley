@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Questions fréquentes clients | AutoValley Casablanca';
-$metaDescription = "Consultez la FAQ AutoValley: réponses sur les rendez-vous, délais, garanties, paiement, entretien et déroulement de la prise en charge en atelier.";
+$metaTitle = 'FAQ atelier automobile | AutoValley Casablanca';
+$metaDescription = "Consultez la FAQ AutoValley: réponses sur les rendez-vous, les délais, la prise en charge du véhicule et les modalités en atelier.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
