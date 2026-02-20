@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./style/css/premium-styles.css">
     <link rel="stylesheet" href="./style/css/services-styles.css">
   </head>
-  <body>
+  <body class="services-page">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>

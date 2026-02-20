@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./style/css/premium-styles.css">
     <link rel="stylesheet" href="./style/css/pages-styles.css">
   </head>
-  <body>
+  <body class="pg-page">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>

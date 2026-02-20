@@ -28,6 +28,23 @@
 /* ──────────────────────────────────────────────────────────
    Shared Hero (matches sv-hero from services-styles.css)
    ────────────────────────────────────────────────────────── */
+.pg-page {
+  /* [PATCH] Shared spacing aliases mapped to global spacing tokens */
+  --pg-space-2: var(--space-2, 8px);
+  --pg-space-3: var(--space-3, 12px);
+  --pg-space-4: var(--space-4, 16px);
+  --pg-space-5: var(--space-5, 20px);
+  --pg-space-6: var(--space-6, 24px);
+  --pg-space-8: var(--space-8, 32px);
+  --pg-space-9: var(--space-9, 36px);
+  --pg-space-10: var(--space-10, 40px);
+  --pg-space-12: var(--space-12, 48px);
+  --pg-space-14: var(--space-14, 56px);
+  --pg-space-16: var(--space-16, 64px);
+  --pg-space-20: var(--space-20, 80px);
+  --pg-space-24: var(--space-24, 96px);
+}
+
 .pg-hero {
   position: relative;
   min-height: 72vh;
@@ -35,7 +52,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 140px 24px 80px;
+  padding: 140px var(--pg-space-6) var(--pg-space-20);
 }
 
 .pg-hero--compact {
@@ -81,8 +98,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: var(--pg-space-2);
+  margin-bottom: var(--pg-space-8);
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
   font-weight: 400;
@@ -112,7 +129,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-red, #b90504);
-  margin-bottom: 20px;
+  margin-bottom: var(--pg-space-5);
 }
 
 .pg-hero__title {
@@ -121,7 +138,7 @@
   font-weight: 800;
   line-height: 1.12;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: var(--pg-space-5);
   letter-spacing: -0.02em;
 }
 
@@ -136,14 +153,14 @@
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   max-width: 640px;
-  margin: 0 auto 36px;
+  margin: 0 auto var(--pg-space-9);
 }
 
 /* ──────────────────────────────────────────────────────────
    Shared Section Styling
    ────────────────────────────────────────────────────────── */
 .pg-section {
-  padding: 96px 24px;
+  padding: var(--pg-space-24) var(--pg-space-6);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -158,7 +175,7 @@
 
 .pg-section-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: var(--pg-space-16);
 }
 
 .pg-section-kicker {
@@ -168,7 +185,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-red, #b90504);
-  margin-bottom: 12px;
+  margin-bottom: var(--pg-space-3);
   display: block;
 }
 
@@ -177,7 +194,7 @@
   font-size: clamp(1.7rem, 3.5vw, 2.4rem);
   font-weight: 800;
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: var(--pg-space-4);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -196,7 +213,7 @@
   width: 48px;
   height: 3px;
   background: var(--brand-red, #b90504);
-  margin: 20px auto 0;
+  margin: var(--pg-space-5) auto 0;
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -222,7 +239,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px;
-  padding: 32px;
+  padding: var(--pg-space-8);
   transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -238,7 +255,7 @@
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  gap: 48px;
+  gap: var(--pg-space-12);
   align-items: start;
 }
 
@@ -249,14 +266,14 @@
 .contact-info-stack {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--pg-space-5);
 }
 
 .contact-info-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px;
-  padding: 24px 28px;
+  padding: var(--pg-space-6) 28px;
   display: flex;
   align-items: flex-start;
   gap: 18px;
@@ -544,7 +561,7 @@ a.contact-info-card__value:hover {
 
 .form-success-banner {
   display: none;
-  padding: 20px 24px;
+  padding: var(--pg-space-5) var(--pg-space-6);
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.3);
   border-radius: 12px;
@@ -563,7 +580,7 @@ a.contact-info-card__value:hover {
 
 /* Map embed */
 .contact-map {
-  margin-top: 80px;
+  margin-top: var(--pg-space-20);
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -646,7 +663,7 @@ a.contact-info-card__value:hover {
 .apropos-values-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: var(--pg-space-6);
 }
 
 @media (max-width: 900px) {
@@ -661,7 +678,7 @@ a.contact-info-card__value:hover {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px;
-  padding: 32px 28px;
+  padding: var(--pg-space-8) 28px;
   transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -696,7 +713,7 @@ a.contact-info-card__value:hover {
   align-items: center;
   justify-content: center;
   color: var(--brand-red, #b90504);
-  margin-bottom: 20px;
+  margin-bottom: var(--pg-space-5);
 }
 
 .apropos-value-card__title {
@@ -718,7 +735,7 @@ a.contact-info-card__value:hover {
 .apropos-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: var(--pg-space-6);
   text-align: center;
 }
 
@@ -727,7 +744,7 @@ a.contact-info-card__value:hover {
 }
 
 .apropos-stat {
-  padding: 32px 20px;
+  padding: var(--pg-space-8) var(--pg-space-5);
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
@@ -740,7 +757,7 @@ a.contact-info-card__value:hover {
   color: var(--brand-red, #b90504);
   display: block;
   line-height: 1.1;
-  margin-bottom: 8px;
+  margin-bottom: var(--pg-space-2);
 }
 
 .apropos-stat__label {
@@ -1031,8 +1048,8 @@ a.contact-info-card__value:hover {
 .car-culture-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 16px;
+  gap: var(--pg-space-6);
+  margin-top: var(--pg-space-4);
 }
 
 @media (max-width: 900px) {
@@ -1089,7 +1106,7 @@ a.contact-info-card__value:hover {
   font-size: 0.97rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: var(--pg-space-2);
 }
 
 .car-culture-card__desc {
@@ -1320,7 +1337,7 @@ a.contact-info-card__value:hover {
 .legal-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
-  gap: 56px;
+  gap: var(--pg-space-14);
   align-items: start;
 }
 
@@ -1340,7 +1357,7 @@ a.contact-info-card__value:hover {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 16px;
+  margin-bottom: var(--pg-space-4);
 }
 
 .legal-toc__list {
@@ -1354,7 +1371,7 @@ a.contact-info-card__value:hover {
 
 .legal-toc__item a {
   display: block;
-  padding: 8px 12px;
+  padding: var(--pg-space-2) var(--pg-space-3);
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
@@ -1384,7 +1401,7 @@ a.contact-info-card__value:hover {
 .legal-updated {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--pg-space-2);
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.4);
@@ -1392,11 +1409,11 @@ a.contact-info-card__value:hover {
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 8px;
   padding: 6px 14px;
-  margin-bottom: 40px;
+  margin-bottom: var(--pg-space-10);
 }
 
 .legal-section {
-  margin-bottom: 48px;
+  margin-bottom: var(--pg-space-12);
   scroll-margin-top: 110px;
 }
 
@@ -1405,8 +1422,8 @@ a.contact-info-card__value:hover {
   font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
+  margin-bottom: var(--pg-space-4);
+  padding-bottom: var(--pg-space-3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
@@ -1434,7 +1451,7 @@ a.contact-info-card__value:hover {
 }
 
 .legal-section ul {
-  padding-left: 20px;
+  padding-left: var(--pg-space-5);
   margin-bottom: 14px;
 }
 
@@ -1463,8 +1480,46 @@ a.contact-info-card__value:hover {
   background: rgba(185, 5, 4, 0.06);
   border: 1px solid rgba(185, 5, 4, 0.2);
   border-radius: 14px;
-  padding: 24px;
-  margin-top: 8px;
+  padding: var(--pg-space-6);
+  margin-top: var(--pg-space-2);
+}
+
+/* [PATCH] Reusable section spacing modifiers for template cleanup */
+.pg-section-shell {
+  background: #050609;
+}
+
+.pg-section-shell--bottom-lg {
+  padding: 0 0 var(--pg-space-24);
+}
+
+.pg-section-shell--y-xl {
+  padding: var(--pg-space-24) 0;
+}
+
+.pg-section-shell--y-lg {
+  padding: var(--pg-space-20) 0;
+}
+
+.pg-section-shell--legal {
+  padding: 72px 0 var(--pg-space-24);
+}
+
+.pg-section--flush-y {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.pg-section-title--left {
+  text-align: left;
+}
+
+.pg-section-title--sm {
+  font-size: 1.5rem;
+}
+
+.pg-section-title--mb-lg {
+  margin-bottom: var(--pg-space-8);
 }
 
 .legal-contact-box p {

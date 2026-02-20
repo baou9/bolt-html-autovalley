@@ -6,6 +6,18 @@
 /* ──────────────────────────────────────────────────────────
    Scroll Reveal
    ────────────────────────────────────────────────────────── */
+.services-page {
+  /* [PATCH] Services spacing aliases mapped to global spacing tokens */
+  --sv-space-2: var(--space-2, 8px);
+  --sv-space-4: var(--space-4, 16px);
+  --sv-space-5: var(--space-5, 20px);
+  --sv-space-6: var(--space-6, 24px);
+  --sv-space-8: var(--space-8, 32px);
+  --sv-space-10: var(--space-10, 40px);
+  --sv-space-12: var(--space-12, 48px);
+  --sv-space-20: var(--space-20, 80px);
+}
+
 .sv-reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -28,7 +40,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 140px 24px 80px;
+  padding: 140px var(--sv-space-6) var(--sv-space-20);
 }
 
 .sv-hero__bg {
@@ -70,8 +82,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: var(--sv-space-2);
+  margin-bottom: var(--sv-space-8);
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
   font-weight: 400;
@@ -104,7 +116,7 @@
   text-transform: uppercase;
   color: #b90504;
   text-shadow: 0 0 24px rgba(185, 5, 4, 0.8);
-  margin-bottom: 20px;
+  margin-bottom: var(--sv-space-5);
 }
 
 .sv-hero__title {
@@ -114,7 +126,7 @@
   line-height: 1.1;
   color: #fff;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
-  margin-bottom: 20px;
+  margin-bottom: var(--sv-space-5);
 }
 
 .sv-hero__title-accent {
@@ -131,14 +143,14 @@
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.8);
   max-width: 640px;
-  margin: 0 auto 40px;
+  margin: 0 auto var(--sv-space-10);
 }
 
 .sv-hero__stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: var(--sv-space-4);
+  margin-bottom: var(--sv-space-10);
   padding: 0;
   background: transparent;
   border: none;

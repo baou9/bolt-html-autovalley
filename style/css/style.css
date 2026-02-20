@@ -179,6 +179,23 @@
   --shadow-soft: 0 26px 60px rgba(0, 0, 0, 0.8);
   --radius-xl: 26px;
   --transition-fast: 0.22s cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* [PATCH] Global spacing scale (4/8 rhythm) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 36px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
 }
 
 @media (max-width: 768px) {
@@ -1050,7 +1067,7 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 60px 80px 60px;
+  padding: 120px 60px var(--space-20) 60px;
   overflow: hidden;
   z-index: 1;
 }
@@ -1108,7 +1125,7 @@ body,
 .hero-glass-card {
   position: relative;
   max-width: 900px;
-  padding: 60px;
+  padding: calc(var(--space-12) + var(--space-3));
 
   /* TRUE FLOATING LIQUID GLASS PANEL */
   background: var(--hero-surface);
@@ -2567,7 +2584,7 @@ body,
   max-width: 1200px;
   width: min(1200px, 100%);
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 48px);
+  padding: 0 clamp(var(--space-6), 5vw, var(--space-12));
   box-sizing: border-box;
   z-index: 1;
 }
@@ -3686,10 +3703,10 @@ body,
 
 /* Grid */
 .services-grid {
-  margin-top: 40px;
+  margin-top: var(--space-10);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: var(--space-5);
   position: relative;
 }
 
