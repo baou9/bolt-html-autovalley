@@ -26,18 +26,30 @@ $pageStyles = [
       <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
       <section class="hero-lg" id="accueil">
           <!-- Background video -->
-          <div class="hero-lg__video-layer">
+          <div class="hero-lg__video-layer" style="aspect-ratio: 16 / 9;">
+              <img
+                  class="hero-lg__poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                  alt=""
+                  width="1920"
+                  height="1080"
+                  decoding="async"
+                  fetchpriority="high"
+              />
               <video
                   id="heroVideo"
-                  class="hero-lg__video"
-                  autoplay
+                  class="hero-lg__video" style="opacity:0;"
                   muted
                   playsinline
-                  preload="auto"
+                  preload="metadata"
+                  poster="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                  width="1920"
+                  height="1080"
+                  aria-hidden="true"
               >
                   <source
                       id="heroVideoSource"
-                      src="https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm"
+                      data-src="https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm"
                       type="video/webm"
                   />
                   Votre navigateur ne supporte pas la vidéo HTML5.
