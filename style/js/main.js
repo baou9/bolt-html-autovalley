@@ -54,38 +54,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
+    const ensurePlay = () => {
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          // Autoplay might be blocked; fail silently.
+        });
+      }
+    };
+
     if (shouldLimitHeroEffects) {
-      videoEl.setAttribute("autoplay", "true"); // [PATCH] keep a single source playing without swaps
-      videoEl.setAttribute("loop", "true"); // [PATCH]
-      videoEl.preload = "auto"; // [PATCH] allow smooth playback of the first video only
-      videoSourceEl.src = videoPlaylist[0]; // [PATCH] lock to the first video to avoid reloading the playlist
-      videoEl.classList.remove("hero-lg__video--disabled"); // [PATCH]
+      videoEl.removeAttribute("autoplay"); // [PATCH]
+      videoEl.removeAttribute("loop"); // [PATCH]
+      videoEl.preload = "metadata"; // [PATCH]
+      videoEl.pause(); // [PATCH]
+      videoEl.style.opacity = "0"; // [PATCH] keep poster visible and avoid heavy media work on constrained profiles
+    } else {
+      const initialSrc = videoSourceEl.dataset.src || videoPlaylist[0]; // [PATCH]
+      videoSourceEl.src = initialSrc; // [PATCH]
+      videoEl.setAttribute("autoplay", "true"); // [PATCH]
+      videoEl.preload = "metadata"; // [PATCH]
       videoEl.load(); // [PATCH]
 
-      const ensureSinglePlay = () => {
-        const p = videoEl.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(() => {
-            // Autoplay might be blocked; fail silently.
-          });
-        }
-      };
-
-      videoEl.addEventListener("canplay", ensureSinglePlay, { once: true }); // [PATCH]
-      ensureSinglePlay(); // [PATCH]
-
-    } else {
-      const ensurePlay = () => {
-        const p = videoEl.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(() => {
-            // Autoplay might be blocked; fail silently.
-          });
-        }
-      };
-
-      videoEl.addEventListener("canplay", ensurePlay, { once: true });
-      ensurePlay();
+      videoEl.addEventListener("canplay", () => {
+        videoEl.style.opacity = "1"; // [PATCH]
+        ensurePlay();
+      }, { once: true });
 
       videoEl.addEventListener("ended", () => {
         currentVideo = (currentVideo + 1) % videoPlaylist.length;
