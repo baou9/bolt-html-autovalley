@@ -1,6 +1,6 @@
 <?php
-$metaTitle = "Offres d'emploi atelier auto | AutoValley Casablanca";
-$metaDescription = "Consultez les opportunités de carrière AutoValley à Casablanca: postes ouverts, profils recherchés, processus de candidature et informations RH utiles.";
+$metaTitle = "Carrières atelier automobile | AutoValley Casablanca";
+$metaDescription = "Consultez la page Carrières AutoValley à Casablanca: postes ouverts, profils recherchés et informations sur la candidature.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

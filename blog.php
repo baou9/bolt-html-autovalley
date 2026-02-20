@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Conseils entretien automobile | AutoValley Casablanca';
-$metaDescription = "Lisez les articles AutoValley sur l'entretien automobile, les conseils d'usage et les bonnes pratiques de maintenance pour les conducteurs à Casablanca.";
+$metaTitle = 'Blog entretien automobile | AutoValley Casablanca';
+$metaDescription = "Consultez les articles du blog AutoValley sur l’entretien automobile, la maintenance courante et l’usage du véhicule au quotidien.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [

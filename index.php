@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Atelier automobile multimarque | AutoValley Casablanca';
-$metaDescription = "Découvrez l'atelier AutoValley à Casablanca: entretien, diagnostic, carrosserie, maintenance multimarque et informations pratiques pour préparer votre visite.";
+$metaTitle = 'Accueil de l’atelier automobile | AutoValley Casablanca';
+$metaDescription = "Page d’accueil AutoValley à Casablanca: présentation de l’atelier, services automobiles et informations utiles avant votre visite.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
