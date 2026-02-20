@@ -195,10 +195,11 @@
                 <span aria-hidden="true">tt</span>
               </a>
             </div>
-            <div class="footer-lang-switch" role="group" aria-label="Changer de langue">
-              <button class="footer-lang is-active" type="button">FR</button>
+            <div class="footer-lang-switch" role="group" aria-label="Changer de langue" data-lang-status-label="Bientôt disponible">
+              <button class="footer-lang is-active" type="button" data-locale="fr" aria-current="true" disabled aria-disabled="true">FR</button>
               <span class="footer-lang-sep" aria-hidden="true">/</span>
-              <button class="footer-lang" type="button">EN</button>
+              <button class="footer-lang" type="button" data-locale="en" disabled aria-disabled="true">EN</button>
+              <span class="footer-lang-note" aria-hidden="true">Bientôt disponible</span>
             </div>
           </div>
         </div>
