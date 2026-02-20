@@ -131,6 +131,15 @@ HTML;
       <section class="article-body">
         <div class="article-body__inner">
 
+          <button
+            type="button"
+            class="article-toc-toggle"
+            aria-expanded="false"
+            aria-controls="article-toc"
+          >
+            Sommaire
+          </button>
+
           <aside class="article-toc" id="article-toc" aria-label="Sommaire de l'article">
             <p class="article-toc__title">Sommaire</p>
             <ul class="article-toc__list">
