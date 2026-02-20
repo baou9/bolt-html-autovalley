@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Blog entretien automobile | AutoValley Casablanca';
-$metaDescription = "Consultez les articles du blog AutoValley sur l’entretien automobile, la maintenance courante et l’usage du véhicule au quotidien.";
+$metaTitle = 'Blog entretien auto | AutoValley Casablanca';
+$metaDescription = "Lisez les articles AutoValley pour comprendre l’entretien, le diagnostic et la réparation automobile à Casablanca.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
@@ -10,6 +10,27 @@ $pageStyles = [
     './style/css/premium-styles.css',
     './style/css/blog-styles.css'
 ];
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$articleUrl = sprintf('%s://%s/article.php', $scheme, $host);
+
+$structuredData = [[
+    '@context' => 'https://schema.org',
+    '@type' => 'ItemList',
+    'name' => 'Articles AutoValley',
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'url' => $articleUrl, 'name' => 'Comment lire un rapport de diagnostic comme un pro'],
+        ['@type' => 'ListItem', 'position' => 2, 'url' => $articleUrl, 'name' => 'Peinture constructeur : le processus explique etape par etape'],
+        ['@type' => 'ListItem', 'position' => 3, 'url' => $articleUrl, 'name' => "Les 5 verifications essentielles avant l'hiver"],
+        ['@type' => 'ListItem', 'position' => 4, 'url' => $articleUrl, 'name' => 'Hybrides et electriques : ce qui change en atelier'],
+        ['@type' => 'ListItem', 'position' => 5, 'url' => $articleUrl, 'name' => 'Assurance sinistre : vos droits en 5 points cles'],
+        ['@type' => 'ListItem', 'position' => 6, 'url' => $articleUrl, 'name' => "Climatisation auto : pourquoi l'entretenir chaque annee"],
+        ['@type' => 'ListItem', 'position' => 7, 'url' => $articleUrl, 'name' => 'ADAS et calibration : la securite invisible de votre vehicule'],
+        ['@type' => 'ListItem', 'position' => 8, 'url' => $articleUrl, 'name' => 'Guide : votre premiere visite chez AutoValley'],
+        ['@type' => 'ListItem', 'position' => 9, 'url' => $articleUrl, 'name' => 'Tendances auto 2025 au Maroc : ce qui va changer'],
+    ],
+]];
+
 $headExtra = <<<HTML
 <script>
       (function(){var t=localStorage.getItem('av-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();

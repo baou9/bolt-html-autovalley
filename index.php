@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Accueil de l’atelier automobile | AutoValley Casablanca';
-$metaDescription = "Page d’accueil AutoValley à Casablanca: présentation de l’atelier, services automobiles et informations utiles avant votre visite.";
+$metaTitle = 'Garage automobile à Casablanca | AutoValley';
+$metaDescription = "Prenez rendez-vous chez AutoValley à Casablanca pour le diagnostic, l’entretien, la réparation et la carrosserie de votre véhicule.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
