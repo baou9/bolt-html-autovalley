@@ -15,6 +15,69 @@ $path = strtok($requestUri, '?') ?: '/';
 $canonicalUrl = $canonicalUrl ?? sprintf('%s://%s%s', $scheme, $host, $path);
 $ogUrl = $ogUrl ?? $canonicalUrl;
 
+if (!function_exists('av_media_build_url')) {
+    function av_media_build_url(string $src, int $width, string $format = 'jpg'): string
+    {
+        $parts = parse_url($src);
+        if (!isset($parts['host']) || !str_contains($parts['host'], 'pexels.com')) {
+            return $src;
+        }
+
+        $query = [];
+        if (!empty($parts['query'])) {
+            parse_str($parts['query'], $query);
+        }
+
+        $query['auto'] = 'compress';
+        $query['cs'] = 'tinysrgb';
+        $query['fit'] = 'crop';
+        $query['w'] = $width;
+        $query['fm'] = $format;
+
+        $base = sprintf('%s://%s%s', $parts['scheme'] ?? 'https', $parts['host'], $parts['path'] ?? '');
+
+        return $base . '?' . http_build_query($query);
+    }
+}
+
+if (!function_exists('av_responsive_image')) {
+    function av_responsive_image(array $config): void
+    {
+        $src = $config['src'];
+        $alt = html_entity_decode($config['alt'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $width = (int) ($config['width'] ?? 1200);
+        $height = (int) ($config['height'] ?? 800);
+        $class = $config['class'] ?? '';
+        $loading = $config['loading'] ?? 'lazy';
+        $decoding = $config['decoding'] ?? 'async';
+        $sizes = $config['sizes'] ?? '(max-width: 768px) 100vw, 50vw';
+        $fetchPriority = $config['fetchpriority'] ?? null;
+
+        $breakpoints = [360, 480, 768, 1200, 1600, 1920];
+        $widths = array_values(array_filter($breakpoints, static fn (int $candidate): bool => $candidate < $width));
+        $widths[] = $width;
+        $widths = array_values(array_unique($widths));
+
+        $buildSrcset = static function (string $format) use ($src, $widths): string {
+            $srcsetItems = [];
+            foreach ($widths as $responsiveWidth) {
+                $srcsetItems[] = av_media_build_url($src, $responsiveWidth, $format) . ' ' . $responsiveWidth . 'w';
+            }
+
+            return implode(', ', $srcsetItems);
+        };
+
+        $classAttr = $class !== '' ? ' class="' . htmlspecialchars($class, ENT_QUOTES, 'UTF-8') . '"' : '';
+        $priorityAttr = $fetchPriority !== null ? ' fetchpriority="' . htmlspecialchars($fetchPriority, ENT_QUOTES, 'UTF-8') . '"' : '';
+
+        echo '<picture>';
+        echo '<source type="image/avif" srcset="' . htmlspecialchars($buildSrcset('avif'), ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '">';
+        echo '<source type="image/webp" srcset="' . htmlspecialchars($buildSrcset('webp'), ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '">';
+        echo '<img width="' . $width . '" height="' . $height . '" src="' . htmlspecialchars(av_media_build_url($src, $width, 'jpg'), ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($alt, ENT_QUOTES, 'UTF-8') . '"' . $classAttr . ' loading="' . htmlspecialchars($loading, ENT_QUOTES, 'UTF-8') . '" decoding="' . htmlspecialchars($decoding, ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '" srcset="' . htmlspecialchars($buildSrcset('jpg'), ENT_QUOTES, 'UTF-8') . '"' . $priorityAttr . '>';
+        echo '</picture>';
+    }
+}
+
 if (preg_match('/^https?:\/\//i', $metaImagePath)) {
     $ogImage = $metaImagePath;
 } else {

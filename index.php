@@ -212,8 +212,7 @@ $pageStyles = [
           <!-- 1 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="800" src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Diagnostic &amp; Mécanique">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Diagnostic &amp; Mécanique', 'width' => 1200, 'height' => 800, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>
@@ -234,8 +233,7 @@ $pageStyles = [
           <!-- 2 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="674" src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Carrosserie &amp; Peinture">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Carrosserie &amp; Peinture', 'width' => 1200, 'height' => 674, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>
@@ -256,8 +254,7 @@ $pageStyles = [
           <!-- 3 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="800" src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Entretien &amp; Révision">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Entretien &amp; Révision', 'width' => 1200, 'height' => 800, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>
@@ -278,8 +275,7 @@ $pageStyles = [
           <!-- 4 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="674" src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Électricité &amp; Électronique">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Électricité &amp; Électronique', 'width' => 1200, 'height' => 674, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>
@@ -300,8 +296,7 @@ $pageStyles = [
           <!-- 5 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="674" src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Climatisation &amp; Confort">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Climatisation &amp; Confort', 'width' => 1200, 'height' => 674, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>
@@ -322,8 +317,7 @@ $pageStyles = [
           <!-- 6 -->
           <article class="service-card">
             <div class="service-image">
-              <img width="1200" height="2469" src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                   alt="Hybrides &amp; Électriques">
+              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=1200', 'alt' => 'Hybrides &amp; Électriques', 'width' => 1200, 'height' => 2469, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
             </div>
             <div class="service-overlay">
               <span class="glass-streak" aria-hidden="true"></span>

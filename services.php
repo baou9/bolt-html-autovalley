@@ -33,12 +33,7 @@ $pageStyles = [
       <!-- HERO -->
       <section class="sv-hero" id="services-hero">
         <div class="sv-hero__bg" aria-hidden="true">
-          <img width="1920" height="1280"
-            src="https://images.pexels.com/photos/4489794/pexels-photo-4489794.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt=""
-            class="sv-hero__bg-img"
-            loading="eager"
-          />
+          <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489794/pexels-photo-4489794.jpeg?auto=compress&cs=tinysrgb&w=1920', 'alt' => '', 'width' => 1920, 'height' => 1280, 'class' => 'sv-hero__bg-img', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '100vw', 'fetchpriority' => 'high']); ?>
           <div class="sv-hero__overlay"></div>
         </div>
 
@@ -157,11 +152,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="diagnostic">
               <div class="sv-card__media">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Diagnostic electronique et mecanique automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Diagnostic electronique et mecanique automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -188,11 +179,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="mecanique">
               <div class="sv-card__media">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Mecanique generale automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Mecanique generale automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -219,11 +206,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="geometrie">
               <div class="sv-card__media">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Geometrie et suspension automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Geometrie et suspension automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -250,11 +233,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="entretien" data-service="entretien">
               <div class="sv-card__media">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Entretien et maintenance automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Entretien et maintenance automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
@@ -281,11 +260,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="entretien" data-service="controle">
               <div class="sv-card__media">
-                <img width="600" height="400"
-                  src="https://images.pexels.com/photos/3806252/pexels-photo-3806252.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Pre-controle technique automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3806252/pexels-photo-3806252.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Pre-controle technique automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
@@ -312,11 +287,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="carrosserie" data-service="carrosserie">
               <div class="sv-card__media">
-                <img width="600" height="337"
-                  src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Carrosserie et peinture automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Carrosserie et peinture automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Carrosserie</span>
               </div>
@@ -343,11 +314,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="electrique" data-service="electricite">
               <div class="sv-card__media">
-                <img width="600" height="337"
-                  src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Electricite automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Electricite automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
@@ -374,11 +341,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="electrique" data-service="climatisation">
               <div class="sv-card__media">
-                <img width="600" height="337"
-                  src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Climatisation et refroidissement automobile"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Climatisation et refroidissement automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
@@ -405,11 +368,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="specialise" data-service="hybride">
               <div class="sv-card__media">
-                <img width="600" height="1234"
-                  src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Vehicules hybrides et electriques"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Vehicules hybrides et electriques', 'width' => 600, 'height' => 1234, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Services Specialises</span>
               </div>
@@ -436,11 +395,7 @@ $pageStyles = [
 
             <article class="sv-card sv-reveal" data-category="specialise" data-service="sinistres">
               <div class="sv-card__media">
-                <img width="600" height="900"
-                  src="https://images.pexels.com/photos/6872169/pexels-photo-6872169.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Gestion sinistres et assurances"
-                  loading="lazy"
-                />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6872169/pexels-photo-6872169.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Gestion sinistres et assurances', 'width' => 600, 'height' => 900, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Services Specialises</span>
               </div>
@@ -489,7 +444,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="374" src="https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Valises diagnostiques" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Valises diagnostiques', 'width' => 600, 'height' => 374, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">01</span>
                 <span class="eq-card__badge">Multi-marques</span>
@@ -502,7 +457,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="400" src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cabine de peinture" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Cabine de peinture', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">02</span>
                 <span class="eq-card__badge">Derniere generation</span>
@@ -515,7 +470,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="484" src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Banc de geometrie" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Banc de geometrie', 'width' => 600, 'height' => 484, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">03</span>
                 <span class="eq-card__badge">Precision 3D</span>
@@ -528,7 +483,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="400" src="https://images.pexels.com/photos/3846205/pexels-photo-3846205.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Equipements haute tension" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3846205/pexels-photo-3846205.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Equipements haute tension', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">04</span>
                 <span class="eq-card__badge">Certifie B2XL</span>
@@ -541,7 +496,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="400" src="https://images.pexels.com/photos/4489732/pexels-photo-4489732.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ponts elevateurs" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489732/pexels-photo-4489732.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Ponts elevateurs', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">05</span>
                 <span class="eq-card__badge">5 tonnes</span>
@@ -554,7 +509,7 @@ $pageStyles = [
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <img width="600" height="400" src="https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Station climatisation" loading="lazy" />
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Station climatisation', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">06</span>
                 <span class="eq-card__badge">R134a / R1234yf</span>
