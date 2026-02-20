@@ -10,6 +10,50 @@ $pageStyles = [
     './style/css/premium-styles.css',
     './style/css/pages-styles.css'
 ];
+
+// [PATCH] ContactPage + Organization contact schema from visible contact details.
+$structuredData = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'ContactPage',
+        'name' => 'Nous Contacter – AutoValley | Casablanca',
+        'description' => "Coordonnées, formulaire de contact, WhatsApp et horaires d'ouverture d'AutoValley à Casablanca.",
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'name' => 'AutoValley',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => 'Sapino, Nouaceur',
+            'addressLocality' => 'Casablanca',
+            'addressCountry' => 'MA',
+        ],
+        'telephone' => '+212600000000',
+        'email' => 'contact@autovalley.ma',
+        'contactPoint' => [
+            '@type' => 'ContactPoint',
+            'telephone' => '+212600000000',
+            'email' => 'contact@autovalley.ma',
+            'contactType' => 'customer service',
+            'availableLanguage' => ['fr'],
+        ],
+        'openingHoursSpecification' => [
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'opens' => '08:30',
+                'closes' => '18:30',
+            ],
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => 'Saturday',
+                'opens' => '09:00',
+                'closes' => '13:00',
+            ],
+        ],
+    ],
+];
 ?>
 <!doctype html>
 <html lang="fr" class="no-js">
