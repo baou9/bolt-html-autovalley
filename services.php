@@ -5,8 +5,8 @@ $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
     './style/css/style.css',
-    './style/css/header-responsive.css',
     './style/css/header-styles.css',
+    './style/css/header-responsive.css',
     './style/css/premium-styles.css',
     './style/css/services-styles.css'
 ];
