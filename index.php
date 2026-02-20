@@ -26,18 +26,30 @@ $pageStyles = [
       <!-- HERO SECTION – FULLSCREEN LIQUID GLASS + VIDEO -->
       <section class="hero-lg" id="accueil">
           <!-- Background video -->
-          <div class="hero-lg__video-layer">
+          <div class="hero-lg__video-layer" style="aspect-ratio: 16 / 9;">
+              <img
+                  class="hero-lg__poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                  alt=""
+                  width="1920"
+                  height="1080"
+                  decoding="async"
+                  fetchpriority="high"
+              />
               <video
                   id="heroVideo"
-                  class="hero-lg__video"
-                  autoplay
+                  class="hero-lg__video" style="opacity:0;"
                   muted
                   playsinline
-                  preload="auto"
+                  preload="metadata"
+                  poster="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                  width="1920"
+                  height="1080"
+                  aria-hidden="true"
               >
                   <source
                       id="heroVideoSource"
-                      src="https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm"
+                      data-src="https://www.shutterstock.com/shutterstock/videos/1066902424/preview/stock-footage-service-of-the-car-in-the-technical-center-the-master-records-information-about-the-machine.webm"
                       type="video/webm"
                   />
                   Votre navigateur ne supporte pas la vidéo HTML5.
@@ -563,11 +575,10 @@ $pageStyles = [
             <!-- Cards grid -->
             <div class="precision-std__grid">
                 <!-- Card 1 -->
-                <article class="precision-std__card js-precision-tilt" style="--stagger:0;">
+                <article class="precision-std__card precision-std__card--stagger-0 js-precision-tilt">
                     <div class="precision-std__scan-line"></div>
 
-                    <div class="precision-std__media"
-                         style="--card-image:url('https://eyf5gqdcwsg.exactdn.com/wp-content/uploads/2023/11/LAUNCH-Europe-Startseite-Kategorie-diagnose.jpg?auto=compress&cs=tinysrgb&w=1200');">
+                    <div class="precision-std__media precision-std__media--diagnostic">
                         <div class="precision-std__media-gradient"></div>
                         <div class="precision-std__pill precision-std__pill--small">
                             CONTRÔLE ÉLECTRONIQUE AVANCÉ
@@ -599,11 +610,10 @@ $pageStyles = [
                 </article>
 
                 <!-- Card 2 -->
-                <article class="precision-std__card js-precision-tilt" style="--stagger:1;">
+                <article class="precision-std__card precision-std__card--stagger-1 js-precision-tilt">
                     <div class="precision-std__scan-line"></div>
 
-                    <div class="precision-std__media"
-                         style="--card-image:url('https://files.sbcdnsb.com/images/SZlYtT8geQRGL9G9gsOveA/content/1708723515/3445927/img_9170.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+                    <div class="precision-std__media precision-std__media--paint-booth">
                         <div class="precision-std__media-gradient"></div>
                         <div class="precision-std__pill precision-std__pill--small">
                             CABINE DE PEINTURE &amp; FINITION
@@ -636,11 +646,10 @@ $pageStyles = [
                 </article>
 
                 <!-- Card 3 -->
-                <article class="precision-std__card js-precision-tilt" style="--stagger:2;">
+                <article class="precision-std__card precision-std__card--stagger-2 js-precision-tilt">
                     <div class="precision-std__scan-line"></div>
 
-                    <div class="precision-std__media"
-                         style="--card-image:url('https://lega.ma/wp-content/uploads/2023/06/2023-11-24-14_09_55-Greenshot-01-Recupere-01-39-03-5-Recupere-04-24-Recupere-02-8-01-01-4.png?auto=compress&cs=tinysrgb&w=1200');">
+                    <div class="precision-std__media precision-std__media--geometry">
                         <div class="precision-std__media-gradient"></div>
                         <div class="precision-std__pill precision-std__pill--small">
                             BANC 3D &amp; CALIBRATION ADAS
@@ -894,8 +903,7 @@ $pageStyles = [
                             </a>
                         </div>
                     </div>
-                    <div class="panel-image"
-                         style="background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1600&auto=format&fit=crop');">
+                    <div class="panel-image panel-image--insurance">
                     </div>
                 </article>
 
@@ -952,8 +960,7 @@ $pageStyles = [
                             </a>
                         </div>
                     </div>
-                    <div class="panel-image"
-                         style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop');">
+                    <div class="panel-image panel-image--leasing">
                     </div>
                 </article>
 
@@ -1010,8 +1017,7 @@ $pageStyles = [
                             </a>
                         </div>
                     </div>
-                    <div class="panel-image"
-                         style="background-image:url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1600&auto=format&fit=crop');">
+                    <div class="panel-image panel-image--fleet-tech">
                     </div>
                 </article>
 
@@ -1068,8 +1074,7 @@ $pageStyles = [
                             </a>
                         </div>
                     </div>
-                    <div class="panel-image"
-                         style="background-image:url('https://images.unsplash.com/photo-1597502319427-e17f0d0611e9?q=80&w=1600&auto=format&fit=crop');">
+                    <div class="panel-image panel-image--enterprise">
                     </div>
                 </article>
             </div>
@@ -1746,9 +1751,8 @@ $pageStyles = [
           <div class="noustrouver-map-wrapper">
             <div class="noustrouver-map-card">
               <iframe
-                class="noustrouver-map"
+                class="noustrouver-map noustrouver-map--embed"
                 src="https://maps.google.com/maps?q=AutoValley%20Sapino%20Casablanca&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                style="border:0;"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"

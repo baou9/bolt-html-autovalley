@@ -2658,6 +2658,11 @@ body,
   z-index: 1;
 }
 
+/* [PATCH] Explicit map embed variant used to replace inline iframe border style */
+.noustrouver-map--embed {
+  border: 0;
+}
+
 .noustrouver-info-card {
   position: relative;
   padding: clamp(26px, 3.8vw, 34px);
@@ -3260,18 +3265,26 @@ body,
   margin-top: 6px;
 }
 
-.footer-links a {
+/* [PATCH] Footer legal cookie action keeps link visual treatment */
+.footer-links a,
+.footer-link-action {
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   transition:
     color 160ms ease-out,
     text-shadow 160ms ease-out;
 }
 
-.footer-links a::after {
+.footer-links a::after,
+.footer-link-action::after {
   content: '';
   position: absolute;
   left: 0;
@@ -3284,17 +3297,22 @@ body,
 }
 
 .footer-links a:hover,
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.footer-link-action:hover,
+.footer-link-action:focus-visible {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 .footer-links a:hover::after,
-.footer-links a:focus-visible::after {
+.footer-links a:focus-visible::after,
+.footer-link-action:hover::after,
+.footer-link-action:focus-visible::after {
   width: 100%;
 }
 
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.footer-link-action:focus-visible {
   outline: none;
 }
 
@@ -6514,6 +6532,23 @@ body,
     overflow: hidden;
 }
 
+/* [PATCH] Replaces inline panel background images in clients strip */
+.panel-image--insurance {
+    background-image: url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1600&auto=format&fit=crop');
+}
+
+.panel-image--leasing {
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop');
+}
+
+.panel-image--fleet-tech {
+    background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1600&auto=format&fit=crop');
+}
+
+.panel-image--enterprise {
+    background-image: url('https://images.unsplash.com/photo-1597502319427-e17f0d0611e9?q=80&w=1600&auto=format&fit=crop');
+}
+
 /* gradient overlay */
 .panel-image::after {
     content: "";
@@ -8660,6 +8695,11 @@ body {
     transition-delay: calc(var(--stagger, 0) * 0.07s);
 }
 
+/* [PATCH] Replaces inline stagger custom-properties in precision cards */
+.precision-std__card--stagger-0 { --stagger: 0; }
+.precision-std__card--stagger-1 { --stagger: 1; }
+.precision-std__card--stagger-2 { --stagger: 2; }
+
 /* revealed state for cards */
 .precision-std--revealed .precision-std__card {
     opacity: 1;
@@ -8722,6 +8762,19 @@ body {
     background-position: center;
     isolation: isolate;
     overflow: hidden;
+}
+
+/* [PATCH] Replaces inline background image custom-properties for precision media */
+.precision-std__media--diagnostic {
+    --card-image: url('https://eyf5gqdcwsg.exactdn.com/wp-content/uploads/2023/11/LAUNCH-Europe-Startseite-Kategorie-diagnose.jpg?auto=compress&cs=tinysrgb&w=1200');
+}
+
+.precision-std__media--paint-booth {
+    --card-image: url('https://files.sbcdnsb.com/images/SZlYtT8geQRGL9G9gsOveA/content/1708723515/3445927/img_9170.jpeg?auto=compress&cs=tinysrgb&w=1200');
+}
+
+.precision-std__media--geometry {
+    --card-image: url('https://lega.ma/wp-content/uploads/2023/06/2023-11-24-14_09_55-Greenshot-01-Recupere-01-39-03-5-Recupere-04-24-Recupere-02-8-01-01-4.png?auto=compress&cs=tinysrgb&w=1200');
 }
 
 /* zoomable image layer */

@@ -3,7 +3,7 @@ $metaTitle = 'Politique de Confidentialité – AutoValley';
 $metaDescription = "Politique de confidentialité d'AutoValley : collecte, utilisation et protection des données personnelles.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
-$metaRobots = 'noindex';
+$metaRobots = 'noindex,follow';
 $pageStyles = [
     './style/css/style.css',
     './style/css/header-responsive.css',
@@ -25,9 +25,9 @@ $pageStyles = [
     <main id="main">
 
       <!-- HERO -->
-      <section class="pg-hero pg-hero--compact" id="privacy-hero" style="min-height: 38vh;">
+      <section class="pg-hero pg-hero--compact pg-hero--legal" id="privacy-hero">
         <div class="pg-hero__bg" aria-hidden="true">
-          <div class="pg-hero__overlay" style="background: linear-gradient(180deg, rgba(5,6,9,0.85) 0%, rgba(5,6,9,0.6) 40%, rgba(5,6,9,0.98) 100%);"></div>
+          <div class="pg-hero__overlay pg-hero__overlay--legal"></div>
         </div>
 
         <div class="pg-hero__inner">
@@ -37,7 +37,7 @@ $pageStyles = [
             <span aria-current="page">Politique de confidentialité</span>
           </nav>
           <p class="pg-hero__kicker pg-reveal">VOS DONNÉES</p>
-          <h1 class="pg-hero__title pg-reveal" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">
+          <h1 class="pg-hero__title pg-hero__title--legal pg-reveal">
             Politique de <span class="pg-hero__title-accent">confidentialité</span>
           </h1>
         </div>
@@ -197,7 +197,7 @@ $pageStyles = [
                   <p><strong>Pour exercer vos droits, contactez-nous :</strong></p>
                   <p>Email : <a href="mailto:privacy@autovalley.ma">privacy@autovalley.ma</a></p>
                   <p>Courrier : AutoValley – Protection des données, Sapino, Nouaceur – Casablanca</p>
-                  <p style="color: rgba(255,255,255,0.45); font-size: 0.85rem; margin-top: 8px;">Nous accuserons réception de votre demande dans les 72 heures et y répondrons dans un délai maximum d'un mois.</p>
+                  <p class="legal-note legal-note--muted">Nous accuserons réception de votre demande dans les 72 heures et y répondrons dans un délai maximum d'un mois.</p>
                 </div>
               </div>
 
@@ -257,7 +257,7 @@ $pageStyles = [
                   <p>Téléphone : <a href="tel:+212600000000">+212 6 00 00 00 00</a></p>
                   <p>Adresse : Sapino, Nouaceur – Casablanca, Maroc</p>
                 </div>
-                <p style="margin-top: 20px;">
+                <p class="legal-note legal-note--mt-md">
                   Cette politique de confidentialité est susceptible d'être mise à jour.
                   En cas de modification substantielle, nous vous en informerons par email
                   ou via un avis visible sur notre site. La date de dernière mise à jour
