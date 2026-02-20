@@ -10,6 +10,36 @@ $pageStyles = [
     './style/css/premium-styles.css',
     './style/css/services-styles.css'
 ];
+
+// [PATCH] Conservative Service schema aligned with visible services content.
+$structuredData = [[
+    '@context' => 'https://schema.org',
+    '@type' => 'Service',
+    'name' => 'Services AutoValley',
+    'description' => 'Des prestations completes realisees par des techniciens certifies, avec des equipements de derniere generation.',
+    'serviceType' => 'Services d\'entretien et de reparation automobile',
+    'areaServed' => 'Casablanca',
+    'provider' => [
+        '@type' => 'Organization',
+        'name' => 'AutoValley',
+    ],
+    'hasOfferCatalog' => [
+        '@type' => 'OfferCatalog',
+        'name' => 'Tous Nos Services',
+        'itemListElement' => [
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Diagnostic electronique & mecanique']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Mecanique generale']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Geometrie & suspension']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Entretien & maintenance']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Pre-controle technique']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Carrosserie & peinture']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Electricite automobile']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Climatisation & refroidissement']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Vehicules hybrides & electriques']],
+            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Gestion sinistres & assurances']],
+        ],
+    ],
+]];
 ?>
 <!doctype html>
 <html lang="fr" class="no-js">
