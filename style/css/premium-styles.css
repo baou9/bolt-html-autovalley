@@ -1280,8 +1280,8 @@ button:focus-visible,
   .mobile-float-cta {
     display: flex;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
     z-index: 1000;
     width: 56px;
     height: 56px;
@@ -1314,6 +1314,13 @@ button:focus-visible,
         0 4px 30px rgba(185, 5, 4, 0.7),
         0 8px 50px rgba(0, 0, 0, 0.4);
     }
+  }
+}
+
+
+@media (max-width: 390px) {
+  .mobile-float-cta {
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
   }
 }
 
