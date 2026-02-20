@@ -60,6 +60,7 @@
 
     <div class="mobile-nav-overlay" aria-hidden="true">
       <nav class="mobile-nav-content" id="mobile-nav" aria-label="Navigation mobile">
+        <button class="mobile-nav-close" type="button" aria-label="Fermer le menu mobile">Fermer</button>
         <ul>
           <li style="--delay: 0.1s"><a href="./index.php" class="mobile-link" data-nav-key="home">Accueil</a></li>
           <li style="--delay: 0.2s"><a href="./services.php" class="mobile-link" data-nav-key="services">Services</a></li>

@@ -82,7 +82,9 @@ HTML;
       <section class="blog-content">
         <div class="blog-content__inner">
 
-          <div class="blog-grid" id="blog-grid">
+          <section class="blog-articles" aria-labelledby="blog-articles-title">
+            <h2 class="blog-articles__title" id="blog-articles-title">Articles récents</h2>
+            <div class="blog-grid" id="blog-grid">
 
             <article class="blog-card blog-card--featured" data-category="Diagnostic">
               <div class="blog-card__media">
@@ -90,7 +92,7 @@ HTML;
                 <span class="blog-card__category">Diagnostic</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Comment lire un rapport de diagnostic comme un pro</h2>
+                <h3 class="blog-card__title">Comment lire un rapport de diagnostic comme un pro</h3>
                 <p class="blog-card__excerpt">
                   Decrypter les codes defauts, distinguer critique vs preventif, et decider des priorites
                   sans perdre en garantie. Le guide complet de nos techniciens.
@@ -116,7 +118,7 @@ HTML;
                 <span class="blog-card__category">Carrosserie</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Peinture constructeur : le processus explique etape par etape</h2>
+                <h3 class="blog-card__title">Peinture constructeur : le processus explique etape par etape</h3>
                 <p class="blog-card__excerpt">
                   Preparation des panneaux, lecture du spectro, melange controle et vernis pour restituer la teinte d'origine.
                 </p>
@@ -141,7 +143,7 @@ HTML;
                 <span class="blog-card__category">Entretien</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Les 5 verifications essentielles avant l'hiver</h2>
+                <h3 class="blog-card__title">Les 5 verifications essentielles avant l'hiver</h3>
                 <p class="blog-card__excerpt">
                   Batterie, pneus, liquides, freins et eclairage : le checklist complet pour affronter la saison froide.
                 </p>
@@ -166,7 +168,7 @@ HTML;
                 <span class="blog-card__category">Performance</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Hybrides et electriques : ce qui change en atelier</h2>
+                <h3 class="blog-card__title">Hybrides et electriques : ce qui change en atelier</h3>
                 <p class="blog-card__excerpt">
                   Habilitations, batteries haute tension, protocoles specifiques. Tour d'horizon des evolutions.
                 </p>
@@ -191,7 +193,7 @@ HTML;
                 <span class="blog-card__category">Conseils</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Assurance sinistre : vos droits en 5 points cles</h2>
+                <h3 class="blog-card__title">Assurance sinistre : vos droits en 5 points cles</h3>
                 <p class="blog-card__excerpt">
                   Pieces d'origine, delais engages et controle qualite documente pour defendre la valeur residuelle.
                 </p>
@@ -216,7 +218,7 @@ HTML;
                 <span class="blog-card__category">Entretien</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Climatisation auto : pourquoi l'entretenir chaque annee</h2>
+                <h3 class="blog-card__title">Climatisation auto : pourquoi l'entretenir chaque annee</h3>
                 <p class="blog-card__excerpt">
                   Recharge, traitement anti-odeurs et qualite de l'air : les cles d'un confort durable.
                 </p>
@@ -241,7 +243,7 @@ HTML;
                 <span class="blog-card__category">Performance</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">ADAS et calibration : la securite invisible de votre vehicule</h2>
+                <h3 class="blog-card__title">ADAS et calibration : la securite invisible de votre vehicule</h3>
                 <p class="blog-card__excerpt">
                   Comprendre les systemes d'aide a la conduite et pourquoi leur calibration est critique apres chaque intervention.
                 </p>
@@ -266,7 +268,7 @@ HTML;
                 <span class="blog-card__category">Conseils</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Guide : votre premiere visite chez AutoValley</h2>
+                <h3 class="blog-card__title">Guide : votre premiere visite chez AutoValley</h3>
                 <p class="blog-card__excerpt">
                   Ce a quoi vous attendre, de la prise de rendez-vous a la restitution de votre vehicule.
                 </p>
@@ -291,7 +293,7 @@ HTML;
                 <span class="blog-card__category">Actualites</span>
               </div>
               <div class="blog-card__body">
-                <h2 class="blog-card__title">Tendances auto 2025 au Maroc : ce qui va changer</h2>
+                <h3 class="blog-card__title">Tendances auto 2025 au Maroc : ce qui va changer</h3>
                 <p class="blog-card__excerpt">
                   Electrification, nouvelles normes et evolution du marche. Le point sur les tendances qui impactent l'apres-vente.
                 </p>
@@ -315,7 +317,8 @@ HTML;
               <p class="blog-empty__text">Essayez une autre categorie ou modifiez votre recherche.</p>
             </div>
 
-          </div>
+            </div>
+          </section>
 
           <aside class="blog-sidebar">
 
