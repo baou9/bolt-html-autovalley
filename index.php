@@ -41,7 +41,7 @@ $pageStyles = [
                   class="hero-lg__video" style="opacity:0;"
                   muted
                   playsinline
-                  preload="metadata"
+                  preload="none"
                   poster="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
                   width="1920"
                   height="1080"

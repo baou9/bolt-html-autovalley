@@ -7,17 +7,22 @@ import './testimonials.js';
 
 const getUiCapabilities = () => {
   const match = (query) => window.matchMedia && window.matchMedia(query).matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const effectiveType = connection && connection.effectiveType ? connection.effectiveType : '';
   return {
     reducedMotion: match('(prefers-reduced-motion: reduce)'),
     coarsePointer: match('(pointer: coarse)'),
-    narrowViewport: match('(max-width: 1024px)'),
+    narrowViewport: match('(max-width: 1200px)'),
     lowMemory: typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4,
+    lowCpu: typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4,
+    saveData: Boolean(connection && connection.saveData),
+    slowNetwork: /(^|\b)(slow-2g|2g|3g)(\b|$)/.test(effectiveType),
   };
 };
 
 const shouldLimitPremiumEffects = () => {
   const capabilities = getUiCapabilities();
-  return capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport || capabilities.lowMemory;
+  return capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport || capabilities.lowMemory || capabilities.lowCpu || capabilities.saveData || capabilities.slowNetwork;
 };
 
 document.documentElement.classList.remove('no-js');
@@ -29,16 +34,21 @@ if (document.readyState === 'loading') {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const capabilities = getUiCapabilities(); // [PATCH]
+  const heroSection = document.querySelector('.hero-lg'); // [PATCH]
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
-  const reduceMotion = getUiCapabilities().reducedMotion; // [PATCH]
-  const prefersSaveData = navigator.connection && navigator.connection.saveData; // [PATCH]
-  const isCoarsePointer = getUiCapabilities().coarsePointer; // [PATCH]
-  const isNarrowViewport = getUiCapabilities().narrowViewport; // [PATCH]
-  const isLowMemory = getUiCapabilities().lowMemory; // [PATCH]
+  const reduceMotion = capabilities.reducedMotion; // [PATCH]
+  const prefersSaveData = capabilities.saveData; // [PATCH]
+  const isCoarsePointer = capabilities.coarsePointer; // [PATCH]
+  const isNarrowViewport = capabilities.narrowViewport; // [PATCH]
+  const isLowMemory = capabilities.lowMemory; // [PATCH]
+  const isLowCpu = capabilities.lowCpu; // [PATCH]
+  const isSlowNetwork = capabilities.slowNetwork; // [PATCH]
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent); // [PATCH]
 
-  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport || isLowMemory || isIOS; // [PATCH]
+  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isSlowNetwork || isCoarsePointer || isNarrowViewport || isLowMemory || isLowCpu || isIOS; // [PATCH]
+  const hasStrongHeroCapability = !shouldLimitHeroEffects && window.innerWidth >= 1280; // [PATCH]
 
   /* ===================== 1. VIDEO PLAYLIST ===================== */
 
@@ -54,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
+    let sourceAssigned = false; // [PATCH]
+    let canAutoplayAfterLoad = false; // [PATCH]
+    let interactionBound = false; // [PATCH]
+
     const ensurePlay = () => {
       const p = videoEl.play();
       if (p && typeof p.catch === "function") {
@@ -63,37 +77,95 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    if (shouldLimitHeroEffects) {
-      videoEl.removeAttribute("autoplay"); // [PATCH]
-      videoEl.removeAttribute("loop"); // [PATCH]
-      videoEl.preload = "metadata"; // [PATCH]
-      videoEl.pause(); // [PATCH]
-      videoEl.style.opacity = "0"; // [PATCH] keep poster visible and avoid heavy media work on constrained profiles
-    } else {
-      const initialSrc = videoSourceEl.dataset.src || videoPlaylist[0]; // [PATCH]
-      videoSourceEl.src = initialSrc; // [PATCH]
-      videoEl.setAttribute("autoplay", "true"); // [PATCH]
-      videoEl.preload = "metadata"; // [PATCH]
-      videoEl.load(); // [PATCH]
+    const hydrateVideoSource = () => {
+      if (sourceAssigned) return;
+      const initialSrc = videoSourceEl.dataset.src || videoPlaylist[0];
+      if (!initialSrc) return;
+      videoSourceEl.src = initialSrc;
+      videoEl.preload = 'metadata';
+      videoEl.load();
+      sourceAssigned = true;
+    };
 
-      videoEl.addEventListener("canplay", () => {
-        videoEl.style.opacity = "1"; // [PATCH]
-        ensurePlay();
-      }, { once: true });
-
-      videoEl.addEventListener("ended", () => {
-        currentVideo = (currentVideo + 1) % videoPlaylist.length;
-        videoSourceEl.src = videoPlaylist[currentVideo];
-        videoEl.load();
-        ensurePlay();
+    const cleanupInteractionListeners = () => {
+      if (!interactionBound) return;
+      ['pointerdown', 'touchstart', 'keydown'].forEach((eventName) => {
+        window.removeEventListener(eventName, onFirstInteraction);
       });
+      interactionBound = false;
+    };
+
+    const onFirstInteraction = () => {
+      canAutoplayAfterLoad = true;
+      hydrateVideoSource();
+      cleanupInteractionListeners();
+    };
+
+    const bindInteractionListeners = () => {
+      if (interactionBound) return;
+      ['pointerdown', 'touchstart', 'keydown'].forEach((eventName) => {
+        window.addEventListener(eventName, onFirstInteraction, { once: true, passive: true });
+      });
+      interactionBound = true;
+    };
+
+    videoEl.addEventListener("canplay", () => {
+      videoEl.style.opacity = "1";
+      if (canAutoplayAfterLoad) {
+        ensurePlay();
+      }
+    });
+
+    videoEl.addEventListener("ended", () => {
+      currentVideo = (currentVideo + 1) % videoPlaylist.length;
+      videoSourceEl.src = videoPlaylist[currentVideo];
+      videoEl.load();
+      ensurePlay();
+    });
+
+    if (shouldLimitHeroEffects) {
+      videoEl.removeAttribute("autoplay");
+      videoEl.removeAttribute("loop");
+      videoEl.preload = "none";
+      videoEl.pause(); // [PATCH]
+      videoEl.style.opacity = "0";
+      bindInteractionListeners();
+    } else {
+      videoEl.setAttribute("autoplay", "true");
+      if (hasStrongHeroCapability) {
+        const hydrateOnVisibility = () => {
+          canAutoplayAfterLoad = true;
+          hydrateVideoSource();
+        };
+
+        if ('IntersectionObserver' in window && heroSection) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                observer.disconnect();
+                if ('requestIdleCallback' in window) {
+                  window.requestIdleCallback(hydrateOnVisibility, { timeout: 1200 });
+                } else {
+                  window.setTimeout(hydrateOnVisibility, 200);
+                }
+              }
+            });
+          }, { threshold: 0.35 });
+
+          observer.observe(heroSection);
+        } else {
+          hydrateOnVisibility();
+        }
+      } else {
+        bindInteractionListeners();
+      }
     }
   }
 
   /* ===================== 2. WEBGL LIQUID GLASS ===================== */
 
   const canvas = document.getElementById("heroLiquidCanvas");
-  if (canvas && shouldLimitHeroEffects) { // [PATCH]
+  if (canvas && (shouldLimitHeroEffects || window.innerWidth < 1280)) { // [PATCH]
     canvas.classList.add("hero-lg__liquid-canvas--disabled"); // [PATCH]
   } else if (canvas) {
     const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
@@ -1151,5 +1223,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initAcademyReveal();
   initAcademyCarouselCounter();
 }); // [PATCH]
-
 
