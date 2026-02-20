@@ -8,7 +8,8 @@ $pageStyles = [
     './style/css/header-styles.css',
     './style/css/header-responsive.css',
     './style/css/premium-styles.css',
-    './style/css/services-styles.css'
+    './style/css/services-styles.css',
+    './style/css/testimonials-styles.css'
 ];
 
 // [PATCH] Conservative Service schema aligned with visible services content.
@@ -827,6 +828,8 @@ $structuredData = [[
         </div>
       </section>
 
+      <?php include __DIR__ . '/testimonials-enhanced.php'; ?>
+
       <!-- FINAL CTA -->
       <section class="sv-cta" id="rdv">
         <div class="sv-cta__inner">
@@ -880,6 +883,7 @@ $structuredData = [[
 
     <script type="module" src="./style/js/nav-active.js"></script>
     <script type="module" src="./style/js/premium-effects.js"></script>
+    <script type="module" src="./style/js/testimonials.js"></script>
     <script type="module" src="./style/js/services-page.js"></script>
   </body>
 </html>
