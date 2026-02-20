@@ -186,41 +186,32 @@
 
           <div class="footer-bottom-right">
             <div class="footer-socials">
-              <a
-                href="https://www.linkedin.com/company/autovalley-ma/"
-                class="footer-social-icon"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span aria-hidden="true">in</span>
+              <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M7 10v7" />
+                  <path d="M7 7.4h.01" />
+                  <path d="M11 17v-3.9a2.1 2.1 0 0 1 4.2 0V17" />
+                  <path d="M11 10v7" />
+                </svg>
               </a>
-              <a
-                href="https://www.instagram.com/autovalley.ma/"
-                class="footer-social-icon"
-                aria-label="Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span aria-hidden="true">ig</span>
+              <a href="#" class="footer-social-icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect x="4.5" y="4.5" width="15" height="15" rx="4.2" />
+                  <circle cx="12" cy="12" r="3.4" />
+                  <circle cx="16.8" cy="7.2" r="0.7" />
+                </svg>
               </a>
-              <a
-                href="https://www.facebook.com/autovalley.ma"
-                class="footer-social-icon"
-                aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span aria-hidden="true">fb</span>
+              <a href="#" class="footer-social-icon" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M13.4 19v-6.5h2.2l.4-2.6h-2.6V8.3c0-.8.3-1.3 1.4-1.3H16V4.7c-.2 0-.9-.1-1.8-.1-2.1 0-3.5 1.2-3.5 3.6V10H8.6v2.6h2.1V19" />
+                </svg>
               </a>
-              <a
-                href="https://www.tiktok.com/@autovalley.ma"
-                class="footer-social-icon"
-                aria-label="TikTok"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span aria-hidden="true">tt</span>
+              <a href="#" class="footer-social-icon" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14 5.2c.7 1.2 1.8 2 3.2 2.2" />
+                  <path d="M10.2 11.2v5a2.6 2.6 0 1 1-2.6-2.6" />
+                  <path d="M14 5.2v8.9a4.4 4.4 0 1 1-4.4-4.4" />
+                </svg>
               </a>
             </div>
             <div class="footer-lang-switch" role="group" aria-label="Changer de langue">

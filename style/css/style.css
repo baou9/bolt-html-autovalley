@@ -3395,8 +3395,10 @@ body,
 }
 
 .footer-social-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -3405,26 +3407,44 @@ body,
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 60%),
     rgba(0, 0, 0, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.24);
-  color: #ffffff;
+  color: var(--text-white);
   text-decoration: none;
-  font-size: 0.78rem;
   transition:
-    transform 150ms ease-out,
-    box-shadow 150ms ease-out,
-    border-color 150ms ease-out;
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.footer-social-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .footer-social-icon:hover,
 .footer-social-icon:focus-visible {
   transform: translateY(-1px);
-  border-color: #ff4a4a;
+  border-color: var(--brand-red);
+  background-color: rgba(185, 5, 4, 0.16);
   box-shadow:
-    0 0 12px rgba(255, 0, 0, 0.9),
+    0 0 12px rgba(185, 5, 4, 0.9),
     0 12px 26px rgba(0, 0, 0, 0.8);
 }
 
+.footer-social-icon:active {
+  transform: translateY(0);
+  background-color: rgba(185, 5, 4, 0.22);
+}
+
 .footer-social-icon:focus-visible {
-  outline: none;
+  outline: 2px solid var(--text-white);
+  outline-offset: 2px;
 }
 
 .footer-lang-switch {
