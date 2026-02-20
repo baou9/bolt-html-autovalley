@@ -1,20 +1,26 @@
 const currentPath = window.location.pathname;
-const currentPage = currentPath.split('/').pop() || 'index.php';
-const normalizedCurrentPage = currentPage || 'index.php';
+const normalizedPath = currentPath.replace(/\/+$/, '') || '/';
+const currentPage = normalizedPath === '/' ? 'index.php' : normalizedPath.split('/').pop();
+const normalizedCurrentPage = (currentPage || 'index.php').toLowerCase();
 
 const activeNavKeyByPage = {
   'index.php': 'home',
   'services.php': 'services',
+  'apropos.php': 'about',
   'blog.php': 'blog',
-  'article.php': 'blog'
+  'article.php': 'blog',
+  'carrieres.php': 'careers',
+  'faq.php': 'faq'
 };
 
-const activeNavKey = activeNavKeyByPage[normalizedCurrentPage] || 'home';
+// [PATCH] Apply the home fallback only on root/index, not on unknown paths.
+const isHomePath = normalizedPath === '/' || normalizedCurrentPage === 'index.php';
+const activeNavKey = activeNavKeyByPage[normalizedCurrentPage] || (isHomePath ? 'home' : null);
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
 
 navLinks.forEach((link) => {
   const linkNavKey = link.dataset.navKey;
-  if (linkNavKey === activeNavKey) {
+  if (activeNavKey && linkNavKey === activeNavKey) {
     link.classList.add('nav-link--active');
   } else {
     link.classList.remove('nav-link--active');
