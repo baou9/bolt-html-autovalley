@@ -38,15 +38,15 @@ HTML;
         <div class="blog-hero__inner">
           <p class="blog-hero__eyebrow">
             <span class="blog-hero__eyebrow-line" aria-hidden="true"></span>
-            L'ACADEMIE AUTOVALLEY
+            LE BLOG AUTOVALLEY
           </p>
           <h1 class="blog-hero__title">
-            Expert insights &amp;<br>
-            <span class="blog-hero__title-accent">automotive craft.</span>
+            Articles sur l’entretien<br>
+            <span class="blog-hero__title-accent">et la réparation automobile.</span>
           </h1>
           <p class="blog-hero__subtitle">
-            Selection editoriale pour comprendre le diagnostic, la carrosserie et les assurances
-            sans perdre en performance ni en garantie.
+            Contenus pratiques pour comprendre le diagnostic, la carrosserie,
+            l’entretien courant et les démarches liées au véhicule.
           </p>
 
           <div class="blog-hero__controls">
