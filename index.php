@@ -1,25 +1,23 @@
+<?php
+$metaTitle = 'AutoValley – Alternative aux concessionnaires | Casablanca';
+$metaDescription = "Présentation des services d'entretien, de diagnostic et de carrosserie AutoValley à Casablanca.";
+$ogType = 'website';
+$metaImagePath = '/public/Converted-PNG2.png';
+$pageStyles = [
+    './style/css/style.css',
+    './style/css/header-responsive.css',
+    './style/css/header-styles.css',
+    './style/css/premium-styles.css',
+    './style/css/testimonials-styles.css',
+    'https://unpkg.com/lenis@1.1.13/dist/lenis.css'
+];
+?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AutoValley accompagne l'entretien et la réparation automobile à Casablanca avec diagnostic, interventions mécaniques et suivi transparent pour chaque véhicule." />
-    <title>AutoValley – Alternative Premium aux Concessionnaires | Casablanca</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style/css/style.css">
-    <link rel="stylesheet" href="./style/css/header-responsive.css">
-    <link rel="stylesheet" href="./style/css/header-styles.css">
-    <link rel="stylesheet" href="./style/css/premium-styles.css">
-    <link rel="stylesheet" href="./style/css/testimonials-styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-  <body>
+<body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>

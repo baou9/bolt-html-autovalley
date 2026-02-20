@@ -1,27 +1,27 @@
+<?php
+$metaTitle = 'Académie AutoValley – Blog & Conseils Automobile | Casablanca';
+$metaDescription = "Articles et conseils AutoValley sur l'entretien automobile, le diagnostic et la carrosserie.";
+$ogType = 'website';
+$metaImagePath = '/public/Converted-PNG2.png';
+$pageStyles = [
+    './style/css/style.css',
+    './style/css/header-responsive.css',
+    './style/css/header-styles.css',
+    './style/css/premium-styles.css',
+    './style/css/blog-styles.css'
+];
+$headExtra = <<<HTML
+<script>
+      (function(){var t=localStorage.getItem('av-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+    </script>
+HTML;
+?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Le blog AutoValley publie des conseils pratiques sur l'entretien, le diagnostic et la sécurité automobile pour aider à comprendre les besoins du véhicule." />
-    <title>Academie AutoValley - Blog &amp; Conseils Automobile | Casablanca</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style/css/style.css">
-    <link rel="stylesheet" href="./style/css/header-responsive.css">
-    <link rel="stylesheet" href="./style/css/header-styles.css">
-    <link rel="stylesheet" href="./style/css/premium-styles.css">
-    <link rel="stylesheet" href="./style/css/blog-styles.css">
-
-    <script>
-      (function(){var t=localStorage.getItem('av-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
-    </script>
+    <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-  <body class="blog-page">
+<body class="blog-page">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>

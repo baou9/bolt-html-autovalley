@@ -1,25 +1,23 @@
+<?php
+$metaTitle = 'Politique de Confidentialité – AutoValley';
+$metaDescription = "Politique de confidentialité d'AutoValley : collecte, utilisation et protection des données personnelles.";
+$ogType = 'website';
+$metaImagePath = '/public/Converted-PNG2.png';
+$metaRobots = 'noindex';
+$pageStyles = [
+    './style/css/style.css',
+    './style/css/header-responsive.css',
+    './style/css/header-styles.css',
+    './style/css/premium-styles.css',
+    './style/css/pages-styles.css'
+];
+?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Politique de Confidentialité – AutoValley</title>
-    <meta name="description" content="Politique de confidentialité d'AutoValley – comment nous collectons, utilisons et protégeons vos données personnelles." />
-    <!-- [INTENT] Privacy policy stays noindex by design: legal transparency page, not a landing page for search acquisition. -->
-    <meta name="robots" content="noindex" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style/css/style.css">
-    <link rel="stylesheet" href="./style/css/header-responsive.css">
-    <link rel="stylesheet" href="./style/css/header-styles.css">
-    <link rel="stylesheet" href="./style/css/premium-styles.css">
-    <link rel="stylesheet" href="./style/css/pages-styles.css">
+    <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-  <body class="pg-page">
+<body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>
