@@ -1,4 +1,17 @@
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const getPremiumCapabilities = () => {
+  const match = (query) => window.matchMedia && window.matchMedia(query).matches;
+  return {
+    reducedMotion: match('(prefers-reduced-motion: reduce)'),
+    coarsePointer: match('(pointer: coarse)'),
+    narrowViewport: match('(max-width: 1024px)'),
+    lowMemory: typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4,
+  };
+};
+
+const shouldSkipHeavyEffect = () => {
+  const capabilities = getPremiumCapabilities();
+  return capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport || capabilities.lowMemory;
+};
 
 let LenisConstructor = null;
 
@@ -15,7 +28,7 @@ async function loadLenisModule() {
 }
 
 export function initLenisSmoothScroll() {
-  if (prefersReducedMotion) return null;
+  if (getPremiumCapabilities().reducedMotion) return null;
 
   loadLenisModule()
     .then((LenisModule) => {
@@ -58,7 +71,8 @@ export function initLenisSmoothScroll() {
 }
 
 export function initCustomCursor() {
-  if (prefersReducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
+  const capabilities = getPremiumCapabilities();
+  if (capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport) return;
 
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
@@ -115,7 +129,8 @@ export function initCustomCursor() {
 }
 
 export function initMagneticButtons() {
-  if (prefersReducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
+  const capabilities = getPremiumCapabilities();
+  if (capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport) return;
 
   const magneticElements = document.querySelectorAll('.btn-header-magnetic, .btn-lg--primary, .btn-primary, .btn-approche, .cta-button, .panel-cta--primary, .blog-card-cta');
 
@@ -135,8 +150,10 @@ export function initMagneticButtons() {
 }
 
 export function initScrollReveal() {
-  if (prefersReducedMotion) {
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+  if (shouldSkipHeavyEffect()) {
+    document.querySelectorAll('.reveal-on-scroll, .service-card, .timeline-card, .glass-card, .precision-std__card, .blog-card, .test-card, .noustrouver-layout > *').forEach(el => {
+      el.classList.remove('reveal-element');
+      el.style.removeProperty('transition-delay');
       el.classList.add('revealed');
     });
     return;
@@ -166,6 +183,14 @@ export function initScrollReveal() {
 }
 
 export function initSectionHeaders() {
+  if (shouldSkipHeavyEffect()) {
+    document.querySelectorAll('.section-header, .approche-header, .precision-std__header, .brands-universe__header, .clients-strip__header, .trust-section__header, .blog-header').forEach((header) => {
+      header.classList.remove('header-animate');
+      header.classList.add('header-revealed');
+    });
+    return;
+  }
+
   const headers = document.querySelectorAll('.section-header, .approche-header, .precision-std__header, .brands-universe__header, .clients-strip__header, .trust-section__header, .blog-header');
 
   const observer = new IntersectionObserver((entries) => {
@@ -186,7 +211,7 @@ export function initSectionHeaders() {
 }
 
 export function initParallaxElements() {
-  if (prefersReducedMotion) return;
+  if (shouldSkipHeavyEffect()) return;
 
   const parallaxElements = document.querySelectorAll('[data-parallax]');
 
@@ -219,6 +244,8 @@ export function initParallaxElements() {
 }
 
 export function initVideoTransitions() {
+  if (shouldSkipHeavyEffect()) return;
+
   const videoEl = document.getElementById('heroVideo');
   if (!videoEl) return;
 
@@ -237,6 +264,8 @@ export function initVideoTransitions() {
 }
 
 export function initScrollProgress() {
+  if (getPremiumCapabilities().narrowViewport) return;
+
   const progressBar = document.createElement('div');
   progressBar.className = 'scroll-progress';
   document.body.appendChild(progressBar);
@@ -252,13 +281,16 @@ export function initScrollProgress() {
 }
 
 export function initGrainOverlay() {
+  if (shouldSkipHeavyEffect()) return;
+
   const grain = document.createElement('div');
   grain.className = 'grain-overlay';
   document.body.appendChild(grain);
 }
 
 export function initCardShine() {
-  if (prefersReducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
+  const capabilities = getPremiumCapabilities();
+  if (capabilities.reducedMotion || capabilities.coarsePointer || capabilities.lowMemory) return;
 
   const cards = document.querySelectorAll('.service-card, .glass-card, .precision-std__card, .blog-card, .timeline-card');
 
@@ -289,7 +321,7 @@ export function initHeroEnhancements() {
   if (!hero) return;
 
   const content = hero.querySelector('.hero-lg__content');
-  if (content && !prefersReducedMotion) {
+  if (content && !shouldSkipHeavyEffect()) {
     const elements = content.querySelectorAll('.lg-fade-up');
     elements.forEach((el, i) => {
       el.style.opacity = '0';
@@ -303,7 +335,7 @@ export function initHeroEnhancements() {
     });
   }
 
-  if (!prefersReducedMotion) {
+  if (!shouldSkipHeavyEffect()) {
     let mouseX = 0.5, mouseY = 0.5;
 
     hero.addEventListener('mousemove', (e) => {
@@ -332,7 +364,7 @@ export function initHeroEnhancements() {
 }
 
 export function initSplitTextAnimation() {
-  if (prefersReducedMotion) return;
+  if (shouldSkipHeavyEffect()) return;
 
   const heroTitle = document.querySelector('.hero-lg__title');
   if (!heroTitle) return;
@@ -347,7 +379,7 @@ export function initSplitTextAnimation() {
 }
 
 export function initFloatingElements() {
-  if (prefersReducedMotion) return;
+  if (shouldSkipHeavyEffect()) return;
 
   const trustItems = document.querySelectorAll('.hero-lg__trust-item');
   trustItems.forEach((item, i) => {
