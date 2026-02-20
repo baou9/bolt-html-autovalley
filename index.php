@@ -70,7 +70,7 @@
 
                   <div class="hero-lg__ctas lg-fade-up" data-delay="0.45">
                       <a href="#rdv" class="btn-lg btn-lg--primary">
-                          <span>PRENDRE RENDEZ-VOUS</span>
+                          <span>Prendre rendez-vous</span>
                           <span class="btn-lg__ring" aria-hidden="true"></span>
                       </a>
 
