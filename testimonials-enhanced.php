@@ -143,9 +143,7 @@
           </article>
 
           <!-- Grid of Secondary Testimonials -->
-          <div class="testimonials-grid" id="testimonials-grid-items">
-            <!-- Grid testimonials will be populated here by JavaScript -->
-          </div>
+          <?php include __DIR__ . '/testimonials-grid.php'; ?>
         </div>
 
         <!-- Mobile: Carousel with Pagination -->
