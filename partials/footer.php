@@ -162,7 +162,11 @@
             <ul class="footer-links">
               <li><a href="./mentions-legales.php">Mentions légales</a></li>
               <li><a href="./politique-confidentialite.php">Politique de confidentialité</a></li>
-              <li><a href="#">Gestion des cookies</a></li>
+              <li>
+                <button class="footer-link-action" type="button" data-consent-open>
+                  Gestion des cookies
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -182,16 +186,40 @@
 
           <div class="footer-bottom-right">
             <div class="footer-socials">
-              <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+              <a
+                href="https://www.linkedin.com/company/autovalley-ma/"
+                class="footer-social-icon"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span aria-hidden="true">in</span>
               </a>
-              <a href="#" class="footer-social-icon" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/autovalley.ma/"
+                class="footer-social-icon"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span aria-hidden="true">ig</span>
               </a>
-              <a href="#" class="footer-social-icon" aria-label="Facebook">
+              <a
+                href="https://www.facebook.com/autovalley.ma"
+                class="footer-social-icon"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span aria-hidden="true">fb</span>
               </a>
-              <a href="#" class="footer-social-icon" aria-label="TikTok">
+              <a
+                href="https://www.tiktok.com/@autovalley.ma"
+                class="footer-social-icon"
+                aria-label="TikTok"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span aria-hidden="true">tt</span>
               </a>
             </div>
@@ -204,3 +232,32 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      (() => {
+        const openConsentManager = () => { // [PATCH]
+          if (typeof window !== 'undefined') {
+            if (typeof window.__tcfapi === 'function') {
+              window.__tcfapi('displayConsentUi', 2, () => {});
+              return;
+            }
+
+            if (typeof window.Cookiebot?.renew === 'function') {
+              window.Cookiebot.renew();
+              return;
+            }
+
+            if (typeof window.OneTrust?.ToggleInfoDisplay === 'function') {
+              window.OneTrust.ToggleInfoDisplay();
+              return;
+            }
+
+            window.dispatchEvent(new CustomEvent('consent:open')); // [PATCH]
+          }
+        };
+
+        document.querySelectorAll('[data-consent-open], .cookie-manage-btn').forEach((trigger) => { // [PATCH]
+          trigger.addEventListener('click', openConsentManager);
+        });
+      })();
+    </script>

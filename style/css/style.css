@@ -3260,18 +3260,26 @@ body,
   margin-top: 6px;
 }
 
-.footer-links a {
+/* [PATCH] Footer legal cookie action keeps link visual treatment */
+.footer-links a,
+.footer-link-action {
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   transition:
     color 160ms ease-out,
     text-shadow 160ms ease-out;
 }
 
-.footer-links a::after {
+.footer-links a::after,
+.footer-link-action::after {
   content: '';
   position: absolute;
   left: 0;
@@ -3284,17 +3292,22 @@ body,
 }
 
 .footer-links a:hover,
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.footer-link-action:hover,
+.footer-link-action:focus-visible {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 .footer-links a:hover::after,
-.footer-links a:focus-visible::after {
+.footer-links a:focus-visible::after,
+.footer-link-action:hover::after,
+.footer-link-action:focus-visible::after {
   width: 100%;
 }
 
-.footer-links a:focus-visible {
+.footer-links a:focus-visible,
+.footer-link-action:focus-visible {
   outline: none;
 }
 
