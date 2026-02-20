@@ -858,7 +858,7 @@ $structuredData = [[
 
     <?php include __DIR__ . "/partials/footer.php"; ?>
 
-    <div id="service-modal" class="service-modal" aria-hidden="true">
+    <div id="service-modal" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-modal-title" aria-hidden="true">
       <div class="service-modal__overlay"></div>
       <div class="service-modal__container">
         <button class="service-modal__close" aria-label="Fermer">
@@ -867,7 +867,7 @@ $structuredData = [[
           </svg>
         </button>
         <div class="service-modal__content">
-          <h3 class="service-modal__title"></h3>
+          <h3 id="service-modal-title" class="service-modal__title"></h3>
           <div class="service-modal__body"></div>
           <div class="service-modal__cta">
             <a href="#rdv" class="sv-modal__btn">Prendre rendez-vous</a>

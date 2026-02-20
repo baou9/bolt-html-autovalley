@@ -330,10 +330,49 @@ function initServiceModal() {
   const modal = document.getElementById('service-modal');
   if (!modal) return;
 
+  if (modal.dataset.modalInitialized === 'true') return;
+  modal.dataset.modalInitialized = 'true';
+
   const modalTitle = modal.querySelector('.service-modal__title');
   const modalBody = modal.querySelector('.service-modal__body');
   const modalClose = modal.querySelector('.service-modal__close');
   const modalOverlay = modal.querySelector('.service-modal__overlay');
+  let activeTrigger = null;
+
+  const getFocusableElements = () => Array.from(
+    modal.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  ).filter((el) => el.offsetParent !== null);
+
+  const focusInitialControl = () => {
+    const [firstFocusable] = getFocusableElements();
+    const target = modalClose || firstFocusable;
+
+    if (target) target.focus();
+  };
+
+  const trapFocus = (event) => {
+    const focusableElements = getFocusableElements();
+    if (!focusableElements.length) {
+      event.preventDefault();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  };
 
   document.querySelectorAll('[data-modal-trigger]').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
@@ -342,10 +381,12 @@ function initServiceModal() {
       const service = serviceDetails[serviceId];
 
       if (service) {
+        activeTrigger = trigger;
         modalTitle.textContent = service.title;
         modalBody.innerHTML = service.content;
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        focusInitialControl();
       }
     });
   });
@@ -353,14 +394,26 @@ function initServiceModal() {
   function closeModal() {
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    if (activeTrigger && typeof activeTrigger.focus === 'function') {
+      activeTrigger.focus();
+    }
   }
 
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+    const isOpen = modal.getAttribute('aria-hidden') === 'false';
+    if (!isOpen) return;
+
+    if (e.key === 'Escape') {
       closeModal();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      trapFocus(e);
     }
   });
 }
