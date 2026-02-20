@@ -56,7 +56,7 @@ $pageStyles = [
       </section>
 
       <!-- CULTURE SECTION -->
-      <section aria-labelledby="culture-title" style="background: #050609; padding: 96px 0;">
+      <section aria-labelledby="culture-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">NOTRE CULTURE</span>
@@ -157,9 +157,9 @@ $pageStyles = [
       </section>
 
       <!-- PERKS SECTION -->
-      <section aria-labelledby="perks-title" style="background: #0a0a0f; padding: 80px 0;">
+      <section aria-labelledby="perks-title" class="pg-surface-dark-soft pg-surface-dark-soft--compact">
         <div class="pg-section">
-          <div class="pg-section-header" style="margin-bottom: 48px;">
+          <div class="pg-section-header pg-section-header--compact">
             <span class="pg-section-kicker pg-reveal">AVANTAGES</span>
             <h2 id="perks-title" class="pg-section-title pg-reveal">Ce que nous offrons</h2>
             <span class="pg-title-line" aria-hidden="true"></span>
@@ -215,7 +215,7 @@ $pageStyles = [
       </section>
 
       <!-- JOB LISTINGS -->
-      <section aria-labelledby="jobs-title" style="background: #050609; padding: 96px 0;">
+      <section aria-labelledby="jobs-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">OFFRES D'EMPLOI</span>
@@ -290,9 +290,9 @@ $pageStyles = [
       </section>
 
       <!-- APPLICATION FORM -->
-      <section id="apply-form" aria-labelledby="apply-title" style="background: #0a0a0f; padding: 96px 0; scroll-margin-top: 90px;">
+      <section id="apply-form" aria-labelledby="apply-title" class="pg-surface-dark-soft car-apply-section">
         <div class="pg-section pg-section--narrow">
-          <div class="pg-section-header" style="margin-bottom: 48px;">
+          <div class="pg-section-header pg-section-header--compact">
             <span class="pg-section-kicker pg-reveal">CANDIDATURE</span>
             <h2 id="apply-title" class="pg-section-title pg-reveal">Postulez en ligne</h2>
             <span class="pg-title-line" aria-hidden="true"></span>
@@ -366,7 +366,7 @@ $pageStyles = [
 
               <div class="form-field">
                 <label class="form-label" for="apply-lettre">Lettre de motivation</label>
-                <textarea id="apply-lettre" class="form-textarea" name="motivation" placeholder="Décrivez votre parcours, vos motivations et pourquoi vous souhaitez rejoindre AutoValley…" style="min-height: 150px;"></textarea>
+                <textarea id="apply-lettre" class="form-textarea form-textarea--tall" name="motivation" placeholder="Décrivez votre parcours, vos motivations et pourquoi vous souhaitez rejoindre AutoValley…"></textarea>
                 <span class="form-error-msg" role="alert"></span>
               </div>
 
@@ -386,11 +386,11 @@ $pageStyles = [
           </div>
 
           <!-- Spontaneous CTA -->
-          <div class="pg-card pg-reveal" style="text-align:center; margin-top: 40px; padding: 40px 32px;">
-            <p style="font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-red); margin-bottom: 12px;">AUCUN POSTE NE CORRESPOND ?</p>
-            <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px;">Candidature spontanée</h3>
-            <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 0;">
-              Envoyez votre CV à <a href="mailto:carrieres@autovalley.ma" style="color: var(--brand-red); text-decoration: none; border-bottom: 1px solid rgba(185,5,4,0.4);">carrieres@autovalley.ma</a> avec la mention "Candidature spontanée". Nous étudions toutes les candidatures de profils talentueux.
+          <div class="pg-card pg-reveal pg-card-cta pg-card-cta--compact">
+            <p class="pg-card-cta__kicker">AUCUN POSTE NE CORRESPOND ?</p>
+            <h3 class="pg-card-cta__title pg-card-cta__title--compact">Candidature spontanée</h3>
+            <p class="pg-card-cta__desc pg-card-cta__desc--tight">
+              Envoyez votre CV à <a href="mailto:carrieres@autovalley.ma" class="pg-inline-link-underlined">carrieres@autovalley.ma</a> avec la mention "Candidature spontanée". Nous étudions toutes les candidatures de profils talentueux.
             </p>
           </div>
 

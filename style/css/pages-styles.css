@@ -180,6 +180,42 @@
   margin: 0 auto;
 }
 
+/* [PATCH] Shared section surface utilities replacing repeated inline blocks */
+.pg-surface-dark {
+  background: #050609;
+  padding: var(--pg-space-24) 0;
+}
+
+.pg-surface-dark-soft {
+  background: #0a0a0f;
+  padding: var(--pg-space-24) 0;
+}
+
+.pg-surface-dark-soft--compact {
+  padding: var(--pg-space-20) 0;
+}
+
+.pg-section-header--compact {
+  margin-bottom: var(--pg-space-12);
+}
+
+.pg-section-title--left {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.pg-stats-band {
+  background: rgba(185, 5, 4, 0.06);
+  border-top: 1px solid rgba(185, 5, 4, 0.15);
+  border-bottom: 1px solid rgba(185, 5, 4, 0.15);
+  padding: var(--pg-space-12) var(--pg-space-6);
+}
+
+.pg-stats-band__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .pg-section--wide {
   max-width: 1400px;
 }
@@ -622,6 +658,20 @@ a.contact-info-card__value:hover {
   opacity: 0.7;
 }
 
+
+.contact-map__address {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.contact-map__link {
+  color: var(--brand-red, #b90504);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(185, 5, 4, 0.4);
+}
+
 /* ──────────────────────────────────────────────────────────
    ABOUT PAGE (apropos)
    ────────────────────────────────────────────────────────── */
@@ -1055,6 +1105,94 @@ a.contact-info-card__value:hover {
   font-size: 0.95rem;
 }
 
+.pg-inline-link-red {
+  color: var(--brand-red, #b90504);
+}
+
+.pg-inline-link-underlined {
+  color: var(--brand-red, #b90504);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(185, 5, 4, 0.4);
+}
+
+/* [PATCH] Shared centered CTA card styles used by FAQ and Careers */
+.pg-card-cta {
+  text-align: center;
+  margin-top: var(--pg-space-16);
+  padding: var(--pg-space-12) var(--pg-space-8);
+}
+
+.pg-card-cta--compact {
+  margin-top: var(--pg-space-10);
+  padding: var(--pg-space-10) var(--pg-space-8);
+}
+
+.pg-card-cta__kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-red, #b90504);
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-card-cta__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--pg-space-3);
+}
+
+.pg-card-cta__title--compact {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.pg-card-cta__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.93rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 auto 28px;
+  max-width: 460px;
+}
+
+.pg-card-cta__desc--tight {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.pg-card-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pg-space-2);
+  padding: 13px 28px;
+  background: var(--brand-red, #b90504);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.pg-card-cta__button:hover {
+  background: #d40604;
+  box-shadow: 0 8px 24px rgba(185, 5, 4, 0.45);
+  transform: translateY(-2px);
+}
+
+.pg-card-cta__button:active {
+  transform: translateY(0);
+}
+
 .faq-no-results.is-visible { display: block; }
 
 /* ──────────────────────────────────────────────────────────
@@ -1224,6 +1362,10 @@ a.contact-info-card__value:hover {
   box-shadow: 0 6px 20px rgba(185, 5, 4, 0.35);
 }
 
+.car-apply-section {
+  scroll-margin-top: 90px;
+}
+
 /* Application form */
 .car-apply-form-wrap {
   background: rgba(255, 255, 255, 0.025);
@@ -1288,6 +1430,10 @@ a.contact-info-card__value:hover {
   margin-top: 6px;
   font-family: 'Inter', sans-serif;
   font-style: italic;
+}
+
+.form-textarea--tall {
+  min-height: 150px;
 }
 
 /* Perks grid */

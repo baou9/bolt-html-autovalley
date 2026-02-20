@@ -25,9 +25,9 @@ $pageStyles = [
     <main id="main">
 
       <!-- HERO -->
-      <section class="pg-hero pg-hero--compact" id="legal-hero" style="min-height: 38vh;">
+      <section class="pg-hero pg-hero--compact pg-hero--legal" id="legal-hero">
         <div class="pg-hero__bg" aria-hidden="true">
-          <div class="pg-hero__overlay" style="background: linear-gradient(180deg, rgba(5,6,9,0.85) 0%, rgba(5,6,9,0.6) 40%, rgba(5,6,9,0.98) 100%);"></div>
+          <div class="pg-hero__overlay pg-hero__overlay--legal"></div>
         </div>
 
         <div class="pg-hero__inner">
@@ -37,7 +37,7 @@ $pageStyles = [
             <span aria-current="page">Mentions Légales</span>
           </nav>
           <p class="pg-hero__kicker pg-reveal">LÉGAL</p>
-          <h1 class="pg-hero__title pg-reveal" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">
+          <h1 class="pg-hero__title pg-reveal pg-hero__title--legal">
             Mentions <span class="pg-hero__title-accent">légales</span>
           </h1>
         </div>

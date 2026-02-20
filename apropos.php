@@ -56,8 +56,8 @@ $pageStyles = [
       </section>
 
       <!-- STATS BAND -->
-      <section aria-label="Chiffres clés" style="background: rgba(185,5,4,0.06); border-top: 1px solid rgba(185,5,4,0.15); border-bottom: 1px solid rgba(185,5,4,0.15); padding: 48px 24px;">
-        <div class="apropos-stats" style="max-width: 1100px; margin: 0 auto;">
+      <section aria-label="Chiffres clés" class="pg-stats-band">
+        <div class="apropos-stats pg-stats-band__inner">
           <div class="apropos-stat pg-reveal">
             <span class="apropos-stat__value">15+</span>
             <span class="apropos-stat__label">Années d'expertise</span>
@@ -78,12 +78,12 @@ $pageStyles = [
       </section>
 
       <!-- STORY SECTION -->
-      <section aria-labelledby="story-title" style="background: #050609; padding: 96px 0;">
+      <section aria-labelledby="story-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="apropos-story">
             <div class="apropos-story__text">
               <p class="pg-section-kicker pg-reveal">NOTRE ADN</p>
-              <h2 id="story-title" class="pg-section-title pg-reveal" style="text-align:left; margin-bottom: 28px;">
+              <h2 id="story-title" class="pg-section-title pg-reveal pg-section-title--left">
                 Fondés sur la passion,<br>bâtis sur la confiance
               </h2>
               <div class="pg-reveal pg-reveal--delay-1">
@@ -113,7 +113,7 @@ $pageStyles = [
       </section>
 
       <!-- VALUES SECTION -->
-      <section aria-labelledby="values-title" style="background: #0a0a0f; padding: 96px 0;">
+      <section aria-labelledby="values-title" class="pg-surface-dark-soft">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">CE QUI NOUS GUIDE</span>
@@ -212,7 +212,7 @@ $pageStyles = [
       </section>
 
       <!-- TEAM SECTION -->
-      <section aria-labelledby="team-title" style="background: #050609; padding: 96px 0;">
+      <section aria-labelledby="team-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">L'ÉQUIPE</span>
@@ -262,9 +262,9 @@ $pageStyles = [
       </section>
 
       <!-- CERTIFICATIONS SECTION -->
-      <section aria-labelledby="certs-title" style="background: #0a0a0f; padding: 80px 0;">
+      <section aria-labelledby="certs-title" class="pg-surface-dark-soft pg-surface-dark-soft--compact">
         <div class="pg-section">
-          <div class="pg-section-header" style="margin-bottom: 48px;">
+          <div class="pg-section-header pg-section-header--compact">
             <span class="pg-section-kicker pg-reveal">AGRÉMENTS &amp; PARTENAIRES</span>
             <h2 id="certs-title" class="pg-section-title pg-reveal">Certifications &amp; partenariats</h2>
             <span class="pg-title-line" aria-hidden="true"></span>
