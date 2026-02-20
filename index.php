@@ -1,24 +1,23 @@
+<?php
+$metaTitle = 'AutoValley – Alternative aux concessionnaires | Casablanca';
+$metaDescription = "Présentation des services d'entretien, de diagnostic et de carrosserie AutoValley à Casablanca.";
+$ogType = 'website';
+$metaImagePath = '/public/Converted-PNG2.png';
+$pageStyles = [
+    './style/css/style.css',
+    './style/css/header-responsive.css',
+    './style/css/header-styles.css',
+    './style/css/premium-styles.css',
+    './style/css/testimonials-styles.css',
+    'https://unpkg.com/lenis@1.1.13/dist/lenis.css'
+];
+?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AutoValley – Alternative Premium aux Concessionnaires | Casablanca</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style/css/style.css">
-    <link rel="stylesheet" href="./style/css/header-responsive.css">
-    <link rel="stylesheet" href="./style/css/header-styles.css">
-    <link rel="stylesheet" href="./style/css/premium-styles.css">
-    <link rel="stylesheet" href="./style/css/testimonials-styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-  <body>
+<body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>
@@ -201,7 +200,7 @@
           <!-- 1 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="800" src="https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Diagnostic &amp; Mécanique">
             </div>
             <div class="service-overlay">
@@ -223,7 +222,7 @@
           <!-- 2 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="674" src="https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Carrosserie &amp; Peinture">
             </div>
             <div class="service-overlay">
@@ -245,7 +244,7 @@
           <!-- 3 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="800" src="https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Entretien &amp; Révision">
             </div>
             <div class="service-overlay">
@@ -267,7 +266,7 @@
           <!-- 4 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="674" src="https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Électricité &amp; Électronique">
             </div>
             <div class="service-overlay">
@@ -289,7 +288,7 @@
           <!-- 5 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="674" src="https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Climatisation &amp; Confort">
             </div>
             <div class="service-overlay">
@@ -311,7 +310,7 @@
           <!-- 6 -->
           <article class="service-card">
             <div class="service-image">
-              <img src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <img width="1200" height="2469" src="https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=1200"
                    alt="Hybrides &amp; Électriques">
             </div>
             <div class="service-overlay">
@@ -701,54 +700,54 @@
                     <div class="brands-universe__track">
                         <!-- SET 1 -->
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
-                            <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
-                            <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
-                            <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
                         </button>
 
                         <!-- SET 2 (duplicate for seamless loop) -->
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
-                            <img src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
-                            <img src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
-                            <img src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
                         </button>
                     </div>
                 </div>
@@ -1109,28 +1108,28 @@
                     <div class="carousel-wrapper">
                         <div class="carousel-track" id="trust-carousel-track">
                             <div class="logo-item">
-                                <img src="/img/refs/axa.svg" alt="AXA" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/axa.svg" alt="AXA" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/sntl.svg" alt="SNTL" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/sntl.svg" alt="SNTL" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/allianz.svg" alt="Allianz" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/allianz.svg" alt="Allianz" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/axa.svg" alt="AXA" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/axa.svg" alt="AXA" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/wafa.svg" alt="Wafa Assurance" class="logo-img">
                             </div>
                             <div class="logo-item">
-                                <img src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
+                                <img width="120" height="40" src="/img/refs/rma.svg" alt="RMA Assurance" class="logo-img">
                             </div>
                         </div>
                     </div>
@@ -1658,7 +1657,7 @@
         <div class="academy-grid" role="list">
           <article class="academy-card academy-card--feature" role="listitem">
             <div class="academy-media" aria-hidden="true">
-              <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80" alt="Diagnostic haute tension sur véhicule moderne">
+              <img width="1400" height="933" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1400&q=80" alt="Diagnostic haute tension sur véhicule moderne">
               <span class="academy-media-overlay"></span>
             </div>
             <div class="academy-card-body">
@@ -1680,7 +1679,7 @@
           <div class="academy-list" role="list">
             <article class="academy-card academy-card--secondary" role="listitem">
               <div class="academy-secondary-media" aria-hidden="true">
-                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1100&q=80&sat=-30" alt="Inspection carrosserie avec lumière rasante">
+                <img width="1100" height="733" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1100&q=80&sat=-30" alt="Inspection carrosserie avec lumière rasante">
               </div>
               <div class="academy-card-body">
                 <div class="academy-meta-row">
@@ -1696,7 +1695,7 @@
 
             <article class="academy-card academy-card--secondary" role="listitem">
               <div class="academy-secondary-media" aria-hidden="true">
-                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1100&q=80&sat=-20" alt="Dossier assurance automobile">
+                <img width="1100" height="733" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1100&q=80&sat=-20" alt="Dossier assurance automobile">
               </div>
               <div class="academy-card-body">
                 <div class="academy-meta-row">

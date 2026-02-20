@@ -1,23 +1,22 @@
+<?php
+$metaTitle = "À Propos – AutoValley | L'atelier de Casablanca";
+$metaDescription = "Découvrez l'histoire, les valeurs et l'équipe d'AutoValley à Casablanca.";
+$ogType = 'website';
+$metaImagePath = '/public/Converted-PNG2.png';
+$pageStyles = [
+    './style/css/style.css',
+    './style/css/header-responsive.css',
+    './style/css/header-styles.css',
+    './style/css/premium-styles.css',
+    './style/css/pages-styles.css'
+];
+?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>À Propos – AutoValley | L'Atelier Premium de Casablanca</title>
-    <meta name="description" content="Découvrez l'histoire, les valeurs et l'équipe d'AutoValley, l'atelier automobile premium agréé SNTL à Casablanca." />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style/css/style.css">
-    <link rel="stylesheet" href="./style/css/header-responsive.css">
-    <link rel="stylesheet" href="./style/css/header-styles.css">
-    <link rel="stylesheet" href="./style/css/premium-styles.css">
-    <link rel="stylesheet" href="./style/css/pages-styles.css">
+    <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-  <body>
+<body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>
@@ -34,7 +33,7 @@
       <!-- HERO -->
       <section class="pg-hero" id="apropos-hero">
         <div class="pg-hero__bg" aria-hidden="true">
-          <img
+          <img width="1920" height="1198"
             src="https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt=""
             class="pg-hero__bg-img"
@@ -112,7 +111,7 @@
               </div>
             </div>
             <div class="apropos-story__img-wrap pg-reveal pg-reveal--delay-2">
-              <img
+              <img width="900" height="1350"
                 src="https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900"
                 alt="Technicien AutoValley en atelier"
                 class="apropos-story__img"
@@ -238,7 +237,7 @@
           <div class="apropos-team-grid">
             <article class="apropos-team-card pg-reveal">
               <div class="apropos-team-card__img-wrap">
-                <img
+                <img width="600" height="400"
                   src="https://images.pexels.com/photos/3807474/pexels-photo-3807474.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Directeur Technique AutoValley"
                   class="apropos-team-card__img"
@@ -254,7 +253,7 @@
 
             <article class="apropos-team-card pg-reveal pg-reveal--delay-1">
               <div class="apropos-team-card__img-wrap">
-                <img
+                <img width="600" height="400"
                   src="https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Chef d'atelier AutoValley"
                   class="apropos-team-card__img"
@@ -270,7 +269,7 @@
 
             <article class="apropos-team-card pg-reveal pg-reveal--delay-2">
               <div class="apropos-team-card__img-wrap">
-                <img
+                <img width="600" height="400"
                   src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Responsable Carrosserie AutoValley"
                   class="apropos-team-card__img"
@@ -298,23 +297,23 @@
 
           <div class="apropos-certs pg-reveal pg-reveal--delay-1">
             <div class="apropos-cert-badge">
-              <img src="./public/img/refs/sntl.svg" alt="SNTL" />
+              <img width="120" height="40" src="./public/img/refs/sntl.svg" alt="SNTL" />
               <span class="apropos-cert-badge__name">Agréé SNTL</span>
             </div>
             <div class="apropos-cert-badge">
-              <img src="./public/img/refs/allianz.svg" alt="Allianz" />
+              <img width="120" height="40" src="./public/img/refs/allianz.svg" alt="Allianz" />
               <span class="apropos-cert-badge__name">Partenaire Allianz</span>
             </div>
             <div class="apropos-cert-badge">
-              <img src="./public/img/refs/axa.svg" alt="AXA" />
+              <img width="120" height="40" src="./public/img/refs/axa.svg" alt="AXA" />
               <span class="apropos-cert-badge__name">Partenaire AXA</span>
             </div>
             <div class="apropos-cert-badge">
-              <img src="./public/img/refs/wafa.svg" alt="Wafa Assurance" />
+              <img width="120" height="40" src="./public/img/refs/wafa.svg" alt="Wafa Assurance" />
               <span class="apropos-cert-badge__name">Partenaire Wafa</span>
             </div>
             <div class="apropos-cert-badge">
-              <img src="./public/img/refs/rma.svg" alt="RMA" />
+              <img width="120" height="40" src="./public/img/refs/rma.svg" alt="RMA" />
               <span class="apropos-cert-badge__name">Partenaire RMA</span>
             </div>
           </div>

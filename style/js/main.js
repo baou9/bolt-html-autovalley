@@ -5,6 +5,21 @@
 import { initAllPremiumEffects } from './premium-effects.js';
 import './testimonials.js';
 
+const getUiCapabilities = () => {
+  const match = (query) => window.matchMedia && window.matchMedia(query).matches;
+  return {
+    reducedMotion: match('(prefers-reduced-motion: reduce)'),
+    coarsePointer: match('(pointer: coarse)'),
+    narrowViewport: match('(max-width: 1024px)'),
+    lowMemory: typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4,
+  };
+};
+
+const shouldLimitPremiumEffects = () => {
+  const capabilities = getUiCapabilities();
+  return capabilities.reducedMotion || capabilities.coarsePointer || capabilities.narrowViewport || capabilities.lowMemory;
+};
+
 document.documentElement.classList.remove('no-js');
 
 if (document.readyState === 'loading') {
@@ -16,11 +31,11 @@ if (document.readyState === 'loading') {
 document.addEventListener("DOMContentLoaded", () => {
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // [PATCH]
+  const reduceMotion = getUiCapabilities().reducedMotion; // [PATCH]
   const prefersSaveData = navigator.connection && navigator.connection.saveData; // [PATCH]
-  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches; // [PATCH]
-  const isNarrowViewport = window.matchMedia("(max-width: 1024px)").matches; // [PATCH]
-  const isLowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4; // [PATCH]
+  const isCoarsePointer = getUiCapabilities().coarsePointer; // [PATCH]
+  const isNarrowViewport = getUiCapabilities().narrowViewport; // [PATCH]
+  const isLowMemory = getUiCapabilities().lowMemory; // [PATCH]
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent); // [PATCH]
 
   const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isCoarsePointer || isNarrowViewport || isLowMemory || isIOS; // [PATCH]
@@ -59,27 +74,26 @@ document.addEventListener("DOMContentLoaded", () => {
       videoEl.addEventListener("canplay", ensureSinglePlay, { once: true }); // [PATCH]
       ensureSinglePlay(); // [PATCH]
 
-      return; // [PATCH]
-    }
+    } else {
+      const ensurePlay = () => {
+        const p = videoEl.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(() => {
+            // Autoplay might be blocked; fail silently.
+          });
+        }
+      };
 
-    const ensurePlay = () => {
-      const p = videoEl.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          // Autoplay might be blocked; fail silently.
-        });
-      }
-    };
-
-    videoEl.addEventListener("canplay", ensurePlay, { once: true });
-    ensurePlay();
-
-    videoEl.addEventListener("ended", () => {
-      currentVideo = (currentVideo + 1) % videoPlaylist.length;
-      videoSourceEl.src = videoPlaylist[currentVideo];
-      videoEl.load();
+      videoEl.addEventListener("canplay", ensurePlay, { once: true });
       ensurePlay();
-    });
+
+      videoEl.addEventListener("ended", () => {
+        currentVideo = (currentVideo + 1) % videoPlaylist.length;
+        videoSourceEl.src = videoPlaylist[currentVideo];
+        videoEl.load();
+        ensurePlay();
+      });
+    }
   }
 
   /* ===================== 2. WEBGL LIQUID GLASS ===================== */
@@ -87,10 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("heroLiquidCanvas");
   if (canvas && shouldLimitHeroEffects) { // [PATCH]
     canvas.classList.add("hero-lg__liquid-canvas--disabled"); // [PATCH]
-    return; // [PATCH]
-  }
-
-  if (canvas) {
+  } else if (canvas) {
     const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
 
     if (!gl) {
@@ -700,11 +711,11 @@ const initClientExperienceCards = () => {
 
   if (!cards.length) return;
 
-  const prefersReducedMotion = window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = getUiCapabilities().reducedMotion;
+  const shouldSkipPremiumReveal = shouldLimitPremiumEffects();
   const canObserve = typeof window !== 'undefined' && 'IntersectionObserver' in window;
 
-  if (prefersReducedMotion || !canObserve) {
+  if (prefersReducedMotion || shouldSkipPremiumReveal || !canObserve) {
     cards.forEach((card) => {
       card.classList.remove('is-reveal-init');
       card.classList.add('is-visible');
@@ -746,6 +757,8 @@ const initClientExperienceCards = () => {
 // 9. Notre Approche - Progressive Animations
 // ─────────────────────────────────────────────────────────
 const bootApprocheAnimations = () => {
+  if (shouldLimitPremiumEffects()) return;
+
   import('./approche-animations.js')
     .then((module) => {
       if (module && typeof module.initApproche === 'function') {
@@ -772,10 +785,11 @@ const initPartnersSphere = () => {
 
   if (!sphere || !inner) return;
 
-  const prefersReducedMotion = window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = getUiCapabilities().reducedMotion;
+  const coarsePointer = getUiCapabilities().coarsePointer;
+  const lowMemory = getUiCapabilities().lowMemory;
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || coarsePointer || lowMemory) {
     // No JS parallax: keep idle CSS animation only
     return;
   }
@@ -851,10 +865,11 @@ const initBrandSphere = () => {
 
   if (!gallery) return;
 
-  const prefersReducedMotion = window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = getUiCapabilities().reducedMotion;
+  const coarsePointer = getUiCapabilities().coarsePointer;
+  const lowMemory = getUiCapabilities().lowMemory;
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || coarsePointer || lowMemory) {
     gallery.style.setProperty('--tilt-x', '0deg');
     gallery.style.setProperty('--tilt-y', '0deg');
     return;
@@ -922,6 +937,9 @@ const initBrandLogoShine = () => {
   const logos = document.querySelectorAll('.brands-universe__logo');
   if (!logos.length) return;
 
+  const capabilities = getUiCapabilities();
+  if (capabilities.reducedMotion || capabilities.coarsePointer || capabilities.lowMemory) return;
+
   logos.forEach((logo) => {
     logo.addEventListener('mousemove', (e) => {
       const rect = logo.getBoundingClientRect();
@@ -942,8 +960,8 @@ const initBrandLogoShine = () => {
 const initTiltCards = () => {
   const cards = document.querySelectorAll('[data-tilt]');
 
-  const isCoarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-  if (!cards.length || isCoarsePointer) return;
+  const capabilities = getUiCapabilities();
+  if (!cards.length || capabilities.coarsePointer || capabilities.reducedMotion || capabilities.lowMemory) return;
 
   cards.forEach(card => {
     const maxTilt = 5;
@@ -993,26 +1011,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!section || !cards.length) return;
 
-  // 1. Scroll-reveal using IntersectionObserver
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          section.classList.add("precision-std--revealed");
-          io.disconnect();
-        }
-      });
-    },
-    {
-      root: null,
-      threshold: 0.25,
-    }
-  );
+  const capabilities = getUiCapabilities();
 
-  io.observe(section);
+  // 1. Scroll-reveal using IntersectionObserver
+  if (capabilities.reducedMotion || capabilities.lowMemory) {
+    section.classList.add("precision-std--revealed");
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.add("precision-std--revealed");
+            io.disconnect();
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.25,
+      }
+    );
+
+    io.observe(section);
+  }
 
   // 2. Subtle 3D tilt on cards
   const maxTilt = 6; // degrees
+
+  if (capabilities.reducedMotion || capabilities.coarsePointer || capabilities.lowMemory) {
+    cards.forEach((card) => {
+      card.style.setProperty("--tilt-rotate-x", "0deg");
+      card.style.setProperty("--tilt-rotate-y", "0deg");
+      card.style.setProperty("--tilt-translate-y", "0px");
+    });
+    return;
+  }
 
   cards.forEach((card) => {
     const resetTilt = () => {
@@ -1055,8 +1088,8 @@ function initAcademyReveal() { // [PATCH]
   const cards = document.querySelectorAll('.academy-card, .academy-topic');
   if (!cards.length) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) {
+  const capabilities = getUiCapabilities();
+  if (capabilities.reducedMotion || capabilities.lowMemory) {
     cards.forEach((el) => el.classList.add('is-visible'));
     return;
   }
@@ -1124,6 +1157,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initAcademyReveal();
   initAcademyCarouselCounter();
 }); // [PATCH]
-
 
 
