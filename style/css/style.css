@@ -223,85 +223,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* [PATCH] Consolidated reduced-motion rules to keep one source of truth across modules. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .custom-cursor,
-  .scroll-progress,
-  .grain-overlay {
-    display: none !important;
-  }
-
-  .reveal-element,
-  .header-animate,
-  .testimonials-section,
-  .testimonial-card,
-  .sv-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .testimonials-bg,
-  .rating-stars .star,
-  .card-rating .star,
-  .title-underline::after,
-  .sv-hero__scroll-wheel {
-    animation: none !important;
-  }
-
-  .carousel-track {
-    scroll-behavior: auto;
-  }
-}
-
-html.reduced-motion {
-  scroll-behavior: auto;
-}
-
-html.reduced-motion *,
-html.reduced-motion *::before,
-html.reduced-motion *::after {
-  animation: none !important;
-  transition: none !important;
-}
-
-html.reduced-motion .custom-cursor,
-html.reduced-motion .scroll-progress,
-html.reduced-motion .grain-overlay {
-  display: none !important;
-}
-
-html.reduced-motion .reveal-element,
-html.reduced-motion .header-animate,
-html.reduced-motion .testimonials-section,
-html.reduced-motion .testimonial-card,
-html.reduced-motion .sv-reveal {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-html.reduced-motion .testimonials-bg,
-html.reduced-motion .rating-stars .star,
-html.reduced-motion .card-rating .star,
-html.reduced-motion .title-underline::after,
-html.reduced-motion .sv-hero__scroll-wheel {
-  animation: none !important;
-}
-
-html.reduced-motion .carousel-track {
-  scroll-behavior: auto;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -10331,7 +10252,46 @@ body {
   outline-offset: 3px;
 }
 
-/* Reduced-motion behavior is consolidated near the base layer above. */
+/* [PATCH] Consolidated reduced-motion rules to keep one source of truth across modules. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .custom-cursor,
+  .scroll-progress,
+  .grain-overlay {
+    display: none !important;
+  }
+
+  .reveal-element,
+  .header-animate,
+  .testimonials-section,
+  .testimonial-card,
+  .sv-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .testimonials-bg,
+  .rating-stars .star,
+  .card-rating .star,
+  .title-underline::after,
+  .sv-hero__scroll-wheel {
+    animation: none !important;
+  }
+
+  .carousel-track {
+    scroll-behavior: auto;
+  }
+}
 
 /* ──────────────────────────────────────────────────────────
    Loading States & Skeleton
