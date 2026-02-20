@@ -6,6 +6,7 @@ $ogType = $ogType ?? 'website';
 $metaImagePath = $metaImagePath ?? '/public/Converted-PNG2.png';
 $pageStyles = $pageStyles ?? [];
 $headExtra = $headExtra ?? '';
+$structuredData = $structuredData ?? [];
 
 $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
@@ -20,6 +21,30 @@ if (preg_match('/^https?:\/\//i', $metaImagePath)) {
 } else {
     $ogImage = sprintf('%s://%s%s', $scheme, $host, $metaImagePath);
 }
+
+$siteUrl = sprintf('%s://%s', $scheme, $host);
+
+if (!is_array($structuredData)) {
+    $structuredData = [];
+}
+
+$baseStructuredData = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => 'AutoValley',
+        'url' => $siteUrl,
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'name' => 'AutoValley',
+        'url' => $siteUrl,
+        'logo' => $ogImage,
+    ],
+];
+
+$allStructuredData = array_merge($baseStructuredData, $structuredData);
 ?>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
@@ -47,5 +72,10 @@ if (preg_match('/^https?:\/\//i', $metaImagePath)) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <?php foreach ($pageStyles as $styleHref): ?>
     <link rel="stylesheet" href="<?= htmlspecialchars($styleHref, ENT_QUOTES, 'UTF-8') ?>">
+<?php endforeach; ?>
+<?php foreach ($allStructuredData as $schema): ?>
+<?php if (is_array($schema) && !empty($schema)): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endif; ?>
 <?php endforeach; ?>
 <?= $headExtra ?>
