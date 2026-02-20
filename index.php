@@ -80,7 +80,7 @@ $pageStyles = [
                   </p>
 
                   <div class="hero-lg__ctas lg-fade-up" data-delay="0.45">
-                      <a href="#rdv" class="btn-lg btn-lg--primary">
+                      <a href="./services.php#rdv" class="btn-lg btn-lg--primary">
                           <span>Prendre rendez-vous</span>
                           <span class="btn-lg__ring" aria-hidden="true"></span>
                       </a>
@@ -1614,7 +1614,7 @@ $pageStyles = [
             <p class="cta-subtext">Rejoignez nos <strong>500+ clients</strong> qui nous font confiance</p>
           </div>
           <div class="cta-actions">
-            <a href="#rdv" class="btn-primary-large">
+            <a href="./services.php#rdv" class="btn-primary-large">
               Prendre rendez-vous
               <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>

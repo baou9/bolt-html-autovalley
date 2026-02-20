@@ -11,12 +11,12 @@
             </p>
           </div>
           <div class="footer-cta-actions">
-            <button class="btn-footer-primary" type="button">
+            <a class="btn-footer-primary" href="./contact.php">
               Prendre rendez-vous en ligne
-            </button>
-            <button class="btn-footer-secondary" type="button">
+            </a>
+            <a class="btn-footer-secondary" href="./services.php">
               Parler à un conseiller
-            </button>
+            </a>
           </div>
           <p class="footer-cta-note">Réponse en moins de 2 heures ouvrées.</p>
         </div>
