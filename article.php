@@ -1,6 +1,6 @@
 <?php
-$metaTitle = 'Comment lire un rapport de diagnostic automobile | AutoValley';
-$metaDescription = "Guide pratique AutoValley pour lire un rapport de diagnostic automobile et prioriser les interventions utiles.";
+$metaTitle = "Guide de lecture d'un diagnostic auto | AutoValley Casablanca";
+$metaDescription = "Consultez cet article AutoValley pour comprendre un sujet d'entretien automobile, avec explications techniques et recommandations d'usage adaptées au client.";
 $ogType = 'article';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
