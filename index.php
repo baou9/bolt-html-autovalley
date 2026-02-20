@@ -66,17 +66,17 @@ $pageStyles = [
           <div class="hero-lg__inner">
               <div class="hero-lg__content">
                   <span class="hero-lg__eyebrow lg-fade-up" data-delay="0.05">
-                      L'Atelier des Experts.
+                      Atelier automobile AutoValley.
                   </span>
 
                   <h1 class="hero-lg__title lg-fade-up" data-delay="0.15">
-                      Le Standard <span class="hero-lg__title--accent">Premium</span><br />
-                      de l’Après-Vente.
+                      Entretien et réparation <span class="hero-lg__title--accent">automobile</span><br />
+                      à Casablanca.
                   </h1>
 
                   <p class="hero-lg__subtitle lg-fade-up" data-delay="0.3">
-                      Expertise constructeur, transparence absolue et technologies de
-                      pointe. Votre véhicule mérite l’exception, sans compromis.
+                      Services d’atelier pour le diagnostic, l’entretien et la carrosserie,
+                      avec un suivi clair de chaque intervention.
                   </p>
 
                   <div class="hero-lg__ctas lg-fade-up" data-delay="0.45">
@@ -86,7 +86,7 @@ $pageStyles = [
                       </a>
 
                       <a href="#services" class="btn-lg btn-lg--ghost">
-                          Découvrir nos services
+                          Voir les services
                       </a>
                   </div>
 
