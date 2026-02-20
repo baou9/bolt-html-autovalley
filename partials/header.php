@@ -2,7 +2,7 @@
       <div class="header-glass-container">
         <div class="logo-wrapper">
           <a href="./index.php" aria-label="Retour a l'accueil">
-            <img src="./style/images/Converted-PNG.png"
+            <img width="1478" height="213" src="./style/images/Converted-PNG.png"
                  alt="AutoValley - Full Car Service"
                  class="logo-img">
           </a>
