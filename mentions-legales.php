@@ -3,7 +3,7 @@ $metaTitle = 'Mentions Légales – AutoValley';
 $metaDescription = 'Mentions légales du site AutoValley : éditeur, hébergeur et informations juridiques.';
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
-$metaRobots = 'noindex';
+$metaRobots = 'noindex,follow';
 $pageStyles = [
     './style/css/style.css',
     './style/css/header-responsive.css',
