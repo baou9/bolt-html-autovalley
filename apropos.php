@@ -1,6 +1,6 @@
 <?php
 $metaTitle = "À propos de l’atelier | AutoValley Casablanca";
-$metaDescription = "Consultez la page de présentation AutoValley à Casablanca: parcours de l’atelier, fonctionnement et informations sur l’équipe.";
+$metaDescription = "Découvrez AutoValley à Casablanca : notre atelier, notre méthode de travail et l'équipe qui accompagne l'entretien de votre véhicule.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
@@ -37,37 +37,44 @@ $structuredData = [[
     </div>
 
     <main id="main">
-
-      <!-- HERO -->
       <section class="pg-hero" id="apropos-hero">
         <div class="pg-hero__bg" aria-hidden="true">
           <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=1920', 'alt' => '', 'width' => 1920, 'height' => 1198, 'class' => 'pg-hero__bg-img', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '100vw', 'fetchpriority' => 'high']); ?>
           <div class="pg-hero__overlay"></div>
         </div>
 
-        <div class="pg-hero__inner">
+        <div class="pg-hero__inner apropos-hero__inner">
           <nav class="pg-hero__breadcrumb" aria-label="Fil d'Ariane">
             <a href="./index.php">Accueil</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">À Propos</span>
           </nav>
 
-          <p class="pg-hero__kicker pg-reveal">NOTRE HISTOIRE</p>
+          <p class="pg-hero__kicker pg-reveal">À PROPOS D'AUTOVALLEY</p>
           <h1 class="pg-hero__title pg-reveal">
-            L'excellence automobile,<br><span class="pg-hero__title-accent">au cœur de Casablanca</span>
+            Un atelier automobile structuré,<br><span class="pg-hero__title-accent">centré sur la qualité d'exécution</span>
           </h1>
           <p class="pg-hero__subtitle pg-reveal">
-            AutoValley est né d'une passion profonde pour l'automobile et d'un engagement
-            indéfectible envers la qualité. Découvrez ce qui nous anime chaque jour.
+            Depuis Casablanca, nous accompagnons particuliers et professionnels avec un service clair,
+            des diagnostics précis et un suivi constant du véhicule.
           </p>
+
+          <div class="apropos-hero__actions pg-reveal pg-reveal--delay-1">
+            <a class="apropos-hero__btn apropos-hero__btn--primary" href="./contact.php">Prendre rendez-vous</a>
+            <a class="apropos-hero__btn apropos-hero__btn--ghost" href="./services.php">Voir nos services</a>
+          </div>
+
+          <ul class="apropos-hero__highlights pg-reveal pg-reveal--delay-2" aria-label="Repères AutoValley">
+            <li>Atelier basé à Casablanca</li>
+            <li>Interventions documentées</li>
+            <li>Suivi adapté aux flottes et particuliers</li>
+          </ul>
         </div>
       </section>
 
-      <!-- STATS BAND -->
       <section aria-label="Chiffres clés" class="pg-stats-band">
         <div class="apropos-stats pg-stats-band__inner">
-
-          <div class="apropos-stat pg-reveal">
+          <article class="apropos-stat pg-reveal">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -78,11 +85,11 @@ $structuredData = [[
             <span class="apropos-stat__value">15<span class="apropos-stat__suffix">+</span></span>
             <span class="apropos-stat__label">Années d'expertise</span>
             <div class="apropos-stat__shadow" aria-hidden="true"></div>
-          </div>
+          </article>
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <div class="apropos-stat pg-reveal pg-reveal--delay-1">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-1">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -93,11 +100,11 @@ $structuredData = [[
             <span class="apropos-stat__value">10 000<span class="apropos-stat__suffix">+</span></span>
             <span class="apropos-stat__label">Véhicules pris en charge</span>
             <div class="apropos-stat__shadow" aria-hidden="true"></div>
-          </div>
+          </article>
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <div class="apropos-stat pg-reveal pg-reveal--delay-2">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-2">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -108,11 +115,11 @@ $structuredData = [[
             <span class="apropos-stat__value">5,0<span class="apropos-stat__suffix">/5</span></span>
             <span class="apropos-stat__label">Note Google vérifiée</span>
             <div class="apropos-stat__shadow" aria-hidden="true"></div>
-          </div>
+          </article>
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <div class="apropos-stat pg-reveal pg-reveal--delay-3">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-3">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -123,101 +130,101 @@ $structuredData = [[
             <span class="apropos-stat__value">20<span class="apropos-stat__suffix">+</span></span>
             <span class="apropos-stat__label">Marques maîtrisées</span>
             <div class="apropos-stat__shadow" aria-hidden="true"></div>
-          </div>
-
+          </article>
         </div>
       </section>
 
-      <!-- STORY SECTION -->
       <section aria-labelledby="story-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="apropos-story">
             <div class="apropos-story__text">
-              <p class="pg-section-kicker pg-reveal">NOTRE ADN</p>
+              <p class="pg-section-kicker pg-reveal">NOTRE MÉTHODE</p>
               <h2 id="story-title" class="pg-section-title pg-reveal pg-section-title--left">
-                Fondés sur la passion,<br>bâtis sur la confiance
+                Une organisation stable, du diagnostic à la restitution
               </h2>
               <div class="pg-reveal pg-reveal--delay-1">
                 <p>
-                  AutoValley est l'atelier automobile premium de référence à Casablanca, fondé par
-                  des passionnés de l'automobile qui ont voulu créer une alternative sérieuse aux
-                  concessionnaires traditionnels – sans compromis sur la qualité ni sur la transparence.
+                  AutoValley a été construit autour d'une idée simple : offrir un service automobile fiable,
+                  lisible et régulier, quelle que soit la nature de l'intervention.
                 </p>
                 <p>
-                  Depuis plus de 15 ans, nous accompagnons particuliers, entreprises et flottes avec
-                  une approche rigoureuse : diagnostic précis, délais respectés, communication claire.
-                  Chaque véhicule qui entre dans notre atelier est traité avec le même soin, qu'il
-                  s'agisse d'une citadine ou d'un SUV de luxe.
+                  Nous structurons chaque prise en charge avec un diagnostic détaillé, un plan d'action
+                  validé avec le client et un suivi d'avancement jusqu'à la livraison.
                 </p>
                 <p>
-                  Agréés SNTL et partenaires des plus grandes compagnies d'assurance du Maroc, nous
-                  disposons des équipements les plus avancés et d'une équipe de techniciens certifiés,
-                  constamment formés aux dernières technologies automobiles.
+                  Cette approche permet de garder une exécution constante pour l'entretien courant,
+                  la carrosserie et les opérations techniques complexes.
                 </p>
               </div>
             </div>
-            <div class="apropos-story__img-wrap pg-reveal pg-reveal--delay-2">
-              <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900', 'alt' => 'Technicien AutoValley en atelier', 'width' => 900, 'height' => 1350, 'class' => 'apropos-story__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
+
+            <div class="apropos-story__media">
+              <div class="apropos-story__img-wrap pg-reveal pg-reveal--delay-2">
+                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900', 'alt' => 'Technicien AutoValley en atelier', 'width' => 900, 'height' => 1350, 'class' => 'apropos-story__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
+              </div>
+              <aside class="apropos-story__panel pg-reveal pg-reveal--delay-3" aria-label="Repères de fonctionnement">
+                <h3 class="apropos-story__panel-title">Repères de fonctionnement</h3>
+                <ul class="apropos-story__panel-list">
+                  <li>Diagnostic initial avec synthèse partagée</li>
+                  <li>Validation des actions avant intervention</li>
+                  <li>Contrôle final avant restitution</li>
+                </ul>
+              </aside>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- VALUES SECTION -->
       <section aria-labelledby="values-title" class="pg-surface-dark-soft">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">CE QUI NOUS GUIDE</span>
-            <h2 id="values-title" class="pg-section-title pg-reveal">Nos valeurs fondamentales</h2>
+            <h2 id="values-title" class="pg-section-title pg-reveal">Nos engagements opérationnels</h2>
             <p class="pg-section-subtitle pg-reveal pg-reveal--delay-1">
-              Chaque décision que nous prenons est guidée par ces principes qui définissent
-              l'identité AutoValley.
+              Ces principes structurent la relation client et la qualité d'exécution sur chaque dossier.
             </p>
             <span class="pg-title-line" aria-hidden="true"></span>
           </div>
 
           <div class="apropos-values-grid">
-            <div class="apropos-value-card pg-reveal">
+            <article class="apropos-value-card pg-reveal">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Transparence totale</h3>
+              <h3 class="apropos-value-card__title">Transparence</h3>
               <p class="apropos-value-card__desc">
-                Devis détaillés, explications claires, aucune surprise sur la facture.
-                Vous savez exactement ce que nous faisons et pourquoi.
+                Les étapes et coûts sont expliqués avant intervention, avec une validation claire.
               </p>
-            </div>
+            </article>
 
-            <div class="apropos-value-card pg-reveal pg-reveal--delay-1">
+            <article class="apropos-value-card pg-reveal pg-reveal--delay-1">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"/>
                   <polyline points="12 6 12 12 16 14"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Délais respectés</h3>
+              <h3 class="apropos-value-card__title">Ponctualité</h3>
               <p class="apropos-value-card__desc">
-                Votre temps est précieux. Nous nous engageons sur des délais réalistes
-                et nous les tenons, systématiquement.
+                Les délais annoncés sont planifiés selon la charge atelier et communiqués sans ambiguïté.
               </p>
-            </div>
+            </article>
 
-            <div class="apropos-value-card pg-reveal pg-reveal--delay-2">
+            <article class="apropos-value-card pg-reveal pg-reveal--delay-2">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Qualité certifiée</h3>
+              <h3 class="apropos-value-card__title">Fiabilité technique</h3>
               <p class="apropos-value-card__desc">
-                Pièces d'origine, techniciens certifiés, équipements de dernière génération.
-                Aucun compromis sur la qualité de nos interventions.
+                Les opérations suivent des standards contrôlés par une équipe formée en continu.
               </p>
-            </div>
+            </article>
 
-            <div class="apropos-value-card pg-reveal pg-reveal--delay-1">
+            <article class="apropos-value-card pg-reveal pg-reveal--delay-1">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -226,51 +233,46 @@ $structuredData = [[
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Relation client</h3>
+              <h3 class="apropos-value-card__title">Accompagnement</h3>
               <p class="apropos-value-card__desc">
-                Nous construisons des relations durables avec nos clients, fondées
-                sur la confiance et un suivi personnalisé tout au long de la vie du véhicule.
+                Le client suit l'avancement de son dossier avec un interlocuteur identifié.
               </p>
-            </div>
+            </article>
 
-            <div class="apropos-value-card pg-reveal pg-reveal--delay-2">
+            <article class="apropos-value-card pg-reveal pg-reveal--delay-2">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Innovation continue</h3>
+              <h3 class="apropos-value-card__title">Amélioration continue</h3>
               <p class="apropos-value-card__desc">
-                Investissement permanent dans les outils, les formations et les procédures
-                pour rester à la pointe de la technologie automobile.
+                L'atelier ajuste ses procédures et équipements pour maintenir un niveau de service stable.
               </p>
-            </div>
+            </article>
 
-            <div class="apropos-value-card pg-reveal pg-reveal--delay-3">
+            <article class="apropos-value-card pg-reveal pg-reveal--delay-3">
               <div class="apropos-value-card__icon" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
-              <h3 class="apropos-value-card__title">Excellence sans compromis</h3>
+              <h3 class="apropos-value-card__title">Exigence constante</h3>
               <p class="apropos-value-card__desc">
-                Chaque intervention est réalisée avec le même niveau d'exigence, que ce soit
-                pour une simple vidange ou une révision complète.
+                Chaque intervention suit le même niveau de contrôle, de la maintenance simple aux travaux lourds.
               </p>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- TEAM SECTION -->
       <section aria-labelledby="team-title" class="pg-surface-dark">
         <div class="pg-section">
           <div class="pg-section-header">
             <span class="pg-section-kicker pg-reveal">L'ÉQUIPE</span>
             <h2 id="team-title" class="pg-section-title pg-reveal">Les experts derrière AutoValley</h2>
             <p class="pg-section-subtitle pg-reveal pg-reveal--delay-1">
-              Une équipe de professionnels passionnés, certifiés et expérimentés,
-              dédiés à l'excellence de chaque intervention.
+              Une équipe de professionnels expérimentés dédiée à la qualité de traitement des dossiers clients.
             </p>
             <span class="pg-title-line" aria-hidden="true"></span>
           </div>
@@ -312,12 +314,14 @@ $structuredData = [[
         </div>
       </section>
 
-      <!-- CERTIFICATIONS SECTION -->
       <section aria-labelledby="certs-title" class="pg-surface-dark-soft pg-surface-dark-soft--compact">
         <div class="pg-section">
           <div class="pg-section-header pg-section-header--compact">
             <span class="pg-section-kicker pg-reveal">AGRÉMENTS &amp; PARTENAIRES</span>
             <h2 id="certs-title" class="pg-section-title pg-reveal">Certifications &amp; partenariats</h2>
+            <p class="pg-section-subtitle pg-reveal pg-reveal--delay-1">
+              AutoValley collabore avec des organismes et assureurs reconnus au Maroc.
+            </p>
             <span class="pg-title-line" aria-hidden="true"></span>
           </div>
 
@@ -345,7 +349,6 @@ $structuredData = [[
           </div>
         </div>
       </section>
-
     </main>
 
     <?php include __DIR__ . "/partials/footer-cta.php"; ?>
