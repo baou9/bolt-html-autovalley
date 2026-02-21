@@ -94,16 +94,9 @@ $structuredData = [
             <a class="apropos-hero__btn apropos-hero__btn--ghost" href="./services.php">Voir nos services</a>
           </div>
 
-          <ul class="apropos-hero__highlights pg-reveal pg-reveal--delay-2" aria-label="Repères AutoValley">
-            <li>Atelier basé à Casablanca</li>
-            <li>Interventions documentées</li>
-            <li>Suivi adapté aux flottes et particuliers</li>
-          </ul>
-        </div>
-
-        <div aria-label="Chiffres clés" class="apropos-hero-stats" role="region">
-          <div class="apropos-stats">
-            <article class="apropos-stat pg-reveal" aria-label="15 ans et plus d'expertise">
+          <div aria-label="Chiffres clés" class="apropos-hero-stats pg-reveal pg-reveal--delay-2" role="region">
+            <div class="apropos-stats">
+              <article class="apropos-stat" aria-label="15 ans et plus d'expertise">
               <div class="apropos-stat__icon-wrap" aria-hidden="true">
                 <div class="apropos-stat__icon-ring"></div>
                 <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -111,14 +104,12 @@ $structuredData = [
                 </svg>
               </div>
               <div class="apropos-stat__accent"></div>
-              <span class="apropos-stat__value">15<span class="apropos-stat__suffix">+</span></span>
+              <span class="apropos-stat__value"><span class="apropos-stat__count" data-count-to="15">15</span><span class="apropos-stat__suffix">+</span></span>
               <span class="apropos-stat__label">Années d'expertise</span>
               <div class="apropos-stat__shadow" aria-hidden="true"></div>
             </article>
 
-            <div class="apropos-stat__divider" aria-hidden="true"></div>
-
-            <article class="apropos-stat pg-reveal pg-reveal--delay-1" aria-label="Plus de 10 000 véhicules pris en charge">
+            <article class="apropos-stat" aria-label="Plus de 10 000 véhicules pris en charge">
               <div class="apropos-stat__icon-wrap" aria-hidden="true">
                 <div class="apropos-stat__icon-ring"></div>
                 <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -126,14 +117,12 @@ $structuredData = [
                 </svg>
               </div>
               <div class="apropos-stat__accent"></div>
-              <span class="apropos-stat__value">10 000<span class="apropos-stat__suffix">+</span></span>
+              <span class="apropos-stat__value"><span class="apropos-stat__count" data-count-to="10000">10 000</span><span class="apropos-stat__suffix">+</span></span>
               <span class="apropos-stat__label">Véhicules pris en charge</span>
               <div class="apropos-stat__shadow" aria-hidden="true"></div>
             </article>
 
-            <div class="apropos-stat__divider" aria-hidden="true"></div>
-
-            <article class="apropos-stat pg-reveal pg-reveal--delay-2" aria-label="Note Google vérifiée de 5 sur 5">
+            <article class="apropos-stat apropos-stat--rating" aria-label="Note Google vérifiée de 5 sur 5">
               <div class="apropos-stat__icon-wrap" aria-hidden="true">
                 <div class="apropos-stat__icon-ring"></div>
                 <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -141,14 +130,12 @@ $structuredData = [
                 </svg>
               </div>
               <div class="apropos-stat__accent"></div>
-              <span class="apropos-stat__value">5,0<span class="apropos-stat__suffix">/5</span></span>
+              <span class="apropos-stat__value"><span class="apropos-stat__count" data-count-to="5" data-decimals="1">5,0</span><span class="apropos-stat__suffix">/5</span></span>
               <span class="apropos-stat__label">Note Google vérifiée</span>
               <div class="apropos-stat__shadow" aria-hidden="true"></div>
             </article>
 
-            <div class="apropos-stat__divider" aria-hidden="true"></div>
-
-            <article class="apropos-stat pg-reveal pg-reveal--delay-3" aria-label="Plus de 20 marques maîtrisées">
+            <article class="apropos-stat" aria-label="Plus de 20 marques maîtrisées">
               <div class="apropos-stat__icon-wrap" aria-hidden="true">
                 <div class="apropos-stat__icon-ring"></div>
                 <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -156,11 +143,18 @@ $structuredData = [
                 </svg>
               </div>
               <div class="apropos-stat__accent"></div>
-              <span class="apropos-stat__value">20<span class="apropos-stat__suffix">+</span></span>
+              <span class="apropos-stat__value"><span class="apropos-stat__count" data-count-to="20">20</span><span class="apropos-stat__suffix">+</span></span>
               <span class="apropos-stat__label">Marques maîtrisées</span>
               <div class="apropos-stat__shadow" aria-hidden="true"></div>
             </article>
+            </div>
           </div>
+
+          <ul class="apropos-hero__highlights" aria-label="Repères AutoValley">
+            <li>Atelier basé à Casablanca</li>
+            <li>Interventions documentées</li>
+            <li>Suivi adapté aux flottes et particuliers</li>
+          </ul>
         </div>
       </section>
 

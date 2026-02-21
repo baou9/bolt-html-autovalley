@@ -41,8 +41,56 @@ function initAproposStatAnimations() {
   const stats = document.querySelectorAll('.apropos-stat');
   if (!stats.length) return;
 
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const animateCount = (stat) => {
+    if (!stat || stat.dataset.countAnimated === 'true') return;
+
+    const counters = stat.querySelectorAll('.apropos-stat__count[data-count-to]');
+    if (!counters.length) return;
+
+    const duration = 1200;
+    const startTime = performance.now();
+
+    stat.dataset.countAnimated = 'true';
+
+    counters.forEach((counter) => {
+      const target = Number(counter.dataset.countTo || '0');
+      const decimals = Number(counter.dataset.decimals || '0');
+
+      if (!Number.isFinite(target)) return;
+
+      if (reducedMotion) {
+        counter.textContent = decimals > 0
+          ? target.toFixed(decimals).replace('.', ',')
+          : new Intl.NumberFormat('fr-FR').format(Math.round(target));
+        return;
+      }
+
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - ((1 - progress) * (1 - progress) * (1 - progress));
+        const value = target * eased;
+
+        counter.textContent = decimals > 0
+          ? value.toFixed(decimals).replace('.', ',')
+          : new Intl.NumberFormat('fr-FR').format(Math.round(value));
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      counter.textContent = decimals > 0 ? (0).toFixed(decimals).replace('.', ',') : '0';
+      requestAnimationFrame(step);
+    });
+  };
+
   if (!('IntersectionObserver' in window)) {
-    stats.forEach((stat) => stat.classList.add('is-animated'));
+    stats.forEach((stat) => {
+      stat.classList.add('is-animated');
+      animateCount(stat);
+    });
     return;
   }
 
@@ -50,6 +98,10 @@ function initAproposStatAnimations() {
     (entries) => {
       entries.forEach((entry) => {
         entry.target.classList.toggle('is-animated', entry.isIntersecting);
+
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+        }
       });
     },
     { threshold: 0.2 }

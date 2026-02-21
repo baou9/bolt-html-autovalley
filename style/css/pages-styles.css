@@ -703,6 +703,8 @@ a.contact-info-card__value:hover {
 .apropos-hero__inner {
   display: grid;
   gap: var(--pg-space-6);
+  max-width: min(1280px, calc(100% - (var(--pg-space-6) * 2)));
+  align-items: center;
 }
 
 /* [PATCH] Stats block anchored at the bottom of the hero with transparent backdrop. */
@@ -712,9 +714,8 @@ a.contact-info-card__value:hover {
 
 .apropos-hero-stats {
   position: relative;
-  z-index: 1;
-  width: min(1280px, calc(100% - (var(--pg-space-6) * 2)));
-  margin: var(--pg-space-12) auto 0;
+  width: 100%;
+  margin-top: var(--pg-space-2);
   background: transparent;
 }
 
@@ -1002,20 +1003,14 @@ a.contact-info-card__value:hover {
 
 .apropos-stats {
   display: grid;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
-  justify-content: center;
-  gap: var(--pg-space-6);
-}
-
-.apropos-stat__divider {
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.22), transparent);
+  gap: var(--pg-space-5);
 }
 
 .apropos-stat {
-  width: min(100%, 238px);
-  min-height: 250px;
+  width: 100%;
+  min-height: 228px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 18px;
@@ -1030,9 +1025,9 @@ a.contact-info-card__value:hover {
 }
 
 .apropos-stat:nth-child(1) { animation: stat-float-a 5.2s ease-in-out infinite; }
-.apropos-stat:nth-child(3) { animation: stat-float-b 6.1s ease-in-out infinite 0.8s; }
-.apropos-stat:nth-child(5) { animation: stat-float-c 5.7s ease-in-out infinite 1.4s; }
-.apropos-stat:nth-child(7) { animation: stat-float-d 6.5s ease-in-out infinite 0.4s; }
+.apropos-stat:nth-child(2) { animation: stat-float-b 6.1s ease-in-out infinite 0.8s; }
+.apropos-stat:nth-child(3) { animation: stat-float-c 5.7s ease-in-out infinite 1.4s; }
+.apropos-stat:nth-child(4) { animation: stat-float-d 6.5s ease-in-out infinite 0.4s; }
 
 .apropos-stat.is-animated {
   animation-play-state: running;
@@ -1068,9 +1063,9 @@ a.contact-info-card__value:hover {
 }
 
 .apropos-stat:nth-child(1) { --stat-hue: 0deg; }
-.apropos-stat:nth-child(3) { --stat-hue: 25deg; }
-.apropos-stat:nth-child(5) { --stat-hue: 170deg; }
-.apropos-stat:nth-child(7) { --stat-hue: 300deg; }
+.apropos-stat:nth-child(2) { --stat-hue: 24deg; }
+.apropos-stat:nth-child(3) { --stat-hue: 170deg; }
+.apropos-stat:nth-child(4) { --stat-hue: 300deg; }
 
 .apropos-stat__icon-ring {
   position: absolute;
@@ -1086,9 +1081,9 @@ a.contact-info-card__value:hover {
   animation-play-state: running;
 }
 
-.apropos-stat:nth-child(3) .apropos-stat__icon-ring { animation-duration: 6.1s; animation-delay: 0.8s; }
-.apropos-stat:nth-child(5) .apropos-stat__icon-ring { animation-duration: 5.7s; animation-delay: 1.4s; }
-.apropos-stat:nth-child(7) .apropos-stat__icon-ring { animation-duration: 6.5s; animation-delay: 0.4s; }
+.apropos-stat:nth-child(2) .apropos-stat__icon-ring { animation-duration: 6.1s; animation-delay: 0.8s; }
+.apropos-stat:nth-child(3) .apropos-stat__icon-ring { animation-duration: 5.7s; animation-delay: 1.4s; }
+.apropos-stat:nth-child(4) .apropos-stat__icon-ring { animation-duration: 6.5s; animation-delay: 0.4s; }
 
 .apropos-stat__icon-ring::before {
   content: '';
@@ -1110,6 +1105,26 @@ a.contact-info-card__value:hover {
   animation-play-state: paused;
 }
 
+.apropos-stat--rating .apropos-stat__icon {
+  color: #f4c542;
+  filter: drop-shadow(0 0 12px rgba(244, 197, 66, 0.4));
+  animation: stat-star-shine 2.8s ease-in-out infinite;
+}
+
+.apropos-stat--rating .apropos-stat__icon-ring {
+  border-color: rgba(244, 197, 66, 0.35);
+}
+
+.apropos-stat--rating .apropos-stat__icon-ring::before {
+  border-color: rgba(244, 197, 66, 0.24);
+}
+
+.apropos-stat--rating .apropos-stat__accent,
+.apropos-stat--rating .apropos-stat__suffix {
+  background: #f4c542;
+  color: #f4c542;
+}
+
 .apropos-stat.is-animated .apropos-stat__icon {
   animation-play-state: running;
 }
@@ -1125,6 +1140,16 @@ a.contact-info-card__value:hover {
   }
   50% {
     filter: hue-rotate(calc(var(--stat-hue, 0deg) + 18deg)) drop-shadow(0 0 20px rgba(185, 5, 4, 0.34));
+  }
+}
+
+@keyframes stat-star-shine {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(244, 197, 66, 0.34));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(244, 197, 66, 0.7));
   }
 }
 
@@ -1286,10 +1311,6 @@ a.contact-info-card__value:hover {
 
   .apropos-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .apropos-stat__divider {
-    display: none;
   }
 
   .apropos-stat {
