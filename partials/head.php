@@ -110,10 +110,11 @@ $baseStructuredData = [
 $allStructuredData = array_merge($baseStructuredData, $structuredData);
 ?>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
+    <link rel="icon" type="image/png" href="./public/Converted-PNG2.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= htmlspecialchars($metaTitle, ENT_QUOTES, 'UTF-8') ?></title>
     <meta name="description" content="<?= htmlspecialchars($metaDescription, ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="keywords" content="réparation automobile Casablanca, carrosserie Casablanca, diagnostic auto Casablanca, entretien véhicule" />
 <?php if (!empty($metaRobots)): ?>
     <meta name="robots" content="<?= htmlspecialchars($metaRobots, ENT_QUOTES, 'UTF-8') ?>" />
 <?php endif; ?>
@@ -124,6 +125,8 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
     <meta property="og:type" content="<?= htmlspecialchars($ogType, ENT_QUOTES, 'UTF-8') ?>" />
     <meta property="og:url" content="<?= htmlspecialchars($ogUrl, ENT_QUOTES, 'UTF-8') ?>" />
     <meta property="og:image" content="<?= htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8') ?>" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="AutoValley" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<?= htmlspecialchars($metaTitle, ENT_QUOTES, 'UTF-8') ?>" />
