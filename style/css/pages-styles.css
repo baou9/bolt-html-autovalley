@@ -705,6 +705,19 @@ a.contact-info-card__value:hover {
   gap: var(--pg-space-6);
 }
 
+/* [PATCH] Stats block anchored at the bottom of the hero with transparent backdrop. */
+#apropos-hero {
+  padding-bottom: var(--pg-space-14);
+}
+
+.apropos-hero-stats {
+  position: relative;
+  z-index: 1;
+  width: min(1280px, calc(100% - (var(--pg-space-6) * 2)));
+  margin: var(--pg-space-12) auto 0;
+  background: transparent;
+}
+
 /* [PATCH] Center and elevate hero CTA visual quality for apropos page. */
 .apropos-hero__actions {
   display: flex;
@@ -1054,6 +1067,11 @@ a.contact-info-card__value:hover {
   background: rgba(185, 5, 4, 0.08);
 }
 
+.apropos-stat:nth-child(1) { --stat-hue: 0deg; }
+.apropos-stat:nth-child(3) { --stat-hue: 25deg; }
+.apropos-stat:nth-child(5) { --stat-hue: 170deg; }
+.apropos-stat:nth-child(7) { --stat-hue: 300deg; }
+
 .apropos-stat__icon-ring {
   position: absolute;
   inset: -3px;
@@ -1087,10 +1105,27 @@ a.contact-info-card__value:hover {
   position: relative;
   z-index: 1;
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  filter: hue-rotate(var(--stat-hue, 0deg)) drop-shadow(0 0 14px rgba(185, 5, 4, 0.26));
+  animation: stat-icon-chroma 5.8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.apropos-stat.is-animated .apropos-stat__icon {
+  animation-play-state: running;
 }
 
 .apropos-stat:hover .apropos-stat__icon {
   transform: scale(1.16);
+}
+
+@keyframes stat-icon-chroma {
+  0%,
+  100% {
+    filter: hue-rotate(calc(var(--stat-hue, 0deg) - 10deg)) drop-shadow(0 0 12px rgba(185, 5, 4, 0.22));
+  }
+  50% {
+    filter: hue-rotate(calc(var(--stat-hue, 0deg) + 18deg)) drop-shadow(0 0 20px rgba(185, 5, 4, 0.34));
+  }
 }
 
 .apropos-stat__accent {
@@ -1233,6 +1268,10 @@ a.contact-info-card__value:hover {
 }
 
 @media (max-width: 1024px) {
+  .apropos-hero-stats {
+    margin-top: var(--pg-space-8);
+  }
+
   .apropos-story {
     grid-template-columns: 1fr;
   }
@@ -1271,6 +1310,15 @@ a.contact-info-card__value:hover {
 }
 
 @media (max-width: 640px) {
+  #apropos-hero {
+    padding-bottom: var(--pg-space-10);
+  }
+
+  .apropos-hero-stats {
+    width: min(100%, calc(100% - (var(--pg-space-4) * 2)));
+    margin-top: var(--pg-space-6);
+  }
+
   .apropos-hero__actions {
     flex-direction: column;
     align-items: center;
@@ -1294,6 +1342,7 @@ a.contact-info-card__value:hover {
 @media (prefers-reduced-motion: reduce) {
   .apropos-stat,
   .apropos-stat__icon-ring,
+  .apropos-stat__icon,
   .apropos-story__img,
   .apropos-value-card,
   .apropos-team-card,
