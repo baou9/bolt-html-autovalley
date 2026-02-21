@@ -72,6 +72,7 @@ function phpPlugin() {
 
         if (filePath && existsSync(filePath)) {
           let content = readFileSync(filePath, 'utf-8');
+          content = content.replace(/<\?php[\s\S]*?\?>\s*/g, '');
           content = resolvePhpIncludes(content, __dirname);
 
           content = content.replace(
