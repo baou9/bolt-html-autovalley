@@ -419,6 +419,7 @@ function initServiceModal() {
 }
 
 function initStatCounters() {
+  const CIRCUMFERENCE = 150.8;
   const stats = document.querySelectorAll('.sv-hero__stat[data-count]');
   if (!stats.length) return;
 
@@ -436,6 +437,8 @@ function initStatCounters() {
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
     const format = el.dataset.format || '';
+    const pct = el.dataset.ringPct ? parseInt(el.dataset.ringPct, 10) : null;
+    const ringFill = el.querySelector('.sv-hero__stat-ring-fill');
     const duration = 1800;
     const startTime = performance.now();
 
@@ -449,10 +452,22 @@ function initStatCounters() {
 
       valueEl.textContent = formatNumber(current, format) + suffix;
 
+      if (ringFill && pct !== null) {
+        const filled = (easedProgress * pct) / 100;
+        ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - filled);
+      } else if (ringFill) {
+        ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - easedProgress * 0.72);
+      }
+
       if (progress < 1) {
         requestAnimationFrame(update);
       } else {
         valueEl.textContent = formatNumber(target, format) + suffix;
+        if (ringFill && pct !== null) {
+          ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - pct / 100);
+        } else if (ringFill) {
+          ringFill.style.strokeDashoffset = CIRCUMFERENCE * 0.28;
+        }
         el.classList.add('is-counted');
       }
     };
@@ -468,7 +483,7 @@ function initStatCounters() {
         }
       });
     },
-    { threshold: 0.5, rootMargin: '0px 0px -50px 0px' }
+    { threshold: 0.4, rootMargin: '0px 0px -40px 0px' }
   );
 
   stats.forEach((stat) => observer.observe(stat));

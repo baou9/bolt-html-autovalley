@@ -129,60 +129,89 @@
             et transparent pour tous types de vehicules a Casablanca.
           </p>
 
-          <div class="sv-hero__stats sv-reveal">
-            <div class="sv-hero__stat" data-count="15" data-suffix="+">
-              <div class="sv-hero__stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
+          <div class="sv-hero__stats sv-reveal" role="list" aria-label="Chiffres cles">
+
+            <div class="sv-hero__stat" data-count="15" data-suffix="+" role="listitem" style="--stat-delay:0s">
+              <div class="sv-hero__stat-icon-wrap" aria-hidden="true">
+                <svg class="sv-hero__stat-ring" viewBox="0 0 56 56" fill="none">
+                  <circle class="sv-hero__stat-ring-track" cx="28" cy="28" r="24" stroke-width="2"/>
+                  <circle class="sv-hero__stat-ring-fill" cx="28" cy="28" r="24" stroke-width="2" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
                 </svg>
+                <div class="sv-hero__stat-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
               </div>
-              <div class="sv-hero__stat-content">
-                <span class="sv-hero__stat-value">15+</span>
-                <span class="sv-hero__stat-label">Annees d'expertise</span>
+              <div class="sv-hero__stat-body">
+                <span class="sv-hero__stat-value" aria-label="15 ans plus">15+</span>
+                <span class="sv-hero__stat-label">Annees<br>d'expertise</span>
               </div>
-              <div class="sv-hero__stat-glow" aria-hidden="true"></div>
+              <div class="sv-hero__stat-accent" aria-hidden="true"></div>
             </div>
-            <div class="sv-hero__stat" data-count="10000" data-suffix="+" data-format="space">
-              <div class="sv-hero__stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-                  <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-                  <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"/>
+
+            <div class="sv-hero__stat" data-count="10000" data-suffix="+" data-format="space" role="listitem" style="--stat-delay:0.12s">
+              <div class="sv-hero__stat-icon-wrap" aria-hidden="true">
+                <svg class="sv-hero__stat-ring" viewBox="0 0 56 56" fill="none">
+                  <circle class="sv-hero__stat-ring-track" cx="28" cy="28" r="24" stroke-width="2"/>
+                  <circle class="sv-hero__stat-ring-fill" cx="28" cy="28" r="24" stroke-width="2" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
                 </svg>
+                <div class="sv-hero__stat-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                    <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"/>
+                  </svg>
+                </div>
               </div>
-              <div class="sv-hero__stat-content">
-                <span class="sv-hero__stat-value">10 000+</span>
-                <span class="sv-hero__stat-label">Vehicules entretenus</span>
+              <div class="sv-hero__stat-body">
+                <span class="sv-hero__stat-value" aria-label="Plus de 10 000 vehicules">10 000+</span>
+                <span class="sv-hero__stat-label">Vehicules<br>entretenus</span>
               </div>
-              <div class="sv-hero__stat-glow" aria-hidden="true"></div>
+              <div class="sv-hero__stat-accent" aria-hidden="true"></div>
             </div>
-            <div class="sv-hero__stat" data-count="98" data-suffix="%">
-              <div class="sv-hero__stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+
+            <div class="sv-hero__stat sv-hero__stat--ring" data-count="98" data-suffix="%" data-ring-pct="98" role="listitem" style="--stat-delay:0.24s">
+              <div class="sv-hero__stat-icon-wrap" aria-hidden="true">
+                <svg class="sv-hero__stat-ring" viewBox="0 0 56 56" fill="none">
+                  <circle class="sv-hero__stat-ring-track" cx="28" cy="28" r="24" stroke-width="2"/>
+                  <circle class="sv-hero__stat-ring-fill sv-hero__stat-ring-fill--pct" cx="28" cy="28" r="24" stroke-width="2.5" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
                 </svg>
+                <div class="sv-hero__stat-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
               </div>
-              <div class="sv-hero__stat-content">
-                <span class="sv-hero__stat-value">98%</span>
-                <span class="sv-hero__stat-label">Taux de satisfaction</span>
+              <div class="sv-hero__stat-body">
+                <span class="sv-hero__stat-value" aria-label="98 pourcent de satisfaction">98%</span>
+                <span class="sv-hero__stat-label">Taux de<br>satisfaction</span>
               </div>
-              <div class="sv-hero__stat-glow" aria-hidden="true"></div>
+              <div class="sv-hero__stat-accent" aria-hidden="true"></div>
             </div>
-            <div class="sv-hero__stat" data-count="20" data-suffix="+">
-              <div class="sv-hero__stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 12l2 2 4-4"/>
-                  <path d="M12 3a9 9 0 1 0 9 9"/>
-                  <path d="M21 3v6h-6"/>
+
+            <div class="sv-hero__stat" data-count="20" data-suffix="+" role="listitem" style="--stat-delay:0.36s">
+              <div class="sv-hero__stat-icon-wrap" aria-hidden="true">
+                <svg class="sv-hero__stat-ring" viewBox="0 0 56 56" fill="none">
+                  <circle class="sv-hero__stat-ring-track" cx="28" cy="28" r="24" stroke-width="2"/>
+                  <circle class="sv-hero__stat-ring-fill" cx="28" cy="28" r="24" stroke-width="2" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
                 </svg>
+                <div class="sv-hero__stat-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M12 3a9 9 0 1 0 9 9"/>
+                    <path d="M21 3v6h-6"/>
+                  </svg>
+                </div>
               </div>
-              <div class="sv-hero__stat-content">
-                <span class="sv-hero__stat-value">20+</span>
-                <span class="sv-hero__stat-label">Marques couvertes</span>
+              <div class="sv-hero__stat-body">
+                <span class="sv-hero__stat-value" aria-label="Plus de 20 marques">20+</span>
+                <span class="sv-hero__stat-label">Marques<br>couvertes</span>
               </div>
-              <div class="sv-hero__stat-glow" aria-hidden="true"></div>
+              <div class="sv-hero__stat-accent" aria-hidden="true"></div>
             </div>
+
           </div>
 
           <div class="sv-hero__ctas sv-reveal">
