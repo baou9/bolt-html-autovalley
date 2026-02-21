@@ -6215,9 +6215,10 @@ body,
 /* LOGO IMAGE */
 
 .brands-universe__logo img {
-  max-height: 48px;
-  width: auto;
+  height: 48px;
+  width: 128px;
   display: block;
+  object-fit: contain;
   opacity: 0.45;
   transform: scale(1);
   transition:
@@ -6285,7 +6286,8 @@ body,
   }
 
   .brands-universe__logo img {
-    max-height: 34px;
+    height: 34px;
+    width: 96px;
   }
 }
 
