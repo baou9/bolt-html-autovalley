@@ -5487,28 +5487,13 @@ body,
   }
 
   .timeline-grid {
-    grid-template-columns: unset;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(82%, 260px);
-    gap: 12px;
-    overflow-x: auto;
-
-    padding: 0 14px 18px;
+    /* [PATCH] Keep mobile cards in a single-column flow to prevent the first card from being clipped. */
+    grid-template-columns: 1fr;
+    gap: 20px;
+    overflow: visible;
+    padding: 0;
     margin: 0;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 14px;
-    scroll-padding-right: 14px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-  }
-
-  .timeline-card {
-    scroll-snap-stop: always;
-  }
-
-  .timeline-grid::-webkit-scrollbar {
-    display: none;
+    scroll-snap-type: none;
   }
 
   .timeline-card {
