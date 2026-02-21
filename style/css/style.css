@@ -4341,19 +4341,17 @@ body,
   .services-grid {
     grid-template-columns: unset;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(78%, 320px);
+    grid-auto-columns: 85vw;
     gap: 14px;
     overflow-x: auto;
-
-    padding: 0 14px 12px;
+    padding: 0 calc(50% - 42.5vw) 12px;
     margin: 0;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: 14px;
-    scroll-padding-right: 14px;
+    scroll-padding-inline: calc(50% - 42.5vw);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 
   .services-grid::-webkit-scrollbar {
@@ -4363,7 +4361,7 @@ body,
   .service-card {
     height: auto;
     min-height: 260px;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     padding: 18px 14px;
   }
 
