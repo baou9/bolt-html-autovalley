@@ -1066,6 +1066,67 @@
   border-color: rgba(185, 5, 4, 0.3);
 }
 
+.sv-trust__cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 48px;
+  padding: 28px 40px;
+  background: rgba(185, 5, 4, 0.06);
+  border: 1px solid rgba(185, 5, 4, 0.15);
+  border-radius: 16px;
+}
+
+.sv-trust__cta-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.sv-trust__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 12px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(185, 5, 4, 0.9), rgba(70, 8, 6, 0.95));
+  border: 1px solid rgba(185, 5, 4, 0.4);
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sv-trust__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(185, 5, 4, 0.35);
+}
+
+.sv-trust__cta-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.sv-trust__cta-btn:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 600px) {
+  .sv-trust__cta-strip {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+}
+
 /* ──────────────────────────────────────────────────────────
    FAQ ACCORDION
    ────────────────────────────────────────────────────────── */
@@ -1160,102 +1221,6 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* ──────────────────────────────────────────────────────────
-   FINAL CTA
-   ────────────────────────────────────────────────────────── */
-.sv-cta {
-  padding: 100px 24px;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 6, 9, 1) 0%,
-    rgba(15, 6, 6, 1) 50%,
-    rgba(5, 6, 9, 1) 100%
-  );
-}
-
-.sv-cta__inner {
-  max-width: 860px;
-  margin: 0 auto;
-}
-
-.sv-cta__card {
-  text-align: center;
-  padding: 64px 40px;
-  background:
-    radial-gradient(ellipse at top, rgba(185, 5, 4, 0.12) 0%, transparent 60%),
-    rgba(10, 10, 16, 0.9);
-  border: 1px solid rgba(185, 5, 4, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48), 0 0 20px rgba(185, 5, 4, 0.08);
-}
-
-.sv-cta__kicker {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.55);
-  margin-bottom: 12px;
-}
-
-.sv-cta__title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 16px;
-  line-height: 1.2;
-}
-
-.sv-cta__subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
-  max-width: 520px;
-  margin: 0 auto 32px;
-}
-
-.sv-cta__actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.sv-cta__actions .btn-lg--primary {
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 0 18px rgba(185, 5, 4, 0.2);
-}
-
-.sv-cta__actions .btn-lg--primary:hover {
-  box-shadow: 0 0 24px rgba(185, 5, 4, 0.24);
-}
-
-.sv-cta__actions .btn-lg--primary svg {
-  flex-shrink: 0;
-}
-
-.sv-cta__actions .btn-lg--ghost {
-  box-shadow: none;
-}
-
-.sv-cta__actions .btn-lg {
-  min-width: 220px;
-  justify-content: center;
-}
-
-.sv-cta__note {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.35);
-}
 
 /* ──────────────────────────────────────────────────────────
    SERVICE MODAL
@@ -1459,8 +1424,7 @@
   .sv-equipment,
   .sv-process,
   .sv-trust,
-  .sv-faq,
-  .sv-cta {
+  .sv-faq {
     padding: 80px 20px;
   }
 
@@ -1546,8 +1510,7 @@
   .sv-equipment,
   .sv-process,
   .sv-trust,
-  .sv-faq,
-  .sv-cta {
+  .sv-faq {
     padding: 64px 16px;
   }
 
@@ -1614,10 +1577,6 @@
     gap: 16px;
   }
 
-  .sv-cta__card {
-    padding: 48px 24px;
-  }
-
   .service-modal__content {
     padding: 24px 24px 28px;
   }
@@ -1675,8 +1634,7 @@
   .sv-equipment,
   .sv-process,
   .sv-trust,
-  .sv-faq,
-  .sv-cta {
+  .sv-faq {
     padding: 48px 14px;
   }
 
@@ -1743,19 +1701,6 @@
   .sv-faq__answer p {
     padding: 0 18px 16px;
     font-size: 1rem;
-  }
-
-  .sv-cta__card {
-    padding: 36px 18px;
-  }
-
-  .sv-cta__actions {
-    flex-direction: column;
-  }
-
-  .sv-cta__actions .btn-lg {
-    width: 100%;
-    justify-content: center;
   }
 
   .service-modal__content {

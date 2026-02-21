@@ -147,7 +147,7 @@ $structuredData = [[
           </div>
 
           <div class="sv-hero__ctas sv-reveal">
-            <a href="#rdv" class="btn-lg btn-lg--primary">
+            <a href="./contact.php" class="btn-lg btn-lg--primary">
               <span>Prendre rendez-vous</span>
             </a>
             <a href="#sv-catalogue" class="btn-lg btn-lg--ghost">
@@ -759,6 +759,14 @@ $structuredData = [[
             </div>
 
           </div>
+
+          <div class="sv-trust__cta-strip sv-reveal">
+            <p class="sv-trust__cta-text">Pret a confier votre vehicule a des experts certifies ?</p>
+            <a href="./contact.php" class="sv-trust__cta-btn">
+              Prendre rendez-vous
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -836,31 +844,6 @@ $structuredData = [[
 
       <?php include __DIR__ . '/testimonials-enhanced.php'; ?>
 
-      <!-- FINAL CTA -->
-      <section class="sv-cta" id="rdv">
-        <div class="sv-cta__inner">
-          <div class="sv-cta__card sv-reveal">
-            <p class="sv-cta__kicker">Pret a passer au niveau superieur ?</p>
-            <h2 class="sv-cta__title">Offrez à votre véhicule le traitement qu’il mérite.</h2>
-            <p class="sv-cta__subtitle">
-              Notre equipe est a votre disposition pour tout renseignement, diagnostic ou prise de rendez-vous.
-            </p>
-            <div class="sv-cta__actions">
-              <a href="tel:+212522123456" class="btn-lg btn-lg--primary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-                <span>Prendre rendez-vous</span>
-              </a>
-              <a href="https://wa.me/212600000000" class="btn-lg btn-lg--ghost" target="_blank" rel="noopener">
-                <span>Nous contacter</span>
-              </a>
-            </div>
-            <p class="sv-cta__note">Reponse en moins de 2 heures ouvrees.</p>
-          </div>
-        </div>
-      </section>
-
     </main>
 
     <?php include __DIR__ . "/partials/footer-cta.php"; ?>
@@ -879,7 +862,7 @@ $structuredData = [[
           <h3 id="service-modal-title" class="service-modal__title"></h3>
           <div class="service-modal__body"></div>
           <div class="service-modal__cta">
-            <a href="#rdv" class="sv-modal__btn">Prendre rendez-vous</a>
+            <a href="./contact.php" class="sv-modal__btn">Prendre rendez-vous</a>
           </div>
         </div>
       </div>
