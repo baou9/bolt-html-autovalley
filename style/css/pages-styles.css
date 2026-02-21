@@ -205,15 +205,26 @@
 }
 
 .pg-stats-band {
-  background: rgba(185, 5, 4, 0.06);
-  border-top: 1px solid rgba(185, 5, 4, 0.15);
-  border-bottom: 1px solid rgba(185, 5, 4, 0.15);
-  padding: var(--pg-space-12) var(--pg-space-6);
+  background: #0a0a0f;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 56px var(--pg-space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.pg-stats-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(185, 5, 4, 0.07) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .pg-stats-band__inner {
   max-width: 1100px;
   margin: 0 auto;
+  position: relative;
 }
 
 .pg-section--wide {
@@ -799,36 +810,93 @@ a.contact-info-card__value:hover {
 /* Stats row */
 .apropos-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--pg-space-6);
+  grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
+  gap: 0;
   text-align: center;
+  align-items: center;
+}
+
+.apropos-stat__divider {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.12) 70%, transparent 100%);
+  align-self: center;
+  justify-self: center;
 }
 
 @media (max-width: 700px) {
-  .apropos-stats { grid-template-columns: repeat(2, 1fr); }
+  .apropos-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .apropos-stat__divider { display: none; }
+  .apropos-stat { background: #0a0a0f; }
+}
+
+@media (max-width: 420px) {
+  .apropos-stats {
+    grid-template-columns: 1fr;
+  }
 }
 
 .apropos-stat {
-  padding: var(--pg-space-8) var(--pg-space-5);
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  padding: 40px 24px 36px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  transition: background 0.3s ease;
+}
+
+.apropos-stat:hover {
+  background: rgba(185, 5, 4, 0.04);
+}
+
+.apropos-stat__accent {
+  width: 24px;
+  height: 2px;
+  background: #b90504;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.apropos-stat:hover .apropos-stat__accent {
+  width: 40px;
 }
 
 .apropos-stat__value {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(2.6rem, 4.5vw, 3.6rem);
   font-weight: 800;
-  color: var(--brand-red, #b90504);
+  color: #ffffff;
   display: block;
-  line-height: 1.1;
-  margin-bottom: var(--pg-space-2);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.apropos-stat__suffix {
+  font-size: 0.55em;
+  font-weight: 700;
+  color: #b90504;
+  letter-spacing: 0;
+  vertical-align: super;
+  line-height: 1;
+  margin-left: 2px;
 }
 
 .apropos-stat__label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Team grid */
