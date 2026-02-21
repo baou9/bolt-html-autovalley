@@ -25,6 +25,11 @@
 .pg-reveal--delay-4 { transition-delay: 0.4s; }
 .pg-reveal--delay-5 { transition-delay: 0.5s; }
 
+.no-js .pg-reveal {
+  opacity: 1;
+  transform: none;
+}
+
 /* ──────────────────────────────────────────────────────────
    Shared Hero (matches sv-hero from services-styles.css)
    ────────────────────────────────────────────────────────── */
@@ -75,7 +80,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center 40%;
-  filter: brightness(0.3) saturate(0.6);
+  filter: brightness(0.45) saturate(0.7);
 }
 
 .pg-hero__overlay {
@@ -133,6 +138,7 @@
 }
 
 .pg-hero__kicker {
+  display: block;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
@@ -195,6 +201,13 @@
   padding: var(--pg-space-20) 0;
 }
 
+.pg-page-apropos .pg-surface-dark,
+.pg-page-apropos .pg-surface-dark-soft,
+.pg-page-apropos .pg-surface-dark-soft--compact {
+  padding: 0;
+}
+
+
 .pg-section-header--compact {
   margin-bottom: var(--pg-space-12);
 }
@@ -208,7 +221,7 @@
   background: #0a0a0f;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 56px var(--pg-space-6);
+  padding: var(--pg-space-14) var(--pg-space-6);
   position: relative;
   overflow: hidden;
 }
@@ -797,7 +810,7 @@ a.contact-info-card__value:hover {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 2/3;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -852,6 +865,11 @@ a.contact-info-card__value:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--pg-space-6);
+}
+
+.pg-page-apropos #values-title + .pg-section-subtitle,
+.pg-page-apropos #certs-title + .pg-section-subtitle {
+  max-width: 600px;
 }
 
 .apropos-value-card {
@@ -969,12 +987,17 @@ a.contact-info-card__value:hover {
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s ease, transform 0.3s ease;
+  animation-play-state: paused;
 }
 
 .apropos-stat:nth-child(1) { animation: stat-float-a 5.2s ease-in-out infinite; }
 .apropos-stat:nth-child(3) { animation: stat-float-b 6.1s ease-in-out infinite 0.8s; }
 .apropos-stat:nth-child(5) { animation: stat-float-c 5.7s ease-in-out infinite 1.4s; }
 .apropos-stat:nth-child(7) { animation: stat-float-d 6.5s ease-in-out infinite 0.4s; }
+
+.apropos-stat.is-animated {
+  animation-play-state: running;
+}
 
 .apropos-stat__shadow {
   position: absolute;
@@ -985,6 +1008,7 @@ a.contact-info-card__value:hover {
   border-radius: 50%;
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
+  animation-play-state: paused;
 }
 
 .apropos-stat:hover {
@@ -1010,6 +1034,12 @@ a.contact-info-card__value:hover {
   border: 1px solid rgba(185, 5, 4, 0.25);
   border-radius: 50%;
   animation: stat-ring-pulse 4.8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.apropos-stat.is-animated .apropos-stat__icon-ring,
+.apropos-stat.is-animated .apropos-stat__shadow {
+  animation-play-state: running;
 }
 
 .apropos-stat:nth-child(3) .apropos-stat__icon-ring { animation-duration: 6.1s; animation-delay: 0.8s; }
@@ -1096,7 +1126,7 @@ a.contact-info-card__value:hover {
 }
 
 .apropos-team-card__img-wrap {
-  aspect-ratio: 1;
+  aspect-ratio: 3/2;
   overflow: hidden;
   position: relative;
 }
@@ -1199,6 +1229,18 @@ a.contact-info-card__value:hover {
 
   .apropos-stat {
     width: 100%;
+  }
+}
+
+
+@media (max-width: 900px) and (min-width: 561px) {
+  .apropos-certs {
+    justify-content: stretch;
+  }
+
+  .apropos-cert-badge {
+    flex: 1 1 calc(50% - var(--pg-space-5));
+    justify-content: center;
   }
 }
 

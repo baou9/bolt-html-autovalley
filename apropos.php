@@ -1,6 +1,6 @@
 <?php
 $metaTitle = "À propos de l’atelier | AutoValley Casablanca";
-$metaDescription = "Découvrez AutoValley à Casablanca : notre atelier, notre méthode de travail et l'équipe qui accompagne l'entretien de votre véhicule.";
+$metaDescription = "Découvrez notre atelier de réparation automobile à Casablanca : diagnostic, carrosserie, entretien et accompagnement de votre véhicule.";
 $ogType = 'website';
 $metaImagePath = '/public/Converted-PNG2.png';
 $pageStyles = [
@@ -10,21 +10,51 @@ $pageStyles = [
     './style/css/premium-styles.css',
     './style/css/pages-styles.css'
 ];
-$structuredData = [[
-    '@context' => 'https://schema.org',
-    '@type' => 'BreadcrumbList',
-    'itemListElement' => [
-        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
-        ['@type' => 'ListItem', 'position' => 2, 'name' => 'À propos', 'item' => 'https://autovalley.ma/apropos.php'],
+$structuredData = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'À propos', 'item' => 'https://autovalley.ma/apropos.php'],
+        ],
     ],
-]];
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'AutoRepair',
+        'name' => 'AutoValley',
+        'url' => 'https://autovalley.ma/apropos.php',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => 'Sapino, Nouaceur',
+            'addressLocality' => 'Casablanca',
+            'addressCountry' => 'Maroc',
+        ],
+        'telephone' => '+212 6 00 00 00 00',
+        'email' => 'contact@autovalley.ma',
+        'openingHoursSpecification' => [
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'opens' => '08:30',
+                'closes' => '18:30',
+            ],
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => 'Saturday',
+                'opens' => '09:00',
+                'closes' => '13:00',
+            ],
+        ],
+    ],
+];
 ?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
     <?php include __DIR__ . '/partials/head.php'; ?>
   </head>
-<body>
+<body class="pg-page pg-page-apropos">
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <?php include __DIR__ . "/partials/header.php"; ?>
@@ -74,7 +104,7 @@ $structuredData = [[
 
       <section aria-label="Chiffres clés" class="pg-stats-band">
         <div class="apropos-stats pg-stats-band__inner">
-          <article class="apropos-stat pg-reveal">
+          <article class="apropos-stat pg-reveal" aria-label="15 ans et plus d'expertise">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -89,7 +119,7 @@ $structuredData = [[
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <article class="apropos-stat pg-reveal pg-reveal--delay-1">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-1" aria-label="Plus de 10 000 véhicules pris en charge">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -104,7 +134,7 @@ $structuredData = [[
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <article class="apropos-stat pg-reveal pg-reveal--delay-2">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-2" aria-label="Note Google vérifiée de 5 sur 5">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -119,7 +149,7 @@ $structuredData = [[
 
           <div class="apropos-stat__divider" aria-hidden="true"></div>
 
-          <article class="apropos-stat pg-reveal pg-reveal--delay-3">
+          <article class="apropos-stat pg-reveal pg-reveal--delay-3" aria-label="Plus de 20 marques maîtrisées">
             <div class="apropos-stat__icon-wrap" aria-hidden="true">
               <div class="apropos-stat__icon-ring"></div>
               <svg class="apropos-stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -284,7 +314,7 @@ $structuredData = [[
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">
-                <p class="apropos-team-card__name">Youssef El Mansouri</p>
+                <h3 class="apropos-team-card__name">Youssef El Mansouri</h3>
                 <p class="apropos-team-card__role">Directeur Technique</p>
               </div>
             </article>
@@ -295,7 +325,7 @@ $structuredData = [[
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">
-                <p class="apropos-team-card__name">Karim Bensouda</p>
+                <h3 class="apropos-team-card__name">Karim Bensouda</h3>
                 <p class="apropos-team-card__role">Chef d'Atelier</p>
               </div>
             </article>
@@ -306,7 +336,7 @@ $structuredData = [[
                 <div class="apropos-team-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="apropos-team-card__body">
-                <p class="apropos-team-card__name">Samir Alaoui</p>
+                <h3 class="apropos-team-card__name">Samir Alaoui</h3>
                 <p class="apropos-team-card__role">Responsable Carrosserie</p>
               </div>
             </article>

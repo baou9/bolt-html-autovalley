@@ -688,19 +688,6 @@
    18. Smooth Page Load Animation
    ────────────────────────────────────────────────────────── */
 
-body {
-  animation: pageLoad 0.6s ease;
-}
-
-@keyframes pageLoad {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* ──────────────────────────────────────────────────────────
    19. Enhanced Mobile Navigation
    ────────────────────────────────────────────────────────── */
@@ -785,34 +772,30 @@ body {
    ────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .custom-cursor {
-    display: none;
-  }
-
-  .scroll-progress {
-    display: none;
-  }
-
+  .custom-cursor,
+  .scroll-progress,
   .grain-overlay {
     display: none;
   }
 
-  .reveal-element {
-    opacity: 1;
-    transform: none;
-  }
-
+  .reveal-element,
   .header-animate {
     opacity: 1;
     transform: none;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .xenon-ambience__beam,
+  .xenon-ambience__wash,
+  .floating-orb,
+  .holographic-card,
+  .premium-glow,
+  .liquid-morph,
+  .wave-animation,
+  .gradient-flow {
+    animation: none !important;
+    transition: none !important;
   }
 }
 

@@ -1,11 +1,18 @@
 import { initMagneticButtons } from './premium-effects.js';
 
+document.documentElement.classList.remove('no-js');
+
 /* ──────────────────────────────────────────────────────────
    Scroll reveal (shared – mirrors sv-reveal pattern)
    ────────────────────────────────────────────────────────── */
 function initPageReveal() {
   const elements = document.querySelectorAll('.pg-reveal');
   if (!elements.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -20,6 +27,35 @@ function initPageReveal() {
   );
 
   elements.forEach((el) => observer.observe(el));
+
+  window.setTimeout(() => {
+    elements.forEach((el) => {
+      if (!el.classList.contains('is-visible')) {
+        el.classList.add('is-visible');
+      }
+    });
+  }, 1400);
+}
+
+function initAproposStatAnimations() {
+  const stats = document.querySelectorAll('.apropos-stat');
+  if (!stats.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    stats.forEach((stat) => stat.classList.add('is-animated'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-animated', entry.isIntersecting);
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  stats.forEach((stat) => observer.observe(stat));
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -307,6 +343,7 @@ function initJobApplyScroll() {
    ────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initPageReveal();
+  initAproposStatAnimations();
   initBackToTop();
   initMagneticButtons();
   initFaq();
