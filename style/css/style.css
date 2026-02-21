@@ -5513,6 +5513,11 @@ body,
     scroll-snap-align: start;
   }
 
+  .timeline-card:first-child {
+    opacity: 1;
+    transform: translateY(var(--card-parallax));
+  }
+
   .timeline-title {
     font-size: 18px;
   }

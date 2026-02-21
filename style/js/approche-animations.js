@@ -31,6 +31,20 @@ function initTimelineCards(cards) {
   }
 
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+
+  if (isMobile) {
+    const grid = cards[0].closest('.timeline-grid');
+    if (grid) {
+      grid.scrollLeft = 0;
+    }
+    const firstCard = cards[0];
+    firstCard.classList.add('in-view');
+    const firstIcon = firstCard.querySelector('.card-icon-wrapper');
+    if (firstIcon) {
+      firstIcon.classList.add('in-view');
+    }
+  }
+
   const cardObserver = typeof window !== 'undefined' && 'IntersectionObserver' in window
     ? new IntersectionObserver((entries, obs) => {
         entries.forEach((entry) => {
