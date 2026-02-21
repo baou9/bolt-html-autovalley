@@ -42,6 +42,7 @@ function buildPhpToHtml() {
     const phpPath = resolve(__dirname, `${page}.php`);
     if (existsSync(phpPath)) {
       let content = readFileSync(phpPath, 'utf-8');
+      content = content.replace(/<\?php[\s\S]*?\?>\s*/g, '');
       content = resolvePhpIncludes(content, __dirname);
       content = content.replace(/(src|href)="\.\//g, '$1="../');
       const htmlPath = resolve(tempDir, `${page}.html`);

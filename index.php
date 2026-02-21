@@ -27,22 +27,12 @@ $pageStyles = [
       <section class="hero-lg" id="accueil">
           <!-- Background video -->
           <div class="hero-lg__video-layer" style="aspect-ratio: 16 / 9;">
-              <img
-                  class="hero-lg__poster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
-                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
-                  alt=""
-                  width="1920"
-                  height="1080"
-                  decoding="async"
-                  fetchpriority="high"
-              />
               <video
                   id="heroVideo"
-                  class="hero-lg__video" style="opacity:0;"
+                  class="hero-lg__video"
                   muted
                   playsinline
                   preload="none"
-                  poster="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=1920"
                   width="1920"
                   height="1080"
                   aria-hidden="true"

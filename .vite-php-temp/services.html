@@ -1,277 +1,9 @@
-<?php
-$metaTitle = "Services auto à Casablanca | AutoValley";
-$metaDescription = "Découvrez les services AutoValley à Casablanca: diagnostic, mécanique, entretien, carrosserie et interventions sur véhicules hybrides.";
-$ogType = 'website';
-$metaImagePath = '/public/Converted-PNG2.png';
-$pageStyles = [
-    './style/css/style.css',
-    './style/css/header-styles.css',
-    './style/css/header-responsive.css',
-    './style/css/premium-styles.css',
-    './style/css/services-styles.css',
-    './style/css/testimonials-styles.css'
-];
-
-// [PATCH] Conservative Service schema aligned with visible services content.
-$structuredData = [[
-    '@context' => 'https://schema.org',
-    '@type' => 'Service',
-    'name' => 'Services AutoValley',
-    'description' => 'Des prestations completes realisees par des techniciens certifies, avec des equipements de derniere generation.',
-    'serviceType' => 'Services d\'entretien et de reparation automobile',
-    'areaServed' => 'Casablanca',
-    'provider' => [
-        '@type' => 'Organization',
-        'name' => 'AutoValley',
-    ],
-    'hasOfferCatalog' => [
-        '@type' => 'OfferCatalog',
-        'name' => 'Tous Nos Services',
-        'itemListElement' => [
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Diagnostic electronique & mecanique']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Mecanique generale']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Geometrie & suspension']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Entretien & maintenance']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Pre-controle technique']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Carrosserie & peinture']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Electricite automobile']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Climatisation & refroidissement']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Vehicules hybrides & electriques']],
-            ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Gestion sinistres & assurances']],
-        ],
-    ],
-]];
-?>
 <!doctype html>
 <html lang="fr" class="no-js">
   <head>
-    <?php
-$metaTitle = $metaTitle ?? 'AutoValley';
-$metaDescription = $metaDescription ?? '';
-$metaRobots = $metaRobots ?? null;
-$ogType = $ogType ?? 'website';
-$metaImagePath = $metaImagePath ?? '/public/Converted-PNG2.png';
-$pageStyles = $pageStyles ?? [];
-$headExtra = $headExtra ?? '';
-$structuredData = $structuredData ?? [];
-
-$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-$requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-$path = strtok($requestUri, '?') ?: '/';
-
-$canonicalUrl = $canonicalUrl ?? sprintf('%s://%s%s', $scheme, $host, $path);
-$ogUrl = $ogUrl ?? $canonicalUrl;
-
-if (!function_exists('av_media_build_url')) {
-    function av_media_build_url(string $src, int $width, string $format = 'jpg'): string
-    {
-        $parts = parse_url($src);
-        if (!isset($parts['host']) || !str_contains($parts['host'], 'pexels.com')) {
-            return $src;
-        }
-
-        $query = [];
-        if (!empty($parts['query'])) {
-            parse_str($parts['query'], $query);
-        }
-
-        $query['auto'] = 'compress';
-        $query['cs'] = 'tinysrgb';
-        $query['fit'] = 'crop';
-        $query['w'] = $width;
-        $query['fm'] = $format;
-
-        $base = sprintf('%s://%s%s', $parts['scheme'] ?? 'https', $parts['host'], $parts['path'] ?? '');
-
-        return $base . '?' . http_build_query($query);
-    }
-}
-
-if (!function_exists('av_responsive_image')) {
-    function av_responsive_image(array $config): void
-    {
-        $src = $config['src'];
-        $alt = html_entity_decode($config['alt'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
-        $width = (int) ($config['width'] ?? 1200);
-        $height = (int) ($config['height'] ?? 800);
-        $class = $config['class'] ?? '';
-        $loading = $config['loading'] ?? 'lazy';
-        $decoding = $config['decoding'] ?? 'async';
-        $sizes = $config['sizes'] ?? '(max-width: 768px) 100vw, 50vw';
-        $fetchPriority = $config['fetchpriority'] ?? null;
-
-        $breakpoints = [360, 480, 768, 1200, 1600, 1920];
-        $widths = array_values(array_filter($breakpoints, static fn (int $candidate): bool => $candidate < $width));
-        $widths[] = $width;
-        $widths = array_values(array_unique($widths));
-
-        $buildSrcset = static function (string $format) use ($src, $widths): string {
-            $srcsetItems = [];
-            foreach ($widths as $responsiveWidth) {
-                $srcsetItems[] = av_media_build_url($src, $responsiveWidth, $format) . ' ' . $responsiveWidth . 'w';
-            }
-
-            return implode(', ', $srcsetItems);
-        };
-
-        $classAttr = $class !== '' ? ' class="' . htmlspecialchars($class, ENT_QUOTES, 'UTF-8') . '"' : '';
-        $priorityAttr = $fetchPriority !== null ? ' fetchpriority="' . htmlspecialchars($fetchPriority, ENT_QUOTES, 'UTF-8') . '"' : '';
-
-        echo '<picture>';
-        echo '<source type="image/avif" srcset="' . htmlspecialchars($buildSrcset('avif'), ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '">';
-        echo '<source type="image/webp" srcset="' . htmlspecialchars($buildSrcset('webp'), ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '">';
-        echo '<img width="' . $width . '" height="' . $height . '" src="' . htmlspecialchars(av_media_build_url($src, $width, 'jpg'), ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($alt, ENT_QUOTES, 'UTF-8') . '"' . $classAttr . ' loading="' . htmlspecialchars($loading, ENT_QUOTES, 'UTF-8') . '" decoding="' . htmlspecialchars($decoding, ENT_QUOTES, 'UTF-8') . '" sizes="' . htmlspecialchars($sizes, ENT_QUOTES, 'UTF-8') . '" srcset="' . htmlspecialchars($buildSrcset('jpg'), ENT_QUOTES, 'UTF-8') . '"' . $priorityAttr . '>';
-        echo '</picture>';
-    }
-}
-
-if (preg_match('/^https?:\/\//i', $metaImagePath)) {
-    $ogImage = $metaImagePath;
-} else {
-    $ogImage = sprintf('%s://%s%s', $scheme, $host, $metaImagePath);
-}
-
-$siteUrl = sprintf('%s://%s', $scheme, $host);
-
-if (!is_array($structuredData)) {
-    $structuredData = [];
-}
-
-$baseStructuredData = [
-    [
-        '@context' => 'https://schema.org',
-        '@type' => 'WebSite',
-        'name' => 'AutoValley',
-        'url' => $siteUrl,
-    ],
-    [
-        '@context' => 'https://schema.org',
-        '@type' => 'Organization',
-        'name' => 'AutoValley',
-        'url' => $siteUrl,
-        'logo' => $ogImage,
-    ],
-];
-
-$allStructuredData = array_merge($baseStructuredData, $structuredData);
-?>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="../style/images/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= htmlspecialchars($metaTitle, ENT_QUOTES, 'UTF-8') ?></title>
-    <meta name="description" content="<?= htmlspecialchars($metaDescription, ENT_QUOTES, 'UTF-8') ?>" />
-<?php if (!empty($metaRobots)): ?>
-    <meta name="robots" content="<?= htmlspecialchars($metaRobots, ENT_QUOTES, 'UTF-8') ?>" />
-<?php endif; ?>
-    <link rel="canonical" href="<?= htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8') ?>" />
-
-    <meta property="og:title" content="<?= htmlspecialchars($metaTitle, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:description" content="<?= htmlspecialchars($metaDescription, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:type" content="<?= htmlspecialchars($ogType, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:url" content="<?= htmlspecialchars($ogUrl, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:image" content="<?= htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8') ?>" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="<?= htmlspecialchars($metaTitle, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta name="twitter:description" content="<?= htmlspecialchars($metaDescription, ENT_QUOTES, 'UTF-8') ?>" />
-    <meta name="twitter:image" content="<?= htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8') ?>" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<?php foreach ($pageStyles as $styleHref): ?>
-    <link rel="stylesheet" href="<?= htmlspecialchars($styleHref, ENT_QUOTES, 'UTF-8') ?>">
-<?php endforeach; ?>
-<?php foreach ($allStructuredData as $schema): ?>
-<?php if (is_array($schema) && !empty($schema)): ?>
-    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
-<?php endif; ?>
-<?php endforeach; ?>
-<?= $headExtra ?>
-
-  </head>
+    </head>
 <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
-
-        <header class="site-header">
-      <div class="header-glass-container">
-        <div class="logo-wrapper">
-          <a href="../index.php" aria-label="Retour à l'accueil">
-            <img src="../style/images/Converted-PNG.png"
-                 alt="AutoValley - Full Car Service"
-                 class="logo-img">
-          </a>
-        </div>
-
-        <nav class="desktop-nav" aria-label="Navigation principale">
-          <ul class="nav-links">
-            <li><a href="../index.php" class="nav-link" data-nav-key="home">Accueil</a></li>
-            <li><a href="../services.php" class="nav-link" data-nav-key="services">Services</a></li>
-            <li><a href="../apropos.php" class="nav-link" data-nav-key="about">À propos</a></li>
-            <li><a href="../blog.php" class="nav-link" data-nav-key="blog">Blog</a></li>
-            <li><a href="../carrieres.php" class="nav-link" data-nav-key="careers">Carrières</a></li>
-            <li><a href="../faq.php" class="nav-link" data-nav-key="faq">FAQ</a></li>
-          </ul>
-        </nav>
-
-        <div class="header-actions">
-          <div class="lang-switcher" data-lang-status-label="Bientôt disponible">
-            <label class="sr-only" for="header-language-select">Langue du site</label>
-            <select
-              id="header-language-select"
-              class="lang-select"
-              aria-label="Choisir la langue du site"
-              aria-describedby="header-language-status"
-              data-language-routes="{}"
-              disabled
-              aria-disabled="true"
-            >
-              <option value="fr">FR</option>
-              <option value="en">EN (Bientôt disponible)</option>
-            </select>
-            <span id="header-language-status" class="sr-only">Version anglaise bientôt disponible.</span>
-          </div>
-
-          <a href="../contact.php" class="btn-header-magnetic">
-            <span>Prendre rendez-vous</span>
-            <span class="btn-shimmer" aria-hidden="true"></span>
-          </a>
-
-          <button
-              class="menu-trigger"
-              type="button"
-              aria-label="Ouvrir le menu"
-              aria-expanded="false"
-              aria-controls="mobile-nav"
-          >
-            <span class="hamburger">
-              <span></span>
-              <span></span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <div class="mobile-nav-overlay" aria-hidden="true">
-      <nav class="mobile-nav-content" id="mobile-nav" aria-label="Navigation mobile">
-        <button class="mobile-nav-close" type="button" aria-label="Fermer le menu mobile">Fermer</button>
-        <ul>
-          <li style="--delay: 0.1s"><a href="../index.php" class="mobile-link" data-nav-key="home">Accueil</a></li>
-          <li style="--delay: 0.2s"><a href="../services.php" class="mobile-link" data-nav-key="services">Services</a></li>
-          <li style="--delay: 0.3s"><a href="../apropos.php" class="mobile-link" data-nav-key="about">À propos</a></li>
-          <li style="--delay: 0.4s"><a href="../blog.php" class="mobile-link" data-nav-key="blog">Blog</a></li>
-          <li style="--delay: 0.5s"><a href="../carrieres.php" class="mobile-link" data-nav-key="careers">Carrières</a></li>
-          <li style="--delay: 0.6s"><a href="../faq.php" class="mobile-link" data-nav-key="faq">FAQ</a></li>
-        </ul>
-
-        <div class="mobile-cta" style="--delay: 0.7s">
-          <a href="../contact.php" class="btn-mobile">Prendre rendez-vous</a>
-        </div>
-      </nav>
-    </div>
-
 
     <div class="xenon-ambience" aria-hidden="true">
       <div class="xenon-ambience__beam xenon-ambience__beam--top"></div>
@@ -285,7 +17,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
       <!-- HERO -->
       <section class="sv-hero" id="services-hero">
         <div class="sv-hero__bg" aria-hidden="true">
-          <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489794/pexels-photo-4489794.jpeg?auto=compress&cs=tinysrgb&w=1920', 'alt' => '', 'width' => 1920, 'height' => 1280, 'class' => 'sv-hero__bg-img', 'loading' => 'eager', 'decoding' => 'async', 'sizes' => '100vw', 'fetchpriority' => 'high']); ?>
           <div class="sv-hero__overlay"></div>
         </div>
 
@@ -404,7 +135,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="diagnostic">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6870333/pexels-photo-6870333.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Diagnostic electronique et mecanique automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -431,7 +161,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="mecanique">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Mecanique generale automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -458,7 +187,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="mecanique" data-service="geometrie">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Geometrie et suspension automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Mecanique &amp; Diagnostic</span>
               </div>
@@ -485,7 +213,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="entretien" data-service="entretien">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489710/pexels-photo-4489710.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Entretien et maintenance automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
@@ -512,7 +239,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="entretien" data-service="controle">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3806252/pexels-photo-3806252.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Pre-controle technique automobile', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Entretien &amp; Prevention</span>
               </div>
@@ -539,7 +265,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="carrosserie" data-service="carrosserie">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986117/pexels-photo-8986117.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Carrosserie et peinture automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Carrosserie</span>
               </div>
@@ -566,7 +291,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="electrique" data-service="electricite">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/8986064/pexels-photo-8986064.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Electricite automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
@@ -593,7 +317,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="electrique" data-service="climatisation">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4480500/pexels-photo-4480500.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Climatisation et refroidissement automobile', 'width' => 600, 'height' => 337, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Electrique &amp; Systemes</span>
               </div>
@@ -620,7 +343,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="specialise" data-service="hybride">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/11139515/pexels-photo-11139515.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Vehicules hybrides et electriques', 'width' => 600, 'height' => 1234, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Services Specialises</span>
               </div>
@@ -647,7 +369,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="sv-card sv-reveal" data-category="specialise" data-service="sinistres">
               <div class="sv-card__media">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/6872169/pexels-photo-6872169.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Gestion sinistres et assurances', 'width' => 600, 'height' => 900, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="sv-card__media-overlay"></div>
                 <span class="sv-card__badge">Services Specialises</span>
               </div>
@@ -696,7 +417,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807386/pexels-photo-3807386.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Valises diagnostiques', 'width' => 600, 'height' => 374, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">01</span>
                 <span class="eq-card__badge">Multi-marques</span>
@@ -709,7 +429,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Cabine de peinture', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">02</span>
                 <span class="eq-card__badge">Derniere generation</span>
@@ -722,7 +441,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Banc de geometrie', 'width' => 600, 'height' => 484, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">03</span>
                 <span class="eq-card__badge">Precision 3D</span>
@@ -735,7 +453,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3846205/pexels-photo-3846205.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Equipements haute tension', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">04</span>
                 <span class="eq-card__badge">Certifie B2XL</span>
@@ -748,7 +465,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489732/pexels-photo-4489732.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Ponts elevateurs', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">05</span>
                 <span class="eq-card__badge">5 tonnes</span>
@@ -761,7 +477,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
             <article class="eq-card sv-reveal">
               <div class="eq-card__visual">
-                <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=600', 'alt' => 'Station climatisation', 'width' => 600, 'height' => 400, 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
                 <div class="eq-card__overlay"></div>
                 <span class="eq-card__number">06</span>
                 <span class="eq-card__badge">R134a / R1234yf</span>
@@ -1049,504 +764,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
         </div>
       </section>
 
-          <!-- Témoignages Section - Enhanced -->
-    <section id="temoignages" class="section testimonials-section" aria-labelledby="temoignages-title" aria-describedby="temoignages-description">
-      <div class="testimonials-bg" aria-hidden="true"></div>
-
-      <!-- Enhanced Header -->
-      <header class="testimonials-header">
-        <p class="testimonials-eyebrow">
-          <span class="testimonials-eyebrow-line" aria-hidden="true"></span>
-          CE QUE NOS CLIENTS DISENT
-        </p>
-        <h2 class="testimonials-title" id="temoignages-title">TÉMOIGNAGES / NOS CLIENTS</h2>
-
-        <!-- Enhanced Google Rating Display -->
-        <div class="testimonials-rating-display">
-          <div class="rating-score" aria-label="Note moyenne 5.0 sur 5">
-            <span class="rating-number">5.0</span>
-            <div class="rating-stars" aria-hidden="true">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-          </div>
-          <div class="rating-meta">
-            <p class="rating-count">100+ avis vérifiés</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-               target="_blank"
-               rel="noopener"
-               class="rating-link"
-               aria-label="Consulter nos avis sur Google">
-              Vérifier sur Google →
-            </a>
-          </div>
-        </div>
-
-        <!-- Social Proof Metrics -->
-        <div class="testimonials-metrics" role="list" aria-label="Indicateurs de confiance">
-          <div class="metric-item" role="listitem">
-            <span class="metric-value" data-count="500">500</span>
-            <span class="metric-label">clients satisfaits</span>
-          </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-item" role="listitem">
-            <span class="metric-value">98%</span>
-            <span class="metric-label">recommandent</span>
-          </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-item" role="listitem">
-            <span class="metric-value">5.0<span class="metric-suffix">/5</span></span>
-            <span class="metric-label">note moyenne</span>
-          </div>
-        </div>
-
-        <p id="temoignages-description" class="visually-hidden">
-          Découvrez les témoignages authentiques de nos clients satisfaits à Casablanca
-        </p>
-      </header>
-
-      <!-- Filter System (Desktop) -->
-      <div class="testimonials-filters" role="tablist" aria-label="Filtrer les témoignages par catégorie">
-        <button class="filter-btn is-active" role="tab" aria-selected="true" aria-controls="testimonials-grid" data-filter="tous">
-          Tous <span class="filter-count"></span>
-        </button>
-        <button class="filter-btn" role="tab" aria-selected="false" aria-controls="testimonials-grid" data-filter="Carrosserie">
-          Carrosserie <span class="filter-count"></span>
-        </button>
-        <button class="filter-btn" role="tab" aria-selected="false" aria-controls="testimonials-grid" data-filter="Mécanique">
-          Mécanique <span class="filter-count"></span>
-        </button>
-        <button class="filter-btn" role="tab" aria-selected="false" aria-controls="testimonials-grid" data-filter="Diagnostic">
-          Diagnostic <span class="filter-count"></span>
-        </button>
-        <button class="filter-btn" role="tab" aria-selected="false" aria-controls="testimonials-grid" data-filter="Service Client">
-          Service Client <span class="filter-count"></span>
-        </button>
-      </div>
-
-      <!-- Testimonials Container -->
-      <div class="testimonials-container" id="testimonials-grid" role="tabpanel">
-
-        <!-- Desktop: Featured + Grid Layout -->
-        <div class="testimonials-layout">
-
-          <!-- Featured Testimonial (Desktop Only) -->
-          <article class="testimonial-card testimonial-featured"
-                   role="article"
-                   data-category="Mécanique"
-                   aria-label="Témoignage vedette de Yassine A.">
-            <div class="card-badge-group">
-              <span class="service-badge">Mécanique</span>
-              <span class="verified-badge" aria-label="Avis vérifié Google">
-                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                </svg>
-                Vérifié
-              </span>
-            </div>
-
-            <blockquote class="card-quote">
-              <p>« Service irréprochable, diagnostic transparent et prêt de véhicule premium. L'équipe AutoValley a su gérer ma Porsche avec le même niveau d'exigence qu'un concessionnaire officiel. »</p>
-            </blockquote>
-
-            <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-              <span class="star">★</span>
-            </div>
-
-            <footer class="card-profile">
-              <img src="https://i.pravatar.cc/240?img=12"
-                   width="80"
-                   height="80"
-                   loading="lazy"
-                   alt="Portrait de Yassine"
-                   class="profile-photo" />
-              <div class="profile-info">
-                <cite class="profile-name">Yassine A.</cite>
-                <p class="profile-vehicle">Porsche Macan</p>
-                <p class="profile-service">Révision complète</p>
-                <p class="profile-meta">
-                  <span class="profile-location">Casablanca</span>
-                  <span class="meta-divider">•</span>
-                  <time datetime="2024-11-15" class="profile-date">Il y a 1 mois</time>
-                </p>
-              </div>
-            </footer>
-
-            <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-               target="_blank"
-               rel="noopener"
-               class="card-google-link">
-              <svg class="google-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              Voir sur Google
-            </a>
-          </article>
-
-          <!-- Grid of Secondary Testimonials -->
-                    <!-- Grid of Secondary Testimonials -->
-          <div class="testimonials-grid" id="testimonials-grid-items">
-
-            <!-- Testimonial 2 -->
-            <article class="testimonial-card"
-                     role="article"
-                     data-category="Mécanique"
-                     data-card-index="1"
-                     aria-label="Témoignage de Salma R.">
-              <div class="card-badge-group">
-                <span class="service-badge">Mécanique</span>
-                <span class="verified-badge" aria-label="Avis vérifié">
-                  <svg class="verified-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Vérifié
-                </span>
-              </div>
-
-              <blockquote class="card-quote">
-                <p>AutoValley gère notre flotte BMW avec un niveau d'exigence digne d'un concessionnaire.</p>
-              </blockquote>
-
-              <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-
-              <footer class="card-profile">
-                <img src="https://i.pravatar.cc/240?img=47"
-                     width="56"
-                     height="56"
-                     loading="lazy"
-                     alt="Portrait de Salma"
-                     class="profile-photo" />
-                <div class="profile-info">
-                  <cite class="profile-name">Salma R.</cite>
-                  <p class="profile-vehicle">BMW Série 5</p>
-                  <p class="profile-service">Gestion de flotte</p>
-                  <p class="profile-meta">
-                    <time datetime="2024-10-20" class="profile-date">Il y a 2 mois</time>
-                  </p>
-                </div>
-              </footer>
-
-              <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-                 target="_blank"
-                 rel="noopener"
-                 class="card-google-link">
-                <svg class="google-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Voir sur Google
-              </a>
-            </article>
-
-            <!-- Testimonial 3 -->
-            <article class="testimonial-card"
-                     role="article"
-                     data-category="Carrosserie"
-                     data-card-index="2"
-                     aria-label="Témoignage de Mehdi L.">
-              <div class="card-badge-group">
-                <span class="service-badge">Carrosserie</span>
-                <span class="verified-badge" aria-label="Avis vérifié">
-                  <svg class="verified-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Vérifié
-                </span>
-              </div>
-
-              <blockquote class="card-quote">
-                <p>Un accueil chaleureux, des délais respectés et une carrosserie sortie d'usine.</p>
-              </blockquote>
-
-              <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-
-              <footer class="card-profile">
-                <img src="https://i.pravatar.cc/240?img=32"
-                     width="56"
-                     height="56"
-                     loading="lazy"
-                     alt="Portrait de Mehdi"
-                     class="profile-photo" />
-                <div class="profile-info">
-                  <cite class="profile-name">Mehdi L.</cite>
-                  <p class="profile-vehicle">Range Rover Sport</p>
-                  <p class="profile-service">Carrosserie & Peinture</p>
-                  <p class="profile-meta">
-                    <time datetime="2024-11-01" class="profile-date">Il y a 1 mois</time>
-                  </p>
-                </div>
-              </footer>
-
-              <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-                 target="_blank"
-                 rel="noopener"
-                 class="card-google-link">
-                <svg class="google-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Voir sur Google
-              </a>
-            </article>
-
-            <!-- Testimonial 4 -->
-            <article class="testimonial-card"
-                     role="article"
-                     data-category="Diagnostic"
-                     data-card-index="3"
-                     aria-label="Témoignage de Lina M.">
-              <div class="card-badge-group">
-                <span class="service-badge">Diagnostic</span>
-                <span class="verified-badge" aria-label="Avis vérifié">
-                  <svg class="verified-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Vérifié
-                </span>
-              </div>
-
-              <blockquote class="card-quote">
-                <p>Diagnostics haute tension précis et explications pédagogiques pour mon Audi e-tron.</p>
-              </blockquote>
-
-              <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-
-              <footer class="card-profile">
-                <img src="https://i.pravatar.cc/240?img=5"
-                     width="56"
-                     height="56"
-                     loading="lazy"
-                     alt="Portrait de Lina"
-                     class="profile-photo" />
-                <div class="profile-info">
-                  <cite class="profile-name">Lina M.</cite>
-                  <p class="profile-vehicle">Audi e-tron</p>
-                  <p class="profile-service">Diagnostic électrique</p>
-                  <p class="profile-meta">
-                    <time datetime="2024-11-10" class="profile-date">Il y a 3 semaines</time>
-                  </p>
-                </div>
-              </footer>
-
-              <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-                 target="_blank"
-                 rel="noopener"
-                 class="card-google-link">
-                <svg class="google-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Voir sur Google
-              </a>
-            </article>
-
-            <!-- Testimonial 5 -->
-            <article class="testimonial-card"
-                     role="article"
-                     data-category="Service Client"
-                     data-card-index="4"
-                     aria-label="Témoignage de Karim B.">
-              <div class="card-badge-group">
-                <span class="service-badge">Service Client</span>
-                <span class="verified-badge" aria-label="Avis vérifié">
-                  <svg class="verified-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Vérifié
-                </span>
-              </div>
-
-              <blockquote class="card-quote">
-                <p>Transparence totale sur les interventions et tarifs clairement expliqués. J'apprécie vraiment cette honnêteté.</p>
-              </blockquote>
-
-              <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-
-              <footer class="card-profile">
-                <img src="https://i.pravatar.cc/240?img=68"
-                     width="56"
-                     height="56"
-                     loading="lazy"
-                     alt="Portrait de Karim"
-                     class="profile-photo" />
-                <div class="profile-info">
-                  <cite class="profile-name">Karim B.</cite>
-                  <p class="profile-vehicle">Mercedes Classe C</p>
-                  <p class="profile-service">Entretien complet</p>
-                  <p class="profile-meta">
-                    <time datetime="2024-10-28" class="profile-date">Il y a 1 mois</time>
-                  </p>
-                </div>
-              </footer>
-
-              <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-                 target="_blank"
-                 rel="noopener"
-                 class="card-google-link">
-                <svg class="google-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Voir sur Google
-              </a>
-            </article>
-
-            <!-- Testimonial 6 -->
-            <article class="testimonial-card"
-                     role="article"
-                     data-category="Carrosserie"
-                     data-card-index="5"
-                     aria-label="Témoignage de Amina Z.">
-              <div class="card-badge-group">
-                <span class="service-badge">Carrosserie</span>
-                <span class="verified-badge" aria-label="Avis vérifié">
-                  <svg class="verified-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                  </svg>
-                  Vérifié
-                </span>
-              </div>
-
-              <blockquote class="card-quote">
-                <p>Réparation après accident impeccable. La peinture est parfaitement alignée, impossible de voir où était le choc.</p>
-              </blockquote>
-
-              <div class="card-rating" aria-label="Note 5 sur 5 étoiles">
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-
-              <footer class="card-profile">
-                <img src="https://i.pravatar.cc/240?img=20"
-                     width="56"
-                     height="56"
-                     loading="lazy"
-                     alt="Portrait de Amina"
-                     class="profile-photo" />
-                <div class="profile-info">
-                  <cite class="profile-name">Amina Z.</cite>
-                  <p class="profile-vehicle">Volkswagen Tiguan</p>
-                  <p class="profile-service">Réparation collision</p>
-                  <p class="profile-meta">
-                    <time datetime="2024-09-15" class="profile-date">Il y a 3 mois</time>
-                  </p>
-                </div>
-              </footer>
-
-              <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-                 target="_blank"
-                 rel="noopener"
-                 class="card-google-link">
-                <svg class="google-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Voir sur Google
-              </a>
-            </article>
-
-          </div>
-
-        </div>
-
-        <!-- Mobile: Carousel with Pagination -->
-        <div class="testimonials-carousel-mobile">
-          <div class="carousel-track" id="testimonials-carousel-mobile">
-            <!-- Mobile cards rendered by JS -->
-          </div>
-          <div class="carousel-pagination" role="tablist" aria-label="Navigation des témoignages"></div>
-          <div class="carousel-controls">
-            <button class="carousel-btn carousel-prev" aria-label="Témoignage précédent">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6"/>
-              </svg>
-            </button>
-            <button class="carousel-btn carousel-next" aria-label="Témoignage suivant">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Enhanced CTA Section -->
-      <div class="testimonials-cta">
-        <div class="cta-content">
-          <h3 class="cta-heading">Prêt à vivre l'expérience AutoValley&nbsp;?</h3>
-          <p class="cta-subtext">Rejoignez nos <strong>500+ clients</strong> qui nous font confiance</p>
-        </div>
-        <div class="cta-actions">
-          <a href="#rdv" class="btn-primary-large">
-            Prendre Rendez-vous
-            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="tel:+212600000000" class="btn-secondary-outline">
-            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            Appeler maintenant
-          </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=AutoValley"
-             target="_blank"
-             rel="noopener"
-             class="btn-ghost">
-            Voir tous les avis Google
-          </a>
-        </div>
-      </div>
-    </section>
-
-
       <!-- FINAL CTA -->
       <section class="sv-cta" id="rdv">
         <div class="sv-cta__inner">
@@ -1574,289 +791,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
 
     </main>
 
-        <section id="footer-cta" class="section section--tight footer-cta-section" aria-labelledby="footer-cta-title">
-      <div class="footer-cta-inner">
-        <div class="card-base card-base--strong card-accent-red-strong card-tall footer-cta-content">
-          <div class="section-header section-header-centered footer-cta-head">
-            <p class="section-kicker footer-cta-kicker">Prêt à passer au niveau supérieur&nbsp;?</p>
-            <h2 class="section-title footer-cta-title" id="footer-cta-title">
-              Prêt à donner à votre voiture le service qu'elle mérite&nbsp;?
-            </h2>
-            <p class="section-subtitle footer-cta-subtitle">
-              Un diagnostic précis, des délais clairs et un suivi transparent – c'est la promesse AutoValley.
-            </p>
-          </div>
-          <div class="footer-cta-actions">
-            <a class="btn-footer-primary" href="../contact.php">
-              Prendre rendez-vous en ligne
-            </a>
-            <a class="btn-footer-secondary" href="../services.php">
-              Parler à un conseiller
-            </a>
-          </div>
-          <p class="footer-cta-note">Réponse en moins de 2 heures ouvrées.</p>
-        </div>
-      </div>
-    </section>
-
-
-        <footer id="site-footer" class="site-footer" aria-label="Pied de page principal">
-      <div class="footer-grid">
-        <div class="footer-column footer-brand">
-          <div class="footer-logo-row">
-            <div class="footer-logo" aria-label="AutoValley">
-              <img width="1478" height="213" src="../style/images/Converted-PNG.png" alt="AutoValley" loading="lazy" />
-            </div>
-          </div>
-          <p class="footer-brand-text">
-            AutoValley est l'atelier automobile premium à Casablanca, spécialisé en diagnostic,
-            mécanique, carrosserie et technologies de pointe.
-          </p>
-
-          <div class="footer-google-badge">
-            <div class="footer-google-stars" aria-hidden="true">★★★★★</div>
-            <div class="footer-google-text">
-              <span>5,0 / 5 sur Google</span>
-              <button class="footer-google-link" type="button">Voir nos avis vérifiés</button>
-            </div>
-          </div>
-
-          <p class="footer-badges-note">
-            Agréé SNTL et partenaire de grandes compagnies d'assurance.
-          </p>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-atelier"
-            id="footer-trigger-atelier"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">L'Atelier</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-atelier"
-            role="region"
-            aria-labelledby="footer-trigger-atelier"
-          >
-            <ul class="footer-links">
-              <li><a href="../index.php">Accueil</a></li>
-              <li><a href="../services.php">Nos Services d'Excellence</a></li>
-              <li><a href="../apropos.php">À Propos</a></li>
-              <li><a href="../index.php#technologie">Technologie &amp; Équipements</a></li>
-              <li><a href="../index.php#all-brands">Toutes les Marques</a></li>
-              <li><a href="../index.php#temoignages">Témoignages / Nos Clients</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-column footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-clients"
-            id="footer-trigger-clients"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Nos Clients</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-clients"
-            role="region"
-            aria-labelledby="footer-trigger-clients"
-          >
-            <ul class="footer-links">
-              <li><a href="../index.php#nos-clients">Particuliers</a></li>
-              <li><a href="../index.php#nos-clients">Entreprises &amp; flottes</a></li>
-              <li><a href="../index.php#nos-clients">Loueurs de voitures</a></li>
-              <li><a href="../index.php#nos-clients">Assureurs &amp; experts</a></li>
-              <li><a href="../index.php#nos-clients">Secteur public (Agréé SNTL)</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-column footer-contact footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-contact"
-            id="footer-trigger-contact"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Nous Contacter</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-contact"
-            role="region"
-            aria-labelledby="footer-trigger-contact"
-          >
-            <ul class="footer-contact-list">
-              <li>
-                <span class="footer-contact-label">Adresse</span>
-                <a href="https://maps.google.com" target="_blank" rel="noopener" class="footer-contact-link">
-                  Sapino, Nouaceur – Casablanca
-                </a>
-              </li>
-              <li>
-                <span class="footer-contact-label">Téléphone</span>
-                <a href="tel:+212600000000" class="footer-contact-link">
-                  +212 6 00 00 00 00
-                </a>
-              </li>
-              <li>
-                <span class="footer-contact-label">WhatsApp Service</span>
-                <a href="https://wa.me/212600000000" target="_blank" rel="noopener" class="footer-contact-link">
-                  Écrire sur WhatsApp
-                </a>
-              </li>
-              <li>
-                <span class="footer-contact-label">Email</span>
-                <a href="mailto:contact@autovalley.ma" class="footer-contact-link">
-                  contact@autovalley.ma
-                </a>
-              </li>
-            </ul>
-
-            <div class="footer-hours">
-              <p class="footer-contact-label">Horaires d'ouverture</p>
-              <p class="footer-hours-text">
-                Lun – Ven : 08h30 – 18h30<br />
-                Sam : 09h00 – 13h00<br />
-                Dimanche : fermé
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-column footer-resources footer-accordion">
-          <button
-            class="footer-accordion-trigger"
-            type="button"
-            aria-expanded="false"
-            aria-controls="footer-panel-resources"
-            id="footer-trigger-resources"
-          >
-            <span class="footer-column-title" role="heading" aria-level="3">Ressources &amp; Légal</span>
-            <span class="footer-accordion-icon" aria-hidden="true"></span>
-          </button>
-          <div
-            class="footer-accordion-panel"
-            id="footer-panel-resources"
-            role="region"
-            aria-labelledby="footer-trigger-resources"
-          >
-            <ul class="footer-links">
-              <li><a href="../blog.php">L'Academie AutoValley (Blog)</a></li>
-              <li><a href="../faq.php">FAQ</a></li>
-              <li><a href="../carrieres.php">Carrières</a></li>
-              <li><a href="../contact.php">Devenir partenaire</a></li>
-            </ul>
-
-            <h3 class="footer-column-title footer-legal-title">Légal</h3>
-            <ul class="footer-links">
-              <li><a href="../mentions-legales.php">Mentions légales</a></li>
-              <li><a href="../politique-confidentialite.php">Politique de confidentialité</a></li>
-              <li>
-                <button class="footer-link-action" type="button" data-consent-open>
-                  Gestion des cookies
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom-bar">
-        <div class="footer-bottom-inner">
-          <div class="footer-bottom-left">
-            <span class="footer-bottom-text">
-              © <span id="current-year"></span> AutoValley. Tous droits réservés.
-            </span>
-          </div>
-
-          <div class="footer-bottom-center">
-            <span class="footer-bottom-text small">Expérience &amp; design par AutoValley.</span>
-          </div>
-
-          <div class="footer-bottom-right">
-            <div class="footer-socials">
-              <span class="footer-social-icon" aria-label="LinkedIn (bientôt disponible)">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M7 10v7" />
-                  <path d="M7 7.4h.01" />
-                  <path d="M11 17v-3.9a2.1 2.1 0 0 1 4.2 0V17" />
-                  <path d="M11 10v7" />
-                </svg>
-              </span>
-              <span class="footer-social-icon" aria-label="Instagram (bientôt disponible)">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <rect x="4.5" y="4.5" width="15" height="15" rx="4.2" />
-                  <circle cx="12" cy="12" r="3.4" />
-                  <circle cx="16.8" cy="7.2" r="0.7" />
-                </svg>
-              </span>
-              <span class="footer-social-icon" aria-label="Facebook (bientôt disponible)">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M13.4 19v-6.5h2.2l.4-2.6h-2.6V8.3c0-.8.3-1.3 1.4-1.3H16V4.7c-.2 0-.9-.1-1.8-.1-2.1 0-3.5 1.2-3.5 3.6V10H8.6v2.6h2.1V19" />
-                </svg>
-              </span>
-              <span class="footer-social-icon" aria-label="TikTok (bientôt disponible)">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M14 5.2c.7 1.2 1.8 2 3.2 2.2" />
-                  <path d="M10.2 11.2v5a2.6 2.6 0 1 1-2.6-2.6" />
-                  <path d="M14 5.2v8.9a4.4 4.4 0 1 1-4.4-4.4" />
-                </svg>
-              </span>
-            </div>
-            <div class="footer-lang-switch" role="group" aria-label="Changer de langue" data-lang-status-label="Bientôt disponible">
-              <button class="footer-lang is-active" type="button" data-locale="fr" aria-current="true" disabled aria-disabled="true">FR</button>
-              <span class="footer-lang-sep" aria-hidden="true">/</span>
-              <button class="footer-lang" type="button" data-locale="en" disabled aria-disabled="true">EN</button>
-              <span class="footer-lang-note" aria-hidden="true">Bientôt disponible</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      (() => {
-        const openConsentManager = () => { // [PATCH]
-          if (typeof window !== 'undefined') {
-            if (typeof window.__tcfapi === 'function') {
-              window.__tcfapi('displayConsentUi', 2, () => {});
-              return;
-            }
-
-            if (typeof window.Cookiebot?.renew === 'function') {
-              window.Cookiebot.renew();
-              return;
-            }
-
-            if (typeof window.OneTrust?.ToggleInfoDisplay === 'function') {
-              window.OneTrust.ToggleInfoDisplay();
-              return;
-            }
-
-            window.dispatchEvent(new CustomEvent('consent:open')); // [PATCH]
-          }
-        };
-
-        document.querySelectorAll('[data-consent-open], .cookie-manage-btn').forEach((trigger) => { // [PATCH]
-          trigger.addEventListener('click', openConsentManager);
-        });
-      })();
-    </script>
-
-
     <div id="service-modal" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-modal-title" aria-hidden="true">
       <div class="service-modal__overlay"></div>
       <div class="service-modal__container">
@@ -1874,13 +808,6 @@ $allStructuredData = array_merge($baseStructuredData, $structuredData);
         </div>
       </div>
     </div>
-
-        <a href="tel:+212522123456" class="mobile-float-cta" aria-label="Appeler AutoValley">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-      </svg>
-    </a>
-
 
     <script type="module" src="../style/js/nav-active.js"></script>
     <script type="module" src="../style/js/premium-effects.js"></script>
