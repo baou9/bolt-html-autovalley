@@ -30,6 +30,7 @@ function initTimelineCards(cards) {
     return;
   }
 
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
   const cardObserver = typeof window !== 'undefined' && 'IntersectionObserver' in window
     ? new IntersectionObserver((entries, obs) => {
         entries.forEach((entry) => {
@@ -45,7 +46,7 @@ function initTimelineCards(cards) {
             obs.unobserve(card);
           }
         });
-      }, { threshold: 0.35 })
+      }, { threshold: isMobile ? 0.05 : 0.35 })
     : null;
 
   cards.forEach((card) => {
@@ -183,14 +184,17 @@ export function initApproche() {
     return;
   }
 
+  const isMobileView = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+  const headerThreshold = isMobileView ? 0.05 : 0.2;
+
   const header = section.querySelector('.approche-header');
   if (header) {
-    addClassOnIntersect([header], 'is-visible', { threshold: 0.2 });
+    addClassOnIntersect([header], 'is-visible', { threshold: headerThreshold });
   }
 
   const ctaWrapper = section.querySelector('.approche-cta-wrapper');
   if (ctaWrapper) {
-    addClassOnIntersect([ctaWrapper], 'is-visible', { threshold: 0.2 });
+    addClassOnIntersect([ctaWrapper], 'is-visible', { threshold: headerThreshold });
   }
 
   const cards = Array.from(section.querySelectorAll('.timeline-card'));

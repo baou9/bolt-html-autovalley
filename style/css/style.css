@@ -5588,6 +5588,19 @@ body,
     font-size: 17px;
     margin-bottom: 24px;
   }
+
+  .approche-header,
+  .approche-cta-wrapper {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .timeline-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════

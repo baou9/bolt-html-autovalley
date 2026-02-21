@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const isSlowNetwork = capabilities.slowNetwork;
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isSlowNetwork || isCoarsePointer || isNarrowViewport || isLowMemory || isLowCpu || isIOS;
-  const hasStrongHeroCapability = !shouldLimitHeroEffects && window.innerWidth >= 1280;
+  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isSlowNetwork;
+  const hasStrongHeroCapability = !shouldLimitHeroEffects;
 
   /* ===================== 1. VIDEO PLAYLIST ===================== */
 
