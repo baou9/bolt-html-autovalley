@@ -4624,6 +4624,11 @@ body,
   text-align: center;
   margin-bottom: 0;
   padding: 56px 0;
+  opacity: 1;
+  transform: none;
+}
+
+.js-animations-ready .approche-header {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -4638,13 +4643,8 @@ body,
   z-index: 6;
 }
 
-.approche-header.is-visible {
+.js-animations-ready .approche-header.is-visible {
   animation: approcheFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-}
-
-.no-js .approche-header {
-  opacity: 1;
-  transform: none;
 }
 
 .no-js .approche-header::before,
@@ -5198,17 +5198,17 @@ body,
   justify-content: center;
   margin-top: clamp(56px, 9vw, 104px);
   margin-bottom: clamp(56px, 9vw, 104px);
+  opacity: 1;
+  transform: none;
+}
+
+.js-animations-ready .approche-cta-wrapper {
   opacity: 0;
   transform: translateY(30px);
 }
 
-.approche-cta-wrapper.is-visible {
+.js-animations-ready .approche-cta-wrapper.is-visible {
   animation: approcheFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
-}
-
-.no-js .approche-cta-wrapper {
-  opacity: 1;
-  transform: none;
 }
 
 .approche-cta-card {
@@ -5526,13 +5526,6 @@ body,
   .approche-cta-wrapper {
     margin-top: 36px;
     margin-bottom: 64px;
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-
-  .approche-cta-wrapper.is-visible {
-    animation: none !important;
   }
 
   .approche-cta-card {
@@ -5600,22 +5593,9 @@ body,
     margin-bottom: 24px;
   }
 
-  .approche-header,
-  .approche-header.is-visible,
-  .approche-cta-wrapper,
-  .approche-cta-wrapper.is-visible {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-
   .approche-header::before,
-  .approche-header::after,
-  .approche-header.is-visible::before,
-  .approche-header.is-visible::after {
-    animation: none !important;
-    width: min(340px, 90vw) !important;
-    opacity: 0.6 !important;
+  .approche-header::after {
+    width: min(340px, 90vw);
   }
 
   .timeline-card,

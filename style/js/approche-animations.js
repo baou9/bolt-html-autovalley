@@ -184,6 +184,8 @@ export function initApproche() {
     return;
   }
 
+  document.documentElement.classList.add('js-animations-ready');
+
   const isMobileView = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
   const headerThreshold = isMobileView ? 0.05 : 0.2;
 
