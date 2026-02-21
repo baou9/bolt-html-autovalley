@@ -178,7 +178,6 @@ class TestimonialsManager {
   }
 
   filterTestimonials(filter) {
-    // [PATCH] Limit filtering to the desktop set; rebuild mobile carousel separately
     const cards = this.section.querySelectorAll('.testimonials-layout .testimonial-card, .testimonials-layout .testimonial-featured');
     const layout = this.section.querySelector('.testimonials-layout');
     const featuredCard = this.section.querySelector('.testimonials-layout .testimonial-featured');
@@ -206,7 +205,7 @@ class TestimonialsManager {
 
     if (layout) {
       const featuredVisible = featuredCard && !featuredCard.classList.contains('is-hidden');
-      layout.classList.toggle('testimonials-layout--single', !featuredVisible); // [PATCH] Expand grid when featured is hidden
+      layout.classList.toggle('testimonials-layout--single', !featuredVisible);
     }
 
     if (this.renderMobileCarousel) {

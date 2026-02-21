@@ -11,8 +11,14 @@ $pageStyles = [
     './style/css/pages-styles.css'
 ];
 
-// [PATCH] FAQPage schema built from existing visible Q/A content.
 $structuredData = [[
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+        ['@type' => 'ListItem', 'position' => 2, 'name' => 'FAQ', 'item' => 'https://autovalley.ma/faq.php'],
+    ],
+], [
     '@context' => 'https://schema.org',
     '@type' => 'FAQPage',
     'mainEntity' => [

@@ -7,7 +7,7 @@
    Scroll Reveal
    ────────────────────────────────────────────────────────── */
 .services-page {
-  /* [PATCH] Services spacing aliases mapped to global spacing tokens */
+
   --sv-space-2: var(--space-2, 8px);
   --sv-space-4: var(--space-4, 16px);
   --sv-space-5: var(--space-5, 20px);
@@ -404,7 +404,7 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* [PATCH] Keyboard users get a dedicated focus indicator without changing active state visuals. */
+
 .sv-filters__btn:focus-visible {
   outline: 2px solid rgba(185, 5, 4, 0.9);
   outline-offset: 3px;
@@ -505,7 +505,7 @@
 }
 
 .sv-card__desc {
-  /* [PATCH] Ensure reading text meets 1rem baseline for service cards */
+
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 300;
@@ -1226,7 +1226,7 @@
 }
 
 .sv-cta__actions .btn-lg--primary {
-  /* [PATCH] Keep glow emphasis only on the primary CTA. */
+
   display: inline-flex;
   align-items: center;
   gap: 10px;

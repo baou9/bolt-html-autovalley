@@ -13,7 +13,6 @@ const activeNavKeyByPage = {
   'faq.php': 'faq'
 };
 
-// [PATCH] Apply the home fallback only on root/index, not on unknown paths.
 const isHomePath = normalizedPath === '/' || normalizedCurrentPage === 'index.php';
 const activeNavKey = activeNavKeyByPage[normalizedCurrentPage] || (isHomePath ? 'home' : null);
 const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
@@ -187,13 +186,13 @@ function initSharedHeaderInteractions() {
 
   const closeMenu = () => {
     setMenuState(false);
-    menuTrigger.focus(); // [PATCH] Restore focus to trigger when overlay closes.
+    menuTrigger.focus();
   };
 
   const openMenu = () => {
     setMenuState(true);
     const firstMenuLink = getFirstMenuLink();
-    (firstMenuLink || getFocusableInOverlay()[0] || overlay).focus(); // [PATCH] Move focus into opened mobile menu.
+    (firstMenuLink || getFocusableInOverlay()[0] || overlay).focus();
   };
 
   menuTrigger.addEventListener('click', () => {

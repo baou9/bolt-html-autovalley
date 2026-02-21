@@ -613,7 +613,7 @@
   box-shadow: 0 10px 30px rgba(185, 5, 4, 0.4);
 }
 
-/* [PATCH] Footer legal cookie action keeps link visual treatment */
+
 .footer-links a,
 .footer-link-action {
   position: relative;
@@ -1109,7 +1109,7 @@ body {
 
   .btn-footer-primary,
   .btn-footer-secondary {
-    /* [PATCH] keep footer CTAs centered and consistent on small screens */
+
     width: auto;
     max-width: 320px;
     align-self: center;

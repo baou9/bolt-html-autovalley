@@ -10,6 +10,14 @@ $pageStyles = [
     './style/css/premium-styles.css',
     './style/css/pages-styles.css'
 ];
+$structuredData = [[
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+        ['@type' => 'ListItem', 'position' => 2, 'name' => 'À propos', 'item' => 'https://autovalley.ma/apropos.php'],
+    ],
+]];
 ?>
 <!doctype html>
 <html lang="fr" class="no-js">

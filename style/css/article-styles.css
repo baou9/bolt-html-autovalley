@@ -258,7 +258,7 @@
   color: var(--blog-text-secondary);
 }
 
-/* [PATCH] */
+
 .article-toc__link:focus-visible {
   outline: 2px solid var(--blog-accent);
   outline-offset: 2px;
@@ -451,7 +451,7 @@
     grid-template-columns: 1fr;
   }
 
-  /* [PATCH] */
+
   .article-toc-toggle {
     display: flex;
     align-items: center;

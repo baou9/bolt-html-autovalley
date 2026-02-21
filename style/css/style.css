@@ -91,7 +91,7 @@
                          inset 0 1px 0 rgba(255, 120, 120, 0.35);
   --ghost-focus-outline: rgba(255, 80, 80, 0.85);
 
-  /* [PATCH] Section edge fades for seamless transitions */
+
   --section-fade-top: linear-gradient(180deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
   --section-fade-bottom: linear-gradient(0deg, rgba(5, 6, 9, 0.92) 0%, rgba(5, 6, 9, 0) 35%);
   --section-fade-red-top: linear-gradient(180deg, rgba(185, 5, 4, 0.35) 0%, rgba(5, 6, 9, 0) 42%);
@@ -180,7 +180,7 @@
   --radius-xl: 26px;
   --transition-fast: 0.22s cubic-bezier(0.19, 1, 0.22, 1);
 
-  /* [PATCH] Global spacing scale (4/8 rhythm) */
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -563,7 +563,7 @@ body,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  white-space: nowrap; /* [PATCH] prevent multi-line nav labels */
+  white-space: nowrap;
   color: rgba(255, 255, 255, 0.70);
   transition: color 0.25s ease, text-shadow 0.25s ease;
   padding-bottom: 3px;
@@ -574,7 +574,7 @@ body,
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
-/* [PATCH] Distinct keyboard focus ring that stays visible on translucent header backgrounds. */
+
 .nav-link:focus-visible {
   color: var(--white);
   outline: 2px solid var(--white);
@@ -607,7 +607,7 @@ body,
 }
 
 .header-actions {
-  /* [PATCH] Use intrinsic width so header controls keep content-fit behavior without pushing nav/logo. */
+
   display: flex;
   align-items: center;
   gap: clamp(10px, 1.2vw, 16px);
@@ -692,7 +692,7 @@ body,
 }
 
 .btn-header-magnetic {
-  /* [PATCH] Keep desktop/tablet CTA compact while preserving 36px minimum touch target. */
+
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -916,7 +916,7 @@ body,
   }
 
   .header-actions {
-    /* [PATCH] Tighten action spacing at wide-tablet widths to reduce header collisions. */
+
     gap: clamp(8px, 1vw, 12px);
     max-width: min(100%, 332px);
   }
@@ -991,7 +991,7 @@ body,
     height: 72px;
   }
 
-  /* [PATCH] Reduce expensive glass effects on tablets/mobiles while preserving header contrast. */
+
   .header-glass-container {
     backdrop-filter: blur(13px) saturate(140%);
     -webkit-backdrop-filter: blur(13px) saturate(140%);
@@ -1000,7 +1000,7 @@ body,
       inset 0 0 8px rgba(255, 255, 255, 0.03);
   }
 
-  /* [PATCH] Lower texture intensity for better mobile rendering performance. */
+
   .header-glass-container::before {
     opacity: 0.22;
   }
@@ -1018,7 +1018,7 @@ body,
     height: 64px;
   }
 
-  /* [PATCH] Keep scrolled-state readability with a single lighter shadow stack. */
+
   .site-header.scrolled .header-glass-container {
     backdrop-filter: blur(15px) saturate(150%);
     -webkit-backdrop-filter: blur(15px) saturate(150%);
@@ -1056,7 +1056,7 @@ body,
     height: 68px;
   }
 
-  /* [PATCH] Further simplify blur and shadow layers for small mobile GPUs. */
+
   .header-glass-container {
     backdrop-filter: blur(10px) saturate(130%);
     -webkit-backdrop-filter: blur(10px) saturate(130%);
@@ -1086,7 +1086,7 @@ body,
       0 0 0 1px rgba(0, 0, 0, 0.72);
   }
 
-  /* [PATCH] Keep a subtle grain without the previous overdraw cost on compact screens. */
+
   .header-glass-container::before {
     opacity: 0.16;
   }
@@ -1141,7 +1141,7 @@ body,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* [PATCH] Minimize expensive layered effects for motion-sensitive/perf-constrained contexts. */
+
   .header-glass-container {
     backdrop-filter: blur(9px) saturate(125%);
     -webkit-backdrop-filter: blur(9px) saturate(125%);
@@ -1465,7 +1465,7 @@ body,
   z-index: 2;
 }
 
-/* [PATCH] Shared button interaction utilities to keep hover/focus behavior consistent. */
+
 .btn,
 .btn-lg,
 .btn-ghost {
@@ -1762,7 +1762,7 @@ body,
 .blog-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr; /* [PATCH] Feature + stack */
+  grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(24px, 2.8vw, 32px);
   padding: clamp(28px, 4vw, 42px);
   border-radius: 34px;
@@ -1793,7 +1793,7 @@ body,
   z-index: 0;
 }
 
-.blog-secondary-column { /* [PATCH] Stack secondary cards */
+.blog-secondary-column {
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 2.4vw, 22px);
@@ -1818,7 +1818,7 @@ body,
   display: flex;
   flex-direction: column;
   border-radius: 24px;
-  padding: clamp(20px, 3vw, 28px); /* [PATCH] Premium spacing */
+  padding: clamp(20px, 3vw, 28px);
   overflow: hidden;
   transition:
     transform 220ms ease,
@@ -1854,7 +1854,7 @@ body,
   z-index: -1;
 }
 
-.blog-card--feature { /* [PATCH] Emphasize lead story */
+.blog-card--feature {
   grid-row: span 2;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)), rgba(18, 18, 26, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1864,14 +1864,14 @@ body,
     0 0 48px rgba(185, 5, 4, 0.26);
 }
 
-.blog-card--secondary { /* [PATCH] Compact supporting stories */
+.blog-card--secondary {
   min-height: 100%;
   background: rgba(15, 15, 24, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5); /* [PATCH] Depth */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
-.blog-meta-row { /* [PATCH] Meta layout */
+.blog-meta-row {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1879,7 +1879,7 @@ body,
   margin-bottom: 14px;
 }
 
-.blog-badge { /* [PATCH] Upper-left badge */
+.blog-badge {
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
@@ -1895,7 +1895,7 @@ body,
   width: fit-content;
 }
 
-.blog-badge--muted { /* [PATCH] Subtle badge variant */
+.blog-badge--muted {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.9);
@@ -1940,7 +1940,7 @@ body,
   margin-bottom: 14px;
 }
 
-.blog-chip { /* [PATCH] Neutral chips */
+.blog-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1953,7 +1953,7 @@ body,
   letter-spacing: 0.03em;
 }
 
-.blog-chip--time { /* [PATCH] Time emphasis */
+.blog-chip--time {
   background: rgba(185, 5, 4, 0.12);
   border-color: rgba(185, 5, 4, 0.24);
   color: var(--text-white);
@@ -1973,12 +1973,12 @@ body,
   font-weight: 600;
   color: var(--text-white);
   margin-bottom: 12px;
-  line-height: 1.35; /* [PATCH] Tighter leading */
+  line-height: 1.35;
 }
 
 .blog-card-excerpt {
   color: rgba(255, 255, 255, 0.82);
-  line-height: 1.6; /* [PATCH] Comfortable reading */
+  line-height: 1.6;
 }
 
 .blog-card-bottom {
@@ -1991,7 +1991,7 @@ body,
   gap: 16px;
 }
 
-.blog-meta-inline { /* [PATCH] Inline metadata */
+.blog-meta-inline {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -2000,11 +2000,11 @@ body,
   font-weight: 600;
 }
 
-.blog-meta-dot { /* [PATCH] Subtle separator */
+.blog-meta-dot {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.blog-pill { /* [PATCH] Accent pill */
+.blog-pill {
   display: inline-flex;
   align-items: center;
   padding: 6px 14px;
@@ -2148,7 +2148,7 @@ body,
     padding: clamp(24px, 6vw, 36px);
   }
 
-  .blog-card--feature { /* [PATCH] Reset lead card on mobile */
+  .blog-card--feature {
     grid-row: auto;
   }
 
@@ -2179,7 +2179,7 @@ body,
   }
 
   .blog-card-bottom {
-    gap: 10px; /* [PATCH] Tighter spacing on small screens */
+    gap: 10px;
   }
 
   .blog-card-bottom {
@@ -2202,7 +2202,7 @@ body,
    L’Académie AutoValley – Liquid Glass Editorial
    ────────────────────────────────────────────────────────── */
 
-.academy { /* [PATCH] Premium editorial container */
+.academy {
   position: relative;
   isolation: isolate;
   background:
@@ -2543,7 +2543,7 @@ body,
   padding: clamp(16px, 2.5vw, 20px);
 }
 
-.academy-carousel-counter { /* [PATCH] Mobile carousel counter */
+.academy-carousel-counter {
   display: none;
   margin-top: 10px;
   text-align: right;
@@ -2843,7 +2843,7 @@ body,
   z-index: 1;
 }
 
-/* [PATCH] Explicit map embed variant used to replace inline iframe border style */
+
 .noustrouver-map--embed {
   border: 0;
 }
@@ -3029,7 +3029,7 @@ body,
 
 .footer-cta-section {
   position: relative;
-  padding: clamp(56px, 8vw, 96px) 0 clamp(56px, 8vw, 96px); /* [PATCH] balanced breathing room above/below CTA band */
+  padding: clamp(56px, 8vw, 96px) 0 clamp(56px, 8vw, 96px);
   background:
     var(--section-fade-top),
     var(--section-fade-bottom),
@@ -3454,7 +3454,7 @@ body,
   margin-top: 6px;
 }
 
-/* [PATCH] Footer legal cookie action keeps link visual treatment */
+
 .footer-links a,
 .footer-link-action {
   font-size: 0.92rem;
@@ -3769,7 +3769,7 @@ body,
 
 @media (max-width: 640px) {
   .footer-cta-actions {
-    /* [PATCH] center footer CTA buttons on mobile */
+
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -3836,8 +3836,13 @@ body,
 
 /* Focus visible enhancements */
 :focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(185, 5, 4, 0.6);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Section container */
@@ -4359,7 +4364,7 @@ body,
     grid-auto-columns: minmax(78%, 320px);
     gap: 14px;
     overflow-x: auto;
-    /* [PATCH] align snap origin so the first card is fully visible on load */
+
     padding: 0 14px 12px;
     margin: 0;
     scroll-snap-type: x mandatory;
@@ -4367,8 +4372,8 @@ body,
     scroll-padding-right: 14px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%); /* [PATCH] keep first card fully visible */
-    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%); /* [PATCH] keep first card fully visible */
+    mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
   }
 
   .services-grid::-webkit-scrollbar {
@@ -4377,7 +4382,7 @@ body,
 
   .service-card {
     height: auto;
-    min-height: 260px; /* [PATCH] normalize card height across all items including Hybrides & Électriques */
+    min-height: 260px;
     scroll-snap-align: start;
     padding: 18px 14px;
   }
@@ -4427,7 +4432,7 @@ body,
     var(--section-fade-top),
     var(--section-fade-bottom),
     #0a0a0a;
-  padding: 0 0 clamp(72px, 8vw, 120px); /* [PATCH] reserve tight blend space without extra gap */
+  padding: 0 0 clamp(72px, 8vw, 120px);
   overflow: hidden;
 }
 
@@ -4457,7 +4462,7 @@ body,
   bottom: 0;
   left: 0;
   right: 0;
-  height: clamp(120px, 14vw, 180px); /* [PATCH] cinematic dissolve into next section */
+  height: clamp(120px, 14vw, 180px);
   background:
     linear-gradient(
       180deg,
@@ -5188,7 +5193,7 @@ body,
   display: flex;
   justify-content: center;
   margin-top: clamp(56px, 9vw, 104px);
-  margin-bottom: clamp(56px, 9vw, 104px); /* [PATCH] balanced breathing room around CTA */
+  margin-bottom: clamp(56px, 9vw, 104px);
   opacity: 0;
   transform: translateY(30px);
 }
@@ -5237,7 +5242,7 @@ body,
   z-index: 0;
 }
 
-.approche-cta-card::after { /* [PATCH] remove dark gradient fade overlay */
+.approche-cta-card::after {
   content: none;
 }
 
@@ -5485,7 +5490,7 @@ body,
     grid-auto-columns: minmax(82%, 260px);
     gap: 12px;
     overflow-x: auto;
-    /* [PATCH] unify padding and snap offset so card 1 anchors at scroll start */
+
     padding: 0 14px 18px;
     margin: 0;
     scroll-snap-type: x mandatory;
@@ -6733,7 +6738,7 @@ body,
     overflow: hidden;
 }
 
-/* [PATCH] Replaces inline panel background images in clients strip */
+
 .panel-image--insurance {
     background-image: url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1600&auto=format&fit=crop');
 }
@@ -7534,7 +7539,7 @@ body,
     radial-gradient(circle at top center, #2b0808 0, #050609 55%, #000000 100%);
 }
 
-.why-section::before { /* [PATCH] top bridge fade from approche */
+.why-section::before {
   content: "";
   position: absolute;
   left: 0;
@@ -8247,7 +8252,7 @@ body,
     }
 
     .trust-section .carousel-track {
-        gap: 62px; /* [PATCH] reduce spacing so duplicated logos keep capsule filled */
+        gap: 62px;
     }
 
     .trust-section .logo-img {
@@ -8266,7 +8271,7 @@ body,
     }
 
     .trust-section .carousel-track {
-        gap: 44px; /* [PATCH] keep tight spacing on mobile */
+        gap: 44px;
         animation-duration: 22s;
     }
 
@@ -8301,6 +8306,9 @@ body {
     align-items: stretch;
     justify-content: center;
     color: var(--av-text);
+    background: radial-gradient(ellipse at 30% 50%, rgba(185, 5, 4, 0.35) 0%, rgba(5, 6, 9, 0) 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(120, 3, 3, 0.2) 0%, rgba(5, 6, 9, 0) 55%),
+                linear-gradient(160deg, #0e0608 0%, #050609 60%, #080305 100%);
 }
 
 /* Background video */
@@ -8309,7 +8317,7 @@ body {
     inset: 0;
     z-index: 0;
     overflow: hidden;
-    aspect-ratio: 16 / 9; /* [PATCH] reserve media geometry to keep hero layout stable */
+    aspect-ratio: 16 / 9;
 }
 
 .hero-lg__video {
@@ -8317,13 +8325,13 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* [PATCH] reduce base video punch so layered effects compete less with copy */
+
     filter: saturate(1.04) contrast(0.92) brightness(0.82);
     transform: scale(1.02);
 }
 
 .hero-lg__video--disabled {
-    display: none; /* [PATCH] avoid GPU-heavy video on mobile/data-saver */
+    display: none;
 }
 
 /* Liquid glass canvas layer */
@@ -8333,11 +8341,11 @@ body {
     z-index: 1;
     pointer-events: none;
     mix-blend-mode: screen;
-    /* [PATCH] lower liquid layer intensity to keep a single visual focal point */
+
     opacity: 0.4;
 }
 
-.hero-lg__liquid-canvas--disabled { /* [PATCH] disable WebGL layer on constrained devices */
+.hero-lg__liquid-canvas--disabled {
     display: none;
 }
 
@@ -8349,10 +8357,6 @@ body {
     background:
         radial-gradient(circle at 20% 15%, rgba(0, 0, 0, 0.08), transparent 58%),
         radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.9) 68%);
-}
-
-.hero-lg__poster {
-    display: block;
 }
 
 /* Content wrapper */
@@ -8770,7 +8774,7 @@ body {
 
 @media (max-width: 768px) {
     .header-glass-container::before {
-        display: none; /* [PATCH] reduce mobile overdraw from animated/noise texture layer */
+        display: none;
     }
 }
 
@@ -8921,7 +8925,7 @@ body {
     transition-delay: calc(var(--stagger, 0) * 0.07s);
 }
 
-/* [PATCH] Replaces inline stagger custom-properties in precision cards */
+
 .precision-std__card--stagger-0 { --stagger: 0; }
 .precision-std__card--stagger-1 { --stagger: 1; }
 .precision-std__card--stagger-2 { --stagger: 2; }
@@ -8990,7 +8994,7 @@ body {
     overflow: hidden;
 }
 
-/* [PATCH] Replaces inline background image custom-properties for precision media */
+
 .precision-std__media--diagnostic {
     --card-image: url('https://eyf5gqdcwsg.exactdn.com/wp-content/uploads/2023/11/LAUNCH-Europe-Startseite-Kategorie-diagnose.jpg?auto=compress&cs=tinysrgb&w=1200');
 }

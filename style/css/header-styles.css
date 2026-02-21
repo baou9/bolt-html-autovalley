@@ -1,7 +1,6 @@
-/* [PATCH] Header-specific shared helpers used by partials/header.php.
-   Canonical base styles for header UI selectors live in style/css/style.css. */
 
-/* [PATCH] Accessible language selector styling for the shared header component. */
+
+
 .sr-only {
   position: absolute;
   width: 1px;

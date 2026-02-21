@@ -29,7 +29,7 @@
    Shared Hero (matches sv-hero from services-styles.css)
    ────────────────────────────────────────────────────────── */
 .pg-page {
-  /* [PATCH] Shared spacing aliases mapped to global spacing tokens */
+
   --pg-space-2: var(--space-2, 8px);
   --pg-space-3: var(--space-3, 12px);
   --pg-space-4: var(--space-4, 16px);
@@ -59,7 +59,7 @@
   min-height: 52vh;
 }
 
-/* [PATCH] Legal hero variants replacing inline style attributes */
+
 .pg-hero--legal {
   min-height: 38vh;
 }
@@ -91,7 +91,7 @@
     radial-gradient(ellipse at 30% 50%, rgba(185, 5, 4, 0.15) 0%, transparent 60%);
 }
 
-/* [PATCH] Legal hero overlay gradient variant */
+
 .pg-hero__overlay--legal {
   background: linear-gradient(180deg, rgba(5, 6, 9, 0.85) 0%, rgba(5, 6, 9, 0.6) 40%, rgba(5, 6, 9, 0.98) 100%);
 }
@@ -152,7 +152,7 @@
   letter-spacing: -0.02em;
 }
 
-/* [PATCH] Legal hero typography variant */
+
 .pg-hero__title--legal {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
@@ -180,7 +180,7 @@
   margin: 0 auto;
 }
 
-/* [PATCH] Shared section surface utilities replacing repeated inline blocks */
+
 .pg-surface-dark {
   background: #050609;
   padding: var(--pg-space-24) 0;
@@ -1115,7 +1115,7 @@ a.contact-info-card__value:hover {
   border-bottom: 1px solid rgba(185, 5, 4, 0.4);
 }
 
-/* [PATCH] Shared centered CTA card styles used by FAQ and Careers */
+
 .pg-card-cta {
   text-align: center;
   margin-top: var(--pg-space-16);
@@ -1645,7 +1645,7 @@ a.contact-info-card__value:hover {
   margin-top: var(--pg-space-2);
 }
 
-/* [PATCH] Reusable section spacing modifiers for template cleanup */
+
 .pg-section-shell {
   background: #050609;
 }
@@ -1689,7 +1689,7 @@ a.contact-info-card__value:hover {
 
 .legal-contact-box p:last-child { margin-bottom: 0; }
 
-/* [PATCH] Legal notes replacing inline paragraph styles */
+
 .legal-note {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;

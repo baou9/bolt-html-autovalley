@@ -16,6 +16,13 @@ $articleUrl = sprintf('%s://%s/article.php', $scheme, $host);
 
 $structuredData = [[
     '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => 'https://autovalley.ma/blog.php'],
+    ],
+], [
+    '@context' => 'https://schema.org',
     '@type' => 'ItemList',
     'name' => 'Articles AutoValley',
     'itemListElement' => [

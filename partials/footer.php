@@ -227,7 +227,7 @@
 
     <script>
       (() => {
-        const openConsentManager = () => { // [PATCH]
+        const openConsentManager = () => {
           if (typeof window !== 'undefined') {
             if (typeof window.__tcfapi === 'function') {
               window.__tcfapi('displayConsentUi', 2, () => {});
@@ -244,11 +244,11 @@
               return;
             }
 
-            window.dispatchEvent(new CustomEvent('consent:open')); // [PATCH]
+            window.dispatchEvent(new CustomEvent('consent:open'));
           }
         };
 
-        document.querySelectorAll('[data-consent-open], .cookie-manage-btn').forEach((trigger) => { // [PATCH]
+        document.querySelectorAll('[data-consent-open], .cookie-manage-btn').forEach((trigger) => {
           trigger.addEventListener('click', openConsentManager);
         });
       })();

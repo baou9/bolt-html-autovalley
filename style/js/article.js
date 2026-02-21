@@ -57,7 +57,6 @@ tocLinks.forEach((link) => {
     const targetId = link.getAttribute('href')?.replace('#', '');
     const target = targetId ? document.getElementById(targetId) : null;
     if (target) {
-      // [PATCH]
       target.scrollIntoView({
         behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
         block: 'start'
@@ -71,7 +70,6 @@ tocLinks.forEach((link) => {
   });
 });
 
-// [PATCH]
 function syncTocDisclosure() {
   if (!tocToggle || !toc) return;
 

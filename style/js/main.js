@@ -34,21 +34,21 @@ if (document.readyState === 'loading') {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const capabilities = getUiCapabilities(); // [PATCH]
-  const heroSection = document.querySelector('.hero-lg'); // [PATCH]
+  const capabilities = getUiCapabilities();
+  const heroSection = document.querySelector('.hero-lg');
   const videoEl = document.getElementById("heroVideo");
   const videoSourceEl = document.getElementById("heroVideoSource");
-  const reduceMotion = capabilities.reducedMotion; // [PATCH]
-  const prefersSaveData = capabilities.saveData; // [PATCH]
-  const isCoarsePointer = capabilities.coarsePointer; // [PATCH]
-  const isNarrowViewport = capabilities.narrowViewport; // [PATCH]
-  const isLowMemory = capabilities.lowMemory; // [PATCH]
-  const isLowCpu = capabilities.lowCpu; // [PATCH]
-  const isSlowNetwork = capabilities.slowNetwork; // [PATCH]
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent); // [PATCH]
+  const reduceMotion = capabilities.reducedMotion;
+  const prefersSaveData = capabilities.saveData;
+  const isCoarsePointer = capabilities.coarsePointer;
+  const isNarrowViewport = capabilities.narrowViewport;
+  const isLowMemory = capabilities.lowMemory;
+  const isLowCpu = capabilities.lowCpu;
+  const isSlowNetwork = capabilities.slowNetwork;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isSlowNetwork || isCoarsePointer || isNarrowViewport || isLowMemory || isLowCpu || isIOS; // [PATCH]
-  const hasStrongHeroCapability = !shouldLimitHeroEffects && window.innerWidth >= 1280; // [PATCH]
+  const shouldLimitHeroEffects = reduceMotion || prefersSaveData || isSlowNetwork || isCoarsePointer || isNarrowViewport || isLowMemory || isLowCpu || isIOS;
+  const hasStrongHeroCapability = !shouldLimitHeroEffects && window.innerWidth >= 1280;
 
   /* ===================== 1. VIDEO PLAYLIST ===================== */
 
@@ -64,9 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentVideo = 0;
 
   if (videoEl && videoSourceEl && videoPlaylist.length) {
-    let sourceAssigned = false; // [PATCH]
-    let canAutoplayAfterLoad = false; // [PATCH]
-    let interactionBound = false; // [PATCH]
+    let sourceAssigned = false;
+    let canAutoplayAfterLoad = false;
+    let interactionBound = false;
 
     const ensurePlay = () => {
       const p = videoEl.play();
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       videoEl.removeAttribute("autoplay");
       videoEl.removeAttribute("loop");
       videoEl.preload = "none";
-      videoEl.pause(); // [PATCH]
+      videoEl.pause();
       videoEl.style.opacity = "0";
       bindInteractionListeners();
     } else {
@@ -165,8 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===================== 2. WEBGL LIQUID GLASS ===================== */
 
   const canvas = document.getElementById("heroLiquidCanvas");
-  if (canvas && (shouldLimitHeroEffects || window.innerWidth < 1280)) { // [PATCH]
-    canvas.classList.add("hero-lg__liquid-canvas--disabled"); // [PATCH]
+  if (canvas && (shouldLimitHeroEffects || window.innerWidth < 1280)) {
+    canvas.classList.add("hero-lg__liquid-canvas--disabled");
   } else if (canvas) {
     const gl = canvas.getContext("webgl", { premultipliedAlpha: false, alpha: true });
 
@@ -1150,7 +1150,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // ─────────────────────────────────────────────────────────
 // 13. Académie – Reveal on scroll
 // ─────────────────────────────────────────────────────────
-function initAcademyReveal() { // [PATCH]
+function initAcademyReveal() {
   const cards = document.querySelectorAll('.academy-card, .academy-topic');
   if (!cards.length) return;
 
@@ -1175,7 +1175,7 @@ function initAcademyReveal() { // [PATCH]
   });
 }
 
-function initAcademyCarouselCounter() { // [PATCH]
+function initAcademyCarouselCounter() {
   const list = document.querySelector('.academy-list');
   const counter = document.querySelector('.academy-carousel-counter');
   if (!list || !counter) return;
@@ -1222,5 +1222,5 @@ function initAcademyCarouselCounter() { // [PATCH]
 document.addEventListener('DOMContentLoaded', () => {
   initAcademyReveal();
   initAcademyCarouselCounter();
-}); // [PATCH]
+});
 

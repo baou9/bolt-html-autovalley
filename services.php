@@ -12,8 +12,14 @@ $pageStyles = [
     './style/css/testimonials-styles.css'
 ];
 
-// [PATCH] Conservative Service schema aligned with visible services content.
 $structuredData = [[
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => 'https://autovalley.ma/services.php'],
+    ],
+], [
     '@context' => 'https://schema.org',
     '@type' => 'Service',
     'name' => 'Services AutoValley',

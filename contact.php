@@ -11,8 +11,15 @@ $pageStyles = [
     './style/css/pages-styles.css'
 ];
 
-// [PATCH] ContactPage + Organization contact schema from visible contact details.
 $structuredData = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://autovalley.ma/'],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Contact', 'item' => 'https://autovalley.ma/contact.php'],
+        ],
+    ],
     [
         '@context' => 'https://schema.org',
         '@type' => 'ContactPage',
