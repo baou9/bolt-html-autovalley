@@ -692,55 +692,127 @@ $pageStyles = [
                 <div class="brands-universe__pill">
                     <div class="brands-universe__track">
                         <!-- SET 1 -->
+                        <button class="brands-universe__logo" type="button" aria-label="Toyota">
+                            <img width="160" height="48" src="./public/img/brands/toyota.svg" alt="Toyota" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Mercedes-Benz">
+                            <img width="160" height="48" src="./public/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="BMW">
+                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
+                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Audi">
+                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                        </button>
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
                             <img width="160" height="48" src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
                             <img width="160" height="48" src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Citroën">
+                            <img width="160" height="48" src="./public/img/brands/citroen.svg" alt="Citroën" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
-                        </button>
-                        <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
-                        </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Hyundai">
+                            <img width="160" height="48" src="./public/img/brands/hyundai.svg" alt="Hyundai" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
                             <img width="160" height="48" src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Nissan">
+                            <img width="160" height="48" src="./public/img/brands/nissan.svg" alt="Nissan" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Dacia">
+                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Skoda">
+                            <img width="160" height="48" src="./public/img/brands/skoda.svg" alt="Skoda" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Seat">
+                            <img width="160" height="48" src="./public/img/brands/seat.svg" alt="Seat" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Cupra">
+                            <img width="160" height="48" src="./public/img/brands/cupra.svg" alt="Cupra" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Fiat">
+                            <img width="160" height="48" src="./public/img/brands/fiat.svg" alt="Fiat" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Opel">
+                            <img width="160" height="48" src="./public/img/brands/opel.svg" alt="Opel" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="MG">
+                            <img width="160" height="48" src="./public/img/brands/mg.svg" alt="MG" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="BYD">
+                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Changan">
+                            <img width="160" height="48" src="./public/img/brands/changan.svg" alt="Changan" loading="lazy" />
                         </button>
 
                         <!-- SET 2 (duplicate for seamless loop) -->
+                        <button class="brands-universe__logo" type="button" aria-label="Toyota">
+                            <img width="160" height="48" src="./public/img/brands/toyota.svg" alt="Toyota" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Mercedes-Benz">
+                            <img width="160" height="48" src="./public/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="BMW">
+                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
+                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Audi">
+                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                        </button>
                         <button class="brands-universe__logo" type="button" aria-label="Renault">
                             <img width="160" height="48" src="./public/img/brands/renault.svg" alt="Renault" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Peugeot">
                             <img width="160" height="48" src="./public/img/brands/peugeot.svg" alt="Peugeot" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="BYD">
-                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Citroën">
+                            <img width="160" height="48" src="./public/img/brands/citroen.svg" alt="Citroën" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Dacia">
-                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
-                        </button>
-                        <button class="brands-universe__logo" type="button" aria-label="BMW">
-                            <img width="160" height="48" src="./public/img/brands/bmw.svg" alt="BMW" loading="lazy" />
-                        </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Audi">
-                            <img width="160" height="48" src="./public/img/brands/audi.svg" alt="Audi" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Hyundai">
+                            <img width="160" height="48" src="./public/img/brands/hyundai.svg" alt="Hyundai" loading="lazy" />
                         </button>
                         <button class="brands-universe__logo" type="button" aria-label="Kia">
                             <img width="160" height="48" src="./public/img/brands/kia.svg" alt="Kia" loading="lazy" />
                         </button>
-                        <button class="brands-universe__logo" type="button" aria-label="Volkswagen">
-                            <img width="160" height="48" src="./public/img/brands/volkswagen.svg" alt="Volkswagen" loading="lazy" />
+                        <button class="brands-universe__logo" type="button" aria-label="Nissan">
+                            <img width="160" height="48" src="./public/img/brands/nissan.svg" alt="Nissan" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Dacia">
+                            <img width="160" height="48" src="./public/img/brands/dacia.svg" alt="Dacia" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Skoda">
+                            <img width="160" height="48" src="./public/img/brands/skoda.svg" alt="Skoda" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Seat">
+                            <img width="160" height="48" src="./public/img/brands/seat.svg" alt="Seat" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Cupra">
+                            <img width="160" height="48" src="./public/img/brands/cupra.svg" alt="Cupra" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Fiat">
+                            <img width="160" height="48" src="./public/img/brands/fiat.svg" alt="Fiat" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Opel">
+                            <img width="160" height="48" src="./public/img/brands/opel.svg" alt="Opel" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="MG">
+                            <img width="160" height="48" src="./public/img/brands/mg.svg" alt="MG" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="BYD">
+                            <img width="160" height="48" src="./public/img/brands/byd.svg" alt="BYD" loading="lazy" />
+                        </button>
+                        <button class="brands-universe__logo" type="button" aria-label="Changan">
+                            <img width="160" height="48" src="./public/img/brands/changan.svg" alt="Changan" loading="lazy" />
                         </button>
                     </div>
                 </div>

@@ -6160,7 +6160,7 @@ body,
   align-items: center;
   gap: clamp(3rem, 4vw, 4rem);
   width: max-content;
-  animation: brands-universe-marquee 40s linear infinite;
+  animation: brands-universe-marquee 90s linear infinite;
   will-change: transform;
 }
 
