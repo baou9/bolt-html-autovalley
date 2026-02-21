@@ -36,6 +36,10 @@ function initTimelineCards(cards) {
     const grid = cards[0].closest('.timeline-grid');
     if (grid) {
       grid.scrollLeft = 0;
+      window.requestAnimationFrame(() => {
+        grid.scrollLeft = 0;
+        window.setTimeout(() => { grid.scrollLeft = 0; }, 100);
+      });
     }
     const firstCard = cards[0];
     firstCard.classList.add('in-view');

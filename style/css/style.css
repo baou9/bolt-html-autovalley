@@ -5500,6 +5500,11 @@ body,
     scroll-padding-right: 14px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .timeline-card:first-child {
+    scroll-snap-stop: always;
   }
 
   .timeline-grid::-webkit-scrollbar {
