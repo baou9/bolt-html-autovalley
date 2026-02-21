@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Opel">
-  <rect width="160" height="48" rx="6" fill="none" />
-  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" font-family="'Montserrat', 'Arial', sans-serif" font-weight="700" font-size="28" letter-spacing="0.38em" fill="#ffffff">OPEL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Opel">
+  <g transform="translate(80,30)" fill="none" stroke="#fff">
+    <circle r="24" stroke-width="3.5"/>
+    <path d="M4,-18 L-6,2 L2,2 L-4,18 L8,-4 L0,-4 Z" fill="#fff" stroke="none"/>
+  </g>
 </svg>

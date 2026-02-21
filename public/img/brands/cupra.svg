@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Cupra">
-  <path d="M80 6l44 36-44-16-44 16z" fill="#ffffff" opacity="0.9" />
-  <path d="M80 14l20 14-20-6-20 6z" fill="#050509" opacity="0.9" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Cupra">
+  <g transform="translate(80,30)" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round">
+    <path d="M0,-22 L28,20 L-28,20 Z"/>
+    <line x1="0" y1="-22" x2="0" y2="20" stroke-width="4"/>
+  </g>
 </svg>

@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="MG">
-  <rect x="16" y="4" width="128" height="40" rx="10" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.75" />
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="'Montserrat', 'Arial', sans-serif" font-weight="700" font-size="26" letter-spacing="0.52em" fill="#ffffff">MG</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="MG">
+  <g transform="translate(80,30)" fill="none" stroke="#fff">
+    <path d="M-14,-24 L14,-24 L24,-14 L24,14 L14,24 L-14,24 L-24,14 L-24,-14 Z" stroke-width="3.5"/>
+    <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" font-family="Arial,sans-serif" font-weight="900" font-size="18" letter-spacing="2" fill="#fff" stroke="none">MG</text>
+  </g>
 </svg>

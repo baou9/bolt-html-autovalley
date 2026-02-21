@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Fiat">
-  <rect width="160" height="48" rx="24" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.45" />
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="'Montserrat', 'Arial', sans-serif" font-weight="700" font-size="28" letter-spacing="0.48em" fill="#ffffff">FIAT</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Fiat">
+  <g transform="translate(80,30)" fill="none" stroke="#fff">
+    <circle r="24" stroke-width="3.5"/>
+    <circle r="16" stroke-width="1.5"/>
+    <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" font-family="Arial,sans-serif" font-weight="900" font-size="14" letter-spacing="3" fill="#fff" stroke="none">FIAT</text>
+  </g>
 </svg>

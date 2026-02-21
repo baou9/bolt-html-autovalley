@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Changan">
-  <path d="M80 6l42 36H38z" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.85" />
-  <path d="M80 14l22 20H58z" fill="#ffffff" opacity="0.85" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Changan">
+  <g transform="translate(80,30)" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-26,-10 L-14,16 L0,-6 L14,16 L26,-10"/>
+    <path d="M-16,-10 L-8,6 L0,-4 L8,6 L16,-10"/>
+  </g>
 </svg>
