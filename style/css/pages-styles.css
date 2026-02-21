@@ -1121,7 +1121,6 @@ a.contact-info-card__value:hover {
 
 .apropos-stat--rating .apropos-stat__accent,
 .apropos-stat--rating .apropos-stat__suffix {
-  background: #f4c542;
   color: #f4c542;
 }
 
@@ -1173,6 +1172,19 @@ a.contact-info-card__value:hover {
   line-height: 1;
   letter-spacing: -0.03em;
   margin-bottom: var(--pg-space-3);
+  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+}
+
+.apropos-stat__value.is-counting {
+  opacity: 0.82;
+  transform: translateY(4px) scale(0.99);
+  filter: blur(0.4px);
+}
+
+.apropos-stat__value.is-counted {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: none;
 }
 
 .apropos-stat__suffix {

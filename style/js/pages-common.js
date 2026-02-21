@@ -43,33 +43,50 @@ function initAproposStatAnimations() {
 
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const animateCount = (stat) => {
+  const animateCount = (stat, statIndex = 0) => {
     if (!stat || stat.dataset.countAnimated === 'true') return;
 
     const counters = stat.querySelectorAll('.apropos-stat__count[data-count-to]');
     if (!counters.length) return;
 
-    const duration = 1200;
-    const startTime = performance.now();
+    const duration = 1450;
+    const baseDelay = Math.min(statIndex * 110, 360);
 
     stat.dataset.countAnimated = 'true';
 
-    counters.forEach((counter) => {
+    counters.forEach((counter, counterIndex) => {
       const target = Number(counter.dataset.countTo || '0');
       const decimals = Number(counter.dataset.decimals || '0');
+      const valueEl = counter.closest('.apropos-stat__value');
 
       if (!Number.isFinite(target)) return;
 
       if (reducedMotion) {
+        if (valueEl) {
+          valueEl.classList.remove('is-counting');
+          valueEl.classList.add('is-counted');
+        }
         counter.textContent = decimals > 0
           ? target.toFixed(decimals).replace('.', ',')
           : new Intl.NumberFormat('fr-FR').format(Math.round(target));
         return;
       }
 
+      const localDelay = baseDelay + (counterIndex * 80);
+      const startTime = performance.now() + localDelay;
+
+      if (valueEl) {
+        valueEl.classList.add('is-counting');
+      }
+
       const step = (now) => {
+        if (now < startTime) {
+          requestAnimationFrame(step);
+          return;
+        }
+
         const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - ((1 - progress) * (1 - progress) * (1 - progress));
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
         const value = target * eased;
 
         counter.textContent = decimals > 0
@@ -78,6 +95,9 @@ function initAproposStatAnimations() {
 
         if (progress < 1) {
           requestAnimationFrame(step);
+        } else if (valueEl) {
+          valueEl.classList.remove('is-counting');
+          valueEl.classList.add('is-counted');
         }
       };
 
@@ -87,9 +107,9 @@ function initAproposStatAnimations() {
   };
 
   if (!('IntersectionObserver' in window)) {
-    stats.forEach((stat) => {
+    stats.forEach((stat, statIndex) => {
       stat.classList.add('is-animated');
-      animateCount(stat);
+      animateCount(stat, statIndex);
     });
     return;
   }
@@ -100,7 +120,8 @@ function initAproposStatAnimations() {
         entry.target.classList.toggle('is-animated', entry.isIntersecting);
 
         if (entry.isIntersecting) {
-          animateCount(entry.target);
+          const statIndex = Array.prototype.indexOf.call(stats, entry.target);
+          animateCount(entry.target, statIndex < 0 ? 0 : statIndex);
         }
       });
     },
