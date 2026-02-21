@@ -4724,6 +4724,10 @@ body,
 }
 
 @keyframes approcheFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -5522,6 +5526,13 @@ body,
   .approche-cta-wrapper {
     margin-top: 36px;
     margin-bottom: 64px;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .approche-cta-wrapper.is-visible {
+    animation: none !important;
   }
 
   .approche-cta-card {
