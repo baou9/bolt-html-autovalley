@@ -35,11 +35,13 @@ function initTimelineCards(cards) {
   if (isMobile) {
     const grid = cards[0].closest('.timeline-grid');
     if (grid) {
-      grid.scrollLeft = 0;
-      window.requestAnimationFrame(() => {
-        grid.scrollLeft = 0;
-        window.setTimeout(() => { grid.scrollLeft = 0; }, 100);
-      });
+      const resetScroll = () => { grid.scrollLeft = 0; };
+      resetScroll();
+      window.requestAnimationFrame(resetScroll);
+      window.addEventListener('load', resetScroll, { once: true });
+      window.setTimeout(resetScroll, 50);
+      window.setTimeout(resetScroll, 200);
+      window.setTimeout(resetScroll, 500);
     }
     const firstCard = cards[0];
     firstCard.classList.add('in-view');

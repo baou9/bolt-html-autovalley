@@ -836,11 +836,24 @@ const bootApprocheAnimations = () => {
     });
 };
 
+const resetTimelineGridScroll = () => {
+  const grid = document.querySelector('.timeline-grid');
+  if (grid) {
+    grid.scrollLeft = 0;
+  }
+};
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bootApprocheAnimations, { once: true });
+  document.addEventListener('DOMContentLoaded', () => {
+    bootApprocheAnimations();
+    resetTimelineGridScroll();
+  }, { once: true });
 } else {
   bootApprocheAnimations();
+  resetTimelineGridScroll();
 }
+
+window.addEventListener('load', resetTimelineGridScroll, { once: true });
 
 // ─────────────────────────────────────────────────────────
 // 10. Partners Logos – Liquid Glass Sphere Parallax

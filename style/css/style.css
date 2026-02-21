@@ -5503,7 +5503,7 @@ body,
     overscroll-behavior-x: contain;
   }
 
-  .timeline-card:first-child {
+  .timeline-card {
     scroll-snap-stop: always;
   }
 
@@ -5518,9 +5518,10 @@ body,
     scroll-snap-align: start;
   }
 
-  .timeline-card:first-child {
+  .timeline-card {
     opacity: 1;
     transform: translateY(var(--card-parallax));
+    transition: none;
   }
 
   .timeline-title {
