@@ -19,13 +19,44 @@ function extractPageStyles(content) {
   return hrefs;
 }
 
+function extractMetaTitle(content) {
+  const match = content.match(/\$metaTitle\s*=\s*['"]([^'"]+)['"]/);
+  return match ? match[1] : 'AutoValley';
+}
+
+function extractMetaDescription(content) {
+  const match = content.match(/\$metaDescription\s*=\s*["']([^"']+)["']/);
+  return match ? match[1] : '';
+}
+
+function buildStaticHead(pageStyles, title, description, injectViteClient) {
+  const styleLinks = pageStyles.map(href => `    <link rel="stylesheet" href="${href}">`).join('\n');
+  const viteClient = injectViteClient ? `    <script type="module" src="/@vite/client"></script>` : '';
+
+  return `
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./style/images/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${title}</title>
+    <meta name="description" content="${description}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+${styleLinks}
+${viteClient}`;
+}
+
 function resolveAvResponsiveImage(content) {
   return content.replace(
-    /av_responsive_image\(\s*\[[\s\S]*?'src'\s*=>\s*'([^']+)'[\s\S]*?'alt'\s*=>\s*'([^']*)'[\s\S]*?\]\s*\)\s*;/g,
-    (_match, src, alt) => {
-      const cleanSrc = src.replace(/&amp;/g, '&');
-      const cleanAlt = alt.replace(/&amp;/g, '&');
-      return `<img src="${cleanSrc}" alt="${cleanAlt}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">`;
+    /<\?php\s+av_responsive_image\(\s*\[([\s\S]*?)\]\s*\)\s*;\s*\?>/g,
+    (_match, arrayBody) => {
+      const srcMatch = arrayBody.match(/'src'\s*=>\s*'([^']+)'/);
+      const altMatch = arrayBody.match(/'alt'\s*=>\s*'([^']*?)'/);
+      const classMatch = arrayBody.match(/'class'\s*=>\s*'([^']*?)'/);
+      const src = srcMatch ? srcMatch[1] : '';
+      const alt = altMatch ? altMatch[1].replace(/&amp;/g, '&') : '';
+      const cls = classMatch ? ` class="${classMatch[1]}"` : '';
+      return `<img src="${src}" alt="${alt}"${cls} loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">`;
     }
   );
 }
@@ -47,26 +78,17 @@ function resolvePhpIncludes(content, baseDir) {
 
 function processPhpContent(content, baseDir, injectViteClient = false) {
   const pageStyles = extractPageStyles(content);
-
-  content = resolveAvResponsiveImage(content);
-
-  content = content.replace(/<\?php[\s\S]*?\?>\s*/g, '');
+  const title = extractMetaTitle(content);
+  const description = extractMetaDescription(content);
 
   content = resolvePhpIncludes(content, baseDir);
 
-  if (pageStyles.length > 0) {
-    const linkTags = pageStyles
-      .map(href => `    <link rel="stylesheet" href="${href}">`)
-      .join('\n');
-    content = content.replace('</head>', `${linkTags}\n</head>`);
-  }
+  content = resolveAvResponsiveImage(content);
 
-  if (injectViteClient) {
-    content = content.replace(
-      '</head>',
-      `  <script type="module" src="/@vite/client"></script>\n</head>`
-    );
-  }
+  content = content.replace(/<\?php[\s\S]*?\?>/g, '');
+
+  const headContent = buildStaticHead(pageStyles, title, description, injectViteClient);
+  content = content.replace(/(<head[^>]*>)([\s\S]*?)(<\/head>)/, `$1\n${headContent}\n$3`);
 
   return content;
 }
