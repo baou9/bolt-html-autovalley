@@ -4344,10 +4344,10 @@ body,
     grid-auto-columns: 85vw;
     gap: 14px;
     overflow-x: auto;
-    padding: 0 calc(50% - 42.5vw) 12px;
+    padding: 0 0 12px;
     margin: 0;
     scroll-snap-type: x mandatory;
-    scroll-padding-inline: calc(50% - 42.5vw);
+    scroll-padding-inline: calc(7.5vw);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     mask-image: none;
@@ -4358,9 +4358,17 @@ body,
     display: none;
   }
 
+  .services-grid .service-card:first-child {
+    margin-left: 7.5vw;
+  }
+
+  .services-grid .service-card:last-child {
+    margin-right: 7.5vw;
+  }
+
   .service-card {
-    height: auto;
-    min-height: 260px;
+    height: 85vw;
+    min-height: unset;
     scroll-snap-align: center;
     padding: 18px 14px;
   }
