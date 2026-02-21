@@ -638,8 +638,9 @@ body,
 .lang-select {
   appearance: none;
   -webkit-appearance: none;
+  width: 72px;
   min-height: 38px;
-  padding: 8px 32px 8px 13px;
+  padding: 8px 28px 8px 13px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background:
@@ -950,11 +951,8 @@ body,
     letter-spacing: 0.08em;
   }
 
-  .lang-switcher {
-    max-width: 74px;
-  }
-
   .lang-select {
+    width: 72px;
     min-height: 36px;
     padding: 6px 24px 6px 10px;
     font-size: 0.72rem;
@@ -1038,11 +1036,8 @@ body,
     letter-spacing: 0.08em;
   }
 
-  .lang-switcher {
-    max-width: 70px;
-  }
-
   .lang-select {
+    width: 68px;
     min-height: 44px;
     padding: 6px 24px 6px 10px;
     font-size: 0.75rem;
@@ -1116,13 +1111,10 @@ body,
     font-weight: 700;
   }
 
-  .lang-switcher {
-    max-width: 64px;
-  }
-
   .lang-select {
+    width: 60px;
     min-height: 44px;
-    padding: 5px 22px 5px 8px;
+    padding: 5px 20px 5px 8px;
   }
 }
 
