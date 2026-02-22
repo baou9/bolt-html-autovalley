@@ -181,14 +181,6 @@ $structuredData = [
               <div class="apropos-story__img-wrap pg-reveal pg-reveal--delay-2">
                 <?php av_responsive_image(['src' => 'https://images.pexels.com/photos/4489765/pexels-photo-4489765.jpeg?auto=compress&cs=tinysrgb&w=900', 'alt' => 'Technicien AutoValley en atelier', 'width' => 900, 'height' => 1350, 'class' => 'apropos-story__img', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw']); ?>
               </div>
-              <aside class="apropos-story__panel pg-reveal pg-reveal--delay-3" aria-label="Focus technique">
-                <h3 class="apropos-story__panel-title">Focus technique</h3>
-                <ul class="apropos-story__panel-list">
-                  <li>Diagnostic initial avec synthèse partagée</li>
-                  <li>Validation des actions avant intervention</li>
-                  <li>Contrôle final avant restitution</li>
-                </ul>
-              </aside>
             </div>
           </div>
         </div>

@@ -944,6 +944,7 @@ a.contact-info-card__value:hover {
   align-items: center;
   justify-content: center;
   color: var(--brand-red, #b90504);
+  margin-inline: auto;
   margin-bottom: var(--pg-space-5);
 }
 
