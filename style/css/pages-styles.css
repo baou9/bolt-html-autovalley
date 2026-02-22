@@ -800,20 +800,21 @@ a.contact-info-card__value:hover {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(24px, 5vw, 72px);
-  align-items: start;
+  align-items: center;
 }
 
 .apropos-story__text p {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.9;
   color: rgba(255, 255, 255, 0.74);
-  margin-bottom: var(--pg-space-5);
+  margin-bottom: var(--pg-space-6);
 }
 
 .apropos-story__text p:last-child { margin-bottom: 0; }
 
 .apropos-story__media {
+  position: relative;
   display: grid;
   gap: var(--pg-space-5);
 }
@@ -822,7 +823,8 @@ a.contact-info-card__value:hover {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 2/3;
+  height: min(500px, 62vh);
+  max-height: 500px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -847,6 +849,11 @@ a.contact-info-card__value:hover {
 }
 
 .apropos-story__panel {
+  position: absolute;
+  top: var(--pg-space-5);
+  left: var(--pg-space-5);
+  z-index: 2;
+  width: min(340px, calc(100% - (var(--pg-space-5) * 2)));
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -1285,6 +1292,15 @@ a.contact-info-card__value:hover {
 
   .apropos-story {
     grid-template-columns: 1fr;
+  }
+
+  .apropos-story__img-wrap {
+    height: min(460px, 62vh);
+  }
+
+  .apropos-story__panel {
+    position: static;
+    width: 100%;
   }
 
   .apropos-values-grid {
