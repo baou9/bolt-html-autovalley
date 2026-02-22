@@ -150,11 +150,6 @@ $structuredData = [
             </div>
           </div>
 
-          <ul class="apropos-hero__highlights" aria-label="Repères AutoValley">
-            <li>Atelier basé à Casablanca</li>
-            <li>Interventions documentées</li>
-            <li>Suivi adapté aux flottes et particuliers</li>
-          </ul>
         </div>
       </section>
 
