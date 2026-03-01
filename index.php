@@ -189,7 +189,38 @@ $pageStyles = [
 
     <!-- Services d'Excellence Section -->
     <span id="services"></span>
-    <section class="services-section" id="services-excellence">
+    <section class="services-section av-persp-bg" id="services-excellence">
+      <div class="av-bg" data-av-bg>
+        <div class="av-plane av-grid" data-av-grid></div>
+        <svg class="av-plane av-svg" data-av-svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <symbol id="svc-ico-wrench" viewBox="0 0 24 24">
+              <path d="M21 7.5a6 6 0 0 1-8.6 5.4l-6.9 6.9a2 2 0 1 1-2.8-2.8l6.9-6.9A6 6 0 0 1 16.5 3l-2.6 2.6 2.5 2.5L21 7.5z"/>
+            </symbol>
+            <symbol id="svc-ico-gear" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3.2"/>
+              <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2 M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6 M19.4 4.6l-1.6 1.6M6.2 17.8l-1.6 1.6"/>
+            </symbol>
+            <symbol id="svc-ico-car" viewBox="0 0 24 24">
+              <path d="M4 14l1.3-4a3 3 0 0 1 2.9-2h7.6a3 3 0 0 1 2.9 2L20 14"/>
+              <path d="M6 14h12M4 14v4h3v-1h10v1h3v-4"/>
+              <circle cx="7.5" cy="18" r="1.2"/>
+              <circle cx="16.5" cy="18" r="1.2"/>
+            </symbol>
+            <symbol id="svc-ico-battery" viewBox="0 0 24 24">
+              <rect x="3" y="8" width="17" height="10" rx="2"/>
+              <rect x="20" y="11" width="1.5" height="4" rx="0.6"/>
+              <path d="M7 13h3M12.5 11.5v3"/>
+            </symbol>
+            <symbol id="svc-ico-brake" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="7.5"/>
+              <circle cx="12" cy="12" r="1.8"/>
+              <path d="M12 4.5v2M12 17.5v2M4.5 12h2M17.5 12h2"/>
+            </symbol>
+          </defs>
+        </svg>
+        <div class="av-glass"></div>
+      </div>
       <div class="services-inner">
         <p class="section-kicker">NOTRE SAVOIR-FAIRE</p>
         <h2 class="section-title">Nos Services d’Excellence</h2>
