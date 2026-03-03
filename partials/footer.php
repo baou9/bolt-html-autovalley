@@ -253,3 +253,34 @@
         });
       })();
     </script>
+    <script>
+      // [PATCH] Lightweight pointer parallax for the shared 3D grid background.
+      (() => {
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+
+        const plane = document.querySelector('.bg-3d .plane');
+        if (!plane) return;
+
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        window.addEventListener('mousemove', (event) => {
+          const normalizedX = (event.clientX / window.innerWidth) * 2 - 1;
+          const normalizedY = (event.clientY / window.innerHeight) * 2 - 1;
+          targetX = normalizedX * 10;
+          targetY = normalizedY * 6;
+        }, { passive: true });
+
+        const tick = () => {
+          currentX += (targetX - currentX) * 0.06;
+          currentY += (targetY - currentY) * 0.06;
+          plane.style.transform = `translateX(-50%) translateY(var(--grid-y)) translate(${currentX}px, ${currentY}px) perspective(var(--grid-depth)) rotateX(var(--grid-tilt)) scale(var(--grid-scale))`;
+          requestAnimationFrame(tick);
+        };
+
+        tick();
+      })();
+    </script>

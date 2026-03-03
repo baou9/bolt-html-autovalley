@@ -1,3 +1,9 @@
+    <div class="bg-3d" aria-hidden="true">
+      <div class="haze"></div>
+      <div class="plane"></div>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
+
     <header class="site-header">
       <div class="header-glass-container">
         <div class="logo-wrapper">
