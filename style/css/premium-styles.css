@@ -1359,6 +1359,103 @@ img {
 }
 
 /* ──────────────────────────────────────────────────────────
+   32. Premium Visual Refresh
+   ────────────────────────────────────────────────────────── */
+
+body {
+  background:
+    radial-gradient(1200px 520px at 10% -15%, rgba(185, 5, 4, 0.08), transparent 68%),
+    radial-gradient(900px 420px at 100% 8%, rgba(255, 106, 106, 0.04), transparent 70%);
+}
+
+.hero-lg__content {
+  max-width: 760px;
+  padding: clamp(22px, 3.2vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(135deg, rgba(9, 9, 11, 0.7) 0%, rgba(17, 17, 20, 0.45) 100%);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.hero-lg__subtitle {
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-lg--primary {
+  box-shadow:
+    0 8px 24px rgba(185, 5, 4, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.btn-lg--ghost {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-lg--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.services-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.services-section::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 44%;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(185, 5, 4, 0) 0%, rgba(185, 5, 4, 0.04) 100%);
+  pointer-events: none;
+}
+
+.service-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, rgba(22, 22, 26, 0.92), rgba(10, 10, 12, 0.92));
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.service-card .overlay-header {
+  align-items: center;
+  gap: 10px;
+}
+
+.service-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 768px) {
+  .hero-lg__content {
+    border-radius: 18px;
+    padding: 18px;
+  }
+
+  .hero-lg__trust {
+    background: rgba(0, 0, 0, 0.26);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
    32. Enhanced Navigation Active States
    ────────────────────────────────────────────────────────── */
 
@@ -1412,4 +1509,180 @@ img {
   transform: scale(0, 0);
   opacity: 0.3;
   transition: 0s;
+}
+
+/* ──────────────────────────────────────────────────────────
+   33. Global 3D Grid Background (Non-Hero Sections)
+   ────────────────────────────────────────────────────────── */
+
+:root {
+  --av-grid-cutoff: 360px;
+}
+
+.av-has-grid-bg {
+  position: relative;
+}
+
+.av-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -6;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.98;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--av-grid-cutoff),
+    rgba(0, 0, 0, 0.42) calc(var(--av-grid-cutoff) + 42px),
+    rgba(0, 0, 0, 1) calc(var(--av-grid-cutoff) + 120px)
+  );
+}
+
+.av-grid-bg::before,
+.av-grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.av-grid-bg::before {
+  background:
+    radial-gradient(980px 260px at 50% 14%, rgba(255, 255, 255, 0.08), transparent 72%),
+    radial-gradient(1200px 620px at 50% 15%, rgba(185, 5, 4, 0.14), transparent 74%),
+    radial-gradient(860px 380px at 85% 40%, rgba(227, 233, 239, 0.06), transparent 70%);
+  opacity: 0.5;
+}
+
+.av-grid-bg::after {
+  transform-origin: 50% 0%;
+  transform: perspective(900px) rotateX(58deg) translateY(96px) scale(1.08);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.10) 64%, rgba(0, 0, 0, 0.22) 100%);
+  background-size:
+    58px 58px,
+    58px 58px,
+    232px 232px,
+    232px 232px,
+    auto;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  opacity: 0.64;
+  mix-blend-mode: screen;
+  animation: avGridFlow 18s linear infinite;
+}
+
+.av-grid-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.22;
+  background:
+    radial-gradient(680px 340px at 50% 52%, rgba(185, 5, 4, 0.11), transparent 72%);
+  animation: avSectionPulse 8s ease-in-out infinite;
+}
+
+main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero):not(.article-hero) {
+  position: relative;
+  isolation: isolate;
+}
+
+main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero):not(.article-hero)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0.004) 42%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(720px 260px at 50% 0%, rgba(255, 255, 255, 0.038), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+
+main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero):not(.article-hero).av-grid-visible::before {
+  opacity: 1;
+}
+
+@keyframes avGridFlow {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 120px, 0 120px, 0 0, 0 0, 0 0;
+  }
+}
+
+@keyframes avSectionPulse {
+  0%,
+  100% {
+    opacity: 0.24;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.36;
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .av-grid-bg::after {
+    transform: perspective(760px) rotateX(53deg) translateY(94px) scale(1.12);
+    background-size: 52px 52px, 52px 52px, 208px 208px, 208px 208px, auto;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --av-grid-cutoff: 300px;
+  }
+
+  .av-grid-bg::after {
+    transform: perspective(640px) rotateX(48deg) translateY(88px) scale(1.16);
+    opacity: 0.48;
+  }
+
+  .av-grid-glow {
+    opacity: 0.24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-grid-bg::after,
+  .av-grid-glow {
+    animation: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   34. 3D Background Visibility Corrections
+   ────────────────────────────────────────────────────────── */
+
+html {
+  background-color: #050608;
+}
+
+body {
+  background-color: transparent;
+}
+
+.services-section {
+  background: transparent;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.services-section::before {
+  opacity: 0.32;
+}
+
+.services-section::after {
+  opacity: 0.08;
+}
+
+main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero):not(.article-hero).av-grid-visible::before {
+  opacity: 0.28;
 }
