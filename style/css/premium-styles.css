@@ -1657,3 +1657,32 @@ main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero
     animation: none;
   }
 }
+
+/* ──────────────────────────────────────────────────────────
+   34. 3D Background Visibility Corrections
+   ────────────────────────────────────────────────────────── */
+
+html {
+  background-color: #050608;
+}
+
+body {
+  background-color: transparent;
+}
+
+.services-section {
+  background: transparent;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.services-section::before {
+  opacity: 0.32;
+}
+
+.services-section::after {
+  opacity: 0.08;
+}
+
+main > section:not(.hero-lg):not(.pg-hero):not(.pg-hero--compact):not(.blog-hero):not(.article-hero).av-grid-visible::before {
+  opacity: 0.28;
+}
