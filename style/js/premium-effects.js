@@ -402,3 +402,79 @@ export function initAllPremiumEffects() {
   initHeroEnhancements();
   initFloatingElements();
 }
+
+export function initGlobal3DGridBackground() {
+  if (document.body?.dataset.avGridInit === '1') return;
+  if (!document.body || !document.querySelector('main')) return;
+
+  document.body.dataset.avGridInit = '1';
+  document.body.classList.add('av-has-grid-bg');
+
+  const grid = document.createElement('div');
+  grid.className = 'av-grid-bg';
+  grid.setAttribute('aria-hidden', 'true');
+
+  const glow = document.createElement('div');
+  glow.className = 'av-grid-glow';
+  glow.setAttribute('aria-hidden', 'true');
+
+  document.body.prepend(glow);
+  document.body.prepend(grid);
+
+  const heroSelector = '.hero-lg, .pg-hero, .blog-hero, .article-hero';
+  const sections = Array.from(document.querySelectorAll('main > section')).filter((section) => {
+    return !section.matches('.hero-lg, .pg-hero, .pg-hero--compact, .blog-hero, .article-hero');
+  });
+
+  function updateHeroCutoff() {
+    const hero = document.querySelector(heroSelector);
+    if (!hero) {
+      document.documentElement.style.setProperty('--av-grid-cutoff', '160px');
+      return;
+    }
+
+    const rect = hero.getBoundingClientRect();
+    const cutoff = Math.max(120, Math.round(rect.height + rect.top + 40));
+    document.documentElement.style.setProperty('--av-grid-cutoff', `${cutoff}px`);
+  }
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('av-grid-visible', entry.isIntersecting);
+      });
+    }, {
+      threshold: 0.18,
+      rootMargin: '-10% 0px -28% 0px'
+    });
+
+    sections.forEach((section) => observer.observe(section));
+  } else {
+    sections.forEach((section) => section.classList.add('av-grid-visible'));
+  }
+
+  let rafId = null;
+  const onScroll = () => {
+    if (rafId) return;
+
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      const depth = Math.min(90, Math.max(0, window.scrollY * 0.09));
+      grid.style.transform = `translate3d(0, ${depth * -0.2}px, 0)`;
+      glow.style.transform = `translate3d(0, ${depth * -0.35}px, 0)`;
+    });
+  };
+
+  window.addEventListener('resize', updateHeroCutoff, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  updateHeroCutoff();
+  onScroll();
+}
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGlobal3DGridBackground, { once: true });
+  } else {
+    initGlobal3DGridBackground();
+  }
+}
