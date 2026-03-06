@@ -401,4 +401,283 @@ export function initAllPremiumEffects() {
   initCardShine();
   initHeroEnhancements();
   initFloatingElements();
+  initPremium3DGridExperience();
+}
+
+
+const WORKSHOP_SERVICES = [
+  { tone: 'steel', svg: '<svg viewBox="0 0 24 24"><path d="M12 3v7"/><path d="M12 14v7"/><path d="M6.3 6.3l5 5"/><path d="M12.7 12.7l5 5"/><path d="M3 12h7"/><path d="M14 12h7"/><path d="M6.3 17.7l5-5"/><path d="M12.7 11.3l5-5"/><circle cx="12" cy="12" r="2.2"/></svg>' },
+  { tone: 'red', svg: '<svg viewBox="0 0 24 24"><rect x="4" y="7" width="14" height="10" rx="2"/><path d="M18 10h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2"/><path d="M8 12h4"/><path d="M10 10v4"/></svg>' },
+  { tone: 'white', svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2"/><path d="M12 5v3"/><path d="M19 12h-3"/><path d="M12 19v-3"/><path d="M5 12h3"/></svg>' },
+  { tone: 'steel', svg: '<svg viewBox="0 0 24 24"><path d="M4 14.5h18"/><path d="M5 14.5l1.4-4.1A2 2 0 0 1 8.3 9h7.4a2 2 0 0 1 1.9 1.4L19 14.5"/><path d="M7 17.5h.01"/><path d="M17 17.5h.01"/><path d="M6 17.5a1 1 0 0 0 2 0"/><path d="M16 17.5a1 1 0 0 0 2 0"/><path d="M9 14.5h6"/></svg>' },
+  { tone: 'white', svg: '<svg viewBox="0 0 24 24"><path d="M12 3l1.3 3.7L17 8l-3.7 1.3L12 13l-1.3-3.7L7 8l3.7-1.3L12 3Z"/><path d="M18.5 13.5l.8 2.1 2.1.8-2.1.8-.8 2.1-.8-2.1-2.1-.8 2.1-.8.8-2.1Z"/></svg>' },
+  { tone: 'red', svg: '<svg viewBox="0 0 24 24"><path d="M4 13h4l2-4 4 9 2-5h4"/><path d="M8 5h8"/><path d="M8 19h8"/></svg>' },
+  { tone: 'white', svg: '<svg viewBox="0 0 24 24"><path d="M4 10h2l2-3h7l2 3h3v7h-3l-2 2H8l-2-2H4z"/><path d="M8 7V4h5v3"/></svg>' },
+  { tone: 'steel', svg: '<svg viewBox="0 0 24 24"><path d="M5 16l1.5-6A2 2 0 0 1 8.4 8h7.2a2 2 0 0 1 1.9 2L19 16"/><path d="M4 16h16"/><path d="M8 12h8"/></svg>' },
+];
+
+function mulberry32(seed) {
+  return function random() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function ensure3DGridBackgroundMarkup() {
+  if (document.querySelector('.av-grid-3d')) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'av-grid-3d';
+  wrapper.setAttribute('aria-hidden', 'true');
+  wrapper.innerHTML = `
+    <div class="av-grid-3d__haze"></div>
+    <div class="av-grid-3d__horizon"></div>
+    <div class="av-grid-3d__orbit av-grid-3d__orbit--a"></div>
+    <div class="av-grid-3d__orbit av-grid-3d__orbit--b"></div>
+    <div class="av-grid-3d__plane">
+      <div class="av-grid-3d__floor"></div>
+      <div class="av-grid-3d__lanes"></div>
+      <div class="av-grid-3d__scan"></div>
+      <div class="av-grid-3d__nodes" id="av-grid-nodes"></div>
+      <div class="av-grid-3d__icons" id="av-grid-icons"></div>
+      <div class="av-grid-3d__vignette"></div>
+    </div>
+  `;
+
+  const grain = document.createElement('div');
+  grain.className = 'av-grid-grain';
+  grain.setAttribute('aria-hidden', 'true');
+
+  const veil = document.createElement('div');
+  veil.className = 'av-grid-veil';
+  veil.setAttribute('aria-hidden', 'true');
+
+  document.body.prepend(wrapper);
+  document.body.prepend(grain);
+  document.body.prepend(veil);
+}
+
+function build3DGridNodesAndIcons() {
+  const nodeLayer = document.getElementById('av-grid-nodes');
+  const iconLayer = document.getElementById('av-grid-icons');
+  if (!nodeLayer || !iconLayer) return;
+
+  nodeLayer.innerHTML = '';
+  iconLayer.innerHTML = '';
+
+  const compact = window.innerWidth < 640;
+  const random = mulberry32(90421);
+  const nodeColumns = compact ? [12, 24, 38, 50, 62, 76, 88] : [10, 22, 34, 50, 66, 78, 90];
+  const nodeRows = compact ? [20, 34, 50, 68, 84] : [18, 30, 44, 60, 78];
+  const iconColumns = compact ? [21, 50, 79] : [18, 34, 50, 66, 82];
+  const iconRows = compact ? [28, 54, 80] : [24, 42, 66];
+
+  nodeRows.forEach((row, rowIndex) => {
+    const depth = rowIndex / Math.max(1, nodeRows.length - 1);
+    const rowShift = rowIndex % 2 === 0 ? 0 : (compact ? 1.4 : 1.8);
+
+    nodeColumns.forEach((column) => {
+      const x = Math.max(8, Math.min(92, column + rowShift + (random() - 0.5) * (compact ? 0.8 : 1.1)));
+      const y = Math.max(12, Math.min(90, row + (random() - 0.5) * (compact ? 0.9 : 1.2)));
+      const node = document.createElement('span');
+      node.className = 'av-grid-3d__node';
+      node.style.left = `${x}%`;
+      node.style.top = `${y}%`;
+      node.style.setProperty('--av-node-scale', (0.68 + depth * 1.05).toFixed(2));
+      node.style.setProperty('--av-node-opacity', (0.12 + depth * 0.22).toFixed(2));
+      node.style.setProperty('--av-node-delay', `${(-random() * 10).toFixed(2)}s`);
+      node.style.setProperty('--av-node-dur', `${(9.5 + random() * 4.5).toFixed(2)}s`);
+      nodeLayer.appendChild(node);
+    });
+  });
+
+  const iconSlots = [];
+
+  iconRows.forEach((row, rowIndex) => {
+    const depth = rowIndex / Math.max(1, iconRows.length - 1);
+    const rowShift = rowIndex % 2 === 0 ? 0 : (compact ? 1.2 : 1.6);
+
+    iconColumns.forEach((column, columnIndex) => {
+      if ((rowIndex + columnIndex) % 2 === 1 && !(columnIndex === 2 && rowIndex === iconRows.length - 1)) return;
+
+      const x = Math.max(10, Math.min(90, column + rowShift + (random() - 0.5) * (compact ? 0.7 : 1.0)));
+      const y = Math.max(16, Math.min(86, row + (random() - 0.5) * (compact ? 0.8 : 1.0)));
+      iconSlots.push({ x, y, depth });
+    });
+  });
+
+  iconSlots.forEach((slot, index) => {
+    const service = WORKSHOP_SERVICES[index % WORKSHOP_SERVICES.length];
+    const icon = document.createElement('span');
+    icon.className = `av-grid-3d__icon av-grid-3d__icon--${service.tone}`;
+    icon.style.left = `${slot.x}%`;
+    icon.style.top = `${slot.y}%`;
+    icon.style.setProperty('--av-icon-scale', (0.70 + slot.depth * 0.42).toFixed(2));
+    icon.style.setProperty('--av-icon-opacity', (0.10 + slot.depth * 0.14).toFixed(2));
+    icon.style.setProperty('--av-icon-delay', `${(-random() * 14).toFixed(2)}s`);
+    icon.style.setProperty('--av-icon-dur', `${(12 + random() * 5).toFixed(2)}s`);
+    icon.innerHTML = service.svg;
+    iconLayer.appendChild(icon);
+  });
+}
+
+function updateGridHeroExclusion() {
+  const hero = document.querySelector('main section[class*="hero"], main .hero-lg, main .sv-hero, main .pg-hero, main .blog-hero, main .article-hero');
+  const root = document.documentElement;
+
+  if (!hero) {
+    root.style.setProperty('--av-grid-top-cut', '0px');
+    return;
+  }
+
+  const rect = hero.getBoundingClientRect();
+  const topCut = Math.max(0, rect.bottom + window.scrollY - window.scrollY);
+  root.style.setProperty('--av-grid-top-cut', `${Math.round(topCut)}px`);
+}
+
+function init3DGridMotion() {
+  const plane = document.querySelector('.av-grid-3d__plane');
+  if (!plane || shouldSkipHeavyEffect()) return;
+
+  const root = document.documentElement;
+  let baseTilt = Number.parseFloat(getComputedStyle(root).getPropertyValue('--av-grid-tilt')) || 58;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let rafId = 0;
+
+  const tick = () => {
+    currentX += (targetX - currentX) * 0.06;
+    currentY += (targetY - currentY) * 0.06;
+    const panX = -50 + currentX * 1.1;
+    const tilt = baseTilt - currentY * 2.2;
+
+    plane.style.transform = `translateX(${panX.toFixed(2)}%) translateY(var(--av-grid-y)) perspective(var(--av-grid-depth)) rotateX(${tilt.toFixed(2)}deg) scale(var(--av-grid-scale))`;
+
+    if (Math.abs(targetX - currentX) < 0.002 && Math.abs(targetY - currentY) < 0.002) {
+      rafId = 0;
+      return;
+    }
+
+    rafId = requestAnimationFrame(tick);
+  };
+
+  window.addEventListener('mousemove', (event) => {
+    targetX = (event.clientX / window.innerWidth - 0.5) * 2;
+    targetY = (event.clientY / window.innerHeight - 0.5) * 2;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    baseTilt = Number.parseFloat(getComputedStyle(root).getPropertyValue('--av-grid-tilt')) || 58;
+  }, { passive: true });
+}
+
+function initSectionTransitionMood() {
+  const sections = Array.from(document.querySelectorAll('main section'));
+  if (!sections.length) return;
+
+  const root = document.documentElement;
+  const clamp01 = (value) => Math.max(0, Math.min(1, value));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+
+  const getMood = (section) => {
+    const cards = section.querySelectorAll('.service-card, .glass-card, .timeline-card, .blog-card, .test-card, .quote, .card').length;
+    const textLength = (section.textContent || '').replace(/\s+/g, ' ').trim().length;
+    const density = clamp01((textLength - 260) / 2200);
+    const cardsNorm = clamp01(cards / 10);
+
+    return {
+      veil: clamp01(0.12 + cardsNorm * 0.16 + density * 0.12),
+      red: clamp01(0.08 + cardsNorm * 0.18),
+      pulse: clamp01(0.01 + cardsNorm * 0.05),
+    };
+  };
+
+  const moods = sections.map((section) => ({ section, mood: getMood(section) }));
+  let frame = 0;
+
+  const update = () => {
+    frame = 0;
+    const viewportMid = window.innerHeight * 0.52;
+    const rects = moods.map(({ section }) => section.getBoundingClientRect());
+
+    let currentIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    rects.forEach((rect, index) => {
+      const dist = Math.abs(rect.top + rect.height / 2 - viewportMid);
+      if (dist < bestDistance) {
+        bestDistance = dist;
+        currentIndex = index;
+      }
+    });
+
+    let nextIndex = currentIndex;
+    const currentRect = rects[currentIndex];
+    const currentCenter = currentRect.top + currentRect.height / 2;
+
+    if (currentCenter < viewportMid && currentIndex < rects.length - 1) {
+      nextIndex = currentIndex + 1;
+    } else if (currentCenter > viewportMid && currentIndex > 0) {
+      nextIndex = currentIndex - 1;
+    }
+
+    let progress = 0;
+    if (nextIndex !== currentIndex) {
+      const nextCenter = rects[nextIndex].top + rects[nextIndex].height / 2;
+      const span = Math.abs(nextCenter - currentCenter) || 1;
+      progress = smooth(clamp01(Math.abs(viewportMid - currentCenter) / span));
+    }
+
+    const currentMood = moods[currentIndex].mood;
+    const nextMood = moods[nextIndex].mood;
+
+    root.style.setProperty('--av-grid-veil', lerp(currentMood.veil, nextMood.veil, progress).toFixed(3));
+    root.style.setProperty('--av-grid-red', lerp(currentMood.red, nextMood.red, progress).toFixed(3));
+    root.style.setProperty('--av-grid-pulse', lerp(currentMood.pulse, nextMood.pulse, progress).toFixed(3));
+  };
+
+  const onScroll = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+}
+
+export function initPremium3DGridExperience() {
+  if (document.body.dataset.avGridInitialized === 'true') return;
+  document.body.dataset.avGridInitialized = 'true';
+
+  ensure3DGridBackgroundMarkup();
+  build3DGridNodesAndIcons();
+  updateGridHeroExclusion();
+  init3DGridMotion();
+  initSectionTransitionMood();
+
+  window.addEventListener('resize', () => {
+    build3DGridNodesAndIcons();
+    updateGridHeroExclusion();
+  }, { passive: true });
+}
+
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPremium3DGridExperience, { once: true });
+} else {
+  initPremium3DGridExperience();
 }
