@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="MG">
-  <g transform="translate(80,30)" fill="none" stroke="#fff">
-    <path d="M-14,-24 L14,-24 L24,-14 L24,14 L14,24 L-14,24 L-24,14 L-24,-14 Z" stroke-width="3.5"/>
-    <text x="0" y="1" text-anchor="middle" dominant-baseline="middle" font-family="Arial,sans-serif" font-weight="900" font-size="18" letter-spacing="2" fill="#fff" stroke="none">MG</text>
-  </g>
-</svg>
