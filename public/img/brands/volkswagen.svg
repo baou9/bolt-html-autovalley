@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Volkswagen">
-  <g transform="translate(80,30)">
-    <circle r="25" fill="none" stroke="#fff" stroke-width="3.5"/>
-    <path d="M-10,-16 L0,6 L10,-16" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M-16,-6 L-6,16 L0,2 L6,16 L16,-6" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-  </g>
-</svg>

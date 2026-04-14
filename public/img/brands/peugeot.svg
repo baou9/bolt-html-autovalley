@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Peugeot">
-  <g transform="translate(80,30)" fill="none" stroke="#fff">
-    <path d="M0,-25 L6,-7 L25,-8 L12,4 L17,22 L0,12 L-17,22 L-12,4 L-25,-8 L-6,-7 Z" stroke-width="3.5" stroke-linejoin="round"/>
-    <path d="M0,-13 L3,-4 L13,-4 L6,3 L9,12 L0,7 L-9,12 L-6,3 L-13,-4 L-3,-4 Z" stroke-width="0" fill="#fff"/>
-  </g>
-</svg>

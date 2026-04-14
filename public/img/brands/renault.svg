@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" role="img" aria-label="Renault">
-  <g transform="translate(80,30)">
-    <polygon points="0,-24 14,0 0,24 -14,0" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round"/>
-    <polygon points="0,-13 8,0 0,13 -8,0" fill="#fff"/>
-  </g>
-</svg>
